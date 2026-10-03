@@ -1,0 +1,47 @@
+"""Analyse d'erreurs : afficher les pires traces selon une métrique."""
+from __future__ import annotations
+
+from typing import Sequence
+
+from ..models import FailureType, Trace
+
+JUDGE_DIMS = ("correctness", "completeness", "groundedness")
+
+
+def metric_value(t: Trace, metric: str) -> float | None:
+    if metric in JUDGE_DIMS:
+        return getattr(t.judge, metric) if t.judge else None
+    return t.metrics.get(metric)
+
+
+def available_metrics(traces: Sequence[Trace]) -> list[str]:
+    names = list(traces[0].metrics) if traces else []
+    return names + (list(JUDGE_DIMS) if any(t.judge for t in traces) else [])
+
+
+def worst(traces: Sequence[Trace], metric: str, n: int, failure_type: FailureType | None = None) -> list[Trace]:
+    if metric not in available_metrics(traces):
+        raise ValueError(f"métrique inconnue '{metric}' ; disponibles : {available_metrics(traces)}")
+    pool = [t for t in traces if (failure_type is None or t.diagnosis == failure_type)
+            and metric_value(t, metric) is not None]
+    return sorted(pool, key=lambda t: (metric_value(t, metric), t.question_id))[:n]
+
+
+def format_trace(t: Trace, metric: str, rank: int) -> str:
+    out = [f"#{rank} {t.question_id}  {metric}={metric_value(t, metric):.3f}  [{t.diagnosis.value}]",
+           f"  Q        : {t.input.question}",
+           f"  référence: {t.ground_truth.answer}"]
+    if t.error:
+        out.append(f"  ERREUR   : {t.error}")
+        return "\n".join(out)
+    po = t.pipeline_output
+    got = [c.chunk_id for c in po.retrieved_chunks[:5]]
+    out += [f"  réponse  : {po.answer}",
+            f"  attendus : {t.ground_truth.relevant_chunks}",
+            f"  top-5    : {got}"]
+    if t.judge:
+        out.append(f"  judge    : corr={t.judge.correctness:.2f} compl={t.judge.completeness:.2f} "
+                   f"ground={t.judge.groundedness:.2f} — {t.judge.reason}")
+    if t.judge_error:
+        out.append(f"  judge KO : {t.judge_error}")
+    return "\n".join(out)

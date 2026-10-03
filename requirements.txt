@@ -1,0 +1,7 @@
+pydantic>=2.5
+PyYAML>=6.0
+requests>=2.31
+# Judge Anthropic (optionnel) :
+# anthropic>=0.40
+# Tests :
+# pytest>=8

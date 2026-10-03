@@ -1,0 +1,22 @@
+# Pipeline testée (n'importe quelle API respectant le contrat HTTP du README)
+pipeline:
+  name: "mock-bm25"
+  version: "v1"
+  endpoint: "http://localhost:8000/query"   # ou "${PIPELINE_URL}" pour lire l'environnement
+  timeout: 30
+  max_retries: 2
+  retry_backoff_s: 1.0
+  headers: {}                               # ex. Authorization: "Bearer ${PIPELINE_TOKEN}"
+
+dataset:
+  version: "v1"                             # name : défaut = nom du fichier
+
+benchmark:
+  top_k: [1, 5, 10]
+  retrieval_metrics: [recall, mrr]          # disponibles : recall, precision, ndcg, mrr
+
+# LLM-as-a-judge (optionnel). Clé : ANTHROPIC_API_KEY ou `ant auth login`.
+judge:
+  enabled: false
+  provider: "anthropic"                     # anthropic | openai_compatible
+  model: "claude-opus-5-5"
