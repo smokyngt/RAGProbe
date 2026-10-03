@@ -322,9 +322,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
+      "notes": "blind reviewer confidence=None; notes: ",
       "status": "flagged",
-      "basis": "none"
+      "basis": "unresolved disagreement or reviewer doubt"
     },
     "fin_q_017": {
       "method": "llm_blind_reverify",
@@ -382,9 +382,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
+      "notes": "blind reviewer confidence=None; notes: ",
       "status": "flagged",
-      "basis": "none"
+      "basis": "unresolved disagreement or reviewer doubt"
     },
     "fin_q_020": {
       "method": "llm_blind_reverify",
@@ -402,9 +402,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
+      "notes": "blind reviewer confidence=None; notes: ",
       "status": "flagged",
-      "basis": "none"
+      "basis": "unresolved disagreement or reviewer doubt"
     },
     "fin_q_021": {
       "method": "llm_blind_reverify",
@@ -522,12 +522,13 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
+      "notes": "calculation differs: blind 3086.4 vs annotated 0.047140546460106035; numbers of the reference answer not in blind answer: ['4.714']; blind reviewer confidence=None; notes: ",
       "status": "flagged",
-      "basis": "none",
+      "basis": "unresolved disagreement or reviewer doubt",
       "independent_recompute": {
-        "result": null,
-        "matches": false
+        "result": 3086.4,
+        "matches": false,
+        "blind_result": 3086.4
       }
     },
     "fin_q_027": {
@@ -546,12 +547,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
+      "notes": "calculation differs: blind 156620.5 vs annotated 156620534.6; numbers of the reference answer not in blind answer: ['0.1742', '1.118', '156620.5', '194.8', '351.4']; blind reviewer confidence=None; notes: ",
       "status": "flagged",
-      "basis": "none",
+      "basis": "unresolved disagreement or reviewer doubt",
       "independent_recompute": {
-        "result": null,
-        "matches": false
+        "result": 156620534.6,
+        "matches": true,
+        "blind_result": 156620.5,
+        "equivalence": [
+          "scale"
+        ]
       }
     },
     "fin_q_028": {
@@ -610,12 +615,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
+      "notes": "calculation differs: blind -18.75 vs annotated -0.1875; numbers of the reference answer not in blind answer: ['42025']; blind reviewer confidence=None; notes: ",
       "status": "flagged",
-      "basis": "none",
+      "basis": "unresolved disagreement or reviewer doubt",
       "independent_recompute": {
-        "result": null,
-        "matches": false
+        "result": -0.1875,
+        "matches": true,
+        "blind_result": -18.75,
+        "equivalence": [
+          "scale"
+        ]
       }
     },
     "fin_q_031": {
@@ -802,12 +811,13 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
+      "notes": "calculation differs: blind -51.9 vs annotated -0.5173611111111112; blind reviewer confidence=None; notes: ",
       "status": "flagged",
-      "basis": "none",
+      "basis": "unresolved disagreement or reviewer doubt",
       "independent_recompute": {
-        "result": null,
-        "matches": false
+        "result": -51.9,
+        "matches": false,
+        "blind_result": -51.9
       }
     },
     "fin_q_040": {
@@ -846,9 +856,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
+      "notes": "numbers of the reference answer not in blind answer: ['100']; blind reviewer confidence=None; notes: ",
       "status": "flagged",
-      "basis": "none"
+      "basis": "unresolved disagreement or reviewer doubt"
     },
     "fin_q_042": {
       "method": "llm_blind_reverify",
@@ -1482,12 +1492,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
+      "notes": "calculation differs: blind 71.42 vs annotated 0.714224143492161; numbers of the reference answer not in blind answer: ['0.7142', '201938624147', '707647035234']; blind reviewer confidence=None; notes: ",
       "status": "flagged",
-      "basis": "none",
+      "basis": "unresolved disagreement or reviewer doubt",
       "independent_recompute": {
-        "result": null,
-        "matches": false
+        "result": 0.714224143492161,
+        "matches": true,
+        "blind_result": 71.42,
+        "equivalence": [
+          "scale"
+        ]
       }
     },
     "fin_q_075": {
@@ -1566,9 +1580,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
-      "status": "flagged",
-      "basis": "none"
+      "notes": "fin_doc_003 p47 31/12/2025 table: Belgian government 1,786, French government 978, Spanish government 564 (all government bonds), TOTAL 5,560 (EUR m, market value); 2024 comparatives 1,851/1,057/545/5,588 correctly distinguished. Blind answer identical.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_080": {
       "method": "llm_blind_reverify",
@@ -1666,9 +1680,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
-      "status": "flagged",
-      "basis": "none"
+      "notes": "fin_doc_010 p9 segment table (excl. Vamed): EBIT Kabi 1,413 vs Helios 1,328 (footnote 1: before special items); Corporate/Other -431 (2025) and -534 (2024), footnote 2: after special items; Group 2,310. Blind answer identical. Shares Kabi EUR 1,413m with fin_q_048, but this question adds the Kabi-vs-Helios comparison and both years of Corporate/Other EBIT, so it is distinct.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_085": {
       "method": "llm_blind_reverify",
@@ -1822,9 +1836,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
-      "status": "flagged",
-      "basis": "none"
+      "notes": "fin_doc_013 p103-104 Condition 11: payment default continuing 30 days or more only allows proceedings for dissolution/liquidation in Belgium; written notice of immediate repayment only in the event of dissolution or liquidation under Belgian law (incl. bankruptcy, judicial/voluntary liquidation with the merger carve-out); resolution action does not entitle acceleration. Blind answer agrees (also cites risk factor p33).",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_095": {
       "method": "llm_blind_reverify",
@@ -1862,9 +1876,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
-      "status": "flagged",
-      "basis": "none"
+      "notes": "fin_doc_013 p181 (Selected financial information, consolidated statement of income): Income 3,284,231,922 (2025) and 3,256,698,231 (2024), footnote (1) restated for 2024 due to refinement in presentation of commissions on payment transactions. The question explicitly pins the EMTN Base Prospectus selected-financial-information IFRS statement, so the results release figure (fin_doc_016 p10: 2024 income EUR 3,259m, apparently pre-restatement) is not the requested basis; the reference also excludes the EUR 4,295m/4,241m management 'Total income' (p128). Blind answer agrees and itself notes the 3,",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_097": {
       "method": "llm_blind_reverify",
@@ -1922,9 +1936,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
-      "status": "flagged",
-      "basis": "none"
+      "notes": "fin_doc_014 p54-55 section 10: Administrator up to 0.05% p.a. of NAV with minimum $50,000 p.a.; Depositary up to 0.023% p.a. (tiered, minimums for small funds, plus transaction/sub-custodian charges); Directors' aggregate remuneration not to exceed EUR 114,000 p.a.; fees exclusive of VAT. Blind answer identical.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_100": {
       "method": "llm_blind_reverify",
@@ -2002,9 +2016,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
-      "status": "flagged",
-      "basis": "none"
+      "notes": "fin_doc_015 p164: after EUR 7.47m repayment to State budget, 2025 minimal net loss EUR 0.66m vs 2024 deficit EUR 3.83m; working capital contribution EUR 10.42m, working capital from -EUR 19.03m (2024) to -EUR 8.61m (2025). Blind answer identical (adds the 3.17m net-result improvement).",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_106": {
       "method": "llm_blind_reverify",
@@ -2042,9 +2056,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
-      "status": "flagged",
-      "basis": "none"
+      "notes": "fin_doc_015 p33: in 2025, 80% of inspections initiated involved issues related to Impact 2027 thematic priorities, i.e. retail investor protection, sustainable finance and innovation. Blind answer verbatim identical.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_108": {
       "method": "llm_blind_reverify",
@@ -2338,9 +2352,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
-      "status": "flagged",
-      "basis": "none"
+      "notes": "fin_doc_005 p53-54 E.1.1 reconciliation (GBP m, 2025): equity 283; DAC and intangibles -72; technical provisions +392; Risk Margin -69; deferred tax -39; Other 0; excess of assets over liabilities 495 (sum checks: 283-72+392-69-39+0=495); foreseeable dividend -65; Own Funds 430 (2024: 407, no dividend deduction). Blind answer matches every line item including Risk Margin -69 (2024: -117).",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_125": {
       "method": "llm_blind_reverify",
@@ -2378,12 +2392,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "no blind re-answer available",
-      "status": "flagged",
-      "basis": "none",
+      "notes": "fin_doc_008 p7 key metrics (EUR thousand): ASF 1,121,945, RSF 596,520, NSFR 188.08% (30/6/2025) vs 136.26% (30/6/2024); p32-33 EU LIQ2 (absolute EUR, per p5 note): ASF 1,121,945,190, RSF 596,519,838, NSFR 188%. Change 188.08-136.26 = 51.82 pp recomputed. Blind answer identical.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed",
       "independent_recompute": {
-        "result": null,
-        "matches": false
+        "result": 0.5182,
+        "matches": true,
+        "blind_result": 51.82,
+        "equivalence": [
+          "scale"
+        ]
       }
     },
     "fin_q_127": {
