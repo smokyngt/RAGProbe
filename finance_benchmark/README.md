@@ -13,14 +13,32 @@ Rien n'a été inventé : un benchmark dont la vérité terrain n'a pas été lu
 ## Pour débloquer
 
 Dans les réglages de l'environnement cloud (menu de l'environnement → Edit → **Network access**), passer en « Custom » et ajouter
-sous *Allowed domains* (en gardant la liste des gestionnaires de paquets par défaut) :
+sous *Allowed domains* (en gardant la liste des gestionnaires de paquets par défaut) **un domaine par entrée** (pas de liste séparée par
+des espaces ; le champ n'accepte que `exemple.com` ou `*.exemple.com`). Les jokers `*.` couvrent les sous-domaines réellement utilisés
+(`www.`, `cdn.`, `www3.`…) ; si un téléchargement est encore refusé, ajouter aussi le domaine nu correspondant.
 
 ```
-ecb.europa.eu  belfius.be  asnbank.nl  mandg.com  tcmb.gov.tr  centralbankbahamas.com  lukb.ch
-commbank.com.au  investments.metlife.com  guggenheiminvestments.com  report.fresenius.com
-reports.emdgroup.com  reporting-hub.group.dhl.com  nbg.gr  fticonsulting.com
-sec.gov  amf-france.org  bis.org   (ces trois derniers pour combler les manques ci-dessous)
+*.ecb.europa.eu
+*.belfius.be
+*.asnbank.nl
+*.mandg.com
+*.tcmb.gov.tr
+*.centralbankbahamas.com
+*.lukb.ch
+*.commbank.com.au
+*.metlife.com
+*.guggenheiminvestments.com
+*.fresenius.com
+*.emdgroup.com
+*.dhl.com
+*.nbg.gr
+*.fticonsulting.com
+*.sec.gov
+*.amf-france.org
+*.bis.org
 ```
+
+Les trois derniers (sec.gov, amf-france.org, bis.org) servent à combler les lacunes listées plus bas ; ils sont facultatifs pour démarrer.
 
 Puis : ouvrir `corpus/candidates.json`, passer `selected: true` sur 10–15 documents (résoudre d'abord les `direct_pdf: false`
 vers leur lien PDF), et lancer les commandes de la section « Workflow ».
