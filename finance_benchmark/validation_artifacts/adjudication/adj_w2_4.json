@@ -1,0 +1,200 @@
+{
+ "decisions": {
+  "fin_q_081": {
+   "verdict": "fix",
+   "reasons": "Question asked for 'impact' without noting the coverage ratio is printed unsigned as '32%' (bracketed values are negatives elsewhere in the column, e.g. (0.3%), (31%)); the 'impact on SCR coverage ratio %' header is a % figure, not verified as percentage points, so question now asks for what the table shows and the answer states sign reading (SCR falls 15 vs Own Funds 11, surplus +4, consistent with a rise). Evidence now includes header fragments.",
+   "example": {
+    "id": "fin_q_081",
+    "question": "In the sensitivity analysis of Prudential International Assurance plc (PIA) for 2025, what impact does the table show for a 25% fall in equities on PIA's SCR coverage ratio (as printed, in %), Own Funds (£m), SCR (£m) and surplus (£m)?",
+    "reference_answer": "For a 25% fall in equities the table shows an SCR coverage ratio impact of 32% (printed unsigned, i.e. without brackets, whereas reductions in the same column are bracketed, so the impact is an increase of 32% as printed), Own Funds of (11), i.e. a £11m reduction, SCR of (15), i.e. a £15m reduction, and surplus of 4, i.e. a £4m increase.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_005",
+      "page": 29,
+      "text": "Impact on PIA’s SCR … coverage ratio … % … £m … Investments A 25% fall in equities 32% (11) (15) 4"
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "risk:market",
+     "failure_modes": [
+      "header_dependency",
+      "similar_table_labels"
+     ],
+     "style": "conditional"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_083": {
+   "verdict": "confirmed",
+   "reasons": "GFI Fund-only scope explicit; 20 classes counted; 0.49% (S GBP Distributing) unique minimum, next 0.51%; evidence lists all 20 rows.",
+   "example": null
+  },
+  "fin_q_084": {
+   "verdict": "fix",
+   "reasons": "Columns use mixed bases (Kabi/Helios before special items, Corporate/Other after); the Group 2025 figure of 2,310 carries no marker (it is the as-reported figure, revenue 22,873 incl. special items) and was left unlabelled. Question now asks for figures as printed; answer labels bases. Ranking itself unaffected.",
+   "example": {
+    "id": "fin_q_084",
+    "question": "In Fresenius SE & Co. KGaA's consolidated segment reporting for 2025 (figures excluding the discontinued Fresenius Vamed operations), which of the three reporting columns - Fresenius Kabi, Fresenius Helios and Corporate / Other - reported the highest EBIT, and what were the EBIT values of all three? Use the figures as printed in the table, noting each column's footnoted basis.",
+    "reference_answer": "Fresenius Kabi reported the highest EBIT in 2025: €1,413 million (before special items), ahead of Fresenius Helios at €1,328 million (before special items); Corporate / Other had EBIT of -€431 million (after special items). For reference, the Fresenius Group column shows €2,310 million (no before-special-items marker, i.e. as reported).",
+    "evidence": [
+     {
+      "document_id": "fin_doc_010",
+      "page": 9,
+      "text": "€ in millions                                                                                                  20251             20241           Growth        20251       20241      Growth       20252       20242, 3      Growth          2025         20243       Growth … EBIT                                                                                                          1,413            1,319               7%         1,328       1,288         3%         -431          -534         19%          2,310         2,073         11% … Before special items … After special items"
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "style": "superlative",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "segment",
+     "failure_modes": [
+      "footnote",
+      "header_dependency"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_086": {
+   "verdict": "fix",
+   "reasons": "Answer said Group EBIT rose 2,073 -> 2,310 as a contrast, but those are as-reported (after special items) figures while the margin is before special items (2,595/22,554 and 2,489/21,526 per notes); mixing bases was misleading. Margin answer (11.5% vs 11.6%, No) verified correct.",
+   "example": {
+    "id": "fin_q_086",
+    "question": "Was Fresenius Group's EBIT margin before special items higher in 2025 than in 2024 (consolidated, excluding the discontinued Fresenius Vamed operations)?",
+    "reference_answer": "No. The Fresenius Group EBIT margin before special items was 11.5% in 2025, slightly below 11.6% in 2024 (a decline of 0.1 percentage point). (For reference, as-reported Group EBIT of €2,073 million in 2024 and €2,310 million in 2025 is after special items and is a different basis from this margin.)",
+    "evidence": [
+     {
+      "document_id": "fin_doc_010",
+      "page": 10,
+      "text": "Key figures … EBIT margin                                                                                           16.4%             15.7%                         9.8%        10.1%                                                            11.5%1        11.6%1 … Before special items"
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "style": "yes_no",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "profitability",
+     "failure_modes": [
+      "footnote",
+      "same_metric_multiple_years"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_087": {
+   "verdict": "fix",
+   "reasons": "Values correct. Calculation encoding (scale 0.01, result 0.0002 as fraction = 0.02 pp) matches dataset convention (e.g. fin_q_067: 0.157 = 15.70 pp); only the answer text was made explicit about the encoding.",
+   "example": {
+    "id": "fin_q_087",
+    "question": "For the financial year ended 31 December 2025, which had the higher total expense ratio (TER): Class I USD Accumulating of the GFI Fund or Class I USD Accumulating of the GGI Fund of Guggenheim Global Investments plc, and by how many percentage points?",
+    "reference_answer": "The GFI Fund's Class I USD Accumulating had the higher TER: 0.81% versus 0.79% for the GGI Fund's Class I USD Accumulating, a gap of 0.02 percentage points (encoded in the calculation as the fraction 0.0002).",
+    "evidence": [
+     {
+      "document_id": "fin_doc_009",
+      "page": 80,
+      "text": "31 December 2025                                            TER             Investment Management       Waiver Fee Caps … GFI Fund              Class I USD Accumulating              0.81%                    0.64%                   0.89% … GGI Fund              Class A JPY Accumulating Hedged       0.49%                    0.34%                   0.49% … Class I USD Accumulating              0.79%                    0.65%                   0.79%"
+     }
+    ],
+    "metadata": {
+     "type": "calculation",
+     "style": "comparison",
+     "difficulty": "medium",
+     "requires_calculation": true,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "fund_expenses",
+     "failure_modes": [
+      "multiple_entities",
+      "similar_table_labels"
+     ]
+    },
+    "calculation": {
+     "inputs": {
+      "gfi_i_usd_acc_ter": 0.0081,
+      "ggi_i_usd_acc_ter": 0.0079
+     },
+     "operation": "gfi_i_usd_acc_ter - ggi_i_usd_acc_ter",
+     "result": 0.0002,
+     "input_sources": {
+      "gfi_i_usd_acc_ter": {
+       "evidence_index": 0,
+       "raw": "0.81%",
+       "unit": "%",
+       "scale": 0.01
+      },
+      "ggi_i_usd_acc_ter": {
+       "evidence_index": 0,
+       "raw": "0.79%",
+       "unit": "%",
+       "scale": 0.01
+      }
+     }
+    }
+   }
+  },
+  "fin_q_088": {
+   "verdict": "confirmed",
+   "reasons": "Six W classes >1.00% (1.26/1.27%), all others <=0.82%; GFI Fund scope explicit; evidence covers all 20 classes.",
+   "example": null
+  },
+  "fin_q_089": {
+   "verdict": "confirmed",
+   "reasons": "Verified from table: Kabi 556->521 (-35, -6.3%), Corporate/Other 167->64 (-103, -61.7%), Helios 517->535 up, Group 1,240->1,120. Reference lists each segment's decrease separately with no calculation object (the reviewer's 138 sum is not part of the reference), so no ambiguity; bases per column footnotes are as printed.",
+   "example": null
+  },
+  "fin_q_090": {
+   "verdict": "fix",
+   "reasons": "Values correct (0.83% -> 0.81%) but only two data points, whereas style 'trend' requires >=3; restyled as comparison and question made explicit on direction and gap.",
+   "example": {
+    "id": "fin_q_090",
+    "question": "Did the total expense ratio (TER) of Class I USD Accumulating of the GFI Fund sub-fund of Guggenheim Global Investments plc rise or fall between the financial year ended 31 December 2024 and the financial year ended 31 December 2025, and by how many percentage points?",
+    "reference_answer": "It fell, from 0.83% for the year ended 31 December 2024 to 0.81% for the year ended 31 December 2025, a decrease of 0.02 percentage points.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_009",
+      "page": 81,
+      "text": "31 December 2024                                         TER        Investment Management      Waiver Fee Caps … GFI Fund             Class I USD Accumulating           0.83%               0.64%                  0.89%"
+     },
+     {
+      "document_id": "fin_doc_009",
+      "page": 80,
+      "text": "31 December 2025                                            TER             Investment Management       Waiver Fee Caps … GFI Fund              Class I USD Accumulating              0.81%                    0.64%                   0.89%"
+     }
+    ],
+    "metadata": {
+     "type": "temporal",
+     "style": "comparison",
+     "difficulty": "easy",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "fund_expenses",
+     "failure_modes": [
+      "same_metric_multiple_years",
+      "similar_table_labels"
+     ]
+    },
+    "calculation": null
+   }
+  }
+ }
+}

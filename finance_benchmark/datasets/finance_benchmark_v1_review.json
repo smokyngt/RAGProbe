@@ -185,7 +185,9 @@
         "result": 0.13254026739656807,
         "matches": true,
         "blind_result": 0.13254,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_010": {
@@ -211,7 +213,9 @@
         "result": 0.545888512473052,
         "matches": true,
         "blind_result": 0.545888512473052,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_011": {
@@ -237,7 +241,9 @@
         "result": 0.29355699580632866,
         "matches": true,
         "blind_result": 0.29355699580632866,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_012": {
@@ -316,14 +322,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "blind reviewer confidence=high; notes: 2024 figure is identical in both reports (1,074), so no restatement. Divisional EBIT; EUR million.",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
+      "notes": "Verified: 2023 EBIT 1,423 and 2024 1,074 (2024 report p.41), 2025 756 (2025 report p.46); -24.5%, -29.6%, cumulative (756-1423)/1423=-46.9%. 2024 figure identical in both reports. Evidence verbatim, calc inputs correct.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
       "independent_recompute": {
         "result": -0.46872803935347856,
         "matches": true,
         "blind_result": -0.46871,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_016": {
@@ -549,7 +557,9 @@
         "result": 0.07714101994278497,
         "matches": true,
         "blind_result": 0.077143,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_027": {
@@ -575,7 +585,9 @@
         "result": 0.31427275906261937,
         "matches": true,
         "blind_result": 0.314275,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_028": {
@@ -781,7 +793,9 @@
         "result": 6690000000,
         "matches": true,
         "blind_result": 6690.0,
-        "blind_scale": 1000000.0
+        "equivalence": [
+          "scale"
+        ]
       }
     },
     "fin_q_038": {
@@ -827,7 +841,9 @@
         "result": -0.5173611111111112,
         "matches": true,
         "blind_result": -0.5173611111111112,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_040": {
@@ -886,9 +902,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "blind reviewer confidence=medium; notes: Searched fin_doc_003 for 2026, projected, forecast, ratio; no numeric projection found. The 201% is the actual 31 Dec 2025 ratio, not a 2026 projection.",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Negative confirmed: SFCR p.62/66/67 gives only qualitative capital-planning statements, 201% at end 2025 and 196% at end 2024, 160% internal minimum, shock table on 2025 base; no numeric 31 Dec 2026 ratio. No other document has a Belfius Insurance projection (Solvency ratio grep over corpus).",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_043": {
       "method": "llm_blind_reverify",
@@ -973,7 +989,9 @@
         "result": 0.06894112131608669,
         "matches": true,
         "blind_result": 0.06894112131608669,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_047": {
@@ -1012,9 +1030,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "blind reviewer confidence=high; notes: Footnote 1 marks Kabi and Helios as before special items; Corporate/Other is after special items, so the Group EBIT of 2,310 equals IFRS EBIT (p.34) and the columns are on mixed bases. Kabi special it",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Verified p.9 of fin_doc_010: Kabi EBIT 1,413 (2025) vs 1,319 (2024), +7%, footnote 1 'Before special items' applies to Kabi/Helios, footnote 2 'After special items' to Corporate/Other; answer states basis correctly. Blind reviewer agrees.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_049": {
       "method": "llm_blind_reverify",
@@ -1072,14 +1090,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
+      "notes": "Corrected after blind pass; Wording said 'five' divisions but listed six names (Global Forwarding and Freight are ONE division, 'Global Forwarding, Freight'). Reworded to name the five divisions, state total revenue includes internal revenue and Group Functions/Consolidation excluded. Answer verified: Express 3,162/24,430=12.9%; PPG 5.8, SC 6.5, eCommerce 5.5, GF Freight 4.1.",
       "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
+      "basis": "adjudicator fix",
       "independent_recompute": {
         "result": 0.12943102742529677,
         "matches": true,
         "blind_result": 0.12943,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_052": {
@@ -1098,9 +1118,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
+      "notes": "Corrected after blind pass; Same 'five' vs six listed names defect; reworded and made basis (total revenue incl. internal) and exclusion of Group Functions/Consolidation explicit. Values and order verified (24,430; 18,643; 17,874; 17,778; 6,884).",
       "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+      "basis": "adjudicator fix"
     },
     "fin_q_053": {
       "method": "llm_blind_reverify",
@@ -1118,13 +1138,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "calculation differs: blind 3723 vs annotated -3723",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
+      "notes": "Corrected after blind pass; Answer correct (PPG -3,723; SC -3,492; Express -2,498; GF Freight -1,648; eCommerce -670). Tightened: named the five divisions, excluded Group Functions (-621, would not change result), and stated sign convention (reduction of 3,723, change -3,723).",
+      "status": "verified",
+      "basis": "adjudicator fix",
       "independent_recompute": {
-        "result": 3723.0,
-        "matches": false,
-        "blind_result": 3723.0
+        "result": -3723,
+        "matches": true,
+        "blind_result": 3723.0,
+        "equivalence": [
+          "sign"
+        ]
       }
     },
     "fin_q_054": {
@@ -1143,9 +1166,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['15856', '17739', '18998', '2022', '2023', '2024']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Verified: 2021-2025 net debt 12,772/15,856/17,739/18,998/21,516 (2025 report p.3); 2020 12,928 from 2024 report p.3 (2021-2024 identical in both). Lowest 2021, next-lowest 2020; question asks for both and the answer gives the figures and the source of 2020.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_055": {
       "method": "llm_blind_reverify",
@@ -1183,9 +1206,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['2022', '2023', '2024', '8722', '9258', '9993']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; Reference answer correct (9,119 is fourth-highest: 10,965 > 9,993 > 9,258 > 9,119 > 8,722); the blind reviewer's 'third' is wrong. 2021-2024 values are identical in the 2024 report (adjusted), so no conflict, but question did not state the basis; reworded to cite the 2025 report five-year key figures (adjusted).",
+      "status": "verified",
+      "basis": "adjudicator fix"
     },
     "fin_q_057": {
       "method": "llm_blind_reverify",
@@ -1203,14 +1226,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "calculation differs: blind 403 vs annotated 403000000; blind reviewer confidence=high; notes: Supply Chain: assets acquired 561 + ROU 1,038 = 1,599 on components (rounding; reported total 1,600). PPG: 1,035+162=1,197. Using component sums the gap would be 402.",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
+      "notes": "Corrected after blind pass; Reported Total capex Supply Chain 1,600 vs components 561+1,038=1,599 (rounding); gap 403 vs 402. Question now specifies using the reported 'Total capex' line; answer notes the rounding alternative. PPG 1,197 (1,035+162) consistent.",
+      "status": "verified",
+      "basis": "adjudicator fix",
       "independent_recompute": {
         "result": 403000000,
         "matches": true,
         "blind_result": 403.0,
-        "blind_scale": 1000000.0
+        "equivalence": [
+          "scale"
+        ]
       }
     },
     "fin_q_058": {
@@ -1229,9 +1254,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
+      "notes": "Verified p194-195: Total revenue Express 25,134->24,430, Global Forwarding Freight 19,649->18,643, Supply Chain 17,693->17,778, eCommerce 6,962->6,884, PPG 17,347->17,874. Question asks 'total revenue' (row label), five divisions exclude Group Functions. Same three fall on external revenue too (Express, Freight, eCommerce), so no basis ambiguity. Evidence covers all five.",
       "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+      "basis": "adjudicator confirmed"
     },
     "fin_q_059": {
       "method": "llm_blind_reverify",
@@ -1249,9 +1274,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
+      "notes": "Verified p194-195 capex rows: ROU>acquired in Express, GF Freight, Supply Chain (3); not eCommerce (139<252) nor PPG (162<1,035). Question explicitly limits to the five operating divisions; Group Functions (422>127) correctly excluded. Evidence covers all five.",
       "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+      "basis": "adjudicator confirmed"
     },
     "fin_q_060": {
       "method": "llm_blind_reverify",
@@ -1269,9 +1294,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['20227.8']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; Figures are correct (p3), but 2021-2024 are labelled 'adjusted' in the 2025 report; question did not specify basis and the cited evidence omitted the 'adjusted' header. Question now states basis; evidence includes the adjusted header line.",
+      "status": "verified",
+      "basis": "adjudicator fix"
     },
     "fin_q_061": {
       "method": "llm_blind_reverify",
@@ -1309,14 +1334,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
+      "notes": "p43: Express EBIT 3,162, negative net non-recurring effect 129, revenue 24,430 (= 'revenue in the Express division'), margin 12.9%. (3,162+129)/24,430=13.47% -> 13.5%; 3,291 correct. Calculation and input_sources consistent.",
       "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
+      "basis": "adjudicator confirmed",
       "independent_recompute": {
         "result": 0.13471142038477282,
         "matches": true,
         "blind_result": 0.1347,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_063": {
@@ -1335,9 +1362,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['13413', '14741', '2124', '2397', '34336', '3444']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "p93 table is Bank+Insurer combined FEAD; main categories only ('of which' sub-lines under Central governments excluded); deltas recomputed: Retail +3,363 largest, others as stated; totals 216,585/221,178 correct. No ties.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_064": {
       "method": "llm_blind_reverify",
@@ -1355,9 +1382,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['2025', '31']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "MR1 p37: all seven categories listed, credit spread 140.7 highest, total 335.0, CHF million. Rows 6-7, 9-10 absent in table. Evidence covers every candidate.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_065": {
       "method": "llm_blind_reverify",
@@ -1375,9 +1402,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['24113.5']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "CR4 p30: main rows only; real estate 19,055.2, corporates 2,949.3, retail 530.2, next PSE 410.9; total 24,113.5; CHF million. Evidence covers all main rows (excerpt elides intermediate rows only).",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_066": {
       "method": "llm_blind_reverify",
@@ -1395,9 +1422,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['11.5', '4.66']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "p14 EU KM1: total capital ratio 24.13%, OCR (EU-11a) 16.16% = SREP 11.50% + CBR 4.66%; question explicitly asks for total capital ratio vs OCR, so the CET1 OCR on p21 (11.13%) is not a competing reading. Headroom 7.97pp correct.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_067": {
       "method": "llm_blind_reverify",
@@ -1422,7 +1449,9 @@
         "result": 0.157,
         "matches": true,
         "blind_result": 0.157,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_068": {
@@ -1441,9 +1470,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['2025', '31']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "IRRBB1 p43: dEVE 31.12.2025 negative in parallel down -285.4, flattener -241.5, short rate up -123.9; positive in parallel up, steepener, short rate down. 3 of 6 correct.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_069": {
       "method": "llm_blind_reverify",
@@ -1481,9 +1510,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['2024', '2025', '30']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; Units were not evidenced (page 8 tables carry no unit; page 5 states amounts are in EUR thousands). Added the page 5 unit statement as evidence, named TREA/CCR in the question, added unit_mismatch failure mode. Numbers and reasons verified (credit risk 1,045,267 vs 1,057,993; CCR 15,867 vs 8,704).",
+      "status": "verified",
+      "basis": "adjudicator fix"
     },
     "fin_q_071": {
       "method": "llm_blind_reverify",
@@ -1501,14 +1530,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
+      "notes": "Corrected after blind pass; Arithmetic correct (3,613/16,380=22.06%). But the report says the add-on is neutralised by an equal CET1 deduction (pp. 8, 18, 42), so the question was misleading. Made the hypothetical and the ignored offsetting deduction explicit in question and answer; added page 8 evidence.",
       "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
+      "basis": "adjudicator fix",
       "independent_recompute": {
         "result": 0.22057387057387057,
         "matches": true,
         "blind_result": 0.220574,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_072": {
@@ -1527,9 +1558,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "answerability disagrees (reviewer found an answer); blind reviewer confidence=medium; notes: Corpus does not disclose any quantitative ESG credit exposure limit; the Plan's content is not public. Answer is effectively 'not disclosed'. cannot_be_established set false because the question's pre",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Page 19 only says the Prudential Transition Plan is not disclosed publicly (assessed under SREP); no limit appears in any of the 12 documents (grepped 'transition plan'). This is the explicit-non-disclosure negative pattern; keeping type negative, evidence [] and answerable false is consistent with the guide. The answer already cites the non-disclosure.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_073": {
       "method": "llm_blind_reverify",
@@ -1547,14 +1578,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['2025', '31']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
+      "notes": "p.47 table (market value excl. Branch 23 per p.46): Gov. bonds 6,165 of 15,403 = 40.02% -> 40.0%; all asset classes covered in the TOTAL row; units EUR million confirmed by text on the same page.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
       "independent_recompute": {
         "result": 0.40024670518730115,
         "matches": true,
         "blind_result": 0.40026,
-        "blind_scale": 1
+        "equivalence": [
+          "exact"
+        ]
       }
     },
     "fin_q_074": {
@@ -1573,9 +1606,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['3182863907739']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "p.112 Table 3.4.2.1.1: CBRT-owned gold BIST 2,273,278,248,357 TRY > BoE 707,647,035,234 > CBRT 201,938,624,147; sums to 3,182,863,907,739. Scope explicitly excludes bank/Treasury gold. Unambiguous.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_075": {
       "method": "llm_blind_reverify",
@@ -1613,9 +1646,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['2024', '286', '497']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "p.33: write-downs (1,446) vs realised gains 950, EUR million; net (497) matches the table (rounding). Correct.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_077": {
       "method": "llm_blind_reverify",
@@ -1633,9 +1666,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
+      "notes": "Corrected after blind pass; Scope ambiguous: CBRT also holds FX securities (within foreign correspondents, carried at fair value). Question restricted to the securities note (Treasury-issued bonds, bills, lease certificates); answer now gives the breakdown (lease certificates slightly above cost, total below) and evidence includes all components.",
       "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+      "basis": "adjudicator fix"
     },
     "fin_q_078": {
       "method": "llm_blind_reverify",
@@ -1673,9 +1706,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['5560']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; Count is classification-dependent (European Union is supranational but labelled 'Government bonds'). Question now says 'classified under the category Government bonds in the report's table'; answer notes that national-only counting would give seven. Numbers verified (sum 5,560).",
+      "status": "verified",
+      "basis": "adjudicator fix"
     },
     "fin_q_080": {
       "method": "llm_blind_reverify",
@@ -1693,9 +1726,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['2025']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "p.73 Note 24: 130 + 1,316 = 1,446; yen 1,229; causes quoted from the report. Correct.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_081": {
       "method": "llm_blind_reverify",
@@ -1713,9 +1746,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "blind reviewer confidence=medium; notes: Table shows coverage ratio impact '32%' (unsigned, positive/improvement is consistent with SCR falling more than own funds); unit % presumably percentage points. Own Funds fall 11 and SCR falls 15, su",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; Question asked for 'impact' without noting the coverage ratio is printed unsigned as '32%' (bracketed values are negatives elsewhere in the column, e.g. (0.3%), (31%)); the 'impact on SCR coverage ratio %' header is a % figure, not verified as percentage points, so question now asks for what the table shows and the answer states sign reading (SCR falls 15 vs Own Funds 11, surplus +4, consistent with a rise). Evidence now includes header fragments.",
+      "status": "verified",
+      "basis": "adjudicator fix"
     },
     "fin_q_082": {
       "method": "llm_blind_reverify",
@@ -1753,9 +1786,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['1.27', '20']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "GFI Fund-only scope explicit; 20 classes counted; 0.49% (S GBP Distributing) unique minimum, next 0.51%; evidence lists all 20 rows.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
     },
     "fin_q_084": {
       "method": "llm_blind_reverify",
@@ -1773,9 +1806,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['2310']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; Columns use mixed bases (Kabi/Helios before special items, Corporate/Other after); the Group 2025 figure of 2,310 carries no marker (it is the as-reported figure, revenue 22,873 incl. special items) and was left unlabelled. Question now asks for figures as printed; answer labels bases. Ranking itself unaffected.",
+      "status": "verified",
+      "basis": "adjudicator fix"
     },
     "fin_q_085": {
       "method": "llm_blind_reverify",
@@ -1813,9 +1846,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['2073', '2310']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; Answer said Group EBIT rose 2,073 -> 2,310 as a contrast, but those are as-reported (after special items) figures while the margin is before special items (2,595/22,554 and 2,489/21,526 per notes); mixing bases was misleading. Margin answer (11.5% vs 11.6%, No) verified correct.",
+      "status": "verified",
+      "basis": "adjudicator fix"
     },
     "fin_q_087": {
       "method": "llm_blind_reverify",
@@ -1833,13 +1866,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "calculation differs: blind 0.02 vs annotated 0.0002",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
+      "notes": "Corrected after blind pass; Values correct. Calculation encoding (scale 0.01, result 0.0002 as fraction = 0.02 pp) matches dataset convention (e.g. fin_q_067: 0.157 = 15.70 pp); only the answer text was made explicit about the encoding.",
+      "status": "verified",
+      "basis": "adjudicator fix",
       "independent_recompute": {
-        "result": 0.02,
-        "matches": false,
-        "blind_result": 0.02
+        "result": 0.0002,
+        "matches": true,
+        "blind_result": 0.02,
+        "equivalence": [
+          "scale"
+        ]
       }
     },
     "fin_q_088": {
@@ -1858,9 +1894,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
+      "notes": "Six W classes >1.00% (1.26/1.27%), all others <=0.82%; GFI Fund scope explicit; evidence covers all 20 classes.",
       "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+      "basis": "adjudicator confirmed"
     },
     "fin_q_089": {
       "method": "llm_blind_reverify",
@@ -1878,9 +1914,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
+      "notes": "Verified from table: Kabi 556->521 (-35, -6.3%), Corporate/Other 167->64 (-103, -61.7%), Helios 517->535 up, Group 1,240->1,120. Reference lists each segment's decrease separately with no calculation object (the reviewer's 138 sum is not part of the reference), so no ambiguity; bases per column footnotes are as printed.",
       "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+      "basis": "adjudicator confirmed"
     },
     "fin_q_090": {
       "method": "llm_blind_reverify",
@@ -1898,9 +1934,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['31']",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; Values correct (0.83% -> 0.81%) but only two data points, whereas style 'trend' requires >=3; restyled as comparison and question made explicit on direction and gap.",
+      "status": "verified",
+      "basis": "adjudicator fix"
     }
   }
 }

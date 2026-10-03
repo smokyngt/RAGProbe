@@ -33,9 +33,12 @@ def recompute(ref: dict, blind: dict) -> dict | None:
     if not bc or "result" not in bc:
         return {"result": None, "matches": False}
     b, r = float(bc["result"]), rc["result"]
-    for k in (1, 1e3, 1e6, 1e9, 1e-3, 1e-6, 1e-9):  # reviewers may work in thousands/millions rather than base units
-        if math.isclose(b * k, r, rel_tol=2e-3, abs_tol=1e-9):
-            return {"result": r, "matches": True, "blind_result": b, "blind_scale": k}
+    # Representation differences only: unit scale (thousands/millions), sign of a decline, percent vs fraction / percentage points.
+    for k in (1, 1e3, 1e6, 1e9, 1e-3, 1e-6, 1e-9, 100, 0.01):
+        for sign in (1, -1):
+            if math.isclose(b * k * sign, r, rel_tol=2e-3, abs_tol=1e-9):
+                eq = [n for n, c in (("scale", k != 1), ("sign", sign == -1)) if c]
+                return {"result": r, "matches": True, "blind_result": b, "equivalence": eq or ["exact"]}
     return {"result": b, "matches": False, "blind_result": b}
 
 

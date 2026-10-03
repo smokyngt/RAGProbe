@@ -1,0 +1,262 @@
+{
+ "decisions": {
+  "fin_q_015": {
+   "verdict": "confirmed",
+   "reasons": "Verified: 2023 EBIT 1,423 and 2024 1,074 (2024 report p.41), 2025 756 (2025 report p.46); -24.5%, -29.6%, cumulative (756-1423)/1423=-46.9%. 2024 figure identical in both reports. Evidence verbatim, calc inputs correct.",
+   "example": null
+  },
+  "fin_q_042": {
+   "verdict": "confirmed",
+   "reasons": "Negative confirmed: SFCR p.62/66/67 gives only qualitative capital-planning statements, 201% at end 2025 and 196% at end 2024, 160% internal minimum, shock table on 2025 base; no numeric 31 Dec 2026 ratio. No other document has a Belfius Insurance projection (Solvency ratio grep over corpus).",
+   "example": null
+  },
+  "fin_q_048": {
+   "verdict": "confirmed",
+   "reasons": "Verified p.9 of fin_doc_010: Kabi EBIT 1,413 (2025) vs 1,319 (2024), +7%, footnote 1 'Before special items' applies to Kabi/Helios, footnote 2 'After special items' to Corporate/Other; answer states basis correctly. Blind reviewer agrees.",
+   "example": null
+  },
+  "fin_q_051": {
+   "verdict": "fix",
+   "reasons": "Wording said 'five' divisions but listed six names (Global Forwarding and Freight are ONE division, 'Global Forwarding, Freight'). Reworded to name the five divisions, state total revenue includes internal revenue and Group Functions/Consolidation excluded. Answer verified: Express 3,162/24,430=12.9%; PPG 5.8, SC 6.5, eCommerce 5.5, GF Freight 4.1.",
+   "example": {
+    "id": "fin_q_051",
+    "question": "Based on DHL Group's consolidated segment reporting for fiscal year 2025, which of the five operating divisions (Express; Global Forwarding, Freight, which is a single division; Supply Chain; eCommerce; Post & Parcel Germany) had the highest EBIT margin (EBIT divided by total division revenue, including internal revenue; Group Functions and Consolidation excluded), and what was that margin to one decimal place?",
+    "reference_answer": "The Express division had the highest EBIT margin in FY2025: EBIT of €3,162 million on total revenue of €24,430 million, i.e. 12.9%. The other divisions were lower: Post & Parcel Germany 5.8% (€1,032 million / €17,874 million), Supply Chain 6.5% (€1,161 million / €17,778 million), eCommerce 5.5% (€379 million / €6,884 million) and Global Forwarding, Freight 4.1% (€756 million / €18,643 million).",
+    "evidence": [
+     {
+      "document_id": "fin_doc_011",
+      "page": 194,
+      "text": "€m Express Freight Supply Chain eCommerce January 1 to December 31 2024 2025 2024 2025 2024 2025 2024 2025 … Total revenue 25,134 24,430 19,649 18,643 17,693 17,778 6,962 6,884 … Profit from operating activities (EBIT) 3,084 3,162 1,074 756 1,068 1,161 281 379"
+     },
+     {
+      "document_id": "fin_doc_011",
+      "page": 195,
+      "text": "€m Germany Group Functions Consolidation Group January 1 to December 31 2024 2025 2024 2025 2024 2025 2024 2025 … Total revenue 17,347 17,874 1,902 1,928 -4,500 -4,683 84,186 82,855 … Profit from operating activities (EBIT) 821 1,032 -439 -387 -2 0 5,886 6,103"
+     }
+    ],
+    "metadata": {
+     "type": "calculation",
+     "difficulty": "medium",
+     "requires_calculation": true,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "segment",
+     "failure_modes": [
+      "multiple_entities",
+      "split_across_pages"
+     ],
+     "style": "superlative"
+    },
+    "calculation": {
+     "inputs": {
+      "express_ebit_2025": 3162000000,
+      "express_total_revenue_2025": 24430000000
+     },
+     "operation": "express_ebit_2025 / express_total_revenue_2025",
+     "result": 0.12943102742529677,
+     "input_sources": {
+      "express_ebit_2025": {
+       "evidence_index": 0,
+       "raw": "3,162",
+       "unit": "€m",
+       "scale": 1000000
+      },
+      "express_total_revenue_2025": {
+       "evidence_index": 0,
+       "raw": "24,430",
+       "unit": "€m",
+       "scale": 1000000
+      }
+     }
+    }
+   }
+  },
+  "fin_q_052": {
+   "verdict": "fix",
+   "reasons": "Same 'five' vs six listed names defect; reworded and made basis (total revenue incl. internal) and exclusion of Group Functions/Consolidation explicit. Values and order verified (24,430; 18,643; 17,874; 17,778; 6,884).",
+   "example": {
+    "id": "fin_q_052",
+    "question": "Rank the five operating divisions of DHL Group (Express; Global Forwarding, Freight, which is a single division; Supply Chain; eCommerce; Post & Parcel Germany) by total revenue (including internal revenue) for fiscal year 2025, from highest to lowest, with the revenue of each in € million. Group Functions and Consolidation are excluded.",
+    "reference_answer": "Ranking by total revenue (consolidated segment reporting, FY2025): 1. Express €24,430 million; 2. Global Forwarding, Freight €18,643 million; 3. Post & Parcel Germany €17,874 million; 4. Supply Chain €17,778 million; 5. eCommerce €6,884 million. (Total revenue includes internal revenue between divisions.)",
+    "evidence": [
+     {
+      "document_id": "fin_doc_011",
+      "page": 194,
+      "text": "€m Express Freight Supply Chain eCommerce January 1 to December 31 2024 2025 2024 2025 2024 2025 2024 2025 … Total revenue 25,134 24,430 19,649 18,643 17,693 17,778 6,962 6,884"
+     },
+     {
+      "document_id": "fin_doc_011",
+      "page": 195,
+      "text": "€m Germany Group Functions Consolidation Group January 1 to December 31 2024 2025 2024 2025 2024 2025 2024 2025 … Total revenue 17,347 17,874 1,902 1,928 -4,500 -4,683 84,186 82,855"
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "segment",
+     "failure_modes": [
+      "multiple_entities",
+      "split_across_pages",
+      "similar_table_labels"
+     ],
+     "style": "ranking"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_053": {
+   "verdict": "fix",
+   "reasons": "Answer correct (PPG -3,723; SC -3,492; Express -2,498; GF Freight -1,648; eCommerce -670). Tightened: named the five divisions, excluded Group Functions (-621, would not change result), and stated sign convention (reduction of 3,723, change -3,723).",
+   "example": {
+    "id": "fin_q_053",
+    "question": "Among DHL Group's five operating divisions (Express; Global Forwarding, Freight, which is a single division; Supply Chain; eCommerce; Post & Parcel Germany; Group Functions excluded), which one recorded the largest absolute reduction in average full-time equivalents (FTEs) between fiscal year 2024 and fiscal year 2025, and by how many FTEs did it fall?",
+    "reference_answer": "Post & Parcel Germany had the largest reduction: average FTEs fell by 3,723 (a change of -3,723), from 157,337 in 2024 to 153,614 in 2025. Next was Supply Chain (-3,492, from 185,413 to 181,921), then Express (-2,498), Global Forwarding, Freight (-1,648) and eCommerce (-670). Group Functions (-621) is not an operating division and is excluded.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_011",
+      "page": 194,
+      "text": "€m Express Freight Supply Chain eCommerce January 1 to December 31 2024 2025 2024 2025 2024 2025 2024 2025 … Employees1 109,319 106,821 45,640 43,992 185,413 181,921 39,873 39,203 … 1 Average FTEs."
+     },
+     {
+      "document_id": "fin_doc_011",
+      "page": 195,
+      "text": "€m Germany Group Functions Consolidation Group January 1 to December 31 2024 2025 2024 2025 2024 2025 2024 2025 … Employees1 157,337 153,614 13,996 13,375 0 0 551,578 538,926 … 1 Average FTEs."
+     }
+    ],
+    "metadata": {
+     "type": "calculation",
+     "difficulty": "hard",
+     "requires_calculation": true,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "employees",
+     "failure_modes": [
+      "multiple_entities",
+      "split_across_pages"
+     ],
+     "style": "superlative"
+    },
+    "calculation": {
+     "inputs": {
+      "ppg_fte_2024": 157337,
+      "ppg_fte_2025": 153614
+     },
+     "operation": "ppg_fte_2025 - ppg_fte_2024",
+     "result": -3723,
+     "input_sources": {
+      "ppg_fte_2024": {
+       "evidence_index": 1,
+       "raw": "157,337",
+       "unit": "FTE",
+       "scale": 1
+      },
+      "ppg_fte_2025": {
+       "evidence_index": 1,
+       "raw": "153,614",
+       "unit": "FTE",
+       "scale": 1
+      }
+     }
+    }
+   }
+  },
+  "fin_q_054": {
+   "verdict": "confirmed",
+   "reasons": "Verified: 2021-2025 net debt 12,772/15,856/17,739/18,998/21,516 (2025 report p.3); 2020 12,928 from 2024 report p.3 (2021-2024 identical in both). Lowest 2021, next-lowest 2020; question asks for both and the answer gives the figures and the source of 2020.",
+   "example": null
+  },
+  "fin_q_056": {
+   "verdict": "fix",
+   "reasons": "Reference answer correct (9,119 is fourth-highest: 10,965 > 9,993 > 9,258 > 9,119 > 8,722); the blind reviewer's 'third' is wrong. 2021-2024 values are identical in the 2024 report (adjusted), so no conflict, but question did not state the basis; reworded to cite the 2025 report five-year key figures (adjusted).",
+   "example": {
+    "id": "fin_q_056",
+    "question": "According to the five-year key figures in DHL Group's 2025 Annual Report (2021-2024 as presented there, i.e. adjusted), was consolidated net cash from operating activities in fiscal year 2025 the highest of the five years 2021 to 2025? Give the figures.",
+    "reference_answer": "No. Net cash from operating activities was €9,119 million in 2025, which was only the fourth-highest of the five years. It was exceeded by 2022 (€10,965 million), 2021 (€9,993 million) and 2023 (€9,258 million); only 2024 (€8,722 million) was lower. Figures for 2021-2024 are as presented (adjusted) in the 2025 annual report.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_011",
+      "page": 3,
+      "text": "2021 2022 2023 2024 2025 … Net cash from operating activities €m 9,993 10,965 9,258 8,722 9,119"
+     }
+    ],
+    "metadata": {
+     "type": "temporal",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "cash_flow",
+     "failure_modes": [
+      "same_metric_multiple_years"
+     ],
+     "style": "yes_no"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_057": {
+   "verdict": "fix",
+   "reasons": "Reported Total capex Supply Chain 1,600 vs components 561+1,038=1,599 (rounding); gap 403 vs 402. Question now specifies using the reported 'Total capex' line; answer notes the rounding alternative. PPG 1,197 (1,035+162) consistent.",
+   "example": {
+    "id": "fin_q_057",
+    "question": "In DHL Group's 2025 segment reporting, which division had the higher total capex in fiscal year 2025 (use the reported 'Total capex' line, i.e. assets acquired plus right-of-use assets as reported, not a re-addition of the components), Supply Chain or Post & Parcel Germany, and by how much in € million?",
+    "reference_answer": "Supply Chain had the higher total capex in 2025 at €1,600 million versus €1,197 million for Post & Parcel Germany, a gap of €403 million, using the reported Total capex line (Supply Chain's components 561 + 1,038 sum to 1,599 because of rounding, which would give a gap of €402 million).",
+    "evidence": [
+     {
+      "document_id": "fin_doc_011",
+      "page": 194,
+      "text": "€m Express Freight Supply Chain eCommerce January 1 to December 31 2024 2025 2024 2025 2024 2025 2024 2025 … Total capex 2,149 2,461 365 298 1,586 1,600 550 391"
+     },
+     {
+      "document_id": "fin_doc_011",
+      "page": 195,
+      "text": "€m Germany Group Functions Consolidation Group January 1 to December 31 2024 2025 2024 2025 2024 2025 2024 2025 … Total capex 1,055 1,197 556 549 0 0 6,261 6,494"
+     }
+    ],
+    "metadata": {
+     "type": "calculation",
+     "difficulty": "medium",
+     "requires_calculation": true,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "capex",
+     "failure_modes": [
+      "multiple_entities",
+      "split_across_pages"
+     ],
+     "style": "comparison"
+    },
+    "calculation": {
+     "inputs": {
+      "sc_total_capex_2025": 1600000000,
+      "ppg_total_capex_2025": 1197000000
+     },
+     "operation": "sc_total_capex_2025 - ppg_total_capex_2025",
+     "result": 403000000,
+     "input_sources": {
+      "sc_total_capex_2025": {
+       "evidence_index": 0,
+       "raw": "1,600",
+       "unit": "€m",
+       "scale": 1000000
+      },
+      "ppg_total_capex_2025": {
+       "evidence_index": 1,
+       "raw": "1,197",
+       "unit": "€m",
+       "scale": 1000000
+      }
+     }
+    }
+   }
+  }
+ }
+}

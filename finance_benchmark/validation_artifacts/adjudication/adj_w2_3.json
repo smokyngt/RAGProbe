@@ -1,0 +1,198 @@
+{
+ "decisions": {
+  "fin_q_070": {
+   "verdict": "fix",
+   "reasons": "Units were not evidenced (page 8 tables carry no unit; page 5 states amounts are in EUR thousands). Added the page 5 unit statement as evidence, named TREA/CCR in the question, added unit_mismatch failure mode. Numbers and reasons verified (credit risk 1,045,267 vs 1,057,993; CCR 15,867 vs 8,704).",
+   "example": {
+    "id": "fin_q_070",
+    "question": "What reasons does Commonwealth Bank of Australia (Europe) N.V. give in its Pillar 3 report for the movement in its standardised-approach credit risk and counterparty credit risk (CCR) total risk exposure amounts (TREA) between 30 June 2024 and 30 June 2025?",
+    "reference_answer": "For standardised-approach credit risk, the bank says the amount remained relatively stable versus FY2024 (EUR 1,045,267 thousand at 30 June 2025 versus EUR 1,057,993 thousand at 30 June 2024); the small decrease is attributed to less exposure to institutions. For counterparty credit risk (CCR), TREA increased (EUR 15,867 thousand versus EUR 8,704 thousand) because the bank entered 6 new derivatives transactions, which increased the potential future exposure on interest rate derivatives and thereby the exposure value. (Amounts in the regulatory templates are expressed in EUR thousands, i.e. about EUR 1.05 billion and EUR 15.9 million respectively.)",
+    "evidence": [
+     {
+      "document_id": "fin_doc_008",
+      "page": 8,
+      "text": "FY 2025 Standardised Approach credit risk amount has remained relatively stable compared to FY2024. The small decrease can be attributed to less exposure to institutions.The TREA attributed to Counterparty credit risk including - CCR increased compared to last year due to the Bank entering 6 new derivatives transactions increasing the potential future exposure on interest rate derivatives and with it the exposure value. … 1 Credit risk (excluding CCR) 1,045,267 83,621 1,057,993 84,639 … 6 Counterparty credit risk - CCR 15,867 1,269 8,704 696"
+     },
+     {
+      "document_id": "fin_doc_008",
+      "page": 5,
+      "text": "All amounts presented in the regulatory templates are expressed in EUR … thousands unless otherwise specified."
+     }
+    ],
+    "metadata": {
+     "type": "risk",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "risk:credit",
+     "failure_modes": [
+      "terminology_mismatch",
+      "unit_mismatch"
+     ],
+     "style": "explanatory"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_071": {
+   "verdict": "fix",
+   "reasons": "Arithmetic correct (3,613/16,380=22.06%). But the report says the add-on is neutralised by an equal CET1 deduction (pp. 8, 18, 42), so the question was misleading. Made the hypothetical and the ignored offsetting deduction explicit in question and answer; added page 8 evidence.",
+   "example": {
+    "id": "fin_q_071",
+    "question": "ASN Bank's credit risk exposure amount at 31 December 2025 includes an Article 3 CRR add-on of € 1,879 million for pending IRB model refinements on non-NHG mortgages (which the bank says is neutralised by a CET1 deduction of equal size). Purely as a mechanical recomputation, what would ASN Bank's CET1 ratio be at 31 December 2025 if only that add-on were removed from the total risk exposure amount, with the reported CET1 capital of € 3,613 million left unchanged (i.e. ignoring the offsetting CET1 deduction)? Round to two decimals.",
+    "reference_answer": "About 22.06%. Removing the €1,879 million add-on from the total risk exposure amount of €18,259 million gives €16,380 million; reported CET1 capital of €3,613 million divided by €16,380 million is 22.06%, versus the reported 19.79%. This is a purely mechanical, hypothetical figure: the bank states the add-on is neutralised by an Article 3 CRR CET1 deduction of equal size, which this recomputation deliberately leaves unchanged.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_004",
+      "page": 14,
+      "text": "in € millions1 31-12-2025 30-9-2025 30-6-2025 31-3-2025 31-12-2024 … 1 Common Equity Tier 1 (CET1) capital 3,613 3,626 3,586 3,587 3,442 … 4 Total risk exposure amount 18,259 17,619 17,931 17,172 17,059 … 5 Common Equity Tier 1 ratio (%) 19.79%"
+     },
+     {
+      "document_id": "fin_doc_004",
+      "page": 17,
+      "text": "in € millions1 … 2. This includes an Article 3 CRR add-on of € 1,879 million pending further refinements to be made in IRB modelling regarding non-NHG mortgages."
+     },
+     {
+      "document_id": "fin_doc_004",
+      "page": 8,
+      "text": "CET1 capital deduction and an Article 3 CRR RWA add-on of equal size."
+     }
+    ],
+    "metadata": {
+     "type": "calculation",
+     "difficulty": "hard",
+     "requires_calculation": true,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "capital:CET1",
+     "failure_modes": [
+      "footnote",
+      "multi_evidence_combination"
+     ],
+     "style": "conditional"
+    },
+    "calculation": {
+     "inputs": {
+      "cet1_capital": 3613000000,
+      "total_risk_exposure_amount": 18259000000,
+      "article3_add_on": 1879000000
+     },
+     "operation": "cet1_capital / (total_risk_exposure_amount - article3_add_on)",
+     "result": 0.22057387057387057,
+     "input_sources": {
+      "cet1_capital": {
+       "evidence_index": 0,
+       "raw": "3,613",
+       "unit": "€ million",
+       "scale": 1000000
+      },
+      "total_risk_exposure_amount": {
+       "evidence_index": 0,
+       "raw": "18,259",
+       "unit": "€ million",
+       "scale": 1000000
+      },
+      "article3_add_on": {
+       "evidence_index": 1,
+       "raw": "1,879",
+       "unit": "€ million",
+       "scale": 1000000
+      }
+     }
+    }
+   }
+  },
+  "fin_q_072": {
+   "verdict": "confirmed",
+   "reasons": "Page 19 only says the Prudential Transition Plan is not disclosed publicly (assessed under SREP); no limit appears in any of the 12 documents (grepped 'transition plan'). This is the explicit-non-disclosure negative pattern; keeping type negative, evidence [] and answerable false is consistent with the guide. The answer already cites the non-disclosure.",
+   "example": null
+  },
+  "fin_q_073": {
+   "verdict": "confirmed",
+   "reasons": "p.47 table (market value excl. Branch 23 per p.46): Gov. bonds 6,165 of 15,403 = 40.02% -> 40.0%; all asset classes covered in the TOTAL row; units EUR million confirmed by text on the same page.",
+   "example": null
+  },
+  "fin_q_074": {
+   "verdict": "confirmed",
+   "reasons": "p.112 Table 3.4.2.1.1: CBRT-owned gold BIST 2,273,278,248,357 TRY > BoE 707,647,035,234 > CBRT 201,938,624,147; sums to 3,182,863,907,739. Scope explicitly excludes bank/Treasury gold. Unambiguous.",
+   "example": null
+  },
+  "fin_q_076": {
+   "verdict": "confirmed",
+   "reasons": "p.33: write-downs (1,446) vs realised gains 950, EUR million; net (497) matches the table (rounding). Correct.",
+   "example": null
+  },
+  "fin_q_077": {
+   "verdict": "fix",
+   "reasons": "Scope ambiguous: CBRT also holds FX securities (within foreign correspondents, carried at fair value). Question restricted to the securities note (Treasury-issued bonds, bills, lease certificates); answer now gives the breakdown (lease certificates slightly above cost, total below) and evidence includes all components.",
+   "example": {
+    "id": "fin_q_077",
+    "question": "In the securities note of the Central Bank of the Republic of Türkiye's 2025 annual report (government bonds, Treasury bills and lease certificates issued by the Ministry of Treasury and Finance, excluding FX securities held within foreign correspondents), was the total fair value at 31 December 2025 above or below the total cost?",
+    "reference_answer": "Below. At 31 December 2025 the CBRT's securities portfolio (government bonds and Treasury bills TRY 251,511,260,096 cost vs TRY 235,358,764,152 fair value; lease certificates TRY 10,269,506,170 cost vs TRY 10,378,657,500 fair value) had a total cost of TRY 261,780,766,266 and a total fair value of TRY 245,737,421,652 (whole TRY), i.e. TRY 16,043,344,614 below cost. Only the lease certificates were above cost.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_006",
+      "page": 114,
+      "text": "As of December 31, 2025, the fair value of securities was TRY 245,737,421,652. … Cost Fair Value Cost Fair Value … 251,511,260,096 235,358,764,152 … 10,269,506,170 10,378,657,500 … TOTAL 261,780,766,266 245,737,421,652"
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "accounting_policy",
+     "failure_modes": [
+      "header_dependency",
+      "same_metric_multiple_years",
+      "unit_mismatch"
+     ],
+     "style": "yes_no"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_079": {
+   "verdict": "fix",
+   "reasons": "Count is classification-dependent (European Union is supranational but labelled 'Government bonds'). Question now says 'classified under the category Government bonds in the report's table'; answer notes that national-only counting would give seven. Numbers verified (sum 5,560).",
+   "example": {
+    "id": "fin_q_079",
+    "question": "Among Belfius Insurance's ten largest counterparty exposures at 31 December 2025, how many are classified under the category 'Government bonds' in the report's table (taking the table's classification as given), and which issuers are they?",
+    "reference_answer": "Eight of the ten largest exposures at 31 December 2025 are classified under 'Government bonds' in the table (market value, EUR million): Belgian government 1,786; French government 978; Spanish government 564; European Union 422; Portuguese government 402; Austrian government 297; Italian government 260; Irish government 207. The other two were bonds issued by a Region/Community: Walloon Region Belgium (464) and the Flemish community (180). The ten exposures total EUR 5,560 million. Note: 'European Union' is a supranational issuer but is classified under 'Government bonds' in the table; counting only national governments would give seven.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_003",
+      "page": 47,
+      "text": "(in millions EUR) at 31/12/2025 … … Belgian government Government bonds 1,786 … French government Government bonds 978 … Spanish government Government bonds 564 … Walloon Region Belgium Bonds issued by Region / Community 464 … European Union Government bonds 422 … Portuguese government Government bonds 402 … Austrian government Government bonds 297 … Italian government Government bonds 260 … Irish government Government bonds 207 … Flemish community Bonds issued by Region / Community 180 … TOTAL 5,560"
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "difficulty": "hard",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "risk:concentration",
+     "failure_modes": [
+      "similar_table_labels",
+      "same_metric_multiple_years",
+      "header_dependency"
+     ],
+     "style": "count"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_080": {
+   "verdict": "confirmed",
+   "reasons": "p.73 Note 24: 130 + 1,316 = 1,446; yen 1,229; causes quoted from the report. Correct.",
+   "example": null
+  }
+ }
+}

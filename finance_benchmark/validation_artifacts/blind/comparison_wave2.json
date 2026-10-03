@@ -1,0 +1,246 @@
+[
+  {
+    "id": "fin_q_051",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_052",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_053",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind 3723 vs annotated -3723"
+    ]
+  },
+  {
+    "id": "fin_q_054",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['15856', '17739', '18998', '2022', '2023', '2024']"
+    ]
+  },
+  {
+    "id": "fin_q_055",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_056",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2022', '2023', '2024', '8722', '9258', '9993']"
+    ]
+  },
+  {
+    "id": "fin_q_057",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind 403 vs annotated 403000000"
+    ]
+  },
+  {
+    "id": "fin_q_058",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_059",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_060",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['20227.8']"
+    ]
+  },
+  {
+    "id": "fin_q_061",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_062",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_063",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['13413', '14741', '2124', '2397', '34336', '3444']"
+    ]
+  },
+  {
+    "id": "fin_q_064",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2025', '31']"
+    ]
+  },
+  {
+    "id": "fin_q_065",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['24113.5']"
+    ]
+  },
+  {
+    "id": "fin_q_066",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['11.5', '4.66']"
+    ]
+  },
+  {
+    "id": "fin_q_067",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_068",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2025', '31']"
+    ]
+  },
+  {
+    "id": "fin_q_069",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_070",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2024', '2025', '30']"
+    ]
+  },
+  {
+    "id": "fin_q_071",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_072",
+    "auto_status": "check",
+    "issues": [
+      "answerability disagrees (reviewer found an answer)"
+    ]
+  },
+  {
+    "id": "fin_q_073",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2025', '31']"
+    ]
+  },
+  {
+    "id": "fin_q_074",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['3182863907739']"
+    ]
+  },
+  {
+    "id": "fin_q_075",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_076",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2024', '286', '497']"
+    ]
+  },
+  {
+    "id": "fin_q_077",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_078",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_079",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['5560']"
+    ]
+  },
+  {
+    "id": "fin_q_080",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2025']"
+    ]
+  },
+  {
+    "id": "fin_q_081",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_082",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_083",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['1.27', '20']"
+    ]
+  },
+  {
+    "id": "fin_q_084",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2310']"
+    ]
+  },
+  {
+    "id": "fin_q_085",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_086",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2073', '2310']"
+    ]
+  },
+  {
+    "id": "fin_q_087",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind 0.02 vs annotated 0.0002"
+    ]
+  },
+  {
+    "id": "fin_q_088",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_089",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_090",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['31']"
+    ]
+  }
+]

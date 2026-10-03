@@ -1,0 +1,306 @@
+[
+  {
+    "id": "fin_q_001",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_002",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_003",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['312025']"
+    ]
+  },
+  {
+    "id": "fin_q_004",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['42025']"
+    ]
+  },
+  {
+    "id": "fin_q_005",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['19649']"
+    ]
+  },
+  {
+    "id": "fin_q_006",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_007",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['18998', '21516']"
+    ]
+  },
+  {
+    "id": "fin_q_008",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['12.3']"
+    ]
+  },
+  {
+    "id": "fin_q_009",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_010",
+    "auto_status": "check",
+    "issues": [
+      "no common evidence page (annotated [('fin_doc_011', 53)], blind [('fin_doc_011', 195)])",
+      "numbers of the reference answer not in blind answer: ['2950', '45.4']"
+    ]
+  },
+  {
+    "id": "fin_q_011",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_012",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2.5', '25.8', '29.6', '35.3', '8.7']"
+    ]
+  },
+  {
+    "id": "fin_q_013",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['312024', '312025']"
+    ]
+  },
+  {
+    "id": "fin_q_014",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_015",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_016",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_017",
+    "auto_status": "check",
+    "issues": [
+      "no common evidence page (annotated [('fin_doc_011', 3), ('fin_doc_011', 56)], blind [('fin_doc_011', 224)])",
+      "numbers of the reference answer not in blind answer: ['312025']"
+    ]
+  },
+  {
+    "id": "fin_q_018",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_019",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_020",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_021",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_022",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['546']"
+    ]
+  },
+  {
+    "id": "fin_q_023",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_024",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['0.5', '2024', '2025', '31']"
+    ]
+  },
+  {
+    "id": "fin_q_025",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_026",
+    "auto_status": "check",
+    "issues": [
+      "no common evidence page (annotated [('fin_doc_007', 19)], blind [('fin_doc_007', 7)])",
+      "numbers of the reference answer not in blind answer: ['0.07714']"
+    ]
+  },
+  {
+    "id": "fin_q_027",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['0.31428', '1118.1', '351.4']"
+    ]
+  },
+  {
+    "id": "fin_q_028",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['4.99', '62024']"
+    ]
+  },
+  {
+    "id": "fin_q_029",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_030",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['148.44', '2024', '31']"
+    ]
+  },
+  {
+    "id": "fin_q_031",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_032",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_033",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_034",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_035",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['1067', '12', '2024', '80310386']"
+    ]
+  },
+  {
+    "id": "fin_q_036",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2024', '2299640404869']"
+    ]
+  },
+  {
+    "id": "fin_q_037",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind 6690 vs annotated 6690000000",
+      "no common evidence page (annotated [('fin_doc_001', 33)], blind [('fin_doc_001', 20), ('fin_doc_001', 32)])"
+    ]
+  },
+  {
+    "id": "fin_q_038",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['1353576337401', '261', '455087761770', '493452113266', '637.5', '754474988076']"
+    ]
+  },
+  {
+    "id": "fin_q_039",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['0.5174']"
+    ]
+  },
+  {
+    "id": "fin_q_040",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_041",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_042",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_043",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['0.32', '0.51']"
+    ]
+  },
+  {
+    "id": "fin_q_044",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['000']"
+    ]
+  },
+  {
+    "id": "fin_q_045",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['149697', '185982']"
+    ]
+  },
+  {
+    "id": "fin_q_046",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['6.9']"
+    ]
+  },
+  {
+    "id": "fin_q_047",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['312024', '312025']"
+    ]
+  },
+  {
+    "id": "fin_q_048",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_049",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_050",
+    "auto_status": "agree",
+    "issues": []
+  }
+]

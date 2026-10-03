@@ -1,0 +1,176 @@
+{
+ "decisions": {
+  "fin_q_019": {
+   "verdict": "fix",
+   "reasons": "Question did not say whether the MREL requirement is stated with or without the combined buffer requirement; Belfius reports 23.68%/13.50% of TREA excluding CBR (5.23%) and binding 28.91%/18.73% including CBR. Question now specifies 'excluding CBR'; answer and evidence extended.",
+   "example": {
+    "id": "fin_q_019",
+    "question": "Which MREL requirements, total and subordinated, did the National Bank of Belgium set for Belfius Bank (consolidated), expressed both as a percentage of total risk exposure amount (TREA) and of leverage ratio exposure and excluding the combined buffer requirement (CBR), and since when do they apply (2025 Pillar 3 risk report)?",
+    "reference_answer": "Excluding the combined buffer requirement, Belfius Bank's total MREL target is 23.68% of TREA and 7.07% of leverage ratio exposure; its subordinated MREL target is 13.50% of TREA and 7.07% of leverage ratio exposure. These targets have been in effect since 18 November 2025, and Belfius reports that it successfully met them (position at end of 2025). (The binding TREA-based targets including the CBR are higher, 28.91% total and 18.73% subordinated.)",
+    "evidence": [
+     {
+      "document_id": "fin_doc_002",
+      "page": 33,
+      "text": "both total (23.68% of Total Risk Exposure Amount TREA and 7.07% of Leverage Ratio Exposure) and subordinated (13.50% of Total Risk Exposure Amount TREA and 7.07% of Leverage … Ratio Exposure), which have been in effect since November 18, 2025."
+     },
+     {
+      "document_id": "fin_doc_002",
+      "page": 39,
+      "text": "compared with the binding … target of 28.91% (including the CBR). … TREA, compared with a binding target of 18.73% (including the CBR)."
+     }
+    ],
+    "metadata": {
+     "type": "direct",
+     "difficulty": "easy",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "capital:MREL",
+     "failure_modes": [
+      "terminology_mismatch",
+      "similar_table_labels"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_022": {
+   "verdict": "fix",
+   "reasons": "Answer was correct but question did not state that the 2024 figure is the unrestated CRR 2 figure and 2025 is CRR 3; question now states the basis explicitly.",
+   "example": {
+    "id": "fin_q_022",
+    "question": "What were the risk-weighted exposure amounts for operational risk of ASN Bank at 31 December 2025 and at 31 December 2024 as reported in its Pillar 3 overview of RWA (31 December 2025 on a CRR 3 basis, 31 December 2024 as originally reported on a CRR 2 basis, not restated), and what was the own funds requirement for operational risk at 31 December 2025?",
+    "reference_answer": "ASN Bank's operational risk total risk exposure amount (TREA) was EUR 2,507 million at 31 December 2025 versus EUR 1,961 million at 31 December 2024 (an increase of EUR 546 million; the 2025 figures are on a CRR 3 basis, the 2024 figure on a CRR 2 basis). The own funds requirement for operational risk at 31 December 2025 was EUR 201 million.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_004",
+      "page": 17,
+      "text": "in € millions1 … 31-12-2025 30-9-2025 30-6-2025 31-3-2025 31-12-2024 … 24 Operational risk 2,507 2,340 2,340 2,340 1,961 201 187 187 187 … 1. Figures up until 31 December 2024 in accordance with CRR 2. Figures from 31 March 2025 onwards in accordance with CRR 3."
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "risk:operational",
+     "failure_modes": [
+      "same_metric_multiple_years",
+      "header_dependency",
+      "footnote"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_024": {
+   "verdict": "confirmed",
+   "reasons": "Verified against CR2 table (197.2 + 109.1 - 42.8 - 5.8 + 3.0 = 260.7, CHF million); unambiguous.",
+   "example": null
+  },
+  "fin_q_025": {
+   "verdict": "fix",
+   "reasons": "Answer figures correct but question left open whether 2024 is the CRR 2 reported figure or a CRR 3 restated one (report itself says CRR 3 adoption effect is +0.2%); question now fixes the as-reported basis.",
+   "example": {
+    "id": "fin_q_025",
+    "question": "As reported in ASN Bank's Pillar 3 key metrics table (31 December 2025 on a CRR 3 basis, 31 December 2024 as originally reported on a CRR 2 basis, not restated), how did the Common Equity Tier 1 ratio change between 31 December 2024 and 31 December 2025, and what happened to CET1 capital and total risk exposure amount behind that move?",
+    "reference_answer": "ASN Bank's CET1 ratio fell from 20.18% at 31 December 2024 to 19.79% at 31 December 2025 (a decline of 0.39 percentage points). CET1 capital rose from EUR 3,442 million to EUR 3,613 million, but total risk exposure amount rose by more, from EUR 17,059 million to EUR 18,259 million. Note that the 2025 figures are on a CRR 3 basis while the 31 December 2024 figures in the table are the unadjusted CRR 2 figures.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_004",
+      "page": 14,
+      "text": "in € millions1 … 31-12-2025 30-9-2025 30-6-2025 31-3-2025 31-12-2024 … 1 Common Equity Tier 1 (CET1) capital 3,613 3,626 3,586 3,587 3,442 … 1. Figures up until 31 December 2024 in accordance with CRR 2. Figures from 31 March 2025 onwards in accordance with … 4 Total risk exposure amount 18,259 17,619 17,931 17,172 17,059 … 5 Common Equity Tier 1 ratio (%) 19.79% 20.58% 20.00% 20.89% 20.18%"
+     }
+    ],
+    "metadata": {
+     "type": "temporal",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "capital:CET1",
+     "failure_modes": [
+      "same_metric_multiple_years",
+      "footnote",
+      "multi_evidence_combination"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_026": {
+   "verdict": "confirmed",
+   "reasons": "Verified LR2 (Group/consolidated): 5,050.6/65,472.3 = 7.714%; matches reported 7.71%, KM1 on p.7 identical. Parent-company figure differs but question specifies Group.",
+   "example": null
+  },
+  "fin_q_027": {
+   "verdict": "confirmed",
+   "reasons": "Verified KM1: 351,400/1,118,137 = 31.427% = 31.43%; EUR thousand units stated on p.5. Disagreement was a unit-scale false alarm.",
+   "example": null
+  },
+  "fin_q_028": {
+   "verdict": "confirmed",
+   "reasons": "Verified p.33/35/38: 15.87%, SREP 10.88% (before P2G), operational target 13.5%, CET1 EUR 11,449m vs 11,560m (-111m). Answer already states both the pro forma CRR3 (-29bp) and reported CRR2 (15.38%) 2024 bases; the question does not ask for the ratio change, so no ambiguity.",
+   "example": null
+  },
+  "fin_q_030": {
+   "verdict": "fix",
+   "reasons": "LUKB 129.69% is the Q4 2025 average of monthly values (LIQ1, p.21) shown under the 31.12.2025 column of KM1, while Belfius' 144% is just 'at the end of 2025' with unstated basis; they cannot be strictly reconciled. Question reworded to 'headline reported' figures, answer discloses the basis difference; ranking conclusion is robust (14pp gap).",
+   "example": {
+    "id": "fin_q_030",
+    "question": "Compare the headline liquidity coverage ratio (LCR) as reported for 2025 by Belfius Bank (its LCR 'at the end of 2025') with the LCR reported by Luzerner Kantonalbank (Group) in its 31 December 2025 key metrics table. Which was higher?",
+    "reference_answer": "Belfius Bank reported an LCR of 144% at the end of 2025, while Luzerner Kantonalbank (Group) reported an LCR of 129.69% in its 31.12.2025 key metrics column (148.44% at 31 December 2024). Note the bases are not identical: LUKB's 129.69% is the Q4 2025 simple average of monthly LCR values (LIQ1), whereas Belfius describes its 144% only as the LCR at the end of 2025. On these reported figures Belfius' LCR was the higher one, by roughly 14 percentage points.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_002",
+      "page": 73,
+      "text": "The strong solidity of Belfius is reflected in excellent liquidity ratios with an LCR of 144% and a NSFR of 130% at the end of 2025."
+     },
+     {
+      "document_id": "fin_doc_007",
+      "page": 8,
+      "text": "Amounts in millions Swiss francs resp. in % 31.12.2025 30.06.2025 31.12.2024 … 17 LCR 129.69 % 143.86 % 148.44 %"
+     },
+     {
+      "document_id": "fin_doc_007",
+      "page": 21,
+      "text": "Q4 2025 … 23 Liquidity coverage ratio (LCR) – 129.69 % – 135.83 % … The figures shown are calculated as a simple average of the monthly determined LCR values."
+     }
+    ],
+    "metadata": {
+     "type": "multi_document",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": true,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "risk:liquidity",
+     "failure_modes": [
+      "multiple_entities",
+      "same_metric_multiple_years"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_032": {
+   "verdict": "confirmed",
+   "reasons": "Verified p.27: EUR 15.2bn, ES 99%, one-year, accounting approach, slightly lower than end-2024; 2024 value only in chart 22 (no numbers in text). Qualitative comparison is correct as stated.",
+   "example": null
+  },
+  "fin_q_035": {
+   "verdict": "confirmed",
+   "reasons": "Verified p.66 table: Insurance 867, Credit 97, Operational 86, SCR 1,134 (2024: 803/103/86/1,067). Blind answer agrees.",
+   "example": null
+  },
+  "fin_q_036": {
+   "verdict": "confirmed",
+   "reasons": "Verified p.105 (liabilities 3.2.3: 3,694,946,197,020 = cash 2,798,495,224,730 + gold 896,450,972,290; 2024 2,299,640,404,869) and p.103 consistent. Whole TRY units; blind agrees.",
+   "example": null
+  }
+ }
+}

@@ -1,0 +1,74 @@
+{
+ "decisions": {
+  "fin_q_058": {
+   "verdict": "confirmed",
+   "reasons": "Verified p194-195: Total revenue Express 25,134->24,430, Global Forwarding Freight 19,649->18,643, Supply Chain 17,693->17,778, eCommerce 6,962->6,884, PPG 17,347->17,874. Question asks 'total revenue' (row label), five divisions exclude Group Functions. Same three fall on external revenue too (Express, Freight, eCommerce), so no basis ambiguity. Evidence covers all five.",
+   "example": null
+  },
+  "fin_q_059": {
+   "verdict": "confirmed",
+   "reasons": "Verified p194-195 capex rows: ROU>acquired in Express, GF Freight, Supply Chain (3); not eCommerce (139<252) nor PPG (162<1,035). Question explicitly limits to the five operating divisions; Group Functions (422>127) correctly excluded. Evidence covers all five.",
+   "example": null
+  },
+  "fin_q_060": {
+   "verdict": "fix",
+   "reasons": "Figures are correct (p3), but 2021-2024 are labelled 'adjusted' in the 2025 report; question did not specify basis and the cited evidence omitted the 'adjusted' header. Question now states basis; evidence includes the adjusted header line.",
+   "example": {
+    "id": "fin_q_060",
+    "question": "How did DHL Group's return on sales (EBIT divided by revenue) evolve from fiscal year 2021 to fiscal year 2025, using the figures as presented in the 2025 annual report's five-year key figures (where 2021-2024 are shown on an adjusted basis)?",
+    "reference_answer": "On the adjusted basis shown for 2021-2024 in the 2025 annual report, return on sales fell in each year from 9.8% in 2021 to 8.9% in 2022, 7.8% in 2023 and 7.0% in 2024, and then recovered to 7.4% in 2025 (reported 2025 figure).",
+    "evidence": [
+     {
+      "document_id": "fin_doc_011",
+      "page": 3,
+      "text": "2021 2022 2023 2024 2025 adjusted adjusted adjusted adjusted … Return on sales % 9.8 8.9 7.8 7.0 7.4 … 1 EBIT/revenue."
+     }
+    ],
+    "metadata": {
+     "type": "temporal",
+     "difficulty": "easy",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "profitability",
+     "failure_modes": [
+      "same_metric_multiple_years"
+     ],
+     "style": "trend"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_062": {
+   "verdict": "confirmed",
+   "reasons": "p43: Express EBIT 3,162, negative net non-recurring effect 129, revenue 24,430 (= 'revenue in the Express division'), margin 12.9%. (3,162+129)/24,430=13.47% -> 13.5%; 3,291 correct. Calculation and input_sources consistent.",
+   "example": null
+  },
+  "fin_q_063": {
+   "verdict": "confirmed",
+   "reasons": "p93 table is Bank+Insurer combined FEAD; main categories only ('of which' sub-lines under Central governments excluded); deltas recomputed: Retail +3,363 largest, others as stated; totals 216,585/221,178 correct. No ties.",
+   "example": null
+  },
+  "fin_q_064": {
+   "verdict": "confirmed",
+   "reasons": "MR1 p37: all seven categories listed, credit spread 140.7 highest, total 335.0, CHF million. Rows 6-7, 9-10 absent in table. Evidence covers every candidate.",
+   "example": null
+  },
+  "fin_q_065": {
+   "verdict": "confirmed",
+   "reasons": "CR4 p30: main rows only; real estate 19,055.2, corporates 2,949.3, retail 530.2, next PSE 410.9; total 24,113.5; CHF million. Evidence covers all main rows (excerpt elides intermediate rows only).",
+   "example": null
+  },
+  "fin_q_066": {
+   "verdict": "confirmed",
+   "reasons": "p14 EU KM1: total capital ratio 24.13%, OCR (EU-11a) 16.16% = SREP 11.50% + CBR 4.66%; question explicitly asks for total capital ratio vs OCR, so the CET1 OCR on p21 (11.13%) is not a competing reading. Headroom 7.97pp correct.",
+   "example": null
+  },
+  "fin_q_068": {
+   "verdict": "confirmed",
+   "reasons": "IRRBB1 p43: dEVE 31.12.2025 negative in parallel down -285.4, flattener -241.5, short rate up -123.9; positive in parallel up, steepener, short rate down. 3 of 6 correct.",
+   "example": null
+  }
+ }
+}
