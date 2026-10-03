@@ -1,0 +1,282 @@
+{
+ "decisions": {
+  "fin_q_091": {
+   "verdict": "fix",
+   "reasons": "Question did not pin the source/basis and the answer asserted an arithmetic derivation (2% x 56.25% + 0.02% = 1.15%) as if stated. Document (prospectus p.130-131; same 10.88% also in Pillar 3/annual report, so same answer in any case) states only: P2R 1.15% 'after split of 2.02% P2R', 56.25% CET1 for the general 2% plus 2 bps NPE add-on in CET1. Question tied to the prospectus, answer now labels the arithmetic as a consistency check not stated by the document, P2G evidence added.",
+   "example": {
+    "id": "fin_q_091",
+    "question": "According to the EMTN Base Prospectus of Belfius Bank (consolidated, CRR3/CRD6 basis), the minimum CET1 capital ratio requirement for 2025 before Pillar 2 Guidance includes a Pillar 2 add-on: what figure is counted, how does it relate to the total Pillar 2 Requirement (P2R) stated for 2025, and what explanation does the prospectus give for the difference?",
+    "reference_answer": "The prospectus states a 2025 minimum CET1 capital ratio requirement of 10.88% (before Pillar 2 Guidance; 10.93% in 2024) that includes a Pillar II requirement of 1.15% (1.22% in 2024), described as the P2R 'after split of 2.02% P2R'. The total P2R for 2025 is 2.02% (initially set in December 2024 at 2.24% and subsequently reviewed to 2.02%; 2.16% in 2024). The prospectus explains the difference as follows: the P2R is to be held in the form of 56.25% CET1 capital for the 'general' P2R of 2%, and includes a prudential add-on for non-performing exposures of 2 bps to be held in the form of CET1 capital. (The prospectus does not show the arithmetic; it is consistent with 2% x 56.25% = 1.125% plus 0.02% = 1.145%, i.e. about 1.15%.) Pillar 2 Guidance of 1.00% is not part of the 10.88%; with it the figure is 11.88%.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_013",
+      "page": 130,
+      "text": "Pillar II requirement............................................................... 1.22% 1.15%… MINIMUM CET 1 CAPITAL RATIO REQUIREMENT ..................... 10.93% 10.88%… a Pillar 2 Requirement (P2R) of 1.15% (after split of 2.02% P2R);"
+     },
+     {
+      "document_id": "fin_doc_013",
+      "page": 131,
+      "text": "The Pillar 2 Requirement (P2R) was initially set in December 2024 at 2.24% and subsequently reviewed to… 2.02% (to compare with 2.16% in 2024) to be held in the form of 56.25% CET 1 capital for the “general” P2R… of 2% and including a prudential add-on for non-performing exposures of 2 bps to be held in the form of CET… 1 capital.… In line with the resilience of Belfius in the EBA stress test, the Pillar 2 Guidance (P2G) is set at 1% on the CET… (guidance) of 11.88% for 2025"
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "difficulty": "hard",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "style": "explanatory",
+     "topic": "capital:SREP",
+     "failure_modes": [
+      "similar_table_labels",
+      "split_across_pages",
+      "terminology_mismatch",
+      "multi_evidence_combination"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_092": {
+   "verdict": "fix",
+   "reasons": "Arithmetic and sources correct (verified p.155; CBR 5.23% = 2.50+1.50+1.02+0.21). Gap computed from rounded realised ratios; question and answer now state this so the 1.68 pp figure is defined as based on published rounded ratios.",
+   "example": {
+    "id": "fin_q_092",
+    "question": "At the end of 2025, on a consolidated basis for Belfius Bank and expressed as a percentage of total risk exposure amount (TREA, binding targets including the combined buffer requirement), which MREL cushion was larger: the realised total MREL over its binding target, or the realised MREL subordination over its binding target? Give both cushions and the difference in percentage points, computed from the ratios exactly as published (realised ratios to one decimal, targets to two decimals).",
+    "reference_answer": "The subordination cushion was larger. Total MREL: realised 31.2% of TREA (EUR 22.5 billion) versus a binding target of 28.91% (including the CBR), a cushion of 2.29 percentage points. MREL subordination: realised 22.7% of TREA (EUR 16.3 billion) versus a binding target of 18.73% (including the CBR), a cushion of 3.97 percentage points. The subordination cushion exceeds the total MREL cushion by 1.68 percentage points (3.97 - 2.29). Note: the realised ratios are published rounded to one decimal, so the cushions and the 1.68 pp gap are computed from rounded inputs and are accurate only to about +/-0.05 pp each.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_013",
+      "page": 155,
+      "text": "Expressed in TREA terms, Belfius realised MREL… of EUR 22.5 billion amounted to 31.2%, compared with the binding target of 28.91% (including the CBR).… In the same way, Belfius MREL subordination of EUR 16.3 billion amounted to 22.7% of TREA, compared… with a binding target of 18.73% (including the CBR)."
+     }
+    ],
+    "metadata": {
+     "type": "calculation",
+     "difficulty": "medium",
+     "requires_calculation": true,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "style": "comparison",
+     "topic": "capital:MREL",
+     "failure_modes": [
+      "similar_table_labels",
+      "multi_evidence_combination"
+     ]
+    },
+    "calculation": {
+     "inputs": {
+      "mrel_actual": 0.312,
+      "mrel_target": 0.2891,
+      "sub_actual": 0.227,
+      "sub_target": 0.1873
+     },
+     "operation": "(sub_actual - sub_target) - (mrel_actual - mrel_target)",
+     "result": 0.016800000000000037,
+     "input_sources": {
+      "mrel_actual": {
+       "evidence_index": 0,
+       "raw": "31.2%",
+       "unit": "% of TREA",
+       "scale": 0.01
+      },
+      "mrel_target": {
+       "evidence_index": 0,
+       "raw": "28.91%",
+       "unit": "% of TREA",
+       "scale": 0.01
+      },
+      "sub_actual": {
+       "evidence_index": 0,
+       "raw": "22.7%",
+       "unit": "% of TREA",
+       "scale": 0.01
+      },
+      "sub_target": {
+       "evidence_index": 0,
+       "raw": "18.73%",
+       "unit": "% of TREA",
+       "scale": 0.01
+      }
+     }
+    }
+   }
+  },
+  "fin_q_093": {
+   "verdict": "confirmed",
+   "reasons": "Verified p.181: total tax 436,308,981 / net income before tax 1,598,462,817 = 27.30% (27.3%); p.129 states statutory rate 25% and 'slightly above'. Calculation inputs/raw match evidence; reviewer's 27.3% from rounded millions (0.2728) agrees to one decimal. Question pins IFRS, consolidated, definition of ratio and rounding. The answer's parenthetical about drivers is as stated on p.129.",
+   "example": null
+  },
+  "fin_q_094": {
+   "verdict": "fix",
+   "reasons": "Substance correct (verified p.87-88, 103-104). Original answer attributed 'plus accrued interest if applicable' to Condition 3(b); it comes from Condition 11 (p.104). Reworded and noted that 3(b)(i)(B) is the bridge for Notes specifying Amortised Face Amount (evidence on p.88 and p.104 already supports; p.87 cross-reference stated as additional context, quote not required for answer).",
+   "example": {
+    "id": "fin_q_094",
+    "question": "Under the Terms and Conditions of Belfius Bank's EUR 25 billion EMTN Programme, if the Final Terms of a Note specify 'Amortised Face Amount' and the Note becomes immediately repayable after an Event of Default, how is the amount payable determined, and which event gives a Noteholder the right to demand that immediate repayment?",
+    "reference_answer": "The 'Event of Default Redemption Amount' is, where 'Amortised Face Amount' is specified in the Final Terms, 'an amount calculated in accordance with Condition 3(b)' (Condition 3(b)(i)(B) applies this to Notes specifying 'Amortised Face Amount' upon becoming due and payable under Condition 11). Under Condition 3(b)(ii) the Amortised Face Amount is the scheduled Zero Coupon Note Redemption Amount of the Note on the Maturity Date discounted at a rate per annum equal to the Amortisation Yield, compounded annually (for a period of less than one year, the Day Count Fraction in the Final Terms applies). Under Condition 11 this amount is payable together (if applicable) with accrued interest to the date of payment. The event giving a holder the right to give written notice to the Paying Agent that its Notes are immediately repayable is a dissolution or liquidation of the Issuer under Belgian law (bankruptcy, judicial liquidation or voluntary liquidation, other than a voluntary liquidation in connection with a reconstruction, merger or amalgamation where the continuing corporation assumes all liabilities). A payment default continuing 30 days or more only allows a holder to institute proceedings for dissolution or liquidation of the Issuer in Belgium, and a resolution action by the Relevant Resolution Authority does not entitle holders to accelerate.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_013",
+      "page": 103,
+      "text": "If default is made in the payment of any principal or interest due in respect of the Subordinated Notes or the… Senior Notes and such default continues for a period of 30 days or more after the due date, any holder of the… In the event of a dissolution or liquidation of the Issuer including, without limiting the generality of the… give written notice to the Paying Agent at its specified office that its relevant Note(s) is (are) immediately"
+     },
+     {
+      "document_id": "fin_doc_013",
+      "page": 104,
+      "text": "repayable, whereupon the Event of Default Redemption Amount of such Note(s) together (if applicable) with… accrued interest to the date of payment shall become immediately due and payable.… shall not entitle the holders of the relevant Notes to accelerate the Issuer’s payment obligations thereunder.… “Amortised Face Amount” is specified in the applicable Final Terms, an amount calculated in accordance with… Condition 3(b) above."
+     },
+     {
+      "document_id": "fin_doc_013",
+      "page": 88,
+      "text": "(ii)    Subject to sub-paragraph (iii) below, the “Amortised Face Amount” of any such Note shall be… the scheduled Zero Coupon Note Redemption Amount of such Note on the Maturity Date discounted at a rate per annum (expressed as a percentage) equal to the Amortisation Yield… compounded annually.… Where such calculation is to be made for a period of less than one year, it shall be made on the… basis of the Day Count Fraction set out in the applicable Final Terms."
+     }
+    ],
+    "metadata": {
+     "type": "definition",
+     "difficulty": "hard",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "style": "explanatory",
+     "topic": "notes:events_of_default",
+     "failure_modes": [
+      "split_across_pages",
+      "multi_evidence_combination",
+      "deep_in_report"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_095": {
+   "verdict": "confirmed",
+   "reasons": "Verified p.31: 'following (cumulative) conditions' (a),(b),(c) = 3; (a) is met if 'one or more of the following circumstances are present' (i)-(iv) = 4 alternatives. Question asks separately for cumulative conditions (3) and alternative circumstances (4); unambiguous, answer matches text.",
+   "example": null
+  },
+  "fin_q_096": {
+   "verdict": "fix",
+   "reasons": "Numbers verified (p.181). Original question/answer asserted all 2024 figures were restated, but the footnote marker is not on the Net income before tax and impairments line (blind reviewer noted this); question reworded to ask what the footnote says and answer stated precisely. 1,845 vs 1,605: differs by 240 = 'directly attributable from insurance' in the press release, consistent with footnote 4 on p.129.",
+   "example": {
+    "id": "fin_q_096",
+    "question": "In the consolidated statement of income of Belfius Bank included in the selected financial information of the EMTN Base Prospectus, what were total Income, total Expenses and Net income before tax and impairments for 2025 and 2024 (in EUR), and what does the statement's footnote say about the 2024 comparative figures?",
+    "reference_answer": "Income: EUR 3,284,231,922 (2025) vs EUR 3,256,698,231 (2024). Expenses: EUR -1,605,280,242 (2025) vs EUR -1,610,380,519 (2024). Net income before tax and impairments: EUR 1,678,951,680 (2025) vs EUR 1,646,317,712 (2024). Footnote (1) to the statement reads 'Restated for 2024 due to refinement in presentation of commissions on payment transactions'; its markers are placed on lines in the income and expense block (including Income and Expenses), so the 2024 Income and Expenses comparatives are restated. No marker is shown on the Net income before tax and impairments line, so the statement itself does not say whether that 2024 figure was restated (it equals the EUR 1,646 million 'pre-provision income' in the management discussion). These IFRS statement totals differ from the 'costs' of EUR 1,845 million (2025) and EUR 1,834 million (2024) quoted in the management discussion, whose footnote says they include directly attributable costs for insurance contracts.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_013",
+      "page": 181,
+      "text": "2024             2025… Income                                                                                 3,256,698,231    3,284,231,922… Expenses                                                                                           -1,610,380,519   -1,605,280,242… Net income before tax and impairments                                                              1,646,317,712    1,678,951,680… Restated for 2024 due to refinement in presentation of commissions on payment transactions."
+     },
+     {
+      "document_id": "fin_doc_013",
+      "page": 129,
+      "text": "Belfius’ costs4 slightly increased by +0.6% in 2025 to EUR 1,845 million compared to EUR 1,834 million in 2024"
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "difficulty": "hard",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "style": "lookup",
+     "topic": "profitability",
+     "failure_modes": [
+      "footnote",
+      "same_metric_multiple_years",
+      "similar_table_labels",
+      "terminology_mismatch",
+      "unit_mismatch"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_097": {
+   "verdict": "fix",
+   "reasons": "Facts verified (prospectus p.129; Pillar 3 p.38, 33). Question pinned to the Pillar 3 'headline' comparison because the Pillar 3 report also quotes the published 15.38% (so 'same direction' was otherwise ambiguous); answer states both bases, adds 16.16% pro forma figure with its evidence (p.33) and the 15.39->15.38 adjustment.",
+   "example": {
+    "id": "fin_q_097",
+    "question": "Belfius Bank's EMTN Base Prospectus says its consolidated CET1 ratio rose between end-2024 and end-2025. In the CET1 solvency-ratio commentary of Belfius's 2025 Pillar 3 report, does the headline year-on-year comparison show the same direction of change, and if not, what reference point and regulatory basis for end-2024 explain the difference?",
+    "reference_answer": "No, not in the Pillar 3 headline comparison. Both documents give a CET1 ratio of 15.87% at 31 December 2025. The prospectus compares it with the published end-2024 ratio of 15.38% and reports an increase of +49 bps (lower total risk exposure amount, EUR -3.0 billion to EUR 72.1 billion, partly offset by lower CET1 capital, EUR -111 million). The Pillar 3 report compares it with the pro forma end-2024 ratio under CRR 3/CRD 6 (Basel IV) and reports a decrease of 29 bps (lower prudential capital -15 bps, higher risk exposures -14 bps). It also notes that the published and reported end-2024 ratio under CRR 2/CRD 5 was 15.38% (slightly adjusted from 15.39% after a late Corep correction), against which the ratio rose; the transition to Basel IV added 78 bps to the 2024 ratio (pro forma 16.16%). So the difference is the 2024 reference point: published CRR 2/CRD 5 basis (15.38%, +49 bps) versus pro forma CRR 3/CRD 6 basis (about 16.16%, -29 bps); +49 bps and -29 bps differ by 78 bps.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_013",
+      "page": 129,
+      "text": "the CET 1 ratio stood at 15.87% as at 31 December 2025, up by +49 bps compared to the CET 1 ratio… 15.38%). This increase over 2025 is mainly the result of a lower total risk exposure amount (EUR -3.0 billion to EUR 72.1 billion)"
+     },
+     {
+      "document_id": "fin_doc_002",
+      "page": 38,
+      "text": "At the end of 2025, the CET 1 capital ratio amounted to 15.87%, a decrease of 29 bps… compared to the proforma CRR 3/CRD 6 (Basel IV) on 2024. Note that the published and… ed to 15.38%(1). The transition to Basel IV resulted in an increase of 78 bps."
+     },
+     {
+      "document_id": "fin_doc_002",
+      "page": 33,
+      "text": "16.16%                                -0.42%    0.07%    0.15%   15.87%"
+     }
+    ],
+    "metadata": {
+     "type": "multi_document",
+     "difficulty": "hard",
+     "requires_calculation": false,
+     "requires_multiple_documents": true,
+     "answerable": true,
+     "tier": "gold",
+     "style": "comparison",
+     "topic": "capital:CET1",
+     "failure_modes": [
+      "same_metric_multiple_years",
+      "terminology_mismatch",
+      "multi_evidence_combination"
+     ]
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_098": {
+   "verdict": "fix",
+   "reasons": "Answer correct and unambiguous (Business Day defined only on p.11 by reference to the Supplement; Dealing Day p.12-13 with at least two per month at regular intervals). Only change: evidence for p.12 extended to the full definition text so it supports the 'and/or such other Dealing Days...' part of the answer.",
+   "example": {
+    "id": "fin_q_098",
+    "question": "Under the definitions in the consolidated Prospectus for Germany of Guggenheim Global Investments plc dated 9 November 2023 (which consolidates the Company's prospectus dated 4 September 2023), could the Directors of Guggenheim Global Investments plc set up a Fund that has only one Dealing Day in a calendar month? Explain what a Dealing Day is and where the term 'Business Day' on which it is based is specified.",
+    "reference_answer": "No. A 'Dealing Day' is defined, for each Fund, as each Business Day on which subscriptions for, redemptions of and exchanges of relevant Shares can be made by the Company, as specified in the Supplement for the relevant Fund and/or such other Dealing Days as the Directors determine and notify to Shareholders in advance, provided that there are at least two Dealing Days in each month occurring at regular intervals. 'Business Day' is not defined in the Prospectus itself: it means, in relation to any Fund, each day specified as such in the Supplement for the relevant Fund. So at least two Dealing Days per month, at regular intervals, are required.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_014",
+      "page": 11,
+      "text": "\"Business Day\"                    means, in relation to any Fund, each day as is specified as such in the Supplement for the relevant Fund;"
+     },
+     {
+      "document_id": "fin_doc_014",
+      "page": 12,
+      "text": "\"Dealing Day\"                   means, in respect of each Fund, each Business Day on which subscriptions for, redemptions of and exchanges of relevant Shares can be made by the Company as specified in the Supplement for the relevant Fund and/or such other Dealing Days as the Directors shall determine and notify to Shareholders in"
+     },
+     {
+      "document_id": "fin_doc_014",
+      "page": 13,
+      "text": "advance, provided that there shall be at least two Dealing Days in each month occurring at regular intervals;"
+     }
+    ],
+    "metadata": {
+     "type": "definition",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "definitions:dealing_day",
+     "failure_modes": [
+      "split_across_pages",
+      "terminology_mismatch"
+     ],
+     "style": "yes_no"
+    },
+    "calculation": null
+   }
+  }
+ }
+}

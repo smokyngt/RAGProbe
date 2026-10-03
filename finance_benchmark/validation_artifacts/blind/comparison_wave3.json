@@ -1,0 +1,154 @@
+[
+  {
+    "id": "fin_q_091",
+    "auto_status": "check",
+    "issues": [
+      "no common evidence page (annotated [('fin_doc_013', 130), ('fin_doc_013', 131)], blind [('fin_doc_002', 34)])",
+      "numbers of the reference answer not in blind answer: ['0.02', '1.22']"
+    ]
+  },
+  {
+    "id": "fin_q_092",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind 1.68 vs annotated 0.016800000000000037",
+      "no common evidence page (annotated [('fin_doc_013', 155)], blind [('fin_doc_002', 39)])",
+      "numbers of the reference answer not in blind answer: ['16.3', '22.5']"
+    ]
+  },
+  {
+    "id": "fin_q_093",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind 0.27284 vs annotated 0.2729553520793596",
+      "numbers of the reference answer not in blind answer: ['1598462817', '2024', '436308981']"
+    ]
+  },
+  {
+    "id": "fin_q_094",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_095",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_096",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['1834', '1845']"
+    ]
+  },
+  {
+    "id": "fin_q_097",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['111', '14', '15', '72.1']"
+    ]
+  },
+  {
+    "id": "fin_q_098",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_099",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind 0.027 vs annotated 0.00027",
+      "numbers of the reference answer not in blind answer: ['2.7']"
+    ]
+  },
+  {
+    "id": "fin_q_100",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_101",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['1988']"
+    ]
+  },
+  {
+    "id": "fin_q_102",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2023', '57', '65', '73']"
+    ]
+  },
+  {
+    "id": "fin_q_103",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['131.4', '2024']"
+    ]
+  },
+  {
+    "id": "fin_q_104",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_105",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind 60 vs annotated 60000"
+    ]
+  },
+  {
+    "id": "fin_q_106",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_107",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_108",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_109",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_110",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_111",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_112",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2025']"
+    ]
+  },
+  {
+    "id": "fin_q_113",
+    "auto_status": "check",
+    "issues": [
+      "no common evidence page (annotated [('fin_doc_010', 9), ('fin_doc_017', 8)], blind [('fin_doc_010', 34), ('fin_doc_010', 83), ('fin_doc_017', 7)])",
+      "numbers of the reference answer not in blind answer: ['1328', '1413', '431']"
+    ]
+  },
+  {
+    "id": "fin_q_114",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['31.12.2024', '31.12.2025', '43.2']"
+    ]
+  }
+]

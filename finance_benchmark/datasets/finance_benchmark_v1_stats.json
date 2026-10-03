@@ -3,39 +3,39 @@
     "documents": 17,
     "pages": 1995
   },
-  "questions": 90,
+  "questions": 113,
   "by_type": {
-    "table": 34,
-    "calculation": 14,
+    "table": 38,
+    "calculation": 19,
+    "temporal": 12,
     "direct": 11,
-    "temporal": 11,
-    "multi_document": 6,
-    "multi_evidence": 5,
-    "negative": 5,
-    "definition": 3,
-    "risk": 1
+    "multi_document": 9,
+    "multi_evidence": 7,
+    "definition": 7,
+    "negative": 6,
+    "risk": 4
   },
   "by_style": {
-    "lookup": 28,
-    "comparison": 17,
+    "lookup": 31,
+    "comparison": 23,
+    "explanatory": 13,
+    "yes_no": 12,
     "superlative": 10,
-    "explanatory": 8,
-    "yes_no": 8,
-    "count": 5,
-    "conditional": 4,
-    "ranking": 4,
-    "list": 3,
+    "count": 6,
+    "list": 5,
+    "conditional": 5,
+    "ranking": 5,
     "trend": 3
   },
   "by_difficulty": {
-    "medium": 61,
-    "easy": 16,
-    "hard": 13
+    "medium": 75,
+    "hard": 20,
+    "easy": 18
   },
   "flags": {
-    "requires_calculation": 17,
-    "multi_document": 6,
-    "unanswerable": 5
+    "requires_calculation": 23,
+    "multi_document": 9,
+    "unanswerable": 6
   },
   "by_document": {
     "fin_doc_001": {
@@ -53,8 +53,8 @@
       "type": "pillar3",
       "pages": 111,
       "primary_questions": 5,
-      "questions_touching": 5,
-      "evidence_items": 8
+      "questions_touching": 7,
+      "evidence_items": 12
     },
     "fin_doc_003": {
       "company": "Belfius Insurance",
@@ -125,8 +125,8 @@
       "type": "annual_report",
       "pages": 107,
       "primary_questions": 8,
-      "questions_touching": 8,
-      "evidence_items": 9
+      "questions_touching": 9,
+      "evidence_items": 13
     },
     "fin_doc_011": {
       "company": "DHL Group",
@@ -151,57 +151,57 @@
       "title": "Belfius Bank EMTN Programme Base Prospectus dated 6 May 2026 (EUR 25,000,000,000)",
       "type": "prospectus",
       "pages": 224,
-      "primary_questions": 0,
-      "questions_touching": 0,
-      "evidence_items": 0
+      "primary_questions": 7,
+      "questions_touching": 7,
+      "evidence_items": 12
     },
     "fin_doc_014": {
       "company": "Guggenheim Global Investments plc",
       "title": "UCITS Prospectus (Germany version)",
       "type": "prospectus",
       "pages": 131,
-      "primary_questions": 0,
-      "questions_touching": 0,
-      "evidence_items": 0
+      "primary_questions": 4,
+      "questions_touching": 4,
+      "evidence_items": 9
     },
     "fin_doc_015": {
       "company": "Autorité des marchés financiers (AMF)",
       "title": "AMF 2025 Annual Report (English)",
       "type": "regulator_report",
       "pages": 175,
-      "primary_questions": 0,
-      "questions_touching": 0,
-      "evidence_items": 0
+      "primary_questions": 5,
+      "questions_touching": 5,
+      "evidence_items": 7
     },
     "fin_doc_016": {
       "company": "Belfius Bank",
       "title": "Belfius annual results 2025: press release",
       "type": "earnings_release",
       "pages": 12,
-      "primary_questions": 0,
-      "questions_touching": 0,
-      "evidence_items": 0
+      "primary_questions": 2,
+      "questions_touching": 2,
+      "evidence_items": 5
     },
     "fin_doc_017": {
       "company": "Fresenius SE & Co. KGaA",
       "title": "Fresenius press release Q4 and FY 2025",
       "type": "earnings_release",
       "pages": 10,
-      "primary_questions": 0,
-      "questions_touching": 0,
-      "evidence_items": 0
+      "primary_questions": 4,
+      "questions_touching": 4,
+      "evidence_items": 9
     }
   },
   "failure_modes": {
-    "same_metric_multiple_years": 36,
-    "similar_table_labels": 31,
-    "multiple_entities": 26,
-    "header_dependency": 22,
-    "footnote": 14,
-    "terminology_mismatch": 14,
-    "split_across_pages": 14,
-    "multi_evidence_combination": 10,
-    "unit_mismatch": 9,
-    "deep_in_report": 2
+    "same_metric_multiple_years": 44,
+    "similar_table_labels": 37,
+    "multiple_entities": 27,
+    "header_dependency": 25,
+    "terminology_mismatch": 24,
+    "split_across_pages": 23,
+    "multi_evidence_combination": 22,
+    "footnote": 19,
+    "unit_mismatch": 13,
+    "deep_in_report": 3
   }
 }

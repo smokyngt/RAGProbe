@@ -1937,6 +1937,514 @@
       "notes": "Corrected after blind pass; Values correct (0.83% -> 0.81%) but only two data points, whereas style 'trend' requires >=3; restyled as comparison and question made explicit on direction and gap.",
       "status": "verified",
       "basis": "adjudicator fix"
+    },
+    "fin_q_091": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Question did not pin the source/basis and the answer asserted an arithmetic derivation (2% x 56.25% + 0.02% = 1.15%) as if stated. Document (prospectus p.130-131; same 10.88% also in Pillar 3/annual report, so same answer in any case) states only: P2R 1.15% 'after split of 2.02% P2R', 56.25% CET1 for the general 2% plus 2 bps NPE add-on in CET1. Question tied to the prospectus, answer now labels the arithmetic as a consistency check not stated by the document, P2G evidence added.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_092": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Arithmetic and sources correct (verified p.155; CBR 5.23% = 2.50+1.50+1.02+0.21). Gap computed from rounded realised ratios; question and answer now state this so the 1.68 pp figure is defined as based on published rounded ratios.",
+      "status": "verified",
+      "basis": "adjudicator fix",
+      "independent_recompute": {
+        "result": 0.016800000000000037,
+        "matches": true,
+        "blind_result": 1.68,
+        "equivalence": [
+          "scale"
+        ]
+      }
+    },
+    "fin_q_093": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.181: total tax 436,308,981 / net income before tax 1,598,462,817 = 27.30% (27.3%); p.129 states statutory rate 25% and 'slightly above'. Calculation inputs/raw match evidence; reviewer's 27.3% from rounded millions (0.2728) agrees to one decimal. Question pins IFRS, consolidated, definition of ratio and rounding. The answer's parenthetical about drivers is as stated on p.129.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
+      "independent_recompute": {
+        "result": 0.2729553520793596,
+        "matches": true,
+        "blind_result": 0.27284,
+        "equivalence": [
+          "exact"
+        ]
+      }
+    },
+    "fin_q_094": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Substance correct (verified p.87-88, 103-104). Original answer attributed 'plus accrued interest if applicable' to Condition 3(b); it comes from Condition 11 (p.104). Reworded and noted that 3(b)(i)(B) is the bridge for Notes specifying Amortised Face Amount (evidence on p.88 and p.104 already supports; p.87 cross-reference stated as additional context, quote not required for answer).",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_095": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.31: 'following (cumulative) conditions' (a),(b),(c) = 3; (a) is met if 'one or more of the following circumstances are present' (i)-(iv) = 4 alternatives. Question asks separately for cumulative conditions (3) and alternative circumstances (4); unambiguous, answer matches text.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_096": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Numbers verified (p.181). Original question/answer asserted all 2024 figures were restated, but the footnote marker is not on the Net income before tax and impairments line (blind reviewer noted this); question reworded to ask what the footnote says and answer stated precisely. 1,845 vs 1,605: differs by 240 = 'directly attributable from insurance' in the press release, consistent with footnote 4 on p.129.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_097": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Facts verified (prospectus p.129; Pillar 3 p.38, 33). Question pinned to the Pillar 3 'headline' comparison because the Pillar 3 report also quotes the published 15.38% (so 'same direction' was otherwise ambiguous); answer states both bases, adds 16.16% pro forma figure with its evidence (p.33) and the 15.39->15.38 adjustment.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_098": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Answer correct and unambiguous (Business Day defined only on p.11 by reference to the Supplement; Dealing Day p.12-13 with at least two per month at regular intervals). Only change: evidence for p.12 extended to the full definition text so it supports the 'and/or such other Dealing Days...' part of the answer.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_099": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.54 (administrator up to 0.05% p.a. of NAV, minimum $50,000) and p.55 (depositary up to 0.023%, tiered/minimums noted). Question asks for maximum rates, so tiering does not create ambiguity; gap 0.027 pp (result 0.00027, scale 0.01) correct.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
+      "independent_recompute": {
+        "result": 0.00027,
+        "matches": true,
+        "blind_result": 0.027,
+        "equivalence": [
+          "scale"
+        ]
+      }
+    },
+    "fin_q_100": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Page 39 risk text and page 33 105%/95% limits found/consistent; no issue.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_101": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Rule 2.8 (p.106): 5% OTC counterparty limit raised to 10% for Relevant Institutions. Definition p.16 says Basle Capital Convergence Agreement of July 1988 signatories (which includes the United Kingdom). The '1988' in the comparison is just that agreement date, not an amount. 40/500 = 8% < 10%: compliant. Hypothetical inputs are explicit in the question.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_103": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "p.166: 89.37, 20.79, 12.73, 11.93, 2.28 sum to 137.10 (2025 column; 2024 values in brackets not used). 131.40 is the 2024 total contributions, only context. Ranking correct, no ties.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_104": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "p.164: net loss 0.66 (2025) vs deficit 3.83 (2024); working capital -19.03 to -8.61 (+10.42, matches stated contribution). Correct.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_105": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; No printed operating result exists; the difference of two figures rounded to €0.01m has precision ±€0.01m, so '€60 thousand' was spuriously precise. Reworded to ask for the gap on the figures as published in € million with explicit rounding caveat; calculation unchanged (60,000).",
+      "status": "verified",
+      "basis": "adjudicator fix",
+      "independent_recompute": {
+        "result": 60000,
+        "matches": true,
+        "blind_result": 60.0,
+        "equivalence": [
+          "scale"
+        ]
+      }
+    },
+    "fin_q_106": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Fine limits on p.139 confirmed (€100m or 10x benefit; 15% of total annual turnover in 'certain cases'). Original asked 'in what cases', but the report does not specify the cases; reworded so the question is answerable from the source.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_107": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Answer correct (sources: AMF risk map, ESMA risk map, Impact 2027 orientations, findings of monitoring/inspection work; 80% of 2025 inspections: retail investor protection, sustainable finance, innovation; p33/p34 confirmed). Evidence excerpts were truncated and lacked 'innovation' and 'SPOT inspections'/'determines the topics'; evidence completed verbatim. Question and answer unchanged.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_108": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Greps over all 17 documents found no 2027 budget/net result/investment; AMF report p164-165 gives only the 2026 budget outlook (net loss -7.69m, investment 4.11m). 2027 appears only as end of the Impact 2027 strategic period. Negative question is sound.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_109": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Figures correct (FCF 1,285 vs 1,679, -23%; Q4 966 vs 580, +67%; footnote 3 'after acquisitions, dividends and lease liabilities (continuing operations)'). The answer also cites footnote 5 (prior-year figures adjusted for Vamed exit) which was missing from evidence; added.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_110": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "2.7x vs 3.0x, 'improved by 30 bp', corridor 2.5 to 3.0x, footnote 5/4 basis all verified on pp1, 7, 8; answer words the 30 bp as the release's description. Evidence verbatim and complete.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_111": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Guidance, bases (22,554; 2.87) and footnote 9 (modelling only, base 2,595) correct. Answer says Core EPS is before special items and excludes FME, but footnotes 1 and 4 were not in evidence; added.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_112": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Underlying figures right, but basis was under-pinned: press release 'CRR2' label for 75.2bn comes from the p11 footnote (slightly updated after late Corep correction), not 'as originally reported'. Question now explicitly names each document's own end-2024 comparison figure (CRR2 vs pro forma CRR3); evidence adds the p11 footnote; answer states the 75.2bn is slightly updated.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_113": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Question called fin_doc_010 an 'annual report' and the answer mis-explained the gap. Verified: special items -174+6-190+85-12 = -285 (note 3, p34; p83 reconciliation: segments 2,741, special items -285, corporate -146, Group EBIT 2,310). Reworded question to consolidated financial statements, 2,595 before vs 2,310 after special items; answer now attributes the 285m to the listed special items; evidence adds p34 and p83; calculation block added (requires_calculation true).",
+      "status": "verified",
+      "basis": "adjudicator fix",
+      "independent_recompute": {
+        "result": 285000000,
+        "matches": true,
+        "blind_result": 285.0,
+        "equivalence": [
+          "scale"
+        ]
+      }
+    },
+    "fin_q_114": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "INCOME 4,295, COSTS -1,845 (p8), 1,845/4,295 = 42.96% -> 43.0%; release's own C/I ratio 43.0% (2025) / 43.2% (2024, 1,834/4,241 = 43.24%) on p11, so the 'matches' claim is true for both years. The 43.2 is the 2024 comparative, a false alarm. Calculation block correct.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
+      "independent_recompute": {
+        "result": 0.42956926658905703,
+        "matches": true,
+        "blind_result": 0.42957,
+        "equivalence": [
+          "exact"
+        ]
+      }
     }
   }
 }

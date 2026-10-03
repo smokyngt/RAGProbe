@@ -1,0 +1,122 @@
+{
+ "decisions": {
+  "fin_q_099": {
+   "verdict": "confirmed",
+   "reasons": "Verified p.54 (administrator up to 0.05% p.a. of NAV, minimum $50,000) and p.55 (depositary up to 0.023%, tiered/minimums noted). Question asks for maximum rates, so tiering does not create ambiguity; gap 0.027 pp (result 0.00027, scale 0.01) correct.",
+   "example": null
+  },
+  "fin_q_100": {
+   "verdict": "confirmed",
+   "reasons": "Page 39 risk text and page 33 105%/95% limits found/consistent; no issue.",
+   "example": null
+  },
+  "fin_q_101": {
+   "verdict": "confirmed",
+   "reasons": "Rule 2.8 (p.106): 5% OTC counterparty limit raised to 10% for Relevant Institutions. Definition p.16 says Basle Capital Convergence Agreement of July 1988 signatories (which includes the United Kingdom). The '1988' in the comparison is just that agreement date, not an amount. 40/500 = 8% < 10%: compliant. Hypothetical inputs are explicit in the question.",
+   "example": null
+  },
+  "fin_q_102": {
+   "verdict": "flag",
+   "reasons": "Source conflict: Statement of Comprehensive Income (p.17) shows Directors' fees USD 140k for the Company (GFI 134 + GGI 6), linked to Note 10, whereas the Note 10 text (p.52) says fees charged were USD 73k (EUR 65k) plus separate EUR 49k pension contributions. The two do not reconcile (USD 140k is roughly EUR 120k at year-end rates, above the EUR 114k cap, whereas EUR 65k is below it; EUR 65k + EUR 49k pension = EUR 114k exactly equals the cap). The yes/no answer and headroom flip depending on which figure/scope is used, and the prospectus wording ('remuneration') does not exclude pension contributions. Cannot be made unambiguous; recommend dropping or replacing.",
+   "example": null
+  },
+  "fin_q_103": {
+   "verdict": "confirmed",
+   "reasons": "p.166: 89.37, 20.79, 12.73, 11.93, 2.28 sum to 137.10 (2025 column; 2024 values in brackets not used). 131.40 is the 2024 total contributions, only context. Ranking correct, no ties.",
+   "example": null
+  },
+  "fin_q_104": {
+   "verdict": "confirmed",
+   "reasons": "p.164: net loss 0.66 (2025) vs deficit 3.83 (2024); working capital -19.03 to -8.61 (+10.42, matches stated contribution). Correct.",
+   "example": null
+  },
+  "fin_q_105": {
+   "verdict": "fix",
+   "reasons": "No printed operating result exists; the difference of two figures rounded to €0.01m has precision ±€0.01m, so '€60 thousand' was spuriously precise. Reworded to ask for the gap on the figures as published in € million with explicit rounding caveat; calculation unchanged (60,000).",
+   "example": {
+    "id": "fin_q_105",
+    "question": "Using the AMF's (Autorité des marchés financiers) 2025 income statement commentary, by how much did total operating income exceed total operating expenses in 2025, based on the figures as published (rounded to €0.01 million), in € million?",
+    "reference_answer": "About €0.06 million (approximately €60 thousand): operating income of €148.16 million minus operating expenses of €148.10 million, both for 2025. This is computed from figures published rounded to €0.01 million, so the difference is only precise to about ±€0.01 million; income nonetheless exceeded expenses.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_015",
+      "page": 166,
+      "text": "2025 income, up by 7%, amounted to … €148.16 million (€138.49 million in"
+     },
+     {
+      "document_id": "fin_doc_015",
+      "page": 167,
+      "text": "Up by 4.1%, these expenses amounted … to €148.10 million (142.32 million euros"
+     }
+    ],
+    "metadata": {
+     "type": "calculation",
+     "difficulty": "medium",
+     "requires_calculation": true,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "regulator_financials:operating_result",
+     "failure_modes": [
+      "multi_evidence_combination",
+      "same_metric_multiple_years",
+      "split_across_pages"
+     ],
+     "style": "comparison"
+    },
+    "calculation": {
+     "inputs": {
+      "operating_income_2025": 148160000,
+      "operating_expenses_2025": 148100000
+     },
+     "operation": "operating_income_2025 - operating_expenses_2025",
+     "result": 60000,
+     "input_sources": {
+      "operating_income_2025": {
+       "evidence_index": 0,
+       "raw": "148.16",
+       "unit": "€ million",
+       "scale": 1000000
+      },
+      "operating_expenses_2025": {
+       "evidence_index": 1,
+       "raw": "148.10",
+       "unit": "€ million",
+       "scale": 1000000
+      }
+     }
+    }
+   }
+  },
+  "fin_q_106": {
+   "verdict": "fix",
+   "reasons": "Fine limits on p.139 confirmed (€100m or 10x benefit; 15% of total annual turnover in 'certain cases'). Original asked 'in what cases', but the report does not specify the cases; reworded so the question is answerable from the source.",
+   "example": {
+    "id": "fin_q_106",
+    "question": "According to the AMF's (Autorité des marchés financiers) 2025 annual report, what is the maximum fine its Enforcement Committee may impose in general, and to what share of the sanctioned entity's turnover may fines be increased in certain cases?",
+    "reference_answer": "The Enforcement Committee may impose fines of up to €100 million or ten times the amount of the benefit derived from the regulatory breach, if this can be determined. In certain cases (the report does not specify which), these fines may be increased to 15% of the sanctioned entity's total annual turnover.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_015",
+      "page": 139,
+      "text": "impose fines of up to €100 million or ten … times the amount of the benefit derived … from the regulatory breach, if this can be … may be increased to 15% of the … turnover."
+     }
+    ],
+    "metadata": {
+     "type": "definition",
+     "difficulty": "easy",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "regulator_enforcement:fines_regime",
+     "failure_modes": [
+      "terminology_mismatch"
+     ],
+     "style": "lookup"
+    },
+    "calculation": null
+   }
+  }
+ }
+}

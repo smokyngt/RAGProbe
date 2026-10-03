@@ -1,0 +1,444 @@
+{
+  "method": "explainable additive risk score; see the docstring of tools/human_review_priority.py",
+  "top": [
+    {
+      "id": "fin_q_014",
+      "score": 16,
+      "primary_document": "fin_doc_012",
+      "type": "multi_document",
+      "style": "comparison",
+      "why": [
+        "multi-document",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "unit_mismatch",
+        "same_metric_multiple_years",
+        "footnote",
+        "blind reviewer doubt/low confidence",
+        "multi-page evidence",
+        "≥4 evidence items"
+      ],
+      "check": [
+        "check currency, scale (thousand/million/billion) and percent vs percentage points",
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer",
+        "open both documents; confirm period, entity and definition match across the two figures"
+      ],
+      "question": "What was DHL Group's consolidated profit before income taxes for fiscal year 2024 as originally reported in the 2024 annual report, does the 2025 annual report show the same comparative figure, and what was the FY2025 amount?"
+    },
+    {
+      "id": "fin_q_113",
+      "score": 15,
+      "primary_document": "fin_doc_017",
+      "type": "multi_document",
+      "style": "explanatory",
+      "why": [
+        "calculation",
+        "multi-document",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "footnote",
+        "blind comparison disagreed",
+        "multi-page evidence",
+        "≥4 evidence items"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "confirm the final wording leaves exactly one defensible answer",
+        "open both documents; confirm period, entity and definition match across the two figures",
+        "recompute from the figures printed on the cited page(s) and compare with the rounding stated in the answer"
+      ],
+      "question": "Fresenius Group's EBIT for fiscal year 2025 is €2,595 million (before special items) in the Q4/FY 2025 press release, but the Group EBIT in the consolidated segment reporting of the Fresenius consolidated financial statements 2025 is €2,310 million (after special items). How large is the difference, and which special items explain it according to the notes to the financial statements?"
+    },
+    {
+      "id": "fin_q_112",
+      "score": 14,
+      "primary_document": "fin_doc_016",
+      "type": "multi_document",
+      "style": "comparison",
+      "why": [
+        "multi-document",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "unit_mismatch",
+        "similar_table_labels",
+        "blind comparison disagreed",
+        "multi-page evidence",
+        "≥4 evidence items"
+      ],
+      "check": [
+        "check currency, scale (thousand/million/billion) and percent vs percentage points",
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer",
+        "open both documents; confirm period, entity and definition match across the two figures"
+      ],
+      "question": "Belfius' 2025 annual results press release (consolidated, 31 December 2025) and the Belfius Bank 2025 Pillar 3 report both quote the CET1 ratio and total risk exposure amount (TREA) at end-2025. What CET1 ratio and TREA does each document give for end-2025, and, using the end-2024 TREA figure that each document itself compares with (the press release's FY24 figure under CRR2, the Pillar 3 report's pro forma CRR3 figure), did TREA decrease or increase during 2025 in each document?"
+    },
+    {
+      "id": "fin_q_105",
+      "score": 13,
+      "primary_document": "fin_doc_015",
+      "type": "calculation",
+      "style": "comparison",
+      "why": [
+        "calculation",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "same_metric_multiple_years",
+        "blind reviewer doubt/low confidence",
+        "blind comparison disagreed",
+        "multi-page evidence"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer",
+        "recompute from the figures printed on the cited page(s) and compare with the rounding stated in the answer"
+      ],
+      "question": "Using the AMF's (Autorité des marchés financiers) 2025 income statement commentary, by how much did total operating income exceed total operating expenses in 2025, based on the figures as published (rounded to €0.01 million), in € million?"
+    },
+    {
+      "id": "fin_q_057",
+      "score": 12,
+      "primary_document": "fin_doc_011",
+      "type": "calculation",
+      "style": "comparison",
+      "why": [
+        "calculation",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "blind reviewer doubt/low confidence",
+        "blind comparison disagreed",
+        "multi-page evidence"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "confirm the final wording leaves exactly one defensible answer",
+        "recompute from the figures printed on the cited page(s) and compare with the rounding stated in the answer"
+      ],
+      "question": "In DHL Group's 2025 segment reporting, which division had the higher total capex in fiscal year 2025 (use the reported 'Total capex' line, i.e. assets acquired plus right-of-use assets as reported, not a re-addition of the components), Supply Chain or Post & Parcel Germany, and by how much in € million?"
+    },
+    {
+      "id": "fin_q_096",
+      "score": 12,
+      "primary_document": "fin_doc_013",
+      "type": "table",
+      "style": "lookup",
+      "why": [
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "unit_mismatch",
+        "similar_table_labels",
+        "same_metric_multiple_years",
+        "footnote",
+        "blind comparison disagreed",
+        "multi-page evidence"
+      ],
+      "check": [
+        "check currency, scale (thousand/million/billion) and percent vs percentage points",
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer"
+      ],
+      "question": "In the consolidated statement of income of Belfius Bank included in the selected financial information of the EMTN Base Prospectus, what were total Income, total Expenses and Net income before tax and impairments for 2025 and 2024 (in EUR), and what does the statement's footnote say about the 2024 comparative figures?"
+    },
+    {
+      "id": "fin_q_030",
+      "score": 11,
+      "primary_document": "fin_doc_002",
+      "type": "multi_document",
+      "style": "comparison",
+      "why": [
+        "multi-document",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "same_metric_multiple_years",
+        "blind comparison disagreed",
+        "multi-page evidence"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer",
+        "open both documents; confirm period, entity and definition match across the two figures"
+      ],
+      "question": "Compare the headline liquidity coverage ratio (LCR) as reported for 2025 by Belfius Bank (its LCR 'at the end of 2025') with the LCR reported by Luzerner Kantonalbank (Group) in its 31 December 2025 key metrics table. Which was higher?"
+    },
+    {
+      "id": "fin_q_053",
+      "score": 11,
+      "primary_document": "fin_doc_011",
+      "type": "calculation",
+      "style": "superlative",
+      "why": [
+        "calculation",
+        "style=superlative",
+        "rewritten by adjudicator (ambiguity existed)",
+        "blind comparison disagreed",
+        "multi-page evidence"
+      ],
+      "check": [
+        "confirm the final wording leaves exactly one defensible answer",
+        "recompute from the figures printed on the cited page(s) and compare with the rounding stated in the answer",
+        "scan every candidate row/column in scope yourself; confirm no tie and that no row was omitted"
+      ],
+      "question": "Among DHL Group's five operating divisions (Express; Global Forwarding, Freight, which is a single division; Supply Chain; eCommerce; Post & Parcel Germany; Group Functions excluded), which one recorded the largest absolute reduction in average full-time equivalents (FTEs) between fiscal year 2024 and fiscal year 2025, and by how many FTEs did it fall?"
+    },
+    {
+      "id": "fin_q_084",
+      "score": 11,
+      "primary_document": "fin_doc_010",
+      "type": "table",
+      "style": "superlative",
+      "why": [
+        "style=superlative",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "footnote",
+        "header_dependency",
+        "blind comparison disagreed"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "confirm the final wording leaves exactly one defensible answer",
+        "scan every candidate row/column in scope yourself; confirm no tie and that no row was omitted"
+      ],
+      "question": "In Fresenius SE & Co. KGaA's consolidated segment reporting for 2025 (figures excluding the discontinued Fresenius Vamed operations), which of the three reporting columns - Fresenius Kabi, Fresenius Helios and Corporate / Other - reported the highest EBIT, and what were the EBIT values of all three? Use the figures as printed in the table, noting each column's footnoted basis."
+    },
+    {
+      "id": "fin_q_093",
+      "score": 11,
+      "primary_document": "fin_doc_013",
+      "type": "calculation",
+      "style": "yes_no",
+      "why": [
+        "calculation",
+        "style=yes_no",
+        "scope/basis issue discussed in adjudication",
+        "unit_mismatch",
+        "similar_table_labels",
+        "blind comparison disagreed",
+        "multi-page evidence"
+      ],
+      "check": [
+        "check currency, scale (thousand/million/billion) and percent vs percentage points",
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "recompute from the figures printed on the cited page(s) and compare with the rounding stated in the answer"
+      ],
+      "question": "Was Belfius Bank's consolidated effective tax rate for 2025 under IFRS (total tax expense divided by net income before tax) above the statutory tax rate that the prospectus cites? Give the ratio to one decimal place."
+    },
+    {
+      "id": "fin_q_111",
+      "score": 11,
+      "primary_document": "fin_doc_017",
+      "type": "multi_evidence",
+      "style": "list",
+      "why": [
+        "style=list",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "footnote",
+        "multi-page evidence",
+        "≥4 evidence items"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "confirm the final wording leaves exactly one defensible answer",
+        "scan every candidate row/column in scope yourself; confirm no tie and that no row was omitted"
+      ],
+      "question": "What full-year 2026 guidance for the Fresenius Group does the Q4/FY 2025 press release give (organic revenue growth, constant currency Core EPS growth and EBIT margin), what 2025 base figures does it attach to the revenue and Core EPS guidance, and is the EBIT margin figure part of the official guidance?"
+    },
+    {
+      "id": "fin_q_010",
+      "score": 10,
+      "primary_document": "fin_doc_011",
+      "type": "calculation",
+      "style": "lookup",
+      "why": [
+        "calculation",
+        "scope/basis issue discussed in adjudication",
+        "similar_table_labels",
+        "header_dependency",
+        "blind reviewer doubt/low confidence",
+        "blind comparison disagreed"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "recompute from the figures printed on the cited page(s) and compare with the rounding stated in the answer"
+      ],
+      "question": "For the full year 2025, what share of DHL Group's total Group capex (acquired assets plus right-of-use assets) related to right-of-use assets? Give the answer as a percentage to one decimal place."
+    },
+    {
+      "id": "fin_q_039",
+      "score": 10,
+      "primary_document": "fin_doc_005",
+      "type": "calculation",
+      "style": "lookup",
+      "why": [
+        "calculation",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "same_metric_multiple_years",
+        "blind comparison disagreed"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer",
+        "recompute from the figures printed on the cited page(s) and compare with the rounding stated in the answer"
+      ],
+      "question": "By what percentage did Prudential International Assurance plc's total Solvency Capital Requirement (SCR) decrease between 31 December 2024 and 31 December 2025, based on the total SCR amounts stated in £ million (whole millions) in the report's SCR section?"
+    },
+    {
+      "id": "fin_q_041",
+      "score": 10,
+      "primary_document": "fin_doc_003",
+      "type": "multi_evidence",
+      "style": "conditional",
+      "why": [
+        "style=conditional",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "similar_table_labels",
+        "blind reviewer doubt/low confidence",
+        "multi-page evidence"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer"
+      ],
+      "question": "At the end of 2025, what were Belfius Insurance's consolidated available financial resources and Solvency Capital Requirement in EUR million, and by how many percentage points does the report's solvency sensitivity table show the Solvency II ratio changing under a +50bp credit spread shock on government bonds?"
+    },
+    {
+      "id": "fin_q_051",
+      "score": 10,
+      "primary_document": "fin_doc_011",
+      "type": "calculation",
+      "style": "superlative",
+      "why": [
+        "calculation",
+        "style=superlative",
+        "rewritten by adjudicator (ambiguity existed)",
+        "multi-page evidence"
+      ],
+      "check": [
+        "confirm the final wording leaves exactly one defensible answer",
+        "recompute from the figures printed on the cited page(s) and compare with the rounding stated in the answer",
+        "scan every candidate row/column in scope yourself; confirm no tie and that no row was omitted"
+      ],
+      "question": "Based on DHL Group's consolidated segment reporting for fiscal year 2025, which of the five operating divisions (Express; Global Forwarding, Freight, which is a single division; Supply Chain; eCommerce; Post & Parcel Germany) had the highest EBIT margin (EBIT divided by total division revenue, including internal revenue; Group Functions and Consolidation excluded), and what was that margin to one decimal place?"
+    },
+    {
+      "id": "fin_q_052",
+      "score": 10,
+      "primary_document": "fin_doc_011",
+      "type": "table",
+      "style": "ranking",
+      "why": [
+        "style=ranking",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "similar_table_labels",
+        "multi-page evidence"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer",
+        "scan every candidate row/column in scope yourself; confirm no tie and that no row was omitted"
+      ],
+      "question": "Rank the five operating divisions of DHL Group (Express; Global Forwarding, Freight, which is a single division; Supply Chain; eCommerce; Post & Parcel Germany) by total revenue (including internal revenue) for fiscal year 2025, from highest to lowest, with the revenue of each in € million. Group Functions and Consolidation are excluded."
+    },
+    {
+      "id": "fin_q_074",
+      "score": 10,
+      "primary_document": "fin_doc_006",
+      "type": "table",
+      "style": "superlative",
+      "why": [
+        "style=superlative",
+        "scope/basis issue discussed in adjudication",
+        "unit_mismatch",
+        "similar_table_labels",
+        "header_dependency",
+        "blind comparison disagreed"
+      ],
+      "check": [
+        "check currency, scale (thousand/million/billion) and percent vs percentage points",
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "scan every candidate row/column in scope yourself; confirm no tie and that no row was omitted"
+      ],
+      "question": "Of the international-standard gold owned by the Central Bank of the Republic of Türkiye itself (excluding gold held for banks' reserve requirements, free gold deposits of banks and Treasury gold) at 31 December 2025, at which custodian location was the largest amount held, and what was its value in TRY?"
+    },
+    {
+      "id": "fin_q_077",
+      "score": 10,
+      "primary_document": "fin_doc_006",
+      "type": "table",
+      "style": "yes_no",
+      "why": [
+        "style=yes_no",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "unit_mismatch",
+        "same_metric_multiple_years",
+        "header_dependency"
+      ],
+      "check": [
+        "check currency, scale (thousand/million/billion) and percent vs percentage points",
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer"
+      ],
+      "question": "In the securities note of the Central Bank of the Republic of Türkiye's 2025 annual report (government bonds, Treasury bills and lease certificates issued by the Ministry of Treasury and Finance, excluding FX securities held within foreign correspondents), was the total fair value at 31 December 2025 above or below the total cost?"
+    },
+    {
+      "id": "fin_q_079",
+      "score": 10,
+      "primary_document": "fin_doc_003",
+      "type": "table",
+      "style": "count",
+      "why": [
+        "style=count",
+        "rewritten by adjudicator (ambiguity existed)",
+        "similar_table_labels",
+        "same_metric_multiple_years",
+        "header_dependency",
+        "blind comparison disagreed"
+      ],
+      "check": [
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer",
+        "scan every candidate row/column in scope yourself; confirm no tie and that no row was omitted"
+      ],
+      "question": "Among Belfius Insurance's ten largest counterparty exposures at 31 December 2025, how many are classified under the category 'Government bonds' in the report's table (taking the table's classification as given), and which issuers are they?"
+    },
+    {
+      "id": "fin_q_092",
+      "score": 10,
+      "primary_document": "fin_doc_013",
+      "type": "calculation",
+      "style": "comparison",
+      "why": [
+        "calculation",
+        "rewritten by adjudicator (ambiguity existed)",
+        "scope/basis issue discussed in adjudication",
+        "similar_table_labels",
+        "blind comparison disagreed"
+      ],
+      "check": [
+        "check the stated basis (scope/period/definition) against the table header and footnotes",
+        "check the value was read from the right row/column/year, not a look-alike elsewhere",
+        "confirm the final wording leaves exactly one defensible answer",
+        "recompute from the figures printed on the cited page(s) and compare with the rounding stated in the answer"
+      ],
+      "question": "At the end of 2025, on a consolidated basis for Belfius Bank and expressed as a percentage of total risk exposure amount (TREA, binding targets including the combined buffer requirement), which MREL cushion was larger: the realised total MREL over its binding target, or the realised MREL subordination over its binding target? Give both cushions and the difference in percentage points, computed from the ratios exactly as published (realised ratios to one decimal, targets to two decimals)."
+    }
+  ]
+}

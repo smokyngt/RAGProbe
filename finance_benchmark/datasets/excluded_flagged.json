@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "id": "fin_q_102",
+    "reasons": "Source conflict: Statement of Comprehensive Income (p.17) shows Directors' fees USD 140k for the Company (GFI 134 + GGI 6), linked to Note 10, whereas the Note 10 text (p.52) says fees charged were USD 73k (EUR 65k) plus separate EUR 49k pension contributions. The two do not reconcile (USD 140k is roughly EUR 120k at year-end rates, above the EUR 114k cap, whereas EUR 65k is below it; EUR 65k + EUR 49k pension = EUR 114k exactly equals the cap). The yes/no answer and headroom flip depending on which figure/scope is used, and the prospectus wording ('remuneration') does not exclude pension contributions. Cannot be made unambiguous; recommend dropping or replacing.",
+    "question": "Guggenheim Global Investments plc's Prospectus (consolidated Prospectus for Germany dated 9 November 2023, consolidating the prospectus of 4 September 2023) caps the aggregate Directors' remuneration at a stated annual amount. Were the Directors' fees charged for the financial year ended 31 December 2025 (excluding pension contributions), as reported in the Company's 2025 annual report and audited financial statements, within that cap? Give both amounts in euro and the headroom."
+  }
+]

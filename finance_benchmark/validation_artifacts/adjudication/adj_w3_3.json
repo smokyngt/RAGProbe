@@ -1,0 +1,255 @@
+{
+ "decisions": {
+  "fin_q_107": {
+   "verdict": "fix",
+   "reasons": "Answer correct (sources: AMF risk map, ESMA risk map, Impact 2027 orientations, findings of monitoring/inspection work; 80% of 2025 inspections: retail investor protection, sustainable finance, innovation; p33/p34 confirmed). Evidence excerpts were truncated and lacked 'innovation' and 'SPOT inspections'/'determines the topics'; evidence completed verbatim. Question and answer unchanged.",
+   "example": {
+    "id": "fin_q_107",
+    "question": "Which sources does the AMF (Autorité des marchés financiers) say its start-of-year risk analysis draws on to set supervisory priorities and the topics of its SPOT inspections, and which three thematic priorities of the Impact 2027 orientations were behind 80% of the inspections it initiated in 2025?",
+    "reference_answer": "At the beginning of each year, a risk analysis based on (1) the AMF's risk map, (2) ESMA's risk map, (3) the Impact 2027 strategic orientations and (4) the findings of monitoring and inspection work guides the supervisory priorities and determines the SPOT inspection topics for the coming year. In 2025, 80% of the inspections initiated involved the thematic priorities of Impact 2027: retail investor protection, sustainable finance and innovation.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_015",
+      "page": 33,
+      "text": "In 2025, 80% of the inspections initiated … priorities of the Impact 2027 strategic … retail investor … protection, sustainable finance and … innovation."
+     },
+     {
+      "document_id": "fin_doc_015",
+      "page": 34,
+      "text": "At the beginning of each year, a risk … analysis (based on the AMF's risk … map, ESMA's risk map, the Impact 2027 … strategic orientations and the findings … of monitoring and inspection work) … guides the supervisory priorities and … determines the topics to be covered by … the SPOT inspections for the coming … year."
+     }
+    ],
+    "metadata": {
+     "type": "risk",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "regulator_supervision:priorities",
+     "failure_modes": [
+      "multi_evidence_combination",
+      "split_across_pages"
+     ],
+     "style": "list"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_108": {
+   "verdict": "confirmed",
+   "reasons": "Greps over all 17 documents found no 2027 budget/net result/investment; AMF report p164-165 gives only the 2026 budget outlook (net loss -7.69m, investment 4.11m). 2027 appears only as end of the Impact 2027 strategic period. Negative question is sound.",
+   "example": null
+  },
+  "fin_q_109": {
+   "verdict": "fix",
+   "reasons": "Figures correct (FCF 1,285 vs 1,679, -23%; Q4 966 vs 580, +67%; footnote 3 'after acquisitions, dividends and lease liabilities (continuing operations)'). The answer also cites footnote 5 (prior-year figures adjusted for Vamed exit) which was missing from evidence; added.",
+   "example": {
+    "id": "fin_q_109",
+    "question": "In Fresenius SE & Co. KGaA's press release for Q4 and FY 2025 (dated February 25, 2026), was Group free cash flow higher in full-year 2025 than in full-year 2024, and what does the release say this free cash flow figure is measured after? Also, how did Q4/25 compare with Q4/24?",
+    "reference_answer": "No. Group free cash flow was €1,285 million in FY 2025 versus €1,679 million in FY 2024, a decline of 23%. In Q4/25 it was higher: €966 million versus €580 million in Q4/24 (+67%). According to the release's footnote, this free cash flow is 'after acquisitions, dividends and lease liabilities' (continuing operations), and the release also notes that prior-year figures were adjusted due to the gradual exit from Fresenius Vamed.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_017",
+      "page": 8,
+      "text": "Q4/25            Q4/24           Growth       Growth             Q1-4/25   Q1-4/24   Growth   Growth … Free Cash Flow3,5                                       €m                 966             580             67%                                                           1,285     1,679     -23% … 3\n   FCF after acquisitions, dividends and lease liab ilities (continuing operations) … 5 Prior year figures have b een adjusted due to the gradual exit from Fresenius Vamed."
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "cash_flow",
+     "failure_modes": [
+      "footnote",
+      "same_metric_multiple_years",
+      "header_dependency"
+     ],
+     "style": "yes_no"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_110": {
+   "verdict": "confirmed",
+   "reasons": "2.7x vs 3.0x, 'improved by 30 bp', corridor 2.5 to 3.0x, footnote 5/4 basis all verified on pp1, 7, 8; answer words the 30 bp as the release's description. Evidence verbatim and complete.",
+   "example": null
+  },
+  "fin_q_111": {
+   "verdict": "fix",
+   "reasons": "Guidance, bases (22,554; 2.87) and footnote 9 (modelling only, base 2,595) correct. Answer says Core EPS is before special items and excludes FME, but footnotes 1 and 4 were not in evidence; added.",
+   "example": {
+    "id": "fin_q_111",
+    "question": "What full-year 2026 guidance for the Fresenius Group does the Q4/FY 2025 press release give (organic revenue growth, constant currency Core EPS growth and EBIT margin), what 2025 base figures does it attach to the revenue and Core EPS guidance, and is the EBIT margin figure part of the official guidance?",
+    "reference_answer": "For FY 2026 the release guides Fresenius Group organic revenue growth of 4% to 7% (2025 revenue base: €22,554 million) and constant currency Core EPS growth of 5% to 10% (2025 Core EPS base: €2.87; Core EPS is before special items and excludes Fresenius Medical Care). It also shows an EBIT margin of ~11.5% (2025 base: €2,595 million EBIT), but this is not part of the official guidance: the release states it is provided solely for modelling purposes.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_017",
+      "page": 3,
+      "text": "Fresenius Group6: organic revenue growth2 in the range of 4% to 7%; constant\ncurrency Core EPS1,4 growth expected in the range of 5% to 10%;\nEBIT margin9 of ~11.5%."
+     },
+     {
+      "document_id": "fin_doc_017",
+      "page": 7,
+      "text": "6 2025 base: €22,554 million (revenue), €2.87 (Core EPS1,4)"
+     },
+     {
+      "document_id": "fin_doc_017",
+      "page": 7,
+      "text": "9 This metric (EBIT margin) is provided solely for modelling purposes and does not form part\n\nof the official guidance; 2025 Base: €2,595 million"
+     },
+     {
+      "document_id": "fin_doc_017",
+      "page": 7,
+      "text": "1 Before special items … 4 Excluding Fresenius Medical Care"
+     }
+    ],
+    "metadata": {
+     "type": "multi_evidence",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "outlook",
+     "failure_modes": [
+      "footnote",
+      "split_across_pages",
+      "terminology_mismatch"
+     ],
+     "style": "list"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_112": {
+   "verdict": "fix",
+   "reasons": "Underlying figures right, but basis was under-pinned: press release 'CRR2' label for 75.2bn comes from the p11 footnote (slightly updated after late Corep correction), not 'as originally reported'. Question now explicitly names each document's own end-2024 comparison figure (CRR2 vs pro forma CRR3); evidence adds the p11 footnote; answer states the 75.2bn is slightly updated.",
+   "example": {
+    "id": "fin_q_112",
+    "question": "Belfius' 2025 annual results press release (consolidated, 31 December 2025) and the Belfius Bank 2025 Pillar 3 report both quote the CET1 ratio and total risk exposure amount (TREA) at end-2025. What CET1 ratio and TREA does each document give for end-2025, and, using the end-2024 TREA figure that each document itself compares with (the press release's FY24 figure under CRR2, the Pillar 3 report's pro forma CRR3 figure), did TREA decrease or increase during 2025 in each document?",
+    "reference_answer": "The press release gives a CET1 ratio of 15.9% and a total risk exposure of €72.1 billion at end-2025, compared with €75.2 billion at end-2024 (FY24 TREA under CRR2, slightly updated following a late Corep correction), i.e. a decrease of about €3.1 billion, which the release attributes to the entry into force of CRR3. The Pillar 3 report gives CET1 15.87% and TREA of EUR 72.148 billion at end-2025, compared with EUR 71.533 billion at end-2024 on a pro forma CRR3 basis, i.e. an increase of EUR 615 million. The opposite directions are a basis difference (CRR2 vs pro forma CRR3 for 2024), not a contradiction; the press release figures are rounded and unaudited.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_016",
+      "page": 6,
+      "text": "The CET1 ratio stands at 15.9%, up slightly from 2024, mainly due to a decrease in total risk exposure to €72.1 billion (compared to €75.2 billion at the end of 2024), due to the entry into force of CRR3"
+     },
+     {
+      "document_id": "fin_doc_016",
+      "page": 11,
+      "text": "FY24 total risk exposure amount under CRR2 has been slightly updated following a late correction in Corep figures."
+     },
+     {
+      "document_id": "fin_doc_002",
+      "page": 38,
+      "text": "At the end of 2025, the CET 1 capital ratio amounted to 15.87%, a decrease of 29 bps"
+     },
+     {
+      "document_id": "fin_doc_002",
+      "page": 37,
+      "text": "At the end of December 2025, Belfius TREA amounted to EUR 72.148 billion, an increase … by EUR +615 million compared to EUR 71.533 billion at the end of 2024 (proforma CRR 3)."
+     }
+    ],
+    "metadata": {
+     "type": "multi_document",
+     "difficulty": "hard",
+     "requires_calculation": false,
+     "requires_multiple_documents": true,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "capital:CET1",
+     "failure_modes": [
+      "unit_mismatch",
+      "terminology_mismatch",
+      "similar_table_labels",
+      "multiple_entities"
+     ],
+     "style": "comparison"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_113": {
+   "verdict": "fix",
+   "reasons": "Question called fin_doc_010 an 'annual report' and the answer mis-explained the gap. Verified: special items -174+6-190+85-12 = -285 (note 3, p34; p83 reconciliation: segments 2,741, special items -285, corporate -146, Group EBIT 2,310). Reworded question to consolidated financial statements, 2,595 before vs 2,310 after special items; answer now attributes the 285m to the listed special items; evidence adds p34 and p83; calculation block added (requires_calculation true).",
+   "example": {
+    "id": "fin_q_113",
+    "question": "Fresenius Group's EBIT for fiscal year 2025 is €2,595 million (before special items) in the Q4/FY 2025 press release, but the Group EBIT in the consolidated segment reporting of the Fresenius consolidated financial statements 2025 is €2,310 million (after special items). How large is the difference, and which special items explain it according to the notes to the financial statements?",
+    "reference_answer": "The difference is €285 million (€2,595 million before special items minus €2,310 million per IFRS). It equals the total EBIT special items of 2025 listed in note 3 of the consolidated financial statements: cost and efficiency programs -€174 million, legacy portfolio adjustments +€6 million, Fresenius transformation -€190 million, reduction of participation in Fresenius Medical Care +€85 million and legal and regulatory matters -€12 million, together -€285 million. In the segment reporting, Fresenius Kabi (€1,413 million) and Fresenius Helios (€1,328 million) are before special items, while the Corporate / Other column (-€431 million) is after special items and so contains the -€285 million on top of the -€146 million Group Corporate EBIT of the press release; hence the Group column of €2,310 million is EBIT after special items.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_017",
+      "page": 8,
+      "text": "EBIT\nGroup1                                                     €m               713              646             10%          13%              2,595     2,489      4%       6%"
+     },
+     {
+      "document_id": "fin_doc_010",
+      "page": 9,
+      "text": "EBIT                                                                                                          1,413            1,319               7%         1,328       1,288         3%         -431         -534         19%          2,310         2,073      "
+     },
+     {
+      "document_id": "fin_doc_010",
+      "page": 9,
+      "text": "1\n    Before special items\n2\n    After special items"
+     },
+     {
+      "document_id": "fin_doc_010",
+      "page": 34,
+      "text": "€ in millions … EBIT … Earnings 2025, before special items … 2,595 … Cost and efficiency programs … -174 … Legacy portfolio adjustments … 6 … Fresenius transformation … -190 … Reduction of participation in Fresenius Medical Care … 85 … Legal and regulatory matters … -12 … Earnings 2025 according to IFRS … 2,310"
+     },
+     {
+      "document_id": "fin_doc_010",
+      "page": 83,
+      "text": "Total EBIT of reporting segments 2,741 … Special items -285 … Corporate (EBIT) -146 … Group EBIT 2,310"
+     }
+    ],
+    "metadata": {
+     "type": "multi_document",
+     "difficulty": "hard",
+     "requires_calculation": true,
+     "requires_multiple_documents": true,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "segment",
+     "failure_modes": [
+      "footnote",
+      "terminology_mismatch",
+      "multi_evidence_combination"
+     ],
+     "style": "explanatory"
+    },
+    "calculation": {
+     "inputs": {
+      "ebit_before_special_items": 2595000000,
+      "ebit_ifrs": 2310000000
+     },
+     "operation": "ebit_before_special_items - ebit_ifrs",
+     "result": 285000000,
+     "input_sources": {
+      "ebit_before_special_items": {
+       "evidence_index": 0,
+       "raw": "2,595",
+       "unit": "€ million",
+       "scale": 1000000
+      },
+      "ebit_ifrs": {
+       "evidence_index": 1,
+       "raw": "2,310",
+       "unit": "€ million",
+       "scale": 1000000
+      }
+     }
+    }
+   }
+  },
+  "fin_q_114": {
+   "verdict": "confirmed",
+   "reasons": "INCOME 4,295, COSTS -1,845 (p8), 1,845/4,295 = 42.96% -> 43.0%; release's own C/I ratio 43.0% (2025) / 43.2% (2024, 1,834/4,241 = 43.24%) on p11, so the 'matches' claim is true for both years. The 43.2 is the 2024 comparative, a false alarm. Calculation block correct.",
+   "example": null
+  }
+ }
+}
