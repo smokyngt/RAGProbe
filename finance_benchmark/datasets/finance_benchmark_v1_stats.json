@@ -1,0 +1,207 @@
+{
+  "corpus": {
+    "documents": 17,
+    "pages": 1995
+  },
+  "questions": 90,
+  "by_type": {
+    "table": 34,
+    "calculation": 14,
+    "direct": 11,
+    "temporal": 11,
+    "multi_document": 6,
+    "multi_evidence": 5,
+    "negative": 5,
+    "definition": 3,
+    "risk": 1
+  },
+  "by_style": {
+    "lookup": 28,
+    "comparison": 17,
+    "superlative": 10,
+    "explanatory": 8,
+    "yes_no": 8,
+    "count": 5,
+    "conditional": 4,
+    "ranking": 4,
+    "list": 3,
+    "trend": 3
+  },
+  "by_difficulty": {
+    "medium": 61,
+    "easy": 16,
+    "hard": 13
+  },
+  "flags": {
+    "requires_calculation": 17,
+    "multi_document": 6,
+    "unanswerable": 5
+  },
+  "by_document": {
+    "fin_doc_001": {
+      "company": "European Central Bank",
+      "title": "ECB Annual Accounts 2025",
+      "type": "annual_accounts",
+      "pages": 87,
+      "primary_questions": 5,
+      "questions_touching": 5,
+      "evidence_items": 5
+    },
+    "fin_doc_002": {
+      "company": "Belfius Bank",
+      "title": "Belfius 2025 Pillar 3 Report",
+      "type": "pillar3",
+      "pages": 111,
+      "primary_questions": 5,
+      "questions_touching": 5,
+      "evidence_items": 8
+    },
+    "fin_doc_003": {
+      "company": "Belfius Insurance",
+      "title": "Belfius Insurance consolidated SFCR 2025 (EN)",
+      "type": "solvency_report",
+      "pages": 71,
+      "primary_questions": 6,
+      "questions_touching": 6,
+      "evidence_items": 7
+    },
+    "fin_doc_004": {
+      "company": "ASN Bank",
+      "title": "ASN Bank Pillar 3 Report 2025",
+      "type": "pillar3",
+      "pages": 138,
+      "primary_questions": 7,
+      "questions_touching": 7,
+      "evidence_items": 9
+    },
+    "fin_doc_005": {
+      "company": "M&G / Prudential International Assurance",
+      "title": "Solvency and Financial Condition Report 31 Dec 2025",
+      "type": "solvency_report",
+      "pages": 64,
+      "primary_questions": 3,
+      "questions_touching": 3,
+      "evidence_items": 3
+    },
+    "fin_doc_006": {
+      "company": "Central Bank of the Republic of Türkiye",
+      "title": "Annual Report 2025 (financial report, YFR_2025_V4)",
+      "type": "annual_report",
+      "pages": 135,
+      "primary_questions": 5,
+      "questions_touching": 5,
+      "evidence_items": 7
+    },
+    "fin_doc_007": {
+      "company": "Luzerner Kantonalbank (LUKB)",
+      "title": "LUKB Disclosure Report 2025",
+      "type": "regulatory_disclosure",
+      "pages": 48,
+      "primary_questions": 7,
+      "questions_touching": 9,
+      "evidence_items": 10
+    },
+    "fin_doc_008": {
+      "company": "Commonwealth Bank of Australia (CBA Europe NV)",
+      "title": "CBA NV Pillar 3 Report 2025",
+      "type": "pillar3",
+      "pages": 67,
+      "primary_questions": 2,
+      "questions_touching": 3,
+      "evidence_items": 6
+    },
+    "fin_doc_009": {
+      "company": "Guggenheim Global Investments plc",
+      "title": "UCITS Annual Report & Audited Financial Statements FY2025",
+      "type": "fund_annual_report",
+      "pages": 82,
+      "primary_questions": 8,
+      "questions_touching": 8,
+      "evidence_items": 9
+    },
+    "fin_doc_010": {
+      "company": "Fresenius SE & Co. KGaA",
+      "title": "Fresenius consolidated financial statements 2025 (extract of the Annual Report 2025)",
+      "type": "annual_report",
+      "pages": 107,
+      "primary_questions": 8,
+      "questions_touching": 8,
+      "evidence_items": 9
+    },
+    "fin_doc_011": {
+      "company": "DHL Group",
+      "title": "DHL Group Annual Report 2025",
+      "type": "annual_report",
+      "pages": 277,
+      "primary_questions": 24,
+      "questions_touching": 26,
+      "evidence_items": 42
+    },
+    "fin_doc_012": {
+      "company": "DHL Group",
+      "title": "DHL Group Annual Report 2024",
+      "type": "annual_report",
+      "pages": 256,
+      "primary_questions": 5,
+      "questions_touching": 6,
+      "evidence_items": 6
+    },
+    "fin_doc_013": {
+      "company": "Belfius Bank",
+      "title": "Belfius Bank EMTN Programme Base Prospectus dated 6 May 2026 (EUR 25,000,000,000)",
+      "type": "prospectus",
+      "pages": 224,
+      "primary_questions": 0,
+      "questions_touching": 0,
+      "evidence_items": 0
+    },
+    "fin_doc_014": {
+      "company": "Guggenheim Global Investments plc",
+      "title": "UCITS Prospectus (Germany version)",
+      "type": "prospectus",
+      "pages": 131,
+      "primary_questions": 0,
+      "questions_touching": 0,
+      "evidence_items": 0
+    },
+    "fin_doc_015": {
+      "company": "Autorité des marchés financiers (AMF)",
+      "title": "AMF 2025 Annual Report (English)",
+      "type": "regulator_report",
+      "pages": 175,
+      "primary_questions": 0,
+      "questions_touching": 0,
+      "evidence_items": 0
+    },
+    "fin_doc_016": {
+      "company": "Belfius Bank",
+      "title": "Belfius annual results 2025: press release",
+      "type": "earnings_release",
+      "pages": 12,
+      "primary_questions": 0,
+      "questions_touching": 0,
+      "evidence_items": 0
+    },
+    "fin_doc_017": {
+      "company": "Fresenius SE & Co. KGaA",
+      "title": "Fresenius press release Q4 and FY 2025",
+      "type": "earnings_release",
+      "pages": 10,
+      "primary_questions": 0,
+      "questions_touching": 0,
+      "evidence_items": 0
+    }
+  },
+  "failure_modes": {
+    "same_metric_multiple_years": 36,
+    "similar_table_labels": 31,
+    "multiple_entities": 26,
+    "header_dependency": 22,
+    "footnote": 14,
+    "terminology_mismatch": 14,
+    "split_across_pages": 14,
+    "multi_evidence_combination": 10,
+    "unit_mismatch": 9,
+    "deep_in_report": 2
+  }
+}

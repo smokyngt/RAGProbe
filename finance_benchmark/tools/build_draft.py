@@ -3,7 +3,7 @@
 
     python tools/build_draft.py
 
-Sources: analysis/drafts/g*.jsonl (wave 1) + h*.jsonl (wave 2); analysis/adjudication/adj*.json (verdicts):
+Sources: analysis/drafts/g*.jsonl (wave 1) + h*.jsonl (wave 2) + k*.jsonl (wave 3: documents added in v1.1); analysis/adjudication/adj*.json (verdicts):
   confirmed -> keep as is ; fix -> replace by the adjudicator's corrected example ; flag -> excluded (listed in datasets/excluded_flagged.json).
 datasets/style_tags_wave1.json supplies `style` for wave-1 examples that predate the field.
 """
@@ -22,7 +22,7 @@ def read_jsonl(path) -> list[dict]:
 
 def main() -> None:
     examples: dict[str, dict] = {}
-    for pat in ("g*.jsonl", "h*.jsonl"):
+    for pat in ("g*.jsonl", "h*.jsonl", "k*.jsonl"):
         for f in sorted((ROOT / "analysis" / "drafts").glob(pat)):
             for ex in read_jsonl(f):
                 examples[ex["id"]] = ex
