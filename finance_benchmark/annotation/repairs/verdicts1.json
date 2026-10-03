@@ -1,0 +1,390 @@
+{
+ "decisions": {
+  "fin_q_016": {
+   "verdict": "fix",
+   "reasons": "Formula and 2026 replacement verified on fin_doc_011 p.35-36; blind answer agrees. Reference only gave the last step (FCF = FCF excl. M&A ± M&A cash flows); for a 'how is it calculated' question it now also states how FCF excl. M&A is derived from OCF (± capex in PP&E/intangibles, - lease outflows, ± net interest paid excl. leases), as in the p.36 calculation table and the blind answer. Evidence p.36 re-cut into verbatim fragments (the layout interleaves the row label). Key facts unchanged.",
+   "example": {
+    "id": "fin_q_016",
+    "question": "How does DHL Group calculate free cash flow (FCF) as a management indicator, and which indicator replaces FCF as the management indicator from 2026?",
+    "question_natural": "How does DHL Group calculate free cash flow, and what replaces it as a management indicator from 2026?",
+    "reference_answer": "DHL Group calculates free cash flow (FCF) as free cash flow excluding acquisitions and divestitures (FCF excl. M&A) plus or minus the cash inflow/outflow from acquisitions/divestitures. FCF excl. M&A is itself derived from operating cash flow (OCF): OCF plus or minus the cash inflow/outflow from change in property, plant and equipment and intangible assets, minus the cash outflow for leases, plus or minus net interest paid (excluding leases). FCF is a management indicator derived from OCF that shows how much cash is available for paying out dividends or repaying debt at the end of a reporting period. Starting from 2026, FCF will be replaced as a management indicator by free cash flow excluding acquisitions and divestitures (FCF excl. M&A).",
+    "key_facts": [
+     {
+      "fact": "FCF formula: FCF excl. M&A adjusted for cash flows from acquisitions/divestitures",
+      "value": "cash inflow/outflow from acquisitions/divestitures",
+      "accept": [
+       "cash inflows/outflows from acquisitions and divestitures",
+       "cash inflow/outflow from acquisitions and divestitures",
+       "cash flows from acquisitions and divestitures",
+       "cash flows from acquisitions/divestitures",
+       "cash flow from acquisitions and divestitures",
+       "acquisition and divestiture cash flows",
+       "M&A cash flows",
+       "cash inflows and outflows from acquisitions"
+      ]
+     },
+     {
+      "fact": "replacement management indicator from 2026",
+      "value": "replaced as a management indicator by free cash flow excluding acquisitions and divestitures",
+      "accept": [
+       "replaced by free cash flow excluding acquisitions and divestitures",
+       "replaced by FCF excl. M&A",
+       "replaced by free cash flow excluding M&A",
+       "replaced by free cash flow excl. M&A",
+       "replaced as a management indicator by FCF excl. M&A",
+       "replaced by FCF excluding M&A",
+       "replaced by free cash flow before acquisitions and divestitures"
+      ]
+     }
+    ],
+    "evidence": [
+     {
+      "document_id": "fin_doc_011",
+      "page": 35,
+      "text": "Free cash flow (FCF) is a management indicator derived from OCF. It is used as an indicator of how much cash is available to the company for paying out dividends or repaying debt at the end of a reporting period. Starting from 2026, free cash flow will be replaced as a management indicator by free cash flow excluding acquisitions and divestitures (FCF excl. M&A)."
+     },
+     {
+      "document_id": "fin_doc_011",
+      "page": 36,
+      "text": "= Operating cash flow (Net cash from/used in operating activities) (OCF) … ± Cash inflow/outflow from change in property, plant and equipment and intangible assets … - Cash outflow for leases … ± Net interest paid (excluding leases) … FCF = Free cash flow excluding acquisitions and divestitures … ± Cash inflow/outflow from acquisitions/divestitures"
+     }
+    ],
+    "metadata": {
+     "type": "definition",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "cash_flow",
+     "failure_modes": [
+      "terminology_mismatch",
+      "split_across_pages"
+     ],
+     "style": "explanatory"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_019": {
+   "verdict": "confirmed",
+   "reasons": "fin_doc_002 p.39: NBB notification 18 Nov 2025; total MREL 23.68% TREA / 7.07% LRE, to be met no later than 18 Nov 2025; subordination 13.50% TREA / 7.07% LRE from 18 Nov 2025; CBR 5.23% not eligible (23.68+5.23=28.91, 13.50+5.23=18.73). Blind answer identical in substance."
+  },
+  "fin_q_020": {
+   "verdict": "confirmed",
+   "reasons": "fin_doc_007 p.28 (CRC, credit risk mitigation): 'As at 31 December 2025, the highest proportion of collateral used by an issuer was 6 % of Tier 1 capital.' Blind answer identical."
+  },
+  "fin_q_026": {
+   "verdict": "fix",
+   "reasons": "Figures verified (fin_doc_007 p.19 LR2: T1 5,050.6, exposure 65,472.3, LR 7.71%, minimum requirement 1,964.2 = 3% x 65,472.3). Recomputed (5,050.6 - 1,964.2) / 65,472.3 = 0.0471405 (4.71pp), CHF 3,086.4m; matches calculation and blind answer. Fix: the cited LR2 table does not say it is consolidated, and the report also has a parent-company KM1 with a different leverage ratio (7.61%, p.46); added the KM1 (Group) evidence on p.7 that ties 7.71% / 5,050.6 / 65,472.3 to the Group, and mentioned the parent figure in the answer. Calculation re-expressed as the CHF headroom (tier1_capital - min_requirement = CHF 3,086.4m), the quantity the blind recompute produced; the pp headroom (3,086.4 / 65,472.3 = 4.714%, = 7.71 - 3.00) remains stated in the answer and key facts.",
+   "example": {
+    "id": "fin_q_026",
+    "question": "What was Luzerner Kantonalbank's consolidated (Group) Basel III leverage ratio at 31 December 2025, and how much headroom did it have over the 3% leverage ratio minimum requirement, in percentage points and in Swiss francs of Tier 1 capital?",
+    "question_natural": "What was Luzerner Kantonalbank Group's leverage ratio at end-2025, and its headroom over the 3% minimum, in pp and CHF?",
+    "reference_answer": "At 31 December 2025 the Group leverage ratio was 7.71% (Tier 1 capital of CHF 5,050.6 million over total Basel III leverage ratio exposure of CHF 65,472.3 million, as shown in the Group key metrics; the parent company alone reports 7.61%). The leverage ratio minimum requirement was CHF 1,964.2 million, i.e. 3% of the exposure, so Tier 1 capital exceeded the minimum by CHF 3,086.4 million (5,050.6 - 1,964.2), a headroom of 4.71 percentage points (3,086.4 / 65,472.3 = 4.714%, consistent with 7.71% - 3.00%).",
+    "key_facts": [
+     {
+      "fact": "Group leverage ratio 31 Dec 2025",
+      "value": "7.71%",
+      "accept": [
+       "7.71 per cent",
+       "7.71 %",
+       "7.7%"
+      ]
+     },
+     {
+      "fact": "headroom over 3% minimum in percentage points",
+      "value": "4.71 percentage points",
+      "accept": [
+       "4.71pp",
+       "4.71 pp",
+       "4.7 percentage points",
+       "4.7pp",
+       "4.7 pp",
+       "4.71 percentage point",
+       "4.714%",
+       "4.71%"
+      ]
+     },
+     {
+      "fact": "Tier 1 capital in excess of the leverage minimum requirement",
+      "value": "CHF 3,086.4 million",
+      "accept": [
+       "CHF 3.09 billion",
+       "CHF 3,086 million",
+       "CHF 3.1 billion",
+       "CHF 3,086.4m",
+       "CHF 3086.4 million",
+       "3,086.4 million"
+      ]
+     }
+    ],
+    "evidence": [
+     {
+      "document_id": "fin_doc_007",
+      "page": 19,
+      "text": "Amounts in millions Swiss francs 31.12.2025 31.12.2024 … 23 Tier 1 capital 5,050.6 4,727.0 … 24 Total exposures (sum of rows 7, 13, 18 and 22) 65,472.3 61,767.9 … 25 Leverage ratio, including the impact of any applicable temporary exemption of central bank reserves 7.71 % 7.65 % … 26 Leverage ratio minimum requirement 1,964.2 1,858.4"
+     },
+     {
+      "document_id": "fin_doc_007",
+      "page": 7,
+      "text": "KM1: Key metrics (Group) … 2 Tier 1 capital (T1) 5,050.6 … 13 Total Basel III leverage ratio exposure 65,472.3 … 14 bank reserves) 7.71 %"
+     }
+    ],
+    "metadata": {
+     "type": "calculation",
+     "difficulty": "medium",
+     "requires_calculation": true,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "capital:leverage",
+     "failure_modes": [
+      "unit_mismatch",
+      "multiple_entities",
+      "header_dependency"
+     ],
+     "style": "lookup"
+    },
+    "calculation": {
+     "inputs": {
+      "tier1_capital": 5050600000.0,
+      "min_requirement": 1964200000.0
+     },
+     "operation": "tier1_capital - min_requirement",
+     "result": 3086400000.0,
+     "input_sources": {
+      "tier1_capital": {
+       "evidence_index": 0,
+       "raw": "5,050.6",
+       "unit": "CHF million",
+       "scale": 1000000.0
+      },
+      "min_requirement": {
+       "evidence_index": 0,
+       "raw": "1,964.2",
+       "unit": "CHF million",
+       "scale": 1000000.0
+      }
+     }
+    }
+   }
+  },
+  "fin_q_027": {
+   "verdict": "confirmed",
+   "reasons": "fin_doc_008 p.6-7 (EU KM1, 30/6/2025, EUR thousand per p.5): CET1 = total capital 351,400; TREA 1,118,137; CET1 ratio 31.43%; SREP 13.98% + CBR 3.44% = OCR 17.42%. Recomputed: 0.1742 x 1,118,137 = 194,779.5; 351,400 - 194,779.5 = 156,620.5k (EUR 156.6m); 31.43 - 17.42 = 14.01pp. Calculation result 156,620,534.6 matches. Blind answer identical."
+  },
+  "fin_q_030": {
+   "verdict": "confirmed",
+   "reasons": "Belfius fin_doc_002 p.73: LCR 139% (2024) -> 144% (2025), +5pp. LUKB fin_doc_007 p.8 KM1 (Group): 148.44% (31.12.2024) -> 129.69% (31.12.2025); p.21 LIQ1 confirms 129.69% is the Q4 2025 simple average of monthly values. Recomputed 129.69 - 148.44 = -18.75pp (calculation -0.1875 OK). Blind answer identical."
+  },
+  "fin_q_039": {
+   "verdict": "fix",
+   "reasons": "Original content (SCR 288.4 -> 138.7 driven by the PAC reinsurance treaty) is now fully covered by fin_q_117 (adj_w4_1). Rewritten to a distinct, decision-relevant fact from the same SFCR (fin_doc_005): the MCR and own-funds tiering. Verified: p.55 MCR £35m (2024: £72m), floor 25% / cap 45% of SCR, linear MCR £17m < floor £35m, 'The MCR is currently 25% of SCR', reduction driven by SCR; p.53 eligible own funds £430m (2024: £407m) all Tier 1 unrestricted (65 + 277 + 88), no ancillary own funds; p.62 S.23.01 QRT MCR 34,684k, ratio of eligible own funds to MCR 1238.73%. No calculation needed (all figures stated). The blind answer addressed the old question and is superseded.",
+   "example": {
+    "id": "fin_q_039",
+    "question": "According to Prudential International Assurance plc's (PIA) 2025 Solvency and Financial Condition Report, what was its Minimum Capital Requirement (MCR) at 31 December 2025 and 2024, which element of the MCR calculation determined it (linear formula, cap or floor), and in which tier are the eligible own funds that cover it?",
+    "question_natural": "What was Prudential International Assurance's minimum capital requirement at end-2025, what sets it, and what tier is its own funds?",
+    "reference_answer": "PIA's Minimum Capital Requirement was £35m at 31 December 2025 (2024: £72m); in the S.28.01 template it is £34,684 thousand. The MCR is subject to a floor of 25% of SCR and a cap of 45% of SCR. The linear MCR was only £17m (2024: £16m), below the floor of £35m (25% of the £139m SCR; cap £62m), so the floor is binding: the MCR is currently 25% of SCR, and its reduction is driven by the corresponding change in the SCR. PIA's eligible own funds of £430m (2024: £407m) are all Tier 1 capital (unrestricted): ordinary share capital £65m, reconciliation reserve £277m and other items approved by the supervisory authority as basic own funds £88m; PIA has no ancillary own funds. The ratio of eligible own funds to MCR was 1238.73%.",
+    "key_facts": [
+     {
+      "fact": "MCR 31 Dec 2025",
+      "value": "£35m",
+      "accept": [
+       "£35 million",
+       "GBP 35 million",
+       "GBP 35m",
+       "£34.7m",
+       "£34.7 million",
+       "£34,684 thousand",
+       "34,684",
+       "GBP 34.7 million"
+      ]
+     },
+     {
+      "fact": "MCR 31 Dec 2024",
+      "value": "£72m",
+      "accept": [
+       "£72 million",
+       "GBP 72 million",
+       "GBP 72m"
+      ]
+     },
+     {
+      "fact": "binding element: floor of 25% of SCR",
+      "value": "25% of SCR",
+      "accept": [
+       "25% of the SCR",
+       "25 % of SCR",
+       "25% of the Solvency Capital Requirement",
+       "floor of 25%",
+       "25% floor",
+       "MCR floor",
+       "floor is binding",
+       "floor applies"
+      ]
+     },
+     {
+      "fact": "eligible own funds tiering",
+      "value": "all Tier 1 capital (unrestricted)",
+      "accept": [
+       "all Tier 1",
+       "Tier 1 unrestricted",
+       "unrestricted Tier 1",
+       "all of which are Tier 1",
+       "entirely Tier 1",
+       "100% Tier 1",
+       "only Tier 1",
+       "Tier 1 (unrestricted)"
+      ]
+     },
+     {
+      "fact": "eligible own funds 2025",
+      "value": "£430m",
+      "accept": [
+       "£430 million",
+       "GBP 430 million",
+       "GBP 430m",
+       "£429.6m",
+       "£429,645 thousand",
+       "429,645"
+      ]
+     }
+    ],
+    "evidence": [
+     {
+      "document_id": "fin_doc_005",
+      "page": 55,
+      "text": "The MCR is subject to a floor of 25% of SCR and a cap of 45% of SCR. The MCR as at 31 December 2025 … is £35m (2024: £72m). … Linear MCR 17 16 … SCR 139 288 … MCR cap 62 130 … MCR floor 35 72 … Combined MCR 35 72 … The MCR is currently 25% of SCR. … The reduction in MCR is driven by the corresponding change in SCR."
+     },
+     {
+      "document_id": "fin_doc_005",
+      "page": 53,
+      "text": "At 31 December 2025, PIA’s total eligible own funds under Solvency II are £430m, which is the excess of assets over … liabilities and is all Tier 1 capital (unrestricted) … Own funds (Tier 1 capital unrestricted) … Ordinary share capital b 65 65 … Reconciliation reserve c 277 255 … Other items approved by supervisory authority as basic own funds d 88 88 … Total a 430 407 … PIA has no ancillary own funds."
+     },
+     {
+      "document_id": "fin_doc_005",
+      "page": 62,
+      "text": "Total eligible own funds to meet the MCR R0550 429 645 429 645 … MCR R0600 34 684 … Ratio of Eligible own funds to MCR R0640 1238.73%"
+     }
+    ],
+    "metadata": {
+     "type": "multi_evidence",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "solvency",
+     "failure_modes": [
+      "similar_table_labels",
+      "deep_in_report",
+      "split_across_pages"
+     ],
+     "style": "explanatory"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_041": {
+   "verdict": "fix",
+   "reasons": "fin_doc_003 p.67 verified: base case 201%, gov. bond spread +50bps 185% with printed -15pp, RAF minimum 160%. Reference already states the printed -15pp and notes 201-185 = 16 (rounding; same pattern elsewhere in the table, e.g. 211% / +11pp). Blind answer agrees. Fix: the question asks 'how many percentage points below', so the key fact now also accepts '15/16 percentage points below', '15/16 points lower', unicode-minus and 'drop of' forms; answer adds the explicit '15 percentage points below' phrasing and the rounding illustration.",
+   "example": {
+    "id": "fin_q_041",
+    "question": "According to Belfius Insurance's consolidated 2025 Solvency and Financial Condition Report, what would its Solvency II ratio be under a +50bp credit spread shock on government bonds, how many percentage points below the end-2025 base case is that, and would the ratio stay above the minimum Solvency II ratio set in its Risk Appetite framework?",
+    "question_natural": "What would Belfius Insurance's Solvency II ratio be after a +50bp government bond spread shock, and would it stay above its risk appetite minimum?",
+    "reference_answer": "Under a +50bps credit spread shock on government bonds, Belfius Insurance's Solvency II ratio would fall from the base case of 201% (after dividend, end of December 2025) to 185%, a change of -15pp as stated in the sensitivity table, i.e. 15 percentage points below the base case (the difference of the rounded ratios, 201 - 185, would be 16 points; the table's deltas are computed on unrounded ratios, e.g. the -50bps interest rate shock shows 211% and +11pp). At 185% the ratio would remain above the 160% minimum Solvency II ratio defined in its Risk Appetite framework (and well above the 100% regulatory minimum).",
+    "key_facts": [
+     {
+      "fact": "Solvency II ratio after +50bp government spread shock",
+      "value": "185%",
+      "accept": [
+       "185 per cent",
+       "185 %"
+      ]
+     },
+     {
+      "fact": "impact versus base case",
+      "value": "-15pp",
+      "accept": [
+       "-15 pp",
+       "-15 percentage points",
+       "15 percentage points lower",
+       "15pp lower",
+       "down 15 percentage points",
+       "decrease of 15 percentage points",
+       "fall of 15 percentage points",
+       "-16pp",
+       "-16 pp",
+       "-16 percentage points",
+       "16 percentage points lower",
+       "16pp lower",
+       "down 16 percentage points",
+       "decrease of 16 percentage points",
+       "15 percentage points below",
+       "15pp below",
+       "15 pp below",
+       "16 percentage points below",
+       "16pp below",
+       "16 pp below",
+       "−15pp",
+       "−16pp",
+       "15 points lower",
+       "16 points lower",
+       "15 points below",
+       "16 points below",
+       "fall of 16 percentage points",
+       "drop of 15 percentage points",
+       "drop of 16 percentage points",
+       "minus 15 percentage points",
+       "minus 16 percentage points"
+      ]
+     },
+     {
+      "fact": "base case Solvency II ratio",
+      "value": "201%",
+      "accept": [
+       "201 per cent",
+       "201 %"
+      ]
+     },
+     {
+      "fact": "risk appetite minimum",
+      "value": "160%",
+      "accept": [
+       "160 per cent",
+       "160 %",
+       "160% minimum"
+      ]
+     }
+    ],
+    "evidence": [
+     {
+      "document_id": "fin_doc_003",
+      "page": 67,
+      "text": "Besides to the minimum regulatory requirement of 100%, Belfius Insurance has defined a … minimum Solvency II ratio of 160% in its Risk Appetite framework under current market … The table below shows the impact of some shocks on our solvency II ratio: … Shock Solvency II … ∆ SII … Ratio (in %) … Base case (after dividend) 201% … Credit spread on government bonds +50bps 185% -15pp"
+     }
+    ],
+    "metadata": {
+     "type": "table",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "risk:market",
+     "failure_modes": [
+      "similar_table_labels",
+      "deep_in_report"
+     ],
+     "style": "conditional"
+    },
+    "calculation": null
+   }
+  },
+  "fin_q_074": {
+   "verdict": "confirmed",
+   "reasons": "fin_doc_006 p.112 Table 3.4.2.1.1 (2025): owned by CBRT 3,182,863,907,739 TRY = BoE 707,647,035,234 + CBRT 201,938,624,147 + BIST 2,273,278,248,357 (sums within 1 TRY). BIST largest; recomputed 2,273,278,248,357 / 3,182,863,907,739 = 0.71422 (71.4%), matches calculation. Blind answer identical."
+  }
+ }
+}

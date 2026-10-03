@@ -322,9 +322,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "blind reviewer confidence=None; notes: ",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; Formula and 2026 replacement verified on fin_doc_011 p.35-36; blind answer agrees. Reference only gave the last step (FCF = FCF excl. M&A ± M&A cash flows); for a 'how is it calculated' question it now also states how FCF excl. M&A is derived from OCF (± capex in PP&E/intangibles, - lease outflows, ± net interest paid excl. leases), as in the p.36 calculation table and the blind answer. Evidence p.36 re-cut into verbatim fragments (the layout interleaves the row label). Key facts unchanged.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator fix"
     },
     "fin_q_017": {
       "method": "llm_blind_reverify",
@@ -382,9 +382,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "blind reviewer confidence=None; notes: ",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "fin_doc_002 p.39: NBB notification 18 Nov 2025; total MREL 23.68% TREA / 7.07% LRE, to be met no later than 18 Nov 2025; subordination 13.50% TREA / 7.07% LRE from 18 Nov 2025; CBR 5.23% not eligible (23.68+5.23=28.91, 13.50+5.23=18.73). Blind answer identical in substance.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_020": {
       "method": "llm_blind_reverify",
@@ -402,9 +402,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "blind reviewer confidence=None; notes: ",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "fin_doc_007 p.28 (CRC, credit risk mitigation): 'As at 31 December 2025, the highest proportion of collateral used by an issuer was 6 % of Tier 1 capital.' Blind answer identical.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_021": {
       "method": "llm_blind_reverify",
@@ -522,13 +522,16 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "calculation differs: blind 3086.4 vs annotated 0.047140546460106035; numbers of the reference answer not in blind answer: ['4.714']; blind reviewer confidence=None; notes: ",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
+      "notes": "Corrected after blind pass; Figures verified (fin_doc_007 p.19 LR2: T1 5,050.6, exposure 65,472.3, LR 7.71%, minimum requirement 1,964.2 = 3% x 65,472.3). Recomputed (5,050.6 - 1,964.2) / 65,472.3 = 0.0471405 (4.71pp), CHF 3,086.4m; matches calculation and blind answer. Fix: the cited LR2 table does not say it is consolidated, and the report also has a parent-company KM1 with a different leverage ratio (7.61%, p.46); added the KM1 (Group) evidence on p.7 that ties 7.71% / 5,050.6 / 65,472.3 to the Group, and mentioned the parent figure in the answer. Calculation re-expressed as the CHF headroom (tier1_capital - min_requi",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator fix",
       "independent_recompute": {
-        "result": 3086.4,
-        "matches": false,
-        "blind_result": 3086.4
+        "result": 3086400000.0,
+        "matches": true,
+        "blind_result": 3086.4,
+        "equivalence": [
+          "scale"
+        ]
       }
     },
     "fin_q_027": {
@@ -547,9 +550,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "calculation differs: blind 156620.5 vs annotated 156620534.6; numbers of the reference answer not in blind answer: ['0.1742', '1.118', '156620.5', '194.8', '351.4']; blind reviewer confidence=None; notes: ",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
+      "notes": "fin_doc_008 p.6-7 (EU KM1, 30/6/2025, EUR thousand per p.5): CET1 = total capital 351,400; TREA 1,118,137; CET1 ratio 31.43%; SREP 13.98% + CBR 3.44% = OCR 17.42%. Recomputed: 0.1742 x 1,118,137 = 194,779.5; 351,400 - 194,779.5 = 156,620.5k (EUR 156.6m); 31.43 - 17.42 = 14.01pp. Calculation result 156,620,534.6 matches. Blind answer identical.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed",
       "independent_recompute": {
         "result": 156620534.6,
         "matches": true,
@@ -615,9 +618,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "calculation differs: blind -18.75 vs annotated -0.1875; numbers of the reference answer not in blind answer: ['42025']; blind reviewer confidence=None; notes: ",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
+      "notes": "Belfius fin_doc_002 p.73: LCR 139% (2024) -> 144% (2025), +5pp. LUKB fin_doc_007 p.8 KM1 (Group): 148.44% (31.12.2024) -> 129.69% (31.12.2025); p.21 LIQ1 confirms 129.69% is the Q4 2025 simple average of monthly values. Recomputed 129.69 - 148.44 = -18.75pp (calculation -0.1875 OK). Blind answer identical.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed",
       "independent_recompute": {
         "result": -0.1875,
         "matches": true,
@@ -811,14 +814,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "calculation differs: blind -51.9 vs annotated -0.5173611111111112; blind reviewer confidence=None; notes: ",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
-      "independent_recompute": {
-        "result": -51.9,
-        "matches": false,
-        "blind_result": -51.9
-      }
+      "notes": "Corrected after blind pass; Original content (SCR 288.4 -> 138.7 driven by the PAC reinsurance treaty) is now fully covered by fin_q_117 (adj_w4_1). Rewritten to a distinct, decision-relevant fact from the same SFCR (fin_doc_005): the MCR and own-funds tiering. Verified: p.55 MCR £35m (2024: £72m), floor 25% / cap 45% of SCR, linear MCR £17m < floor £35m, 'The MCR is currently 25% of SCR', reduction driven by SCR; p.53 eligible own funds £430m (2024: £407m) all Tier 1 unrestricted (65 + 277 + 88), no ancillary own funds; p.62 S.23.01 QRT MCR 34,684k, ratio of eligible own funds to MCR 1238.73%. No calculation needed (all",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator fix"
     },
     "fin_q_040": {
       "method": "llm_blind_reverify",
@@ -856,9 +854,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "numbers of the reference answer not in blind answer: ['100']; blind reviewer confidence=None; notes: ",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt"
+      "notes": "Corrected after blind pass; fin_doc_003 p.67 verified: base case 201%, gov. bond spread +50bps 185% with printed -15pp, RAF minimum 160%. Reference already states the printed -15pp and notes 201-185 = 16 (rounding; same pattern elsewhere in the table, e.g. 211% / +11pp). Blind answer agrees. Fix: the question asks 'how many percentage points below', so the key fact now also accepts '15/16 percentage points below', '15/16 points lower', unicode-minus and 'drop of' forms; answer adds the explicit '15 percentage points below' phrasing and the rounding illustration.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator fix"
     },
     "fin_q_042": {
       "method": "llm_blind_reverify",
@@ -1492,9 +1490,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "calculation differs: blind 71.42 vs annotated 0.714224143492161; numbers of the reference answer not in blind answer: ['0.7142', '201938624147', '707647035234']; blind reviewer confidence=None; notes: ",
-      "status": "flagged",
-      "basis": "unresolved disagreement or reviewer doubt",
+      "notes": "fin_doc_006 p.112 Table 3.4.2.1.1 (2025): owned by CBRT 3,182,863,907,739 TRY = BoE 707,647,035,234 + CBRT 201,938,624,147 + BIST 2,273,278,248,357 (sums within 1 TRY). BIST largest; recomputed 2,273,278,248,357 / 3,182,863,907,739 = 0.71422 (71.4%), matches calculation. Blind answer identical.",
+      "status": "verified",
+      "basis": "rewritten after relevance review, then adjudicator confirmed",
       "independent_recompute": {
         "result": 0.714224143492161,
         "matches": true,
