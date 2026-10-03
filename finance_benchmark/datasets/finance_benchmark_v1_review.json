@@ -814,9 +814,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; Original content (SCR 288.4 -> 138.7 driven by the PAC reinsurance treaty) is now fully covered by fin_q_117 (adj_w4_1). Rewritten to a distinct, decision-relevant fact from the same SFCR (fin_doc_005): the MCR and own-funds tiering. Verified: p.55 MCR £35m (2024: £72m), floor 25% / cap 45% of SCR, linear MCR £17m < floor £35m, 'The MCR is currently 25% of SCR', reduction driven by SCR; p.53 eligible own funds £430m (2024: £407m) all Tier 1 unrestricted (65 + 277 + 88), no ancillary own funds; p.62 S.23.01 QRT MCR 34,684k, ratio of eligible own funds to MCR 1238.73%. No calculation needed (all",
+      "notes": "Second blind re-answer (annotation/repairs/blind_answers3.jsonl) of the question as rewritten in verdicts1.json agrees on every key fact: MCR GBP 35m (34,684k) at end-2025 and GBP 72m at end-2024, determined by the 25%-of-SCR floor (linear MCR GBP 17m below it, cap GBP 62m not binding), eligible own funds GBP 430m all Tier 1 unrestricted, own funds / MCR 1238.73%. The final example is the one in verdicts1.json.",
       "status": "verified",
-      "basis": "rewritten after relevance review, then adjudicator fix"
+      "basis": "rewritten after relevance review, then adjudicator confirmed"
     },
     "fin_q_040": {
       "method": "llm_blind_reverify",

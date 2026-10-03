@@ -3,39 +3,39 @@
     "documents": 17,
     "pages": 1995
   },
-  "questions": 113,
+  "questions": 120,
   "by_type": {
-    "table": 38,
-    "calculation": 19,
-    "temporal": 12,
-    "direct": 11,
+    "table": 36,
+    "calculation": 17,
+    "multi_evidence": 14,
+    "temporal": 13,
+    "negative": 10,
+    "direct": 9,
     "multi_document": 9,
-    "multi_evidence": 7,
-    "definition": 7,
-    "negative": 6,
-    "risk": 4
+    "definition": 6,
+    "risk": 6
   },
   "by_style": {
-    "lookup": 31,
-    "comparison": 23,
-    "explanatory": 13,
-    "yes_no": 12,
-    "superlative": 10,
-    "count": 6,
-    "list": 5,
-    "conditional": 5,
-    "ranking": 5,
-    "trend": 3
+    "lookup": 32,
+    "comparison": 21,
+    "explanatory": 17,
+    "yes_no": 13,
+    "superlative": 12,
+    "list": 7,
+    "ranking": 6,
+    "trend": 4,
+    "conditional": 4,
+    "count": 4
   },
   "by_difficulty": {
-    "medium": 75,
-    "hard": 20,
-    "easy": 18
+    "medium": 85,
+    "hard": 22,
+    "easy": 13
   },
   "flags": {
-    "requires_calculation": 23,
+    "requires_calculation": 25,
     "multi_document": 9,
-    "unanswerable": 6
+    "unanswerable": 10
   },
   "by_document": {
     "fin_doc_001": {
@@ -43,9 +43,9 @@
       "title": "ECB Annual Accounts 2025",
       "type": "annual_accounts",
       "pages": 87,
-      "primary_questions": 5,
-      "questions_touching": 5,
-      "evidence_items": 5
+      "primary_questions": 7,
+      "questions_touching": 7,
+      "evidence_items": 10
     },
     "fin_doc_002": {
       "company": "Belfius Bank",
@@ -53,8 +53,8 @@
       "type": "pillar3",
       "pages": 111,
       "primary_questions": 5,
-      "questions_touching": 7,
-      "evidence_items": 12
+      "questions_touching": 6,
+      "evidence_items": 10
     },
     "fin_doc_003": {
       "company": "Belfius Insurance",
@@ -63,25 +63,25 @@
       "pages": 71,
       "primary_questions": 6,
       "questions_touching": 6,
-      "evidence_items": 7
+      "evidence_items": 6
     },
     "fin_doc_004": {
       "company": "ASN Bank",
       "title": "ASN Bank Pillar 3 Report 2025",
       "type": "pillar3",
       "pages": 138,
-      "primary_questions": 7,
-      "questions_touching": 7,
-      "evidence_items": 9
+      "primary_questions": 6,
+      "questions_touching": 6,
+      "evidence_items": 6
     },
     "fin_doc_005": {
       "company": "M&G / Prudential International Assurance",
       "title": "Solvency and Financial Condition Report 31 Dec 2025",
       "type": "solvency_report",
       "pages": 64,
-      "primary_questions": 3,
-      "questions_touching": 3,
-      "evidence_items": 3
+      "primary_questions": 7,
+      "questions_touching": 7,
+      "evidence_items": 14
     },
     "fin_doc_006": {
       "company": "Central Bank of the Republic of Türkiye",
@@ -99,24 +99,24 @@
       "pages": 48,
       "primary_questions": 7,
       "questions_touching": 9,
-      "evidence_items": 10
+      "evidence_items": 11
     },
     "fin_doc_008": {
       "company": "Commonwealth Bank of Australia (CBA Europe NV)",
       "title": "CBA NV Pillar 3 Report 2025",
       "type": "pillar3",
       "pages": 67,
-      "primary_questions": 2,
-      "questions_touching": 3,
-      "evidence_items": 6
+      "primary_questions": 5,
+      "questions_touching": 6,
+      "evidence_items": 16
     },
     "fin_doc_009": {
       "company": "Guggenheim Global Investments plc",
       "title": "UCITS Annual Report & Audited Financial Statements FY2025",
       "type": "fund_annual_report",
       "pages": 82,
-      "primary_questions": 8,
-      "questions_touching": 8,
+      "primary_questions": 6,
+      "questions_touching": 7,
       "evidence_items": 9
     },
     "fin_doc_010": {
@@ -124,18 +124,18 @@
       "title": "Fresenius consolidated financial statements 2025 (extract of the Annual Report 2025)",
       "type": "annual_report",
       "pages": 107,
-      "primary_questions": 8,
-      "questions_touching": 9,
-      "evidence_items": 13
+      "primary_questions": 7,
+      "questions_touching": 8,
+      "evidence_items": 12
     },
     "fin_doc_011": {
       "company": "DHL Group",
       "title": "DHL Group Annual Report 2025",
       "type": "annual_report",
       "pages": 277,
-      "primary_questions": 24,
-      "questions_touching": 26,
-      "evidence_items": 42
+      "primary_questions": 22,
+      "questions_touching": 24,
+      "evidence_items": 39
     },
     "fin_doc_012": {
       "company": "DHL Group",
@@ -153,25 +153,25 @@
       "pages": 224,
       "primary_questions": 7,
       "questions_touching": 7,
-      "evidence_items": 12
+      "evidence_items": 11
     },
     "fin_doc_014": {
       "company": "Guggenheim Global Investments plc",
       "title": "UCITS Prospectus (Germany version)",
       "type": "prospectus",
       "pages": 131,
-      "primary_questions": 4,
-      "questions_touching": 4,
-      "evidence_items": 9
+      "primary_questions": 5,
+      "questions_touching": 5,
+      "evidence_items": 11
     },
     "fin_doc_015": {
       "company": "Autorité des marchés financiers (AMF)",
       "title": "AMF 2025 Annual Report (English)",
       "type": "regulator_report",
       "pages": 175,
-      "primary_questions": 5,
-      "questions_touching": 5,
-      "evidence_items": 7
+      "primary_questions": 4,
+      "questions_touching": 4,
+      "evidence_items": 4
     },
     "fin_doc_016": {
       "company": "Belfius Bank",
@@ -180,7 +180,7 @@
       "pages": 12,
       "primary_questions": 2,
       "questions_touching": 2,
-      "evidence_items": 5
+      "evidence_items": 3
     },
     "fin_doc_017": {
       "company": "Fresenius SE & Co. KGaA",
@@ -193,15 +193,15 @@
     }
   },
   "failure_modes": {
-    "same_metric_multiple_years": 44,
+    "same_metric_multiple_years": 51,
     "similar_table_labels": 37,
+    "header_dependency": 32,
+    "terminology_mismatch": 31,
     "multiple_entities": 27,
-    "header_dependency": 25,
-    "terminology_mismatch": 24,
-    "split_across_pages": 23,
-    "multi_evidence_combination": 22,
-    "footnote": 19,
-    "unit_mismatch": 13,
-    "deep_in_report": 3
+    "split_across_pages": 27,
+    "footnote": 21,
+    "multi_evidence_combination": 20,
+    "unit_mismatch": 14,
+    "deep_in_report": 8
   }
 }

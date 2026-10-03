@@ -76,7 +76,7 @@ def main() -> int:
         for f in ("similar_table_labels", "same_metric_multiple_years", "footnote", "header_dependency"):
             if f in fm: add(1, f, "similar" if "similar" in f or "same" in f else None)
         b = blinds.get(qid)
-        if b and (b.get("confidence") != "high" or DOUBT.search(b.get("notes", ""))): add(2, "blind reviewer doubt/low confidence")
+        if b and (b.get("confidence", "high") != "high" or DOUBT.search(b.get("notes", ""))): add(2, "blind reviewer doubt/low confidence")
         if b and compare(e, b)["auto_status"] != "agree": add(1, "blind comparison disagreed")
         pages = {(x["document_id"], x["page"]) for x in e["evidence"]}
         if len(pages) >= 2: add(1, "multi-page evidence")
