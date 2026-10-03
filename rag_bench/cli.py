@@ -8,7 +8,11 @@ import sys
 from .dataset import load_corpus, load_dataset
 from .judge import LLMJudge, anthropic_complete
 from .pipelines.bm25 import BM25Pipeline
+from .dork_bench import load_pages, run_dork_benchmark
+from .dork_gen import LLMGenerator, RuleBasedGenerator
+from .dorks import SimulatedEngine
 from .pipelines.http import HttpPipeline
+from .report import write_report
 from .runner import compare, run_benchmark
 
 
@@ -34,6 +38,17 @@ def main(argv=None) -> int:
     r.add_argument("--judge-model", default="claude-sonnet-5-5")
     r.add_argument("--out", default="results/results.json")
 
+    d = sub.add_parser("dork", help="benchmark de génération de dorks (moteur simulé hors ligne)")
+    d.add_argument("--tasks", default="data/dork_tasks.jsonl")
+    d.add_argument("--web", default="data/web.jsonl")
+    d.add_argument("--generator", choices=["rule", "llm"], default="rule")
+    d.add_argument("--model", default="claude-sonnet-5-5")
+    d.add_argument("--out", default="results/dork.json")
+
+    rp = sub.add_parser("report", help="rapport HTML depuis des results.json")
+    rp.add_argument("results", nargs="+")
+    rp.add_argument("--out", default="results/report.html")
+
     c = sub.add_parser("compare", help="comparer deux results.json")
     c.add_argument("baseline")
     c.add_argument("candidate")
@@ -42,6 +57,22 @@ def main(argv=None) -> int:
     if args.cmd == "compare":
         load = lambda f: json.load(open(f, encoding="utf-8"))
         print(compare(load(args.baseline), load(args.candidate)))
+        return 0
+
+    if args.cmd == "report":
+        write_report(args.results, args.out)
+        print(f"rapport : {args.out}")
+        return 0
+    if args.cmd == "dork":
+        from .dataset import load_jsonl
+        gen = RuleBasedGenerator() if args.generator == "rule" else LLMGenerator(anthropic_complete(args.model), "llm-" + args.model)
+        rep = run_dork_benchmark(load_jsonl(args.tasks), gen, SimulatedEngine(load_pages(args.web)), args.out)
+        a = rep["aggregate"]
+        print(f"== dorking / {rep['pipeline']} (n={a['n']}) ==")
+        print("[status] " + "  ".join(f"{k}={v}" for k, v in a["status"].items()))
+        print("[metrics] " + "  ".join(f"{k}={a[k]:.3f}" for k in ("syntax_valid", "constraint_score", "recall@5", "precision@5", "mrr")))
+        for r in rep["results"]:
+            print(f"  {r['id']} {r['status']:<9} {r.get('query', r.get('error'))}")
         return 0
 
     examples = load_dataset(args.dataset)

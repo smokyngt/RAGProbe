@@ -35,7 +35,7 @@ class Fixed:
     name = "fixed"
 
     def run(self, q):
-        return PipelineResult("Le contrat a une durée de cinq ans.", ["contract_12_chunk_02"])
+        return PipelineResult("Le chiffre d affaires 2025 est de 1 250 millions d euros.", ["alpha_ra2025_01"])
 
 
 def test_judge_overrides_f1():

@@ -1,12 +1,13 @@
-{"chunk_id": "contract_12_chunk_01", "text": "Le présent contrat est conclu entre la société Alpha et la société Beta. Il prend effet à la date de signature."}
-{"chunk_id": "contract_12_chunk_02", "text": "Le contrat est conclu pour une durée de cinq ans. Il est renouvelable par tacite reconduction pour des périodes d'un an."}
-{"chunk_id": "contract_12_chunk_03", "text": "Le prix annuel de la prestation est fixé à 48 000 euros hors taxes. Il est payable trimestriellement."}
-{"chunk_id": "contract_12_chunk_04", "text": "Chaque partie peut résilier le contrat moyennant un préavis de trois mois notifié par lettre recommandée."}
-{"chunk_id": "contract_12_chunk_05", "text": "Les litiges sont soumis à la compétence exclusive du tribunal de commerce de Paris."}
-{"chunk_id": "contract_13_chunk_01", "text": "Le bail commercial est consenti pour une durée de neuf ans à compter du 1er janvier 2024."}
-{"chunk_id": "contract_13_chunk_02", "text": "Le loyer annuel est de 36 000 euros, révisé chaque année selon l'indice des loyers commerciaux."}
-{"chunk_id": "contract_13_chunk_03", "text": "Le dépôt de garantie est égal à trois mois de loyer hors taxes et hors charges."}
-{"chunk_id": "contract_13_chunk_04", "text": "Le preneur ne peut sous-louer les locaux sans l'accord écrit préalable du bailleur."}
-{"chunk_id": "contract_14_chunk_01", "text": "Le prestataire est tenu à une obligation de confidentialité pendant toute la durée du contrat et deux ans après son terme."}
-{"chunk_id": "contract_14_chunk_02", "text": "En cas de retard de livraison, une pénalité de 1 % du montant du contrat par semaine de retard est appliquée."}
-{"chunk_id": "contract_14_chunk_03", "text": "La responsabilité du prestataire est plafonnée au montant des sommes versées au cours des douze derniers mois."}
+{"chunk_id": "alpha_ra2025_01", "text": "Le chiffre d'affaires consolidé d'Alpha SA en 2025 s'élève à 1 250 millions d'euros, en hausse de 8 % par rapport à 2024 (1 157 millions d'euros)."}
+{"chunk_id": "alpha_ra2025_02", "text": "L'EBITDA ajusté d'Alpha SA atteint 275 millions d'euros en 2025, soit une marge de 22 % du chiffre d'affaires."}
+{"chunk_id": "alpha_ra2025_03", "text": "La dette nette d'Alpha SA au 31 décembre 2025 s'établit à 550 millions d'euros, contre 610 millions d'euros un an plus tôt."}
+{"chunk_id": "alpha_ra2025_04", "text": "Le contrat de crédit syndiqué impose un covenant de levier : le ratio dette nette / EBITDA ajusté doit rester inférieur à 3,5x."}
+{"chunk_id": "alpha_ra2025_05", "text": "Le conseil d'administration propose un dividende de 1,20 euro par action, payable en numéraire en juin 2026. Le capital compte 40 millions d'actions."}
+{"chunk_id": "alpha_ra2025_06", "text": "Le résultat net part du groupe s'élève à 110 millions d'euros, soit un résultat par action de 2,75 euros."}
+{"chunk_id": "alpha_ra2025_07", "text": "Les investissements (capex) de l'exercice 2025 s'élèvent à 95 millions d'euros, dont 30 millions d'euros consacrés à la croissance externe."}
+{"chunk_id": "alpha_ra2025_08", "text": "Le taux d'impôt effectif du groupe Alpha est de 25 % en 2025."}
+{"chunk_id": "alpha_ra2025_09", "text": "Risque de taux : 70 % de la dette brute est à taux fixe. Une hausse de 100 points de base des taux variables aurait un impact de 4 millions d'euros sur les charges financières."}
+{"chunk_id": "alpha_ra2025_10", "text": "Le cash-flow libre (free cash flow) d'Alpha ressort à 130 millions d'euros en 2025."}
+{"chunk_id": "beta_ra2025_01", "text": "Beta Holding publie un chiffre d'affaires de 480 millions d'euros en 2025, en baisse de 3 %."}
+{"chunk_id": "beta_ra2025_02", "text": "La marge d'EBITDA de Beta Holding s'élève à 15 % du chiffre d'affaires en 2025."}
+{"chunk_id": "beta_ra2025_03", "text": "La dette nette de Beta Holding est de 360 millions d'euros fin 2025."}
