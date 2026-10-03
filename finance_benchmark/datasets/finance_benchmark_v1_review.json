@@ -1,0 +1,1906 @@
+{
+  "dataset": "finance_benchmark_v1",
+  "method_note": "No human review has taken place. 'verified' = independent blind re-answer from the PDFs agreed, or an adjudicator re-read the sources; see each entry's basis.",
+  "reviews": {
+    "fin_q_001": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_002": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.40 (doc 012): GP Global Forwarding BU EUR 3,467m, -5.9%. Reviewer agreed; 2023 absolute not asked.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_003": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Figures verified on p.56 doc 011 (bonds 9,943; leases 14,789; financial assets 5,067); blind agrees. Only metadata fix: topic 'profitability' -> 'solvency' (net debt composition).",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_004": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.54 doc 011: full-year 2025 column -2,715, -719, receivables 192 and 42, outflow -3,200 (sum checks). Match with blind.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_005": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.41 doc 012 revenue table; sums to 14,559; blind agrees.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_006": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_007": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.55 doc 011 indicators; blind identical.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_008": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.38 doc 012 text: EBIT 3,084 (-4.5%), margin 12.3%, Q4 1,083 (+42.9%). Blind agrees; implied 2023 values not claimed.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_009": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
+      "independent_recompute": {
+        "result": 0.13254026739656807,
+        "matches": true,
+        "blind_result": 0.13254,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_010": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.53 doc 011 full-year Group column: ROU 3,545, total 6,494 (2,950+3,545=6,495 is rounding only); 54.6% correct; blind agrees (its p.195 cite is the segment note, same figures).",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
+      "independent_recompute": {
+        "result": 0.545888512473052,
+        "matches": true,
+        "blind_result": 0.545888512473052,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_011": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
+      "independent_recompute": {
+        "result": 0.29355699580632866,
+        "matches": true,
+        "blind_result": 0.29355699580632866,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_012": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified Group EBIT 6,103 (+217 from 5,886) p.42 and division tables pp.44,46-49: only GF,Freight lower (1,074->756, -29.6%); percentages match printed. Blind agrees; Group Functions is not a division.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_013": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Facts verified (pp.55-56). Question was ambiguous: two different 'financial liabilities' measures exist (balance sheet 24,209->27,489 vs net-debt table 23,270->26,583; blind noted both). Question now pins the balance-sheet basis, answer states net debt delta 2,518 (21,516-18,998) and the distinction.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_014": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Numbers verified (5,063 p.151 doc 012; 5,062 and 5,246 p.162 doc 011); blind agrees. Evidence gap: the claimed cause (commercial rounding introduced from FY2025, prior-year figures adjusted) is stated on p.18 (note 1), not on p.176; added p.18 evidence.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_015": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "blind reviewer confidence=high; notes: 2024 figure is identical in both reports (1,074), so no restatement. Divisional EBIT; EUR million.",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt",
+      "independent_recompute": {
+        "result": -0.46872803935347856,
+        "matches": true,
+        "blind_result": -0.46871,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_016": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_017": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified definitions in p.3 footnotes 4 and 6 and p.56 (31.9%, 48.7%); consistent with note on p.224 per blind.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_018": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_019": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Question did not say whether the MREL requirement is stated with or without the combined buffer requirement; Belfius reports 23.68%/13.50% of TREA excluding CBR (5.23%) and binding 28.91%/18.73% including CBR. Question now specifies 'excluding CBR'; answer and evidence extended.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_020": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_021": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_022": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Answer was correct but question did not state that the 2024 figure is the unrestated CRR 2 figure and 2025 is CRR 3; question now states the basis explicitly.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_023": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_024": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified against CR2 table (197.2 + 109.1 - 42.8 - 5.8 + 3.0 = 260.7, CHF million); unambiguous.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_025": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Answer figures correct but question left open whether 2024 is the CRR 2 reported figure or a CRR 3 restated one (report itself says CRR 3 adoption effect is +0.2%); question now fixes the as-reported basis.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_026": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified LR2 (Group/consolidated): 5,050.6/65,472.3 = 7.714%; matches reported 7.71%, KM1 on p.7 identical. Parent-company figure differs but question specifies Group.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
+      "independent_recompute": {
+        "result": 0.07714101994278497,
+        "matches": true,
+        "blind_result": 0.077143,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_027": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified KM1: 351,400/1,118,137 = 31.427% = 31.43%; EUR thousand units stated on p.5. Disagreement was a unit-scale false alarm.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
+      "independent_recompute": {
+        "result": 0.31427275906261937,
+        "matches": true,
+        "blind_result": 0.314275,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_028": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.33/35/38: 15.87%, SREP 10.88% (before P2G), operational target 13.5%, CET1 EUR 11,449m vs 11,560m (-111m). Answer already states both the pro forma CRR3 (-29bp) and reported CRR2 (15.38%) 2024 bases; the question does not ask for the ratio change, so no ambiguity.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_029": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_030": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; LUKB 129.69% is the Q4 2025 average of monthly values (LIQ1, p.21) shown under the 31.12.2025 column of KM1, while Belfius' 144% is just 'at the end of 2025' with unstated basis; they cannot be strictly reconciled. Question reworded to 'headline reported' figures, answer discloses the basis difference; ranking conclusion is robust (14pp gap).",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_031": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_032": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.27: EUR 15.2bn, ES 99%, one-year, accounting approach, slightly lower than end-2024; 2024 value only in chart 22 (no numbers in text). Qualitative comparison is correct as stated.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_033": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_034": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_035": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.66 table: Insurance 867, Credit 97, Operational 86, SCR 1,134 (2024: 803/103/86/1,067). Blind answer agrees.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_036": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified p.105 (liabilities 3.2.3: 3,694,946,197,020 = cash 2,798,495,224,730 + gold 896,450,972,290; 2024 2,299,640,404,869) and p.103 consistent. Whole TRY units; blind agrees.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_037": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "ECB profit/(loss) for the year (1,254) in 2025 vs (7,944) in 2024, EUR million, on the P&L account page; loss narrowed by EUR 6,690m. Reviewer agrees; no issues.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
+      "independent_recompute": {
+        "result": 6690000000,
+        "matches": true,
+        "blind_result": 6690.0,
+        "blind_scale": 1000000.0
+      }
+    },
+    "fin_q_038": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Drivers were inferred: the CBRT report gives no narrative explanation (reviewer also notes this); the page-59 text on net interest income concerns the banking sector. The 'what drove it' wording was therefore unsupported. Question reworded to ask for the movement of the interest income/expense lines (stated in the P&L), answer states explicitly that no narrative cause is given. Figures verified.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_039": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Two defensible answers: 51.7% from the whole-million SCR in the SCR section (139 vs 288) and 51.9% from one-decimal figures (138.7 vs 288.4) in the risk profile table. Question now pins the whole-million basis; answer mentions the alternative.",
+      "status": "verified",
+      "basis": "adjudicator fix",
+      "independent_recompute": {
+        "result": -0.5173611111111112,
+        "matches": true,
+        "blind_result": -0.5173611111111112,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_040": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_041": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Table shows -15pp but the rounded ratios 201% and 185% differ by 16. Question now asks what the report's sensitivity table shows; answer notes the rounding effect. AFR 2,278 and SCR 1,134 verified.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_042": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "blind reviewer confidence=medium; notes: Searched fin_doc_003 for 2026, projected, forecast, ratio; no numeric projection found. The 201% is the actual 31 Dec 2025 ratio, not a 2026 projection.",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_043": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "TER 0.49% / 0.32% / 0.00% for GFI Fund Class S GBP Distributing, FY2025, verified on page; reviewer agrees.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_044": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "GGI Fund waiver +237 and total operating expense (155) (USD '000), verified; gross 392 less 237 = 155 consistent. Reviewer agrees.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_045": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Redemptions differ by statement: 1,660 / 18,496 in the statement of changes in net assets vs 1,831 / 18,325 in the cash flow statement. Question now specifies the statement of changes in net assets; answer notes the cash-flow figures.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_046": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "752,433 vs 703,905 (USD '000) GFI Fund net assets; +6.894% confirmed; evidence and calculation correct.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
+      "independent_recompute": {
+        "result": 0.06894112131608669,
+        "matches": true,
+        "blind_result": 0.06894112131608669,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_047": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Goodwill 14,527 (2024: 15,085) EUR million on the statement of financial position; reviewer agrees.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_048": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "blind reviewer confidence=high; notes: Footnote 1 marks Kabi and Helios as before special items; Corporate/Other is after special items, so the Group EBIT of 2,310 equals IFRS EBIT (p.34) and the columns are on mixed bases. Kabi special it",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_049": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Figures 1,264 vs 471 verified (same in restated and previous columns). Reference answer attributed the -272 discontinued result to Fresenius Vamed, which is not in the cited evidence page; the Vamed parenthetical was removed (answer stays total incl. discontinued ops).",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_050": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Total 2,574 = 2,606 continuing + (-32) discontinued; the -32 was missing from the evidence, and the question did not say total vs continuing. Helios 1,607 carries footnote 1 'before special items' (Corporate/Other is after special items, so 'how much of this' mixed bases). Question reworded to total including discontinued ops, and Helios figure with its basis; evidence extended with 2,606 and -32. Note: the segment page header says figures exclude Vamed discontinued ops yet the Group column equals 2,574 (incl. discontinued); the answer does not depend on this.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_051": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
+      "independent_recompute": {
+        "result": 0.12943102742529677,
+        "matches": true,
+        "blind_result": 0.12943,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_052": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_053": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "calculation differs: blind 3723 vs annotated -3723",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt",
+      "independent_recompute": {
+        "result": 3723.0,
+        "matches": false,
+        "blind_result": 3723.0
+      }
+    },
+    "fin_q_054": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['15856', '17739', '18998', '2022', '2023', '2024']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_055": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_056": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['2022', '2023', '2024', '8722', '9258', '9993']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_057": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "calculation differs: blind 403 vs annotated 403000000; blind reviewer confidence=high; notes: Supply Chain: assets acquired 561 + ROU 1,038 = 1,599 on components (rounding; reported total 1,600). PPG: 1,035+162=1,197. Using component sums the gap would be 402.",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt",
+      "independent_recompute": {
+        "result": 403000000,
+        "matches": true,
+        "blind_result": 403.0,
+        "blind_scale": 1000000.0
+      }
+    },
+    "fin_q_058": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_059": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_060": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['20227.8']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_061": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_062": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
+      "independent_recompute": {
+        "result": 0.13471142038477282,
+        "matches": true,
+        "blind_result": 0.1347,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_063": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['13413', '14741', '2124', '2397', '34336', '3444']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_064": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['2025', '31']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_065": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['24113.5']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_066": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['11.5', '4.66']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_067": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
+      "independent_recompute": {
+        "result": 0.157,
+        "matches": true,
+        "blind_result": 0.157,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_068": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['2025', '31']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_069": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_070": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['2024', '2025', '30']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_071": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
+      "independent_recompute": {
+        "result": 0.22057387057387057,
+        "matches": true,
+        "blind_result": 0.220574,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_072": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "answerability disagrees (reviewer found an answer); blind reviewer confidence=medium; notes: Corpus does not disclose any quantitative ESG credit exposure limit; the Plan's content is not public. Answer is effectively 'not disclosed'. cannot_be_established set false because the question's pre",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_073": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['2025', '31']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt",
+      "independent_recompute": {
+        "result": 0.40024670518730115,
+        "matches": true,
+        "blind_result": 0.40026,
+        "blind_scale": 1
+      }
+    },
+    "fin_q_074": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['3182863907739']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_075": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_076": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['2024', '286', '497']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_077": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_078": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_079": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['5560']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_080": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['2025']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_081": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "blind reviewer confidence=medium; notes: Table shows coverage ratio impact '32%' (unsigned, positive/improvement is consistent with SCR falling more than own funds); unit % presumably percentage points. Own Funds fall 11 and SCR falls 15, su",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_082": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_083": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['1.27', '20']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_084": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['2310']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_085": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_086": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['2073', '2310']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    },
+    "fin_q_087": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "calculation differs: blind 0.02 vs annotated 0.0002",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt",
+      "independent_recompute": {
+        "result": 0.02,
+        "matches": false,
+        "blind_result": 0.02
+      }
+    },
+    "fin_q_088": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_089": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "",
+      "status": "verified",
+      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+    },
+    "fin_q_090": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "numbers of the reference answer not in blind answer: ['31']",
+      "status": "flagged",
+      "basis": "unresolved disagreement or reviewer doubt"
+    }
+  }
+}
