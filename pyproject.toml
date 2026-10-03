@@ -1,0 +1,13 @@
+[project]
+name = "rag-bench"
+version = "0.1.0"
+description = "Benchmark QA + retrieval reproductible pour pipelines RAG"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+judge = ["anthropic"]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
