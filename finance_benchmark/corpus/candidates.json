@@ -14,8 +14,8 @@
       "direct_pdf": true,
       "discovered_by": "site:ecb.europa.eu filetype:pdf \"annual accounts\" OR \"financial statements\" 2025",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded"
+      "selected": true,
+      "status": "reachable_pdf_verified_200"
     },
     {
       "candidate_id": "c02",
@@ -29,8 +29,8 @@
       "direct_pdf": true,
       "discovered_by": "filetype:pdf \"risk and capital management\" OR \"risk report\" 2025 bank \"CET1\" \"liquidity coverage ratio\" annual",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded"
+      "selected": true,
+      "status": "reachable_pdf_verified_200"
     },
     {
       "candidate_id": "c03",
@@ -44,8 +44,8 @@
       "direct_pdf": true,
       "discovered_by": "filetype:pdf \"integrated annual report\" 2025 insurance \"solvency\" financial condition",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded"
+      "selected": true,
+      "status": "reachable_pdf_verified_200"
     },
     {
       "candidate_id": "c04",
@@ -59,8 +59,8 @@
       "direct_pdf": true,
       "discovered_by": "filetype:pdf \"Pillar 3\" disclosures 2025 capital liquidity risk report bank",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded"
+      "selected": true,
+      "status": "reachable_pdf_verified_200"
     },
     {
       "candidate_id": "c05",
@@ -74,8 +74,8 @@
       "direct_pdf": true,
       "discovered_by": "filetype:pdf \"integrated annual report\" 2025 insurance \"solvency\" financial condition",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded"
+      "selected": true,
+      "status": "reachable_pdf_verified_200"
     },
     {
       "candidate_id": "c06",
@@ -89,8 +89,8 @@
       "direct_pdf": true,
       "discovered_by": "filetype:pdf central bank \"annual report\" 2025 financial statements balance sheet notes",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded",
+      "selected": true,
+      "status": "reachable_pdf_verified_200",
       "notes": "Confirm it is the financial statements volume."
     },
     {
@@ -106,7 +106,8 @@
       "discovered_by": "filetype:pdf central bank \"annual report\" 2025 financial statements balance sheet notes",
       "pages_unverified": null,
       "selected": false,
-      "status": "discovered_not_downloaded"
+      "status": "blocked_origin_403",
+      "notes": "CDN origin answers 403 (not the egress proxy); excluded."
     },
     {
       "candidate_id": "c08",
@@ -120,8 +121,8 @@
       "direct_pdf": true,
       "discovered_by": "filetype:pdf \"risk and capital management\" OR \"risk report\" 2025 bank \"CET1\" \"liquidity coverage ratio\" annual",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded"
+      "selected": true,
+      "status": "reachable_pdf_verified_200"
     },
     {
       "candidate_id": "c09",
@@ -135,8 +136,8 @@
       "direct_pdf": true,
       "discovered_by": "filetype:pdf \"Pillar 3\" disclosures 2025 capital liquidity risk report bank",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded"
+      "selected": true,
+      "status": "reachable_pdf_verified_200"
     },
     {
       "candidate_id": "c10",
@@ -147,11 +148,12 @@
       "institution_type": "fund",
       "source_url": "https://investments.metlife.com/content/dam/metlifecom/us/investments/UCITS/new/MetLife-Investment_Management_UCITS-ICAV.pdf",
       "source_domain": "investments.metlife.com",
-      "direct_pdf": true,
+      "direct_pdf": false,
       "discovered_by": "filetype:pdf UCITS fund \"annual report\" \"audited financial statements\" 2025 asset manager",
       "pages_unverified": null,
       "selected": false,
-      "status": "discovered_not_downloaded"
+      "status": "not_a_pdf",
+      "notes": "URL returns an HTML country-disclaimer page; excluded unless a direct PDF link is found."
     },
     {
       "candidate_id": "c11",
@@ -165,72 +167,72 @@
       "direct_pdf": true,
       "discovered_by": "filetype:pdf UCITS fund \"annual report\" \"audited financial statements\" 2025 asset manager",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded"
+      "selected": true,
+      "status": "reachable_pdf_verified_200"
     },
     {
       "candidate_id": "c12",
       "company": "Fresenius SE & Co. KGaA",
-      "title": "Annual Report 2025",
+      "title": "Fresenius consolidated financial statements 2025 (extract of the Annual Report 2025)",
       "reporting_period": "FY2025",
       "document_type": "annual_report",
       "institution_type": "corporate",
-      "source_url": "https://report.fresenius.com/2025/annual-report/services/downloads.html",
+      "source_url": "https://report.fresenius.com/2025/annual-report/_assets/downloads/cfs-financial-statements-fresenius-ar25.pdf",
       "source_domain": "report.fresenius.com",
-      "direct_pdf": false,
+      "direct_pdf": true,
       "discovered_by": "filetype:pdf \"annual report\" 2025 \"consolidated financial statements\" investor relations",
-      "pages_unverified": 440,
-      "selected": false,
-      "status": "discovered_not_downloaded",
-      "notes": "Landing page: resolve the direct PDF link. 440 pages per search snippet (unverified)."
+      "pages_unverified": 107,
+      "selected": true,
+      "status": "reachable_pdf_verified_200",
+      "notes": "Financial-statements volume only (107 pages); the full report (440 p.) is kept as reserve c18."
     },
     {
       "candidate_id": "c13",
       "company": "Merck KGaA",
-      "title": "Annual Report 2025",
+      "title": "Merck KGaA Annual Report 2025 (entire report)",
       "reporting_period": "FY2025",
       "document_type": "annual_report",
       "institution_type": "corporate",
-      "source_url": "https://reports.emdgroup.com/en/annualreport/2025/services/downloads.html",
+      "source_url": "https://reports.emdgroup.com/en/annualreport/2025/_assets/downloads/entire-emd-ar25.pdf",
       "source_domain": "reports.emdgroup.com",
-      "direct_pdf": false,
+      "direct_pdf": true,
       "discovered_by": "filetype:pdf \"annual report\" 2025 \"consolidated financial statements\" investor relations",
       "pages_unverified": 565,
       "selected": false,
-      "status": "discovered_not_downloaded",
-      "notes": "Landing page: resolve the direct PDF link. 565 pages per search snippet (unverified)."
+      "status": "reserve",
+      "notes": "565 pages: reserve for extending the corpus (1k-question scale)."
     },
     {
       "candidate_id": "c14",
       "company": "DHL Group",
-      "title": "Annual Report 2025",
+      "title": "DHL Group Annual Report 2025",
       "reporting_period": "FY2025",
       "document_type": "annual_report",
       "institution_type": "corporate",
-      "source_url": "https://reporting-hub.group.dhl.com/pattern-library/en/templates/hub-page",
+      "source_url": "https://reporting-hub.group.dhl.com/ecomaXL/files/DHL-Group-2025-Annual-Report.pdf",
       "source_domain": "reporting-hub.group.dhl.com",
-      "direct_pdf": false,
+      "direct_pdf": true,
       "discovered_by": "filetype:pdf \"annual report\" 2025 \"consolidated financial statements\" investor relations",
       "pages_unverified": null,
-      "selected": false,
-      "status": "discovered_not_downloaded",
+      "selected": true,
+      "status": "reachable_pdf_verified_200",
       "notes": "Landing page: resolve the direct PDF link."
     },
     {
       "candidate_id": "c15",
       "company": "National Bank of Greece",
-      "title": "Annual Financial Report for the Group and the Bank 31.12.2025",
+      "title": "NBG Annual Financial Report 2025 (Group and Bank)",
       "reporting_period": "FY2025",
       "document_type": "annual_report",
       "institution_type": "bank",
-      "source_url": "https://www.nbg.gr/en/group/investor-relations/reports/annual-financial-report-for-the-group-and-the-bank-31-12-2025",
+      "source_url": "https://www.nbg.gr/-/jssmedia/Files/Group/enhmerwsh-ependutwn/Annual_Financial_Reports/Annual-Financial-Report-2025-EN.pdf",
       "source_domain": "www.nbg.gr",
-      "direct_pdf": false,
+      "direct_pdf": true,
       "discovered_by": "filetype:pdf central bank \"annual report\" 2025 financial statements balance sheet notes",
       "pages_unverified": null,
       "selected": false,
-      "status": "discovered_not_downloaded",
-      "notes": "Landing page: resolve the direct PDF link."
+      "status": "reserve",
+      "notes": "567 pages: reserve (would push the corpus past 1,500 pages)."
     },
     {
       "candidate_id": "c16",
@@ -245,14 +247,47 @@
       "discovered_by": "filetype:pdf \"earnings release\" OR \"results press release\" full year 2025 \"adjusted EBITDA\" definition investor relations",
       "pages_unverified": null,
       "selected": false,
-      "status": "discovered_not_downloaded",
-      "notes": "HTML page; use only if a PDF version is published. Small document."
+      "status": "html_only",
+      "notes": "HTML press release, no PDF: excluded."
+    },
+    {
+      "candidate_id": "c17",
+      "company": "DHL Group",
+      "title": "DHL Group Annual Report 2024",
+      "reporting_period": "FY2024",
+      "document_type": "annual_report",
+      "institution_type": "corporate",
+      "source_url": "https://reporting-hub.group.dhl.com/ecomaXL/files/DHL-Group-2024-Annual-Report.pdf",
+      "source_domain": "reporting-hub.group.dhl.com",
+      "direct_pdf": true,
+      "selected": true,
+      "discovered_by": "resolved from the issuer's own downloads/IR page",
+      "pages_unverified": null,
+      "status": "reachable_pdf_verified_200",
+      "notes": "Prior-year report: enables multi-document / multi-period questions."
+    },
+    {
+      "candidate_id": "c18",
+      "company": "Fresenius SE & Co. KGaA",
+      "title": "Fresenius Annual Report 2025 (entire report)",
+      "reporting_period": "FY2025",
+      "document_type": "annual_report",
+      "institution_type": "corporate",
+      "source_url": "https://report.fresenius.com/2025/annual-report/_assets/downloads/entire-fresenius-ar25.pdf",
+      "source_domain": "report.fresenius.com",
+      "direct_pdf": true,
+      "selected": false,
+      "discovered_by": "resolved from the issuer's own downloads/IR page",
+      "pages_unverified": 440,
+      "status": "reserve",
+      "notes": "Reserve."
     }
   ],
   "known_gaps": [
     "prospectus (no direct PDF found yet)",
     "regulator-authored report (SEC / AMF / EBA / FCA) — blocked hosts",
     "French URD (HSBC Continental Europe, CIC, CNP found only as press releases; locate the URD PDF on the issuer or AMF site)",
-    "earnings release in PDF form"
+    "earnings release in PDF form",
+    "Bahamas central bank (origin 403) and MetLife IM UCITS (disclaimer page) could not be downloaded"
   ]
 }

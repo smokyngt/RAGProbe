@@ -10,7 +10,7 @@ Contrôles automatiques (ils NE remplacent PAS la lecture du document source) :
   - calculs : opération réévaluée (AST restreint) = `result` ; chaque entrée est retrouvée telle qu'imprimée (`raw`)
     dans l'evidence citée, et raw × scale = valeur (les unités ne disparaissent jamais en silence) ;
   - cohérence des drapeaux (multi-documents, calcul, négatif sans evidence) ;
-  - revue : une entrée par question, 10 contrôles renseignés, recalcul indépendant concordant,
+  - review: une entrée par question, 10 contrôles renseignés, recalcul indépendant concordant,
     tier `gold` ⇒ revue manuelle ; une revue automatique ne peut produire que du `silver`.
 """
 from __future__ import annotations
@@ -37,6 +37,7 @@ FAILURE_MODES = ("same_metric_multiple_years", "similar_table_labels", "multiple
                  "deep_in_report", "multi_evidence_combination")
 REVIEW_CHECKS = ("answer_correctness", "numerical_correctness", "currency", "units", "reporting_period", "entity",
                  "evidence_location", "calculation", "ambiguity", "completeness")
+METHODS = ("manual", "manual_sample", "llm_blind_reverify", "automated")
 NEGATIVE_PHRASES = ("cannot be established", "cannot be determined", "not provided", "does not provide",
                     "ne peut pas être établi", "n'est pas fourni", "not disclosed", "insufficient")
 
@@ -72,6 +73,7 @@ class Metadata(_S):
     requires_multiple_documents: bool
     answerable: bool = True
     tier: Literal["gold", "silver"] = "silver"
+    topic: str | None = None  # e.g. "risk:liquidity", "capital:CET1", "profitability"
     failure_modes: list[Literal[FAILURE_MODES]] = Field(default_factory=list)  # type: ignore[valid-type]
 
 
@@ -87,22 +89,22 @@ class Example(_S):
     def _consistency(self):
         m, ev = self.metadata, self.evidence
         if not m.answerable and ev:
-            raise ValueError("question sans réponse possible : evidence doit être vide")
+            raise ValueError("unanswerable question: evidence must be empty")
         if m.answerable and not ev:
-            raise ValueError("evidence vide pour une question répondable")
+            raise ValueError("empty evidence for an answerable question")
         if m.type == "negative" and m.answerable:
-            raise ValueError("type negative ⇒ answerable=false")
+            raise ValueError("type negative implies answerable=false")
         if m.requires_calculation != (self.calculation is not None):
-            raise ValueError("requires_calculation incohérent avec la présence de `calculation`")
+            raise ValueError("requires_calculation inconsistent with the presence of `calculation`")
         multi = len({e.document_id for e in ev}) > 1
         if m.requires_multiple_documents != multi:
-            raise ValueError("requires_multiple_documents incohérent avec les documents cités")
+            raise ValueError("requires_multiple_documents inconsistent with the cited documents")
         if m.type == "multi_document" and not multi:
-            raise ValueError("type multi_document : evidence dans un seul document")
+            raise ValueError("type multi_document: evidence comes from a single document")
         if m.type == "multi_evidence" and len(ev) < 2:
-            raise ValueError("type multi_evidence : au moins 2 evidence")
+            raise ValueError("type multi_evidence: at least 2 evidence items required")
         if self.calculation and m.type not in ("calculation", "temporal", "multi_document", "multi_evidence"):
-            raise ValueError("`calculation` réservé aux types calculation/temporal/multi_*")
+            raise ValueError("`calculation` is reserved for types calculation/temporal/multi_*")
         return self
 
 
@@ -205,40 +207,40 @@ class Report:
 def check_example(ex: Example, pages: dict[str, int], load: Callable[[str], list[str]], rep: Report) -> None:
     for i, e in enumerate(ex.evidence):
         if e.document_id not in pages:
-            rep.err(ex.id, f"evidence[{i}] : document inconnu {e.document_id}")
+            rep.err(ex.id, f"evidence[{i}] : unknown document {e.document_id}")
             continue
         if e.page > pages[e.document_id]:
             rep.err(ex.id, f"evidence[{i}] : page {e.page} > {pages[e.document_id]}")
             continue
         if not evidence_on_page(e.text, load(e.document_id)[e.page - 1]):
-            rep.err(ex.id, f"evidence[{i}] : texte introuvable verbatim p.{e.page} de {e.document_id}")
+            rep.err(ex.id, f"evidence[{i}] : texte not found verbatim p.{e.page} de {e.document_id}")
     if not ex.metadata.answerable and not any(p in ex.reference_answer.lower() for p in NEGATIVE_PHRASES):
-        rep.warn(ex.id, "réponse négative : formulation 'cannot be established…' attendue")
+        rep.warn(ex.id, "negative answer: 'cannot be established…' wording expected")
     c = ex.calculation
     if not c:
         return
     try:
         got = safe_eval(c.operation, c.inputs)
     except (ValueError, SyntaxError, ZeroDivisionError) as e:
-        rep.err(ex.id, f"calcul : {e}")
+        rep.err(ex.id, f"calculation: {e}")
         return
     if not close(got, c.result):
-        rep.err(ex.id, f"calcul : opération donne {got!r}, annoté {c.result!r}")
+        rep.err(ex.id, f"calculation: operation gives {got!r}, annotated {c.result!r}")
     for name, value in c.inputs.items():
         src = c.input_sources.get(name)
         if not src:
-            rep.err(ex.id, f"calcul : entrée '{name}' sans input_sources (raw/unit/scale obligatoires)")
+            rep.err(ex.id, f"calculation: entrée '{name}' has no input_sources (raw/unit/scale are mandatory)")
             continue
         if src.evidence_index >= len(ex.evidence):
-            rep.err(ex.id, f"calcul : '{name}' pointe vers une evidence inexistante")
+            rep.err(ex.id, f"calculation: '{name}' points to a non-existent evidence item")
             continue
         if norm(src.raw) not in norm(ex.evidence[src.evidence_index].text):
-            rep.err(ex.id, f"calcul : '{name}' raw '{src.raw}' absent de l'evidence[{src.evidence_index}]")
+            rep.err(ex.id, f"calculation: '{name}' raw '{src.raw}' absent from evidence[{src.evidence_index}]")
         try:
             if not close(parse_number(src.raw) * src.scale, value):
-                rep.err(ex.id, f"calcul : '{name}' {src.raw} × {src.scale} ≠ {value} (unité/échelle ?)")
+                rep.err(ex.id, f"calculation: '{name}' {src.raw} × {src.scale} ≠ {value} (unit/scale?)")
         except ValueError as e:
-            rep.err(ex.id, f"calcul : '{name}' : {e}")
+            rep.err(ex.id, f"calculation: '{name}' : {e}")
 
 
 def check_review(examples: list[Example], review: dict, rep: Report) -> dict[str, str]:
@@ -246,33 +248,35 @@ def check_review(examples: list[Example], review: dict, rep: Report) -> dict[str
     for ex in examples:
         r = reviews.get(ex.id)
         if r is None:
-            rep.err(ex.id, "aucune entrée de revue")
+            rep.err(ex.id, "no review entry")
             continue
         checks = r.get("checks", {})
         missing = [k for k in REVIEW_CHECKS if k not in checks]
         if missing:
-            rep.err(ex.id, f"revue : contrôles manquants {missing}")
+            rep.err(ex.id, f"review: missing checks {missing}")
         st, method = r.get("status"), r.get("method")
         status[ex.id] = st
         if st not in ("verified", "flagged"):
-            rep.err(ex.id, "revue : status doit être verified|flagged")
-        if method not in ("manual", "manual_sample", "automated"):
-            rep.err(ex.id, "revue : method doit être manual|manual_sample|automated")
+            rep.err(ex.id, "review: status must be verified|flagged")
+        if method not in METHODS:
+            rep.err(ex.id, f"review: method must be one of {METHODS}")
         if st == "verified":
             failed = [k for k in REVIEW_CHECKS if checks.get(k) not in (True, "n/a")]
             if failed:
-                rep.err(ex.id, f"revue : verified mais contrôles non validés {failed}")
+                rep.err(ex.id, f"review: verified mais checks not passed {failed}")
             if ex.calculation:
                 rc = r.get("independent_recompute")
                 if not rc or not close(float(rc.get("result", math.nan)), ex.calculation.result) or rc.get("matches") is not True:
-                    rep.err(ex.id, "revue : recalcul indépendant absent ou différent")
-            if ex.metadata.tier == "gold" and method != "manual":
-                rep.err(ex.id, "tier gold exige une revue manuelle")
+                    rep.err(ex.id, "review: independent recompute missing or different")
+            if ex.metadata.tier == "gold" and method not in ("manual", "llm_blind_reverify"):
+                rep.err(ex.id, "tier gold requires a manual or llm_blind_reverify review (not automated)")
+            if method == "llm_blind_reverify" and r.get("human_reviewed") is not False:
+                rep.err(ex.id, "review: llm_blind_reverify must declare human_reviewed=false (no mislabelling)")
         if st == "flagged" and not r.get("notes"):
-            rep.err(ex.id, "revue : un exemple flagged doit expliquer le doute (notes)")
+            rep.err(ex.id, "review: a flagged example must explain the doubt (notes)")
     extra = set(reviews) - {e.id for e in examples}
     for qid in sorted(extra):
-        rep.warn(qid, "entrée de revue sans question correspondante")
+        rep.warn(qid, "review entry without matching question")
     return status
 
 
@@ -301,19 +305,19 @@ def load_examples(path: Path, rep: Report) -> list[Example]:
             rep.err(f"ligne {ln}", str(e).replace("\n", " "))
             continue
         if ex.id in seen:
-            rep.err(ex.id, "id dupliqué")
+            rep.err(ex.id, "duplicate id")
         seen.add(ex.id)
         out.append(ex)
     return out
 
 
 def run(root: Path, draft: Path, review_path: Path, final: Path, export: bool,
-        load: Callable[[str], list[str]] | None = None) -> int:
+        no_review: bool = False, load: Callable[[str], list[str]] | None = None) -> int:
     rep = Report()
     manifest = json.loads((root / "corpus" / "manifest.json").read_text("utf-8"))
     pages = {d["document_id"]: d["pages"] for d in manifest["documents"]}
     if not (root / "corpus" / "FROZEN.json").exists():
-        rep.warn("corpus", "corpus non gelé (tools/fetch_corpus.py --freeze) : annotation sur base mouvante")
+        rep.warn("corpus", "corpus not frozen (tools/fetch_corpus.py --freeze): annotating a moving base")
     load = load or default_page_loader(root)
     examples = load_examples(draft, rep)
     for ex in examples:
@@ -321,8 +325,8 @@ def run(root: Path, draft: Path, review_path: Path, final: Path, export: bool,
     status = {}
     if review_path.exists():
         status = check_review(examples, json.loads(review_path.read_text("utf-8")), rep)
-    else:
-        rep.err("revue", f"{review_path.name} absent : la passe de validation indépendante n'a pas eu lieu")
+    elif not no_review:
+        rep.err("review", f"{review_path.name} missing: the independent validation pass has not happened")
     print(distribution(examples))
     for w in rep.warnings:
         print("WARN", w)
@@ -332,7 +336,7 @@ def run(root: Path, draft: Path, review_path: Path, final: Path, export: bool,
     print(f"\nverified={n_ok} flagged={sum(s == 'flagged' for s in status.values())} erreurs={len(rep.errors)}")
     if export:
         if rep.errors:
-            print("export refusé : corriger les erreurs d'abord", file=sys.stderr)
+            print("export refused: fix the errors first", file=sys.stderr)
             return 1
         verified = [e for e in examples if status.get(e.id) == "verified"]
         final.write_text("".join(e.model_dump_json(exclude_defaults=False) + "\n" for e in verified), "utf-8")
@@ -347,5 +351,6 @@ if __name__ == "__main__":
     ap.add_argument("--review", default=str(ROOT / "datasets" / "finance_benchmark_v1_review.json"))
     ap.add_argument("--final", default=str(ROOT / "datasets" / "finance_benchmark_v1.jsonl"))
     ap.add_argument("--export", action="store_true")
+    ap.add_argument("--no-review", action="store_true", help="draft self-check: skip the review-file requirement")
     a = ap.parse_args()
-    sys.exit(run(ROOT, Path(a.draft), Path(a.review), Path(a.final), a.export))
+    sys.exit(run(ROOT, Path(a.draft), Path(a.review), Path(a.final), a.export, a.no_review))

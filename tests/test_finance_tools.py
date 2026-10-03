@@ -118,9 +118,9 @@ def test_valid_dataset_exports_only_verified(project, capsys):
 
 
 @pytest.mark.parametrize("mutate,needle", [
-    (lambda e: e["evidence"][0].update(text="Revenue EUR million 2025: 9,999"), "introuvable verbatim"),
+    (lambda e: e["evidence"][0].update(text="Revenue EUR million 2025: 9,999"), "not found verbatim"),
     (lambda e: e["evidence"][0].update(page=9), "page 9"),
-    (lambda e: e["evidence"][0].update(document_id="fin_doc_099"), "document inconnu"),
+    (lambda e: e["evidence"][0].update(document_id="fin_doc_099"), "unknown document"),
 ])
 def test_bad_evidence_is_rejected(project, capsys, mutate, needle):
     e = ex("fin_q_001")
@@ -138,20 +138,34 @@ def test_calculation_errors(project, capsys):
         e = ex("fin_q_001", "calculation", CALC_EV, calc=calc)
         assert write(project, [e], {"fin_q_001": review("fin_q_001", recompute=calc["result"])}) == 1
     out = capsys.readouterr().out
-    assert "annoté 0.25" in out and "unité/échelle" in out and "absent de l'evidence" in out
+    assert "annotated 0.25" in out and "unit/scale" in out and "absent from evidence" in out
 
 
 def test_review_rules(project, capsys):
     assert write(project, [ex("fin_q_001")], {}) == 1  # pas de revue
-    assert "aucune entrée de revue" in capsys.readouterr().out
+    assert "no review entry" in capsys.readouterr().out
     assert write(project, [ex("fin_q_001", tier="gold")], {"fin_q_001": review("fin_q_001", method="automated")}) == 1
-    assert "gold exige une revue manuelle" in capsys.readouterr().out
+    assert "gold requires a manual" in capsys.readouterr().out
     bad = review("fin_q_001")
     bad["checks"]["units"] = False
     assert write(project, [ex("fin_q_001")], {"fin_q_001": bad}) == 1
-    assert "contrôles non validés" in capsys.readouterr().out
+    assert "checks not passed" in capsys.readouterr().out
     missing_recalc = write(project, [ex("fin_q_001", "calculation", CALC_EV, calc=CALC)], {"fin_q_001": review("fin_q_001")})
-    assert missing_recalc == 1 and "recalcul indépendant" in capsys.readouterr().out
+    assert missing_recalc == 1 and "independent recompute" in capsys.readouterr().out
+
+
+def test_llm_blind_reverify_must_not_claim_human_review(project, capsys):
+    r = review("fin_q_001", method="llm_blind_reverify")
+    assert write(project, [ex("fin_q_001", tier="gold")], {"fin_q_001": r}) == 1
+    assert "human_reviewed=false" in capsys.readouterr().out
+    r["human_reviewed"] = False
+    assert write(project, [ex("fin_q_001", tier="gold")], {"fin_q_001": r}) == 0
+
+
+def test_no_review_mode(project):
+    (project / "datasets" / "d.jsonl").write_text(json.dumps(ex("fin_q_001")) + "\n")
+    assert run(project, project / "datasets" / "d.jsonl", project / "datasets" / "missing.json",
+               project / "datasets" / "f.jsonl", export=False, no_review=True) == 0
 
 
 def test_schema_consistency(project, capsys):
@@ -159,5 +173,5 @@ def test_schema_consistency(project, capsys):
     assert write(project, [multi_doc_flag_wrong], {"fin_q_001": review("fin_q_001")}) == 1
     assert "requires_multiple_documents" in capsys.readouterr().out
     assert write(project, [ex("fin_q_001"), ex("fin_q_001")], {"fin_q_001": review("fin_q_001")}) == 1
-    assert "id dupliqué" in capsys.readouterr().out
+    assert "duplicate id" in capsys.readouterr().out
     assert write(project, [ex("fin_q_005", "negative", answerable=True)], {}) == 1
