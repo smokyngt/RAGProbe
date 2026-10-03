@@ -44,6 +44,21 @@ def numbers(text: str) -> set[str]:
     return res
 
 
+def results_of(calc: dict | None) -> list[float]:
+    """A blind reviewer may return one result or several (list / dict of named results)."""
+    if not calc or calc.get("result") is None:
+        return []
+    r = calc["result"]
+    vals = r if isinstance(r, list) else list(r.values()) if isinstance(r, dict) else [r]
+    out = []
+    for v in vals:
+        try:
+            out.append(float(v))
+        except (TypeError, ValueError):
+            pass
+    return out
+
+
 def compare(ref: dict, blind: dict | None) -> dict:
     if blind is None:
         return {"id": ref["id"], "auto_status": "missing", "issues": ["no blind answer"]}
@@ -54,9 +69,10 @@ def compare(ref: dict, blind: dict | None) -> dict:
     if answerable:
         rc, bc = ref.get("calculation"), blind.get("calculation")
         if rc:
-            if not bc or "result" not in bc:
+            got = results_of(bc)
+            if not got:
                 issues.append("no blind calculation")
-            elif not math.isclose(float(bc["result"]), rc["result"], rel_tol=1e-4, abs_tol=1e-9):
+            elif not any(math.isclose(g, rc["result"], rel_tol=1e-4, abs_tol=1e-9) for g in got):
                 issues.append(f"calculation differs: blind {bc['result']} vs annotated {rc['result']}")
         rp = {(e["document_id"], e["page"]) for e in ref["evidence"]}
         bp = {(e.get("document_id"), e.get("page")) for e in blind.get("evidence", [])}

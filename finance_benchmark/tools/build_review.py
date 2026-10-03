@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from compare_blind import compare, load  # noqa: E402
+from compare_blind import compare, load, results_of  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DOUBT = re.compile(r"ambigu|two defensible|inconsisten|not comparable|differs|restat|mixed bas|misalign|unclear|cannot tell|rounding", re.I)
@@ -30,15 +30,18 @@ def recompute(ref: dict, blind: dict) -> dict | None:
     rc, bc = ref.get("calculation"), blind.get("calculation")
     if not rc:
         return None
-    if not bc or "result" not in bc:
+    got = results_of(bc)
+    if not got:
         return {"result": None, "matches": False}
-    b, r = float(bc["result"]), rc["result"]
+    r = rc["result"]
     # Representation differences only: unit scale (thousands/millions), sign of a decline, percent vs fraction / percentage points.
-    for k in (1, 1e3, 1e6, 1e9, 1e-3, 1e-6, 1e-9, 100, 0.01):
-        for sign in (1, -1):
-            if math.isclose(b * k * sign, r, rel_tol=2e-3, abs_tol=1e-9):
-                eq = [n for n, c in (("scale", k != 1), ("sign", sign == -1)) if c]
-                return {"result": r, "matches": True, "blind_result": b, "equivalence": eq or ["exact"]}
+    for b in got:
+        for k in (1, 1e3, 1e6, 1e9, 1e-3, 1e-6, 1e-9, 100, 0.01):
+            for sign in (1, -1):
+                if math.isclose(b * k * sign, r, rel_tol=2e-3, abs_tol=1e-9):
+                    eq = [n for n, c in (("scale", k != 1), ("sign", sign == -1)) if c]
+                    return {"result": r, "matches": True, "blind_result": b, "equivalence": eq or ["exact"]}
+    b = got[0]
     return {"result": b, "matches": False, "blind_result": b}
 
 
@@ -47,6 +50,15 @@ def main() -> int:
     blinds = load("blind/answers_*.jsonl")
     adj: dict[str, dict] = {}
     for f in sorted((ROOT / "annotation" / "adjudication").glob("adj*.json")):
+        adj.update(json.loads(f.read_text("utf-8"))["decisions"])
+    # questions rewritten after the relevance review: their own blind answers and verdicts replace the earlier ones
+    repaired = {json.loads(l)["id"] for f in sorted((ROOT / "annotation" / "repairs").glob("sub*.jsonl"))
+                for l in f.read_text("utf-8").splitlines() if l.strip()}
+    for qid in repaired:
+        blinds.pop(qid, None)
+        adj.pop(qid, None)
+    blinds.update(load("repairs/blind_answers*.jsonl"))
+    for f in sorted((ROOT / "annotation" / "repairs").glob("verdicts*.json")):
         adj.update(json.loads(f.read_text("utf-8"))["decisions"])
     reviews, attention = {}, []
     for qid, ex in sorted(draft.items()):
@@ -59,7 +71,8 @@ def main() -> int:
             attention.append((qid, "no blind answer"))
         elif verdict and verdict["verdict"] in ("confirmed", "fix"):
             rc = recompute(ex, b) if verdict["verdict"] == "confirmed" else None
-            entry.update(status="verified", basis=f"adjudicator {verdict['verdict']}", notes=verdict["reasons"][:600])
+            entry.update(status="verified", basis=("rewritten after relevance review, then " if qid in repaired else "")
+                         + f"adjudicator {verdict['verdict']}", notes=verdict["reasons"][:600])
             if verdict["verdict"] == "fix":  # corrected after the blind pass: adjudicator re-verified against the source
                 entry["notes"] = "Corrected after blind pass; " + entry["notes"]
         elif verdict and verdict["verdict"] == "flag":

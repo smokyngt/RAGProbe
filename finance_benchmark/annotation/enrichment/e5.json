@@ -1,0 +1,873 @@
+{
+ "fin_q_002": {
+  "question_natural": "What was gross profit of DHL's Global Forwarding business unit in 2024, and how did it change versus 2023?",
+  "key_facts": [
+   {
+    "fact": "gross profit FY2024",
+    "value": "3,467 million",
+    "accept": [
+     "3.467 billion",
+     "3.47 billion"
+    ]
+   },
+   {
+    "fact": "decline of 5.9% vs 2023",
+    "value": "down 5.9%",
+    "accept": [
+     "-5.9%",
+     "down 5.9%",
+     "down by 5.9%",
+     "decline of 5.9%",
+     "declined 5.9%",
+     "declined by 5.9%",
+     "decrease of 5.9%",
+     "decreased 5.9%",
+     "decreased by 5.9%",
+     "fell 5.9%",
+     "fell by 5.9%",
+     "5.9% lower",
+     "5.9% below",
+     "5.9% decline",
+     "5.9% decrease",
+     "drop of 5.9%",
+     "dropped 5.9%",
+     "dropped by 5.9%",
+     "down 5.9 per cent",
+     "5.9 per cent lower",
+     "decline of 5.9 per cent"
+    ]
+   }
+  ]
+ },
+ "fin_q_004": {
+  "question_natural": "What were DHL Group's 2025 lease liability repayments, interest on lease liabilities and total cash outflow for leases?",
+  "key_facts": [
+   {
+    "fact": "repayment of lease liabilities",
+    "value": "2,715 million",
+    "accept": [
+     "2.715 billion",
+     "2.72 billion"
+    ]
+   },
+   {
+    "fact": "interest on lease liabilities",
+    "value": "719 million",
+    "accept": []
+   },
+   {
+    "fact": "total cash outflow for leases",
+    "value": "3,200 million",
+    "accept": [
+     "3.2 billion",
+     "3.20 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_008": {
+  "question_natural": "How did DHL Express EBIT develop in 2024 versus 2023, and in Q4 2024 versus Q4 2023?",
+  "key_facts": [
+   {
+    "fact": "Express EBIT FY2024",
+    "value": "3,084 million",
+    "accept": [
+     "3.084 billion",
+     "3.08 billion"
+    ]
+   },
+   {
+    "fact": "decline of 4.5% vs 2023",
+    "value": "4.5% below",
+    "accept": [
+     "-4.5%",
+     "down 4.5%",
+     "down by 4.5%",
+     "decline of 4.5%",
+     "declined 4.5%",
+     "declined by 4.5%",
+     "decrease of 4.5%",
+     "decreased 4.5%",
+     "decreased by 4.5%",
+     "fell 4.5%",
+     "fell by 4.5%",
+     "4.5% lower",
+     "4.5% below",
+     "4.5% decline",
+     "4.5% decrease",
+     "drop of 4.5%",
+     "dropped 4.5%",
+     "dropped by 4.5%",
+     "4.5 per cent below",
+     "4.5 per cent lower"
+    ]
+   },
+   {
+    "fact": "Express EBIT Q4 2024",
+    "value": "1,083 million",
+    "accept": [
+     "1.083 billion",
+     "1.08 billion"
+    ]
+   },
+   {
+    "fact": "increase of 42.9% vs Q4 2023",
+    "value": "42.9% above",
+    "accept": [
+     "+42.9%",
+     "up 42.9%",
+     "up by 42.9%",
+     "increase of 42.9%",
+     "increased 42.9%",
+     "increased by 42.9%",
+     "rose 42.9%",
+     "rose by 42.9%",
+     "42.9% higher",
+     "42.9% above",
+     "42.9% increase",
+     "grew 42.9%",
+     "grew by 42.9%",
+     "growth of 42.9%",
+     "rise of 42.9%",
+     "42.9 per cent above",
+     "42.9 per cent higher"
+    ]
+   }
+  ]
+ },
+ "fin_q_025": {
+  "question_natural": "How did ASN Bank's CET1 ratio, CET1 capital and total risk exposure amount change from end-2024 (CRR2, as reported) to end-2025 (CRR3)?",
+  "key_facts": [
+   {
+    "fact": "CET1 ratio 2024",
+    "value": "20.18%",
+    "accept": []
+   },
+   {
+    "fact": "CET1 ratio 2025",
+    "value": "19.79%",
+    "accept": []
+   },
+   {
+    "fact": "CET1 capital 2024",
+    "value": "3,442 million",
+    "accept": [
+     "3.442 billion",
+     "3.44 billion"
+    ]
+   },
+   {
+    "fact": "CET1 capital 2025",
+    "value": "3,613 million",
+    "accept": [
+     "3.613 billion",
+     "3.61 billion"
+    ]
+   },
+   {
+    "fact": "TREA 2024",
+    "value": "17,059 million",
+    "accept": [
+     "17.059 billion",
+     "17.06 billion"
+    ]
+   },
+   {
+    "fact": "TREA 2025",
+    "value": "18,259 million",
+    "accept": [
+     "18.259 billion",
+     "18.26 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_034": {
+  "question_natural": "How does the Turkish central bank manage credit risk in reserve management versus monetary and FX policy operations, including collateral and settlement safeguards?",
+  "key_facts": [
+   {
+    "fact": "reserve management: high-quality counterparties",
+    "value": "high credit quality",
+    "accept": [
+     "highly rated",
+     "high credit rating",
+     "creditworthy"
+    ]
+   },
+   {
+    "fact": "reserve management: limits per counterparty",
+    "value": "credit risk limits",
+    "accept": [
+     "credit limits",
+     "exposure limits",
+     "risk limits"
+    ]
+   },
+   {
+    "fact": "policy operations: full collateral",
+    "value": "collateral covering the full transaction amount",
+    "accept": [
+     "fully collateralised",
+     "fully collateralized",
+     "collateral covering the full amount",
+     "collateral for the full amount",
+     "full collateralisation",
+     "full collateralization"
+    ]
+   },
+   {
+    "fact": "policy operations: specified margin on top of collateral",
+    "value": "specified margin",
+    "accept": [
+     "plus a margin",
+     "plus margin",
+     "additional margin",
+     "along with a margin",
+     "together with a margin",
+     "with a margin",
+     "margin on top",
+     "haircut"
+    ]
+   },
+   {
+    "fact": "policy operations: payment-after-collection",
+    "value": "payment-after-collection",
+    "accept": [
+     "payment after collection",
+     "payment upon collection",
+     "payment-upon-collection",
+     "pay after collection"
+    ]
+   }
+  ]
+ },
+ "fin_q_037": {
+  "question_natural": "How did the ECB's annual result change from 2024 to 2025?",
+  "key_facts": [
+   {
+    "fact": "result is a loss, and the loss narrowed",
+    "value": "loss for the year narrowed",
+    "accept": [
+     "loss narrowed",
+     "losses narrowed",
+     "narrower loss",
+     "smaller loss",
+     "lower loss",
+     "loss decreased",
+     "loss declined",
+     "loss fell",
+     "loss shrank",
+     "loss was reduced",
+     "reduced loss",
+     "loss reduced",
+     "loss of EUR 1,254 million",
+     "loss of €1,254 million",
+     "loss of EUR 1.25 billion",
+     "loss of €1.25 billion",
+     "loss of EUR 1.3 billion",
+     "loss of €1.3 billion",
+     "net loss of EUR 1,254 million",
+     "net loss of €1,254 million"
+    ]
+   },
+   {
+    "fact": "2025 loss",
+    "value": "1,254",
+    "accept": [
+     "EUR 1.25 billion",
+     "€1.25 billion",
+     "EUR 1.3 billion",
+     "€1.3 billion"
+    ]
+   },
+   {
+    "fact": "2024 loss",
+    "value": "7,944",
+    "accept": [
+     "EUR 7.94 billion",
+     "€7.94 billion",
+     "EUR 7.9 billion",
+     "€7.9 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_046": {
+  "question_natural": "How did net assets of Guggenheim's GFI Fund change in 2025, from what to what and by what percentage?",
+  "key_facts": [
+   {
+    "fact": "net assets 31 Dec 2025",
+    "value": "752,433",
+    "accept": [
+     "USD 752.4 million",
+     "$752.4 million",
+     "752.4 million"
+    ]
+   },
+   {
+    "fact": "net assets 31 Dec 2024",
+    "value": "703,905",
+    "accept": [
+     "USD 703.9 million",
+     "$703.9 million",
+     "703.9 million"
+    ]
+   },
+   {
+    "fact": "increase of 6.9%",
+    "value": "+6.9%",
+    "accept": [
+     "+6.9%",
+     "up 6.9%",
+     "up by 6.9%",
+     "increase of 6.9%",
+     "increased 6.9%",
+     "increased by 6.9%",
+     "rose 6.9%",
+     "rose by 6.9%",
+     "6.9% higher",
+     "6.9% above",
+     "6.9% increase",
+     "grew 6.9%",
+     "grew by 6.9%",
+     "growth of 6.9%",
+     "rise of 6.9%",
+     "+6.89%",
+     "up 6.89%",
+     "up by 6.89%",
+     "increase of 6.89%",
+     "increased 6.89%",
+     "increased by 6.89%",
+     "rose 6.89%",
+     "rose by 6.89%",
+     "6.89% higher",
+     "6.89% above",
+     "6.89% increase",
+     "grew 6.89%",
+     "grew by 6.89%",
+     "growth of 6.89%",
+     "rise of 6.89%",
+     "6.9 per cent increase",
+     "increase of about 6.9%",
+     "increase of approximately 6.9%",
+     "rose by about 6.9%",
+     "rose by approximately 6.9%"
+    ]
+   }
+  ]
+ },
+ "fin_q_061": {
+  "question_natural": "How did DHL Group's material expense change in 2025, from what to what, and why?",
+  "key_facts": [
+   {
+    "fact": "material expense 2025",
+    "value": "€40,910 million",
+    "accept": [
+     "€40.9 billion",
+     "€40.91 billion",
+     "EUR 40,910 million",
+     "EUR 40.9 billion"
+    ]
+   },
+   {
+    "fact": "material expense 2024",
+    "value": "€42,766 million",
+    "accept": [
+     "€42.8 billion",
+     "€42.77 billion",
+     "EUR 42,766 million",
+     "EUR 42.8 billion"
+    ]
+   },
+   {
+    "fact": "reason: lower transport costs in Global Forwarding, Freight",
+    "value": "lower transport costs",
+    "accept": [
+     "lower transportation costs",
+     "transport costs",
+     "transportation costs"
+    ]
+   },
+   {
+    "fact": "reason: lower aviation fuel costs in Express",
+    "value": "aviation fuel",
+    "accept": [
+     "jet fuel",
+     "fuel costs",
+     "kerosene"
+    ]
+   }
+  ]
+ },
+ "fin_q_078": {
+  "question_natural": "How many of Belfius Insurance's Solvency II stress scenarios cut its ratio below the 201% base case at end-2025, and which ones?",
+  "key_facts": [
+   {
+    "fact": "count of scenarios lowering the ratio",
+    "value": "Six",
+    "accept": [
+     "6 of the 8",
+     "6 of 8",
+     "6 scenarios",
+     "6 stress scenarios"
+    ]
+   },
+   {
+    "fact": "equity -30%",
+    "value": "196%",
+    "accept": [
+     "-5pp",
+     "-5 pp"
+    ]
+   },
+   {
+    "fact": "credit spread on government bonds +50bps",
+    "value": "185%",
+    "accept": [
+     "-15pp",
+     "-15 pp"
+    ]
+   },
+   {
+    "fact": "credit spread on corporate and government bonds +50bps",
+    "value": "188%",
+    "accept": [
+     "-13pp",
+     "-13 pp"
+    ]
+   },
+   {
+    "fact": "real estate -15%",
+    "value": "193%",
+    "accept": [
+     "-8pp",
+     "-8 pp"
+    ]
+   },
+   {
+    "fact": "no volatility adjustment",
+    "value": "192%",
+    "accept": [
+     "-9pp",
+     "-9 pp"
+    ]
+   },
+   {
+    "fact": "ultimate forward rate 3%",
+    "value": "200%",
+    "accept": [
+     "-1pp",
+     "-1 pp"
+    ]
+   }
+  ]
+ },
+ "fin_q_081": {
+  "question_natural": "In 2025, how would a 25% equity fall change Prudential International Assurance's SCR coverage ratio, own funds, SCR and surplus?",
+  "key_facts": [
+   {
+    "fact": "SCR coverage ratio rises by 32%",
+    "value": "increase of 32%",
+    "accept": [
+     "+32%",
+     "32% increase",
+     "increased by 32%",
+     "increases by 32%",
+     "rise of 32%",
+     "rises by 32%",
+     "up 32%",
+     "up by 32%",
+     "+32 percentage points",
+     "+32pp",
+     "increase of 32 percentage points",
+     "32 percentage point increase",
+     "increase of 32pp",
+     "rises by 32 percentage points",
+     "improves by 32%"
+    ]
+   },
+   {
+    "fact": "Own Funds fall by £11m",
+    "value": "£11m reduction",
+    "accept": [
+     "(11)",
+     "reduction of £11m",
+     "reduction of £11 million",
+     "£11 million reduction",
+     "-£11m",
+     "£-11m",
+     "-£11 million",
+     "decrease of £11m",
+     "£11m decrease",
+     "fall of £11m",
+     "falls by £11m",
+     "fall by £11m",
+     "decline of £11m",
+     "reduced by £11m",
+     "decreases by £11m"
+    ]
+   },
+   {
+    "fact": "SCR falls by £15m",
+    "value": "£15m reduction",
+    "accept": [
+     "(15)",
+     "reduction of £15m",
+     "reduction of £15 million",
+     "£15 million reduction",
+     "-£15m",
+     "£-15m",
+     "-£15 million",
+     "decrease of £15m",
+     "£15m decrease",
+     "fall of £15m",
+     "falls by £15m",
+     "fall by £15m",
+     "decline of £15m",
+     "reduced by £15m",
+     "decreases by £15m"
+    ]
+   },
+   {
+    "fact": "surplus rises by £4m",
+    "value": "£4m increase",
+    "accept": [
+     "increase of £4m",
+     "increase of £4 million",
+     "£4 million increase",
+     "+£4m",
+     "+£4 million",
+     "£+4m",
+     "rise of £4m",
+     "rises by £4m",
+     "increases by £4m",
+     "increased by £4m",
+     "up £4m",
+     "up by £4m"
+    ]
+   }
+  ]
+ },
+ "fin_q_100": {
+  "question_natural": "What risk does class-level currency hedging pose for other share classes at Guggenheim Global Investments plc, and what over/under-hedging limits apply?",
+  "key_facts": [
+   {
+    "fact": "risk",
+    "value": "cross contamination",
+    "accept": [
+     "cross-contamination"
+    ]
+   },
+   {
+    "fact": "collateral posted at the Fund's risk, Class not segregated",
+    "value": "posted at the Fund's risk",
+    "accept": [
+     "posted at the Fund’s risk",
+     "at the Fund's risk",
+     "at the Fund’s risk",
+     "at the risk of the Fund",
+     "not a segregated portion",
+     "not segregated",
+     "no segregation between classes",
+     "not legally segregated"
+    ]
+   },
+   {
+    "fact": "over-hedge limit",
+    "value": "105%",
+    "accept": []
+   },
+   {
+    "fact": "under-hedge limit",
+    "value": "95%",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_113": {
+  "question_natural": "Why is Fresenius's 2025 Group EBIT €2,595m in the press release but €2,310m in the financial statements? List the special items and amounts.",
+  "key_facts": [
+   {
+    "fact": "difference / total special items",
+    "value": "€285 million",
+    "accept": [
+     "EUR 285 million",
+     "285 million",
+     "€285m"
+    ]
+   },
+   {
+    "fact": "cost and efficiency programs -174",
+    "value": "-€174 million",
+    "accept": [
+     "€-174 million",
+     "-€174m",
+     "€-174m",
+     "-174",
+     "(174)",
+     "EUR -174 million",
+     "-EUR 174 million",
+     "minus €174 million",
+     "negative €174 million"
+    ]
+   },
+   {
+    "fact": "Fresenius transformation -190",
+    "value": "-€190 million",
+    "accept": [
+     "€-190 million",
+     "-€190m",
+     "€-190m",
+     "-190",
+     "(190)",
+     "EUR -190 million",
+     "-EUR 190 million",
+     "minus €190 million",
+     "negative €190 million"
+    ]
+   },
+   {
+    "fact": "reduction of participation in FMC +85",
+    "value": "+€85 million",
+    "accept": [
+     "€+85 million",
+     "+€85m",
+     "+85",
+     "+EUR 85 million",
+     "EUR +85 million",
+     "positive €85 million",
+     "gain of €85 million"
+    ]
+   },
+   {
+    "fact": "legacy portfolio adjustments +6",
+    "value": "+€6 million",
+    "accept": [
+     "€+6 million",
+     "+€6m",
+     "+6",
+     "+EUR 6 million",
+     "EUR +6 million",
+     "positive €6 million",
+     "gain of €6 million"
+    ]
+   },
+   {
+    "fact": "legal and regulatory matters -12",
+    "value": "-€12 million",
+    "accept": [
+     "€-12 million",
+     "-€12m",
+     "€-12m",
+     "-12",
+     "(12)",
+     "EUR -12 million",
+     "-EUR 12 million",
+     "minus €12 million",
+     "negative €12 million"
+    ]
+   }
+  ]
+ },
+ "fin_q_123": {
+  "question_natural": "At end-2025, how large was PIA's total gap between Solvency II and financial-statement technical provisions, which line of business drove most of it, and what share?",
+  "key_facts": [
+   {
+    "fact": "total SII vs FS technical provisions difference 2025",
+    "value": "£546m",
+    "accept": [
+     "£546 million",
+     "GBP 546 million",
+     "546m"
+    ]
+   },
+   {
+    "fact": "largest contributor line of business",
+    "value": "Insurance with profit participation",
+    "accept": [
+     "with-profits",
+     "with profit participation",
+     "with-profit"
+    ]
+   },
+   {
+    "fact": "with-profits difference",
+    "value": "£416m",
+    "accept": [
+     "£416 million",
+     "GBP 416 million",
+     "416m"
+    ]
+   },
+   {
+    "fact": "share of total difference",
+    "value": "76.2%",
+    "accept": [
+     "76%",
+     "76.19%",
+     "76.2 per cent"
+    ]
+   }
+  ]
+ },
+ "fin_q_127": {
+  "question_natural": "Which IRRBB supervisory shock hit CBA Europe's economic value of equity hardest at 30 June 2025, by how much, and which was worst at 30 June 2024?",
+  "key_facts": [
+   {
+    "fact": "most adverse EVE scenario 30 June 2025",
+    "value": "Short rates up",
+    "accept": [
+     "short rate up",
+     "short-rate up",
+     "short rates shock up",
+     "short rate shock up"
+    ]
+   },
+   {
+    "fact": "EVE decrease short rates up 2025",
+    "value": "-965,790.94",
+    "accept": [
+     "EUR -965,790.94",
+     "-EUR 965,790.94",
+     "decrease of EUR 965,790.94",
+     "decrease of 965,790.94",
+     "reduction of EUR 965,790.94",
+     "-965,791",
+     "EUR -965,791",
+     "-EUR 965,791",
+     "decrease of EUR 965,791",
+     "decrease of about EUR 0.97 million",
+     "decrease of EUR 0.97 million",
+     "-EUR 0.97 million",
+     "EUR -0.97 million",
+     "decrease of EUR 966 thousand",
+     "-EUR 966 thousand",
+     "-966 thousand"
+    ]
+   },
+   {
+    "fact": "most adverse EVE scenario 30 June 2024",
+    "value": "Parallel down",
+    "accept": [
+     "parallel shock down",
+     "parallel downward"
+    ]
+   }
+  ]
+ },
+ "fin_q_128": {
+  "question_natural": "How did CBA Europe's standardised corporate exposures, RWEA and RWEA density change from June 2024 to June 2025, and how much was specialised lending in 2025?",
+  "key_facts": [
+   {
+    "fact": "corporate on-balance exposures 2025",
+    "value": "829,439",
+    "accept": [
+     "EUR 829.4 million",
+     "0.83 billion"
+    ]
+   },
+   {
+    "fact": "corporate on-balance exposures 2024",
+    "value": "824,887",
+    "accept": [
+     "EUR 824.9 million"
+    ]
+   },
+   {
+    "fact": "corporate RWEA 2025",
+    "value": "1,011,231",
+    "accept": [
+     "EUR 1.01 billion",
+     "EUR 1,011.2 million"
+    ]
+   },
+   {
+    "fact": "corporate RWEA 2024",
+    "value": "1,008,284",
+    "accept": [
+     "EUR 1,008.3 million",
+     "EUR 1.008 billion"
+    ]
+   },
+   {
+    "fact": "RWEA density 2025",
+    "value": "101.15%",
+    "accept": [
+     "101.2%",
+     "101.15 per cent"
+    ]
+   },
+   {
+    "fact": "RWEA density 2024",
+    "value": "100.00%",
+    "accept": [
+     "100%",
+     "100.0%"
+    ]
+   },
+   {
+    "fact": "specialised lending exposure 2025",
+    "value": "136,464",
+    "accept": [
+     "EUR 136.5 million",
+     "136.5 million"
+    ]
+   }
+  ]
+ },
+ "fin_q_134": {
+  "question_natural": "Which Guggenheim sub-fund, GFI or GGI, was more exposed to a 0.75% rate rise relative to net assets at end-2025? Give each one's duration and net-asset decrease (amount and %).",
+  "key_facts": [
+   {
+    "fact": "more sensitive sub-fund",
+    "value": "GFI Fund",
+    "accept": [
+     "GFI"
+    ]
+   },
+   {
+    "fact": "GFI effective duration",
+    "value": "6.0 years",
+    "accept": [
+     "6 years"
+    ]
+   },
+   {
+    "fact": "GFI decrease for +0.75%",
+    "value": "USD 33,859 thousand",
+    "accept": [
+     "33,859",
+     "USD 33.9 million",
+     "$33.9 million"
+    ]
+   },
+   {
+    "fact": "GFI decrease as % of net assets",
+    "value": "4.5%",
+    "accept": [
+     "4.50%"
+    ]
+   },
+   {
+    "fact": "GGI effective duration",
+    "value": "2.4 years",
+    "accept": []
+   },
+   {
+    "fact": "GGI decrease for +0.75%",
+    "value": "USD 667 thousand",
+    "accept": [
+     "667",
+     "$667 thousand"
+    ]
+   },
+   {
+    "fact": "GGI decrease as % of net assets",
+    "value": "1.8%",
+    "accept": [
+     "1.80%"
+    ]
+   }
+  ]
+ }
+}

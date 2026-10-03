@@ -16,5 +16,71 @@
     "kind": "retired",
     "reasons": "Near-duplicate: same table row (GFI Fund Class I USD Accumulating TER) as fin_q_087; replaced by a Guggenheim question on another topic.",
     "question": "Did the total expense ratio (TER) of Class I USD Accumulating of the GFI Fund sub-fund of Guggenheim Global Investments plc rise or fall between the financial year ended 31 December 2024 and the financial year ended 31 December 2025, and by how many percentage points?"
+  },
+  {
+    "id": "fin_q_009",
+    "kind": "retired",
+    "reasons": "Relevance review: mechanical % change on the same net-debt figures as fin_q_013 (redundant).",
+    "question": "By what percentage did DHL Group's consolidated net debt increase between December 31, 2024 and December 31, 2025? Give the answer to one decimal place."
+  },
+  {
+    "id": "fin_q_047",
+    "kind": "retired",
+    "reasons": "Relevance review: trivial single-cell goodwill lookup with no retrieval trap.",
+    "question": "What was the carrying amount of goodwill in the consolidated statement of financial position of Fresenius SE & Co. KGaA as of December 31, 2025?"
+  },
+  {
+    "id": "fin_q_052",
+    "kind": "retired",
+    "reasons": "Relevance review: same DHL division revenue line and pages as fin_q_058 (redundant).",
+    "question": "Rank the five operating divisions of DHL Group (Express; Global Forwarding, Freight, which is a single division; Supply Chain; eCommerce; Post & Parcel Germany) by total revenue (including internal revenue) for fiscal year 2025, from highest to lowest, with the revenue of each in € million. Group Functions and Consolidation are excluded."
+  },
+  {
+    "id": "fin_q_071",
+    "kind": "retired",
+    "reasons": "Relevance review: 'purely mechanical' counterfactual CET1 ratio that ignores the offsetting deduction; no economic meaning.",
+    "question": "ASN Bank's credit risk exposure amount at 31 December 2025 includes an Article 3 CRR add-on of € 1,879 million for pending IRB model refinements on non-NHG mortgages (which the bank says is neutralised by a CET1 deduction of equal size). Purely as a mechanical recomputation, what would ASN Bank's CET1 ratio be at 31 December 2025 if only that add-on were removed from the total risk exposure amount, with the reported CET1 capital of € 3,613 million left unchanged (i.e. ignoring the offsetting CET1 deduction)? Round to two decimals."
+  },
+  {
+    "id": "fin_q_076",
+    "kind": "retired",
+    "reasons": "Relevance review: weaker yes/no version of fin_q_080 on the same ECB write-down line.",
+    "question": "Did the ECB's write-downs on financial assets and positions in 2025 exceed its realised gains arising from financial operations in the same year?"
+  },
+  {
+    "id": "fin_q_087",
+    "kind": "retired",
+    "reasons": "Relevance review: trivial 2 bp gap on the same TER table as fin_q_083 (redundant cluster).",
+    "question": "For the financial year ended 31 December 2025, which had the higher total expense ratio (TER): Class I USD Accumulating of the GFI Fund or Class I USD Accumulating of the GGI Fund of Guggenheim Global Investments plc, and by how many percentage points?"
+  },
+  {
+    "id": "fin_q_088",
+    "kind": "retired",
+    "reasons": "Relevance review: third question on the same Guggenheim TER table (redundant with fin_q_083).",
+    "question": "How many share classes of the GFI Fund sub-fund of Guggenheim Global Investments plc had a total expense ratio (TER) above 1.00% for the financial year ended 31 December 2025, and which are they?"
+  },
+  {
+    "id": "fin_q_105",
+    "kind": "retired",
+    "reasons": "Relevance review: difference of two rounded totals (EUR 0.06m) — spurious precision, test artefact.",
+    "question": "Using the AMF's (Autorité des marchés financiers) 2025 income statement commentary, by how much did total operating income exceed total operating expenses in 2025, based on the figures as published (rounded to €0.01 million), in € million?"
+  },
+  {
+    "id": "fin_q_112",
+    "kind": "retired",
+    "reasons": "Relevance review: same CRR2 vs pro forma CRR3 basis trap as fin_q_097 (redundant).",
+    "question": "Belfius' 2025 annual results press release (consolidated, 31 December 2025) and the Belfius Bank 2025 Pillar 3 report both quote the CET1 ratio and total risk exposure amount (TREA) at end-2025. What CET1 ratio and TREA does each document give for end-2025, and, using the end-2024 TREA figure that each document itself compares with (the press release's FY24 figure under CRR2, the Pillar 3 report's pro forma CRR3 figure), did TREA decrease or increase during 2025 in each document?"
+  },
+  {
+    "id": "fin_q_114",
+    "kind": "retired",
+    "reasons": "Relevance review: recomputes a cost-income ratio the release already reports; low value.",
+    "question": "Recompute Belfius' consolidated cost-to-income ratio for 2025 by dividing the management report's COSTS line by its INCOME line (both in € million). Does the result, rounded to one decimal place, match the 43.0% cost-income ratio that the press release reports?"
+  },
+  {
+    "id": "fin_q_122",
+    "kind": "retired",
+    "reasons": "Relevance review: out-of-corpus entity abstention with negligible decision value; pattern covered by fin_q_116.",
+    "question": "How many full-time equivalent staff did the ACPR (Autorité de contrôle prudentiel et de résolution) employ in 2025, and how does that compare with the AMF's headcount?"
   }
 ]

@@ -1,0 +1,1652 @@
+{
+  "n_reviewed": 131,
+  "missing": [],
+  "dimensions": {
+    "user_realism": 3.53,
+    "decision_value": 3.47,
+    "financial_depth": 3.33,
+    "benchmark_value": 3.34,
+    "clarity": 4.48
+  },
+  "mean_score": 3.63,
+  "recommendations": {
+    "keep": 101,
+    "rewrite": 24,
+    "drop": 6
+  },
+  "natural_ok": 114,
+  "key_facts_ok": 111,
+  "by_type": {
+    "calculation": 3.3,
+    "definition": 3.66,
+    "direct": 3.36,
+    "multi_document": 3.6,
+    "multi_evidence": 4.24,
+    "negative": 3.37,
+    "risk": 3.8,
+    "table": 3.72,
+    "temporal": 3.83
+  },
+  "by_style": {
+    "comparison": 3.54,
+    "conditional": 3.72,
+    "count": 3.67,
+    "explanatory": 3.95,
+    "list": 3.8,
+    "lookup": 3.48,
+    "ranking": 3.27,
+    "superlative": 3.63,
+    "trend": 3.9,
+    "yes_no": 3.8
+  },
+  "by_document": {
+    "(unanswerable)": 3.37,
+    "fin_doc_001": 3.69,
+    "fin_doc_002": 3.84,
+    "fin_doc_003": 3.8,
+    "fin_doc_004": 3.54,
+    "fin_doc_005": 3.9,
+    "fin_doc_006": 3.24,
+    "fin_doc_007": 3.66,
+    "fin_doc_008": 3.6,
+    "fin_doc_009": 3.52,
+    "fin_doc_010": 3.65,
+    "fin_doc_011": 3.62,
+    "fin_doc_012": 3.68,
+    "fin_doc_013": 3.97,
+    "fin_doc_014": 3.8,
+    "fin_doc_015": 2.84,
+    "fin_doc_016": 3.55,
+    "fin_doc_017": 4.6
+  },
+  "lowest": [
+    {
+      "id": "fin_q_122",
+      "score": 2.2,
+      "recommendation": "drop",
+      "note": "Out-of-corpus entity abstention with negligible decision value; the entity-trap pattern is already covered by fin_q_116 and others."
+    },
+    {
+      "id": "fin_q_071",
+      "score": 2.4,
+      "recommendation": "drop",
+      "note": "Self-declared 'purely mechanical' counterfactual that deliberately ignores the equal CET1 deduction, so the 22.06% has no economic meaning; the question also hands over most inputs. The natural version drops the 'ignore the offsetting deduction' caveat, so the answer becomes misleading."
+    },
+    {
+      "id": "fin_q_105",
+      "score": 2.4,
+      "recommendation": "drop",
+      "note": "Subtracting two rounded published totals to get €0.06m is a mechanical test artefact with spurious precision; if kept, ask simply for the 2025 operating result (income vs expenses) without the rounding caveat."
+    },
+    {
+      "id": "fin_q_107",
+      "score": 2.4,
+      "recommendation": "rewrite",
+      "note": "Key facts list only 3 of the 4 sources (missing 'Impact 2027 strategic orientations'), so an incomplete answer passes; low decision value and generic text lookup."
+    },
+    {
+      "id": "fin_q_020",
+      "score": 2.6,
+      "recommendation": "rewrite",
+      "note": "'Highest proportion of collateral used by an issuer' is an opaque phrase that copies the report's wording, and few users would ask for it. The bare '6%' key fact is too loose; reframe it as single-issuer collateral concentration vs Tier 1 and tie '6%' to Tier 1 in the key fact."
+    },
+    {
+      "id": "fin_q_026",
+      "score": 2.6,
+      "recommendation": "rewrite",
+      "note": "Recomputing a ratio that is printed next to its inputs is a test artefact (same pattern as fin_q_027 and fin_q_126); the natural version still says 'recomputed'. Ask instead for the leverage ratio and its headroom over the 3% minimum."
+    },
+    {
+      "id": "fin_q_034",
+      "score": 2.6,
+      "recommendation": "rewrite",
+      "note": "Qualitative paraphrase-retrieval of one passage; key fact 'margin' is a bare generic word that any answer passes. Tighten it to 'specified margin' or 'collateral plus margin', and add 'payment-after-collection' as a fact."
+    },
+    {
+      "id": "fin_q_053",
+      "score": 2.6,
+      "recommendation": "keep",
+      "note": "Mechanical diff of headcount across columns, with low decision value. It is acceptable as a multi-page arithmetic test."
+    },
+    {
+      "id": "fin_q_087",
+      "score": 2.6,
+      "recommendation": "rewrite",
+      "note": "A 2bp TER gap between two sub-funds is a trivial lookup on the same TER table as 083/088. The reference answer contains a pipeline artefact ('encoded in the calculation as the fraction 0.0002') that must be removed."
+    },
+    {
+      "id": "fin_q_099",
+      "score": 2.6,
+      "recommendation": "rewrite",
+      "note": "Comparing admin and depositary fee caps and computing a 2.7bp gap is an artificial comparison. Ask for the fee caps of the service providers instead. The natural version calls it the 'depositary fee' without 'maximum', and omits the request for both rates and the gap."
+    },
+    {
+      "id": "fin_q_030",
+      "score": 2.8,
+      "recommendation": "rewrite",
+      "note": "It compares a point-in-time LCR with a Q4 monthly average, so the analytical comparison is weak. The natural version drops 'key metrics table' and becomes ambiguous (LUKB discloses several LCR figures). Pin the LUKB basis in both versions or drop the item."
+    },
+    {
+      "id": "fin_q_031",
+      "score": 2.8,
+      "recommendation": "keep",
+      "note": "Valid abstention item. It follows the same pattern as fin_q_018 and fin_q_082, so the set doesn't need more of these."
+    },
+    {
+      "id": "fin_q_052",
+      "score": 2.8,
+      "recommendation": "rewrite",
+      "note": "Same revenue line and pages as fin_q_058. The natural form does not ask for amounts although the key facts require them. Merge with fin_q_058 or drop one."
+    },
+    {
+      "id": "fin_q_074",
+      "score": 2.8,
+      "recommendation": "rewrite",
+      "note": "Very long exclusion list for a niche custody-location lookup; the natural version drops the scope ('owned by CBRT', international-standard, exclusions), so other gold sub-totals become defensible answers. Simplify to 'gold owned by the CBRT, by custodian' and keep the scope in the natural form."
+    },
+    {
+      "id": "fin_q_085",
+      "score": 2.8,
+      "recommendation": "keep",
+      "note": "Low-value headcount ranking; marginal, so it can be dropped if the set needs trimming."
+    }
+  ],
+  "to_act_on": [
+    {
+      "id": "fin_q_002",
+      "recommendation": "keep",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Key fact '5.9%' doesn't check the direction; require 'decline/down' (or -5.9%) so that a '+5.9%' answer fails."
+    },
+    {
+      "id": "fin_q_004",
+      "recommendation": "keep",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "question_natural asks only for the total, but the key facts also require 2,715 and 719, so a correct natural answer (3,200) would fail. Ask for the components in the natural version too."
+    },
+    {
+      "id": "fin_q_008",
+      "recommendation": "keep",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "The two changes have opposite signs (-4.5% FY, +42.9% Q4), but the key facts carry bare percentages. Add direction (decline/increase) to the key facts."
+    },
+    {
+      "id": "fin_q_009",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "Mechanical % change on the same two net-debt figures that fin_q_013 already tests (and fin_q_007's answer repeats). Replace with a calculation analysts actually need (e.g. net debt/EBITDA or net debt excl. leases)."
+    },
+    {
+      "id": "fin_q_016",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Three-part definitional question; 'how it relates' is vague. Key facts are loose (a bare 'dividends'; one fact bundles the formula and the 2026 change into a single string); split them into a precise formula and the 2026 replacement."
+    },
+    {
+      "id": "fin_q_019",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "The question says the NBB 'set' the requirements, but the source says they are SRB MREL instructions notified by the NBB. Reword, and shorten the over-specified question."
+    },
+    {
+      "id": "fin_q_020",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "'Highest proportion of collateral used by an issuer' is an opaque phrase that copies the report's wording, and few users would ask for it. The bare '6%' key fact is too loose; reframe it as single-issuer collateral concentration vs Tier 1 and tie '6%' to Tier 1 in the key fact."
+    },
+    {
+      "id": "fin_q_025",
+      "recommendation": "keep",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "question_natural's 'what drove it' invites narrative drivers (CRR3, profits) rather than the CET1 capital and TREA amounts that the key facts require. Ask explicitly for CET1 capital and TREA."
+    },
+    {
+      "id": "fin_q_026",
+      "recommendation": "rewrite",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "Recomputing a ratio that is printed next to its inputs is a test artefact (same pattern as fin_q_027 and fin_q_126); the natural version still says 'recomputed'. Ask instead for the leverage ratio and its headroom over the 3% minimum."
+    },
+    {
+      "id": "fin_q_027",
+      "recommendation": "rewrite",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "Recompute-the-reported-ratio pattern (also fin_q_026 and fin_q_126); the EUR-thousands trap is the only value, and the natural version still says 'recomputed'. Ask instead for CET1 headroom over the requirement, using the thousands units."
+    },
+    {
+      "id": "fin_q_030",
+      "recommendation": "rewrite",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "It compares a point-in-time LCR with a Q4 monthly average, so the analytical comparison is weak. The natural version drops 'key metrics table' and becomes ambiguous (LUKB discloses several LCR figures). Pin the LUKB basis in both versions or drop the item."
+    },
+    {
+      "id": "fin_q_034",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Qualitative paraphrase-retrieval of one passage; key fact 'margin' is a bare generic word that any answer passes. Tighten it to 'specified margin' or 'collateral plus margin', and add 'payment-after-collection' as a fact."
+    },
+    {
+      "id": "fin_q_037",
+      "recommendation": "keep",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Key facts give bare 1,254 / 7,944 with no 'loss' qualifier, so an answer calling them profits would pass. Add 'loss' to the facts (e.g. 'loss of EUR 1,254 million') or add a fact for the narrowing of the loss."
+    },
+    {
+      "id": "fin_q_039",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "The 'whole-£ million basis' instruction is a test artefact that exists only because 51.7% and 51.9% conflict. Ask for the SCR change and its driver (the new PAC reinsurance treaty) and accept both percentages."
+    },
+    {
+      "id": "fin_q_041",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "This bundles SCR (fin_q_035) with a sensitivity row (fin_q_078). It asks for the pp change, but the key facts check 185% instead of -15pp, and the 15 vs 16 rounding is left open. Focus on the sensitivity, put '-15pp' in the facts and accept 16pp."
+    },
+    {
+      "id": "fin_q_046",
+      "recommendation": "keep",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "The only key fact is a bare '6.9%', so a '-6.9%' or 'fell 6.9%' answer passes. Add 'increase' and the two net-asset figures (752,433 / 703,905)."
+    },
+    {
+      "id": "fin_q_047",
+      "recommendation": "drop",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "Trivial single-cell balance-sheet lookup with no trap beyond the prior-year column; it adds little to the benchmark."
+    },
+    {
+      "id": "fin_q_052",
+      "recommendation": "rewrite",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "Same revenue line and pages as fin_q_058. The natural form does not ask for amounts although the key facts require them. Merge with fin_q_058 or drop one."
+    },
+    {
+      "id": "fin_q_061",
+      "recommendation": "keep",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "A simple narrative lookup. The natural form asks only 'why', but the key facts require both amounts, so add 'from what to what' to it."
+    },
+    {
+      "id": "fin_q_071",
+      "recommendation": "drop",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "Self-declared 'purely mechanical' counterfactual that deliberately ignores the equal CET1 deduction, so the 22.06% has no economic meaning; the question also hands over most inputs. The natural version drops the 'ignore the offsetting deduction' caveat, so the answer becomes misleading."
+    },
+    {
+      "id": "fin_q_074",
+      "recommendation": "rewrite",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "Very long exclusion list for a niche custody-location lookup; the natural version drops the scope ('owned by CBRT', international-standard, exclusions), so other gold sub-totals become defensible answers. Simplify to 'gold owned by the CBRT, by custodian' and keep the scope in the natural form."
+    },
+    {
+      "id": "fin_q_076",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "A yes/no comparison of two P&L lines is a weaker version of fin_q_080 (same EUR 1,446m line). Merge it into fin_q_080 or reframe it around the net result of financial operations (-497m)."
+    },
+    {
+      "id": "fin_q_078",
+      "recommendation": "keep",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "No key fact for the count (six) and nothing penalises wrongly including the two favourable scenarios (IR -50bps, corporate spread). Add 'six' as a fact. Partial overlap with fin_q_041 (gov spread shock)."
+    },
+    {
+      "id": "fin_q_079",
+      "recommendation": "rewrite",
+      "natural_ok": false,
+      "key_facts_ok": false,
+      "note": "Classification puzzle (EU as 'government bond'): the natural version drops 'taking the table's classification as given', so 7 is also defensible. Key facts omit French, Spanish and Portuguese issuers; ask for top sovereign concentrations instead."
+    },
+    {
+      "id": "fin_q_081",
+      "recommendation": "keep",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "The sign carries the meaning here (own funds and SCR fall, surplus and coverage rise), but the facts accept unsigned '£11m'/'£15m'/'£4m', so a reversed direction passes. Require 'reduction/increase' or bracket notation. 'As printed' phrasing is test-like."
+    },
+    {
+      "id": "fin_q_084",
+      "recommendation": "rewrite",
+      "natural_ok": false,
+      "key_facts_ok": false,
+      "note": "The Corporate/Other key fact '€431 million' has no sign (it is -€431m), and the natural version drops the before/after special items basis. Largely subsumes fin_q_048 (Kabi EBIT and its basis)."
+    },
+    {
+      "id": "fin_q_087",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "A 2bp TER gap between two sub-funds is a trivial lookup on the same TER table as 083/088. The reference answer contains a pipeline artefact ('encoded in the calculation as the fraction 0.0002') that must be removed."
+    },
+    {
+      "id": "fin_q_088",
+      "recommendation": "drop",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "Same TER-table scan as fin_q_083 (threshold filter instead of minimum); little added value."
+    },
+    {
+      "id": "fin_q_094",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "Two unrelated legal sub-questions glued together, with a very long reference answer. Split it, or keep just the acceleration trigger (liquidation only; payment default does not allow acceleration), which is the part a credit investor actually needs."
+    },
+    {
+      "id": "fin_q_096",
+      "recommendation": "rewrite",
+      "natural_ok": false,
+      "key_facts_ok": false,
+      "note": "Six-number dump plus a footnote-marker interpretation that the reference answer itself hedges; the natural version's 'were 2024 figures restated?' has no clean answer for the net income line. Key facts miss Net income before tax and impairments 2024. Narrow it to one metric plus the restatement note."
+    },
+    {
+      "id": "fin_q_099",
+      "recommendation": "rewrite",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "Comparing admin and depositary fee caps and computing a 2.7bp gap is an artificial comparison. Ask for the fee caps of the service providers instead. The natural version calls it the 'depositary fee' without 'maximum', and omits the request for both rates and the gap."
+    },
+    {
+      "id": "fin_q_100",
+      "recommendation": "keep",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "The key fact 'collateral' is a bare word that any answer will contain. Replace it with 'collateral posted at the Fund's risk' or 'Class not a segregated portion'."
+    },
+    {
+      "id": "fin_q_104",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Key facts drop the signs: 2024 net result is a loss (-€3.83m), 2025 a loss (-€0.66m) and working capital is negative in both years (-€19.03m, -€8.61m); an answer stating positive values would pass. Add signs/'loss'/'negative' to the facts."
+    },
+    {
+      "id": "fin_q_105",
+      "recommendation": "drop",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "Subtracting two rounded published totals to get €0.06m is a mechanical test artefact with spurious precision; if kept, ask simply for the 2025 operating result (income vs expenses) without the rounding caveat."
+    },
+    {
+      "id": "fin_q_107",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Key facts list only 3 of the 4 sources (missing 'Impact 2027 strategic orientations'), so an incomplete answer passes; low decision value and generic text lookup."
+    },
+    {
+      "id": "fin_q_112",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Same CRR2-vs-pro-forma-CRR3 basis trap as fin_q_097 (prospectus vs Pillar 3 CET1 direction); question is overlong. Key facts omit the directions (decrease/increase) and the basis explanation that are the point of the question; merge with fin_q_097 or keep only one."
+    },
+    {
+      "id": "fin_q_113",
+      "recommendation": "keep",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Excellent multi-document reconciliation; key facts should carry signs (-174, +6, -190, +85, -12) since an answer with wrong signs would otherwise pass."
+    },
+    {
+      "id": "fin_q_114",
+      "recommendation": "drop",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Mechanical recomputation of a ratio the document already reports; key facts lack the 'yes, matches 43.0%' conclusion. Low value beyond a simple division."
+    },
+    {
+      "id": "fin_q_122",
+      "recommendation": "drop",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "Out-of-corpus entity abstention with negligible decision value; the entity-trap pattern is already covered by fin_q_116 and others."
+    },
+    {
+      "id": "fin_q_123",
+      "recommendation": "keep",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "question_natural drops the request for the total difference (£546m) that the key facts require; add 'the total gap' to the natural phrasing."
+    },
+    {
+      "id": "fin_q_124",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": false,
+      "note": "Key facts omit the explicitly requested intermediate excess of assets over liabilities (£495m) and the deferred tax item (-39); bare '283'/'430' are loose. Add 495 and -39."
+    },
+    {
+      "id": "fin_q_126",
+      "recommendation": "rewrite",
+      "natural_ok": true,
+      "key_facts_ok": true,
+      "note": "Recomputing a ratio already reported is a test artefact (same pattern as fin_q_026/027); better ask for NSFR, ASF and RSF with correct units to keep the absolute-vs-thousands trap."
+    },
+    {
+      "id": "fin_q_127",
+      "recommendation": "keep",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "question_natural omits the 30 June 2024 most-adverse scenario required by the key facts; add it to the natural phrasing."
+    },
+    {
+      "id": "fin_q_128",
+      "recommendation": "keep",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "question_natural omits the specialised lending part that a key fact requires; key facts also miss 2024 RWEA (1,008,284)."
+    },
+    {
+      "id": "fin_q_134",
+      "recommendation": "keep",
+      "natural_ok": false,
+      "key_facts_ok": true,
+      "note": "question_natural drops the durations and amounts required by key facts; add 'with durations and sensitivities' to the natural phrasing."
+    }
+  ],
+  "per_question": {
+    "fin_q_001": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 3.4,
+      "recommendation": "keep"
+    },
+    "fin_q_002": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_003": {
+      "user_realism": 3,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_004": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_005": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_006": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_007": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.4,
+      "recommendation": "keep"
+    },
+    "fin_q_008": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_009": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 3.0,
+      "recommendation": "rewrite"
+    },
+    "fin_q_010": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_011": {
+      "user_realism": 5,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_012": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 5,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_013": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 3,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_014": {
+      "user_realism": 3,
+      "decision_value": 2,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_015": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_016": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 3,
+      "score": 3.0,
+      "recommendation": "rewrite"
+    },
+    "fin_q_017": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_018": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 1,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_019": {
+      "user_realism": 4,
+      "decision_value": 5,
+      "financial_depth": 5,
+      "benchmark_value": 4,
+      "clarity": 3,
+      "score": 4.2,
+      "recommendation": "rewrite"
+    },
+    "fin_q_020": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 3,
+      "score": 2.6,
+      "recommendation": "rewrite"
+    },
+    "fin_q_021": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_022": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_023": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 5,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_024": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_025": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.6,
+      "recommendation": "keep"
+    },
+    "fin_q_026": {
+      "user_realism": 1,
+      "decision_value": 2,
+      "financial_depth": 3,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 2.6,
+      "recommendation": "rewrite"
+    },
+    "fin_q_027": {
+      "user_realism": 2,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.0,
+      "recommendation": "rewrite"
+    },
+    "fin_q_028": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 4.4,
+      "recommendation": "keep"
+    },
+    "fin_q_029": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.0,
+      "recommendation": "keep"
+    },
+    "fin_q_030": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 3,
+      "score": 2.8,
+      "recommendation": "rewrite"
+    },
+    "fin_q_031": {
+      "user_realism": 3,
+      "decision_value": 2,
+      "financial_depth": 1,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 2.8,
+      "recommendation": "keep"
+    },
+    "fin_q_032": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.4,
+      "recommendation": "keep"
+    },
+    "fin_q_033": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 3,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_034": {
+      "user_realism": 3,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 4,
+      "score": 2.6,
+      "recommendation": "rewrite"
+    },
+    "fin_q_035": {
+      "user_realism": 4,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_036": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_037": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_038": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_039": {
+      "user_realism": 3,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 3,
+      "score": 3.2,
+      "recommendation": "rewrite"
+    },
+    "fin_q_040": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_041": {
+      "user_realism": 3,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 3,
+      "score": 3.4,
+      "recommendation": "rewrite"
+    },
+    "fin_q_042": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_044": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_045": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.4,
+      "recommendation": "keep"
+    },
+    "fin_q_046": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_047": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 1,
+      "clarity": 5,
+      "score": 3.0,
+      "recommendation": "drop"
+    },
+    "fin_q_048": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_049": {
+      "user_realism": 4,
+      "decision_value": 5,
+      "financial_depth": 3,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_050": {
+      "user_realism": 3,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_051": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_052": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 4,
+      "score": 2.8,
+      "recommendation": "rewrite"
+    },
+    "fin_q_053": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 2.6,
+      "recommendation": "keep"
+    },
+    "fin_q_054": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.0,
+      "recommendation": "keep"
+    },
+    "fin_q_055": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.6,
+      "recommendation": "keep"
+    },
+    "fin_q_056": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_057": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_058": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_059": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_060": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_061": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_062": {
+      "user_realism": 5,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_063": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_064": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_065": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_066": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.4,
+      "recommendation": "keep"
+    },
+    "fin_q_067": {
+      "user_realism": 2,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_068": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_069": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_070": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_071": {
+      "user_realism": 1,
+      "decision_value": 2,
+      "financial_depth": 3,
+      "benchmark_value": 2,
+      "clarity": 4,
+      "score": 2.4,
+      "recommendation": "drop"
+    },
+    "fin_q_072": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_073": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_074": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 2.8,
+      "recommendation": "rewrite"
+    },
+    "fin_q_075": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_076": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 3.2,
+      "recommendation": "rewrite"
+    },
+    "fin_q_077": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_078": {
+      "user_realism": 4,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.4,
+      "recommendation": "keep"
+    },
+    "fin_q_079": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 3,
+      "score": 3.0,
+      "recommendation": "rewrite"
+    },
+    "fin_q_080": {
+      "user_realism": 5,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.4,
+      "recommendation": "keep"
+    },
+    "fin_q_081": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 3,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_082": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_083": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.4,
+      "recommendation": "keep"
+    },
+    "fin_q_084": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.8,
+      "recommendation": "rewrite"
+    },
+    "fin_q_085": {
+      "user_realism": 3,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 2.8,
+      "recommendation": "keep"
+    },
+    "fin_q_086": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.6,
+      "recommendation": "keep"
+    },
+    "fin_q_087": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 2.6,
+      "recommendation": "rewrite"
+    },
+    "fin_q_088": {
+      "user_realism": 3,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 2.8,
+      "recommendation": "drop"
+    },
+    "fin_q_089": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.4,
+      "recommendation": "keep"
+    },
+    "fin_q_091": {
+      "user_realism": 4,
+      "decision_value": 5,
+      "financial_depth": 5,
+      "benchmark_value": 5,
+      "clarity": 4,
+      "score": 4.6,
+      "recommendation": "keep"
+    },
+    "fin_q_092": {
+      "user_realism": 4,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_093": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_094": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 3,
+      "score": 3.4,
+      "recommendation": "rewrite"
+    },
+    "fin_q_095": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_096": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 2,
+      "score": 3.0,
+      "recommendation": "rewrite"
+    },
+    "fin_q_097": {
+      "user_realism": 4,
+      "decision_value": 5,
+      "financial_depth": 5,
+      "benchmark_value": 5,
+      "clarity": 4,
+      "score": 4.6,
+      "recommendation": "keep"
+    },
+    "fin_q_098": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_099": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 2.6,
+      "recommendation": "rewrite"
+    },
+    "fin_q_100": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_101": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 5,
+      "clarity": 5,
+      "score": 4.8,
+      "recommendation": "keep"
+    },
+    "fin_q_103": {
+      "user_realism": 3,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 2.8,
+      "recommendation": "keep"
+    },
+    "fin_q_104": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.4,
+      "recommendation": "rewrite"
+    },
+    "fin_q_105": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 4,
+      "score": 2.4,
+      "recommendation": "drop"
+    },
+    "fin_q_106": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_107": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 1,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 2.4,
+      "recommendation": "rewrite"
+    },
+    "fin_q_108": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 2.8,
+      "recommendation": "keep"
+    },
+    "fin_q_109": {
+      "user_realism": 5,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_110": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.6,
+      "recommendation": "keep"
+    },
+    "fin_q_111": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.6,
+      "recommendation": "keep"
+    },
+    "fin_q_112": {
+      "user_realism": 3,
+      "decision_value": 4,
+      "financial_depth": 5,
+      "benchmark_value": 3,
+      "clarity": 3,
+      "score": 3.6,
+      "recommendation": "rewrite"
+    },
+    "fin_q_113": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 5,
+      "benchmark_value": 5,
+      "clarity": 5,
+      "score": 5.0,
+      "recommendation": "keep"
+    },
+    "fin_q_114": {
+      "user_realism": 2,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 2.8,
+      "recommendation": "drop"
+    },
+    "fin_q_115": {
+      "user_realism": 3,
+      "decision_value": 2,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 3.4,
+      "recommendation": "keep"
+    },
+    "fin_q_116": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 3.6,
+      "recommendation": "keep"
+    },
+    "fin_q_117": {
+      "user_realism": 3,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_118": {
+      "user_realism": 5,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_119": {
+      "user_realism": 2,
+      "decision_value": 2,
+      "financial_depth": 3,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_120": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.4,
+      "recommendation": "keep"
+    },
+    "fin_q_121": {
+      "user_realism": 3,
+      "decision_value": 2,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.0,
+      "recommendation": "keep"
+    },
+    "fin_q_122": {
+      "user_realism": 2,
+      "decision_value": 1,
+      "financial_depth": 1,
+      "benchmark_value": 2,
+      "clarity": 5,
+      "score": 2.2,
+      "recommendation": "drop"
+    },
+    "fin_q_123": {
+      "user_realism": 3,
+      "decision_value": 4,
+      "financial_depth": 5,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 4.0,
+      "recommendation": "keep"
+    },
+    "fin_q_124": {
+      "user_realism": 4,
+      "decision_value": 5,
+      "financial_depth": 5,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.6,
+      "recommendation": "rewrite"
+    },
+    "fin_q_125": {
+      "user_realism": 4,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 4,
+      "score": 3.8,
+      "recommendation": "keep"
+    },
+    "fin_q_126": {
+      "user_realism": 2,
+      "decision_value": 4,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.4,
+      "recommendation": "rewrite"
+    },
+    "fin_q_127": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_128": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 4,
+      "benchmark_value": 3,
+      "clarity": 4,
+      "score": 3.4,
+      "recommendation": "keep"
+    },
+    "fin_q_129": {
+      "user_realism": 3,
+      "decision_value": 2,
+      "financial_depth": 3,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_130": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    },
+    "fin_q_131": {
+      "user_realism": 3,
+      "decision_value": 3,
+      "financial_depth": 2,
+      "benchmark_value": 3,
+      "clarity": 5,
+      "score": 3.2,
+      "recommendation": "keep"
+    },
+    "fin_q_132": {
+      "user_realism": 5,
+      "decision_value": 5,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.6,
+      "recommendation": "keep"
+    },
+    "fin_q_133": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 5,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.4,
+      "recommendation": "keep"
+    },
+    "fin_q_134": {
+      "user_realism": 4,
+      "decision_value": 4,
+      "financial_depth": 4,
+      "benchmark_value": 4,
+      "clarity": 5,
+      "score": 4.2,
+      "recommendation": "keep"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+[
+  {
+    "id": "fin_q_115",
+    "auto_status": "check",
+    "issues": [
+      "answerability disagrees (reviewer found an answer)"
+    ]
+  },
+  {
+    "id": "fin_q_116",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_117",
+    "auto_status": "check",
+    "issues": [
+      "answerability disagrees (reviewer found an answer)"
+    ]
+  },
+  {
+    "id": "fin_q_118",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_119",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_120",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_121",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_122",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_123",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_124",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2024', '407']"
+    ]
+  },
+  {
+    "id": "fin_q_125",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_126",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['0.6', '1.12', '1.8808', '136.26', '2024']"
+    ]
+  },
+  {
+    "id": "fin_q_127",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['592431.41', '847589.07', '981685.73']"
+    ]
+  },
+  {
+    "id": "fin_q_128",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['0.83']"
+    ]
+  },
+  {
+    "id": "fin_q_129",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind -0.5689 vs annotated 0.5688945650631474",
+      "numbers of the reference answer not in blind answer: ['137804', '155480', '166126', '17326', '185', '192664']"
+    ]
+  },
+  {
+    "id": "fin_q_130",
+    "auto_status": "agree",
+    "issues": []
+  },
+  {
+    "id": "fin_q_131",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['0.4', '3.8', '4.6', '6.3']"
+    ]
+  },
+  {
+    "id": "fin_q_132",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['39.8']"
+    ]
+  },
+  {
+    "id": "fin_q_133",
+    "auto_status": "check",
+    "issues": [
+      "calculation differs: blind 0.0422 vs annotated 0.04224696316900244",
+      "numbers of the reference answer not in blind answer: ['4.2', '5.3']"
+    ]
+  },
+  {
+    "id": "fin_q_134",
+    "auto_status": "check",
+    "issues": [
+      "numbers of the reference answer not in blind answer: ['2.3', '2024', '6.4']"
+    ]
+  }
+]

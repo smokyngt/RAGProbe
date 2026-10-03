@@ -1,4 +1,15 @@
 {
   "fin_q_043": "Near-duplicate: same answer as fin_q_083 (lowest TER of the GFI Fund share classes is Class S GBP Distributing, 0.49%); replaced by a Guggenheim question on another topic.",
-  "fin_q_090": "Near-duplicate: same table row (GFI Fund Class I USD Accumulating TER) as fin_q_087; replaced by a Guggenheim question on another topic."
+  "fin_q_090": "Near-duplicate: same table row (GFI Fund Class I USD Accumulating TER) as fin_q_087; replaced by a Guggenheim question on another topic.",
+  "fin_q_009": "Relevance review: mechanical % change on the same net-debt figures as fin_q_013 (redundant).",
+  "fin_q_047": "Relevance review: trivial single-cell goodwill lookup with no retrieval trap.",
+  "fin_q_052": "Relevance review: same DHL division revenue line and pages as fin_q_058 (redundant).",
+  "fin_q_071": "Relevance review: 'purely mechanical' counterfactual CET1 ratio that ignores the offsetting deduction; no economic meaning.",
+  "fin_q_076": "Relevance review: weaker yes/no version of fin_q_080 on the same ECB write-down line.",
+  "fin_q_087": "Relevance review: trivial 2 bp gap on the same TER table as fin_q_083 (redundant cluster).",
+  "fin_q_088": "Relevance review: third question on the same Guggenheim TER table (redundant with fin_q_083).",
+  "fin_q_105": "Relevance review: difference of two rounded totals (EUR 0.06m) — spurious precision, test artefact.",
+  "fin_q_112": "Relevance review: same CRR2 vs pro forma CRR3 basis trap as fin_q_097 (redundant).",
+  "fin_q_114": "Relevance review: recomputes a cost-income ratio the release already reports; low value.",
+  "fin_q_122": "Relevance review: out-of-corpus entity abstention with negligible decision value; pattern covered by fin_q_116."
 }
