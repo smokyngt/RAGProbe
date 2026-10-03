@@ -90,7 +90,7 @@ def _expand(value: Any) -> Any:
     if isinstance(value, str):
         def sub(m: re.Match) -> str:
             if m.group(1) not in os.environ:
-                raise ConfigError(f"variable d'environnement non définie : {m.group(1)}")
+                raise ConfigError(f"environment variable not set: {m.group(1)}")
             return os.environ[m.group(1)]
         return _VAR.sub(sub, value)
     if isinstance(value, dict):
@@ -104,10 +104,10 @@ def load_config(path: str | Path) -> Config:
     try:
         raw = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     except (OSError, yaml.YAMLError) as e:
-        raise ConfigError(f"configuration illisible ({path}) : {e}") from e
+        raise ConfigError(f"unreadable configuration ({path}): {e}") from e
     if not isinstance(raw, dict):
-        raise ConfigError(f"{path} : un mapping YAML est attendu")
+        raise ConfigError(f"{path} : a YAML mapping is expected")
     try:
         return Config.model_validate(_expand(raw))
     except ValueError as e:  # pydantic.ValidationError hérite de ValueError
-        raise ConfigError(f"configuration invalide ({path}) :\n{e}") from e
+        raise ConfigError(f"invalid configuration ({path}):\n{e}") from e

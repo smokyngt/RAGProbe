@@ -33,7 +33,7 @@ def test_dataset_loading_and_errors(tmp_path):
     ds = load_dataset(write(tmp_path, "d.jsonl", row + "\n\n" + row.replace('"a"', '"b"') + "\n"))
     assert [s.id for s in ds.samples] == ["a", "b"] and ds.name == "d" and len(ds.sha256) == 64
     assert len(load_dataset(tmp_path / "d.jsonl", limit=1).samples) == 1
-    with pytest.raises(DatasetError, match="dupliqué"):
+    with pytest.raises(DatasetError, match="duplicate id"):
         load_dataset(write(tmp_path, "dup.jsonl", row + "\n" + row))
     with pytest.raises(DatasetError, match=":2:"):
         load_dataset(write(tmp_path, "bad.jsonl", row + "\n" + '{"id": "z"}'))

@@ -60,7 +60,7 @@ def test_retries_on_5xx_then_succeeds(server):
 
 def test_gives_up_after_max_retries(server):
     server["script"] = [(500, {})]
-    with pytest.raises(PipelineError, match="3 tentatives"):
+    with pytest.raises(PipelineError, match="3 attempts"):
         adapter(server["url"], max_retries=2).query("q")
     assert server["hits"] == 3
 

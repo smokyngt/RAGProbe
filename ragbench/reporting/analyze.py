@@ -21,7 +21,7 @@ def available_metrics(traces: Sequence[Trace]) -> list[str]:
 
 def worst(traces: Sequence[Trace], metric: str, n: int, failure_type: FailureType | None = None) -> list[Trace]:
     if metric not in available_metrics(traces):
-        raise ValueError(f"métrique inconnue '{metric}' ; disponibles : {available_metrics(traces)}")
+        raise ValueError(f"unknown metric '{metric}'; available: {available_metrics(traces)}")
     pool = [t for t in traces if (failure_type is None or t.diagnosis == failure_type)
             and metric_value(t, metric) is not None]
     return sorted(pool, key=lambda t: (metric_value(t, metric), t.question_id))[:n]
@@ -30,18 +30,18 @@ def worst(traces: Sequence[Trace], metric: str, n: int, failure_type: FailureTyp
 def format_trace(t: Trace, metric: str, rank: int) -> str:
     out = [f"#{rank} {t.question_id}  {metric}={metric_value(t, metric):.3f}  [{t.diagnosis.value}]",
            f"  Q        : {t.input.question}",
-           f"  référence: {t.ground_truth.answer}"]
+           f"  reference: {t.ground_truth.answer}"]
     if t.error:
-        out.append(f"  ERREUR   : {t.error}")
+        out.append(f"  ERROR    : {t.error}")
         return "\n".join(out)
     po = t.pipeline_output
     got = [c.chunk_id for c in po.retrieved_chunks[:5]]
-    out += [f"  réponse  : {po.answer}",
-            f"  attendus : {t.ground_truth.relevant_chunks}",
+    out += [f"  answer   : {po.answer}",
+            f"  expected : {t.ground_truth.relevant_chunks}",
             f"  top-5    : {got}"]
     if t.judge:
         out.append(f"  judge    : corr={t.judge.correctness:.2f} compl={t.judge.completeness:.2f} "
                    f"ground={t.judge.groundedness:.2f} — {t.judge.reason}")
     if t.judge_error:
-        out.append(f"  judge KO : {t.judge_error}")
+        out.append(f"  judge ERR: {t.judge_error}")
     return "\n".join(out)

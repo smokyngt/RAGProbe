@@ -15,7 +15,9 @@ from collections import Counter
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 STOP = {"le", "la", "les", "l", "un", "une", "des", "du", "de", "d", "et", "est", "en", "quel", "quelle",
-        "quels", "quelles", "que", "qui", "a", "au", "aux", "par", "pour", "dans", "sur", "il", "elle", "ce", "s"}
+        "quels", "quelles", "que", "qui", "a", "au", "aux", "par", "pour", "dans", "sur", "il", "elle", "ce", "s",
+        "the", "of", "is", "in", "what", "which", "how", "much", "was", "were", "are", "for", "to", "an", "and", "by",
+        "at", "on", "does", "do", "it", "its", "be", "per", "with", "that", "this", "as"}
 
 
 def tokens(text: str) -> list[str]:

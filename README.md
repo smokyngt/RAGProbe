@@ -1,29 +1,31 @@
-# ragbench — benchmark runner pour pipelines RAG (V1 : retrieval + QA)
+# ragbench — benchmark runner for RAG pipelines (V1: retrieval + QA)
 
-Un runner **indépendant** : il envoie les questions d'un dataset à une pipeline existante (HTTP), récupère
-`answer` + `retrieved_chunks`, calcule les métriques, et garde une **trace complète par question**.
-Il ne contient aucune pipeline RAG. Question centrale de la V1 :
+An **independent** runner: it sends the questions of a dataset to an existing pipeline (HTTP), collects `answer` +
+`retrieved_chunks`, computes metrics, and keeps a **complete trace per question**. It contains no RAG pipeline.
+The central question of V1:
 
-> Quand la réponse est mauvaise, l'information n'a-t-elle **pas été trouvée** (retrieval) ou **pas été utilisée** (génération) ?
+> When an answer is wrong, did the system **not find** the information (retrieval) or **fail to use it** (generation)?
 
 ```
-datasets/*.jsonl ─► Runner ──HTTP──► Pipeline RAG (n'importe laquelle)
+datasets/*.jsonl ─► Runner ──HTTP──► RAG pipeline (any)
                       │                  │
                       │      {answer, retrieved_chunks[]}
                       ▼                  ▼
-              evaluation/retrieval   evaluation/qa (+ judge LLM optionnel)
+              evaluation/retrieval   evaluation/qa (+ optional LLM judge)
                       └────────┬─────────┘
                                ▼
-                    diagnostic (retrieval / génération / grounding)
+                diagnosis (retrieval / generation / grounding)
                                ▼
                results/<run_id>/{summary.json, traces.jsonl}
 ```
 
-## Installation et essai en 2 minutes
+All benchmark content (datasets, reports, messages) is in **English**. Internal code comments are partly French.
+
+## Install and try it in 2 minutes
 
 ```bash
-pip install -r requirements.txt pytest          # + `pip install anthropic` pour le judge Anthropic
-python examples/mock_pipeline.py --port 8000 &  # pipeline factice (BM25 + réponse extractive)
+pip install -r requirements.txt pytest          # + `pip install anthropic` for the Anthropic judge
+python examples/mock_pipeline.py --port 8000 &  # mock pipeline (BM25 + extractive answer)
 
 python benchmark.py run --dataset datasets/sample.jsonl --config configs/pipeline.yaml --run-id demo
 python benchmark.py report  --run demo
@@ -31,120 +33,120 @@ python benchmark.py analyze --run demo --metric token_f1 --worst 5
 python -m pytest
 ```
 
-Sortie (extrait, 10 questions d'exemple) :
+Sample output (10 financial example questions):
 
 ```
 RETRIEVAL                          WHY DO ANSWERS FAIL?
 Recall@1        0.77                                 answer correct  answer wrong
-Recall@5        1.00               evidence retrieved             7             3
+Recall@5        1.00               evidence retrieved             6             4
 MRR             0.95               evidence missing               0             0
-QA                                 Accuracy when evidence retrieved : 70%
-Exact Match     0.00               Wrong answers (3): 0% retrieval failure, 100% generation failure
-Token F1        0.59
+QA                                 Accuracy when evidence retrieved : 60%
+Exact Match     0.00               Wrong answers (4): 0% retrieval failure, 100% generation failure
+Token F1        0.54
 ```
 
-Avec `--top-k 2` sur la pipeline factice, les mêmes questions donnent 2 `RETRIEVAL_FAILURE` et 1 `GENERATION_FAILURE`.
+With `--top-k 2` on the mock pipeline, the same questions yield 2 `RETRIEVAL_FAILURE` and 2 `GENERATION_FAILURE`.
 
-## Commandes
+## Commands
 
-| Commande | Rôle |
+| Command | Purpose |
 |---|---|
-| `run --dataset D --config C [--run-id ID] [--limit N] [--no-judge]` | exécute le benchmark, écrit `results/<run_id>/` |
-| `report --run ID` | affiche le rapport (retrieval, QA, judge, latence, diagnostic) |
-| `analyze --run ID [--metric M] [--worst N] [--failure-type T]` | pires traces selon `recall_at_5`, `mrr`, `token_f1`, `correctness`, `groundedness`… |
-| `compare A B` | tableau de différences entre deux runs (avertit si les datasets diffèrent) |
+| `run --dataset D --config C [--run-id ID] [--limit N] [--no-judge]` | run the benchmark, write `results/<run_id>/` |
+| `report --run ID` | print the report (retrieval, QA, judge, latency, diagnosis) |
+| `analyze --run ID [--metric M] [--worst N] [--failure-type T]` | worst traces by `recall_at_5`, `mrr`, `token_f1`, `correctness`, `groundedness`… |
+| `compare A B` | metric differences between two runs (warns if the datasets differ) |
 
-`run_id` par défaut : `<date>_<pipeline>_<version>` (suffixe `_2`, `_3` en cas de collision ; un `--run-id` explicite n'écrase jamais).
-Option globale : `--results-dir` (défaut `results`).
+Default `run_id`: `<date>_<pipeline>_<version>` (suffix `_2`, `_3` on collision; an explicit `--run-id` never overwrites).
+Global option: `--results-dir` (default `results`).
 
-## Contrat avec la pipeline testée
+## Contract with the tested pipeline
 
-`POST <endpoint>` avec `{"question": "..."}` → `200` avec :
+`POST <endpoint>` with `{"question": "..."}` → `200` with:
 
 ```json
-{"answer": "Le contrat est conclu pour cinq ans.",
+{"answer": "The contract runs for five years.",
  "retrieved_chunks": [{"chunk_id": "contract_12_chunk_084", "text": "…", "score": 12.3}, "contract_12_chunk_021"]}
 ```
 
-Un chunk est un id (`str`) ou un objet (`chunk_id`|`id`, `text`|`content`, `score`). L'ordre = classement du retriever.
-**Fournir `text`** est nécessaire pour que le judge évalue la groundedness. Les noms des champs sont configurables
-(`request_field`, `answer_field`, `chunks_field`). Pour une pipeline non HTTP : sous-classer `PipelineAdapter.query()`.
+A chunk is an id (`str`) or an object (`chunk_id`|`id`, `text`|`content`, `score`). Order = retriever ranking.
+**Returning `text`** is required for the judge to assess groundedness. Field names are configurable
+(`request_field`, `answer_field`, `chunks_field`). For a non-HTTP pipeline: subclass `PipelineAdapter.query()`.
 
-Gestion d'erreurs : timeout, retries limités avec backoff (réseau, 408/425/429/5xx ; **pas** de retry sur 4xx),
-payload invalide → l'erreur est isolée **à la question** (`PIPELINE_ERROR`, métriques à 0) et le run continue.
+Error handling: timeout, limited retries with backoff (network, 408/425/429/5xx; **no** retry on 4xx), invalid payloads →
+the error is isolated **to the question** (`PIPELINE_ERROR`, metrics at 0) and the run continues.
 
 ## Dataset
 
-JSONL, une question par ligne (validé par Pydantic, ids uniques, erreurs avec numéro de ligne) :
+JSONL, one question per line (validated with Pydantic, unique ids, errors carry the line number):
 
 ```json
 {"id": "q_001", "question": "…", "reference_answer": "…", "document_id": "alpha_2025",
  "relevant_chunks": ["alpha_2025_chunk_001"], "metadata": {"category": "factual", "difficulty": "easy"}}
 ```
 
-`relevant_chunks` (≥ 1) doit contenir les ids **que la pipeline expose**. Chaque run enregistre le SHA-256 du
-dataset : deux runs sont comparables ssi les hash sont égaux. `datasets/sample.jsonl` : 10 questions financières
-fictives (factuel, numérique, multi-hop) ; `sample_corpus.jsonl` ne sert qu'à la pipeline factice.
+`relevant_chunks` (≥ 1) must contain the ids **exposed by the pipeline**. Each run records the dataset SHA-256: two runs are
+comparable iff the hashes are equal. `datasets/sample.jsonl`: 10 fictional financial questions (factual, numeric, multi-hop);
+`sample_corpus.jsonl` is only used by the mock pipeline. The real finance benchmark lives in `finance_benchmark/`
+(see its README); its ground truth references original documents (document + page), not RAG chunks.
 
-## Métriques
+## Metrics
 
-- **Retrieval** (`evaluation/retrieval.py`) : Recall@K, MRR ; Precision@K et nDCG@K disponibles (`benchmark.retrieval_metrics`).
-  Les doublons de chunks ne comptent qu'une fois. Ajouter une métrique = une fonction + une ligne dans `K_METRICS`/`RANK_METRICS`
-  (ex. MAP).
-- **QA déterministe** (`evaluation/qa.py`) : Exact Match, Token F1 après normalisation (minuscules, accents, ponctuation, articles).
-- **LLM judge** (`evaluation/judge.py`) : `correctness`, `completeness`, `groundedness` ∈ [0,1] + `reason`, JSON validé par Pydantic
-  (un seul réessai si invalide ; sinon `judge_error` dans la trace et repli sur Token F1). Le provider est dans la config
-  (`anthropic` ou `openai_compatible`) ; le benchmark ne dépend que de l'interface `AnswerJudge`. La réponse évaluée est
-  traitée comme une donnée (balises + consigne), pas comme des instructions. Plusieurs judges : écrire un `AnswerJudge` composite.
+- **Retrieval** (`evaluation/retrieval.py`): Recall@K, MRR; Precision@K and nDCG@K available (`benchmark.retrieval_metrics`).
+  Duplicate chunks count once. Adding a metric = one function + one line in `K_METRICS`/`RANK_METRICS` (e.g. MAP).
+- **Deterministic QA** (`evaluation/qa.py`): Exact Match, Token F1 after normalisation (lowercase, accents, punctuation, articles).
+- **LLM judge** (`evaluation/judge.py`): `correctness`, `completeness`, `groundedness` ∈ [0,1] + `reason`, JSON validated by Pydantic
+  (one retry if invalid; otherwise `judge_error` in the trace and fallback to Token F1). The provider is in the config
+  (`anthropic` or `openai_compatible`); the benchmark only depends on the `AnswerJudge` interface. The evaluated answer is
+  treated as data (tags + instruction), not as instructions. Several judges: write a composite `AnswerJudge`.
 
-## Diagnostic (point central)
+## Diagnosis (the central point)
 
-Chaque trace contient `analysis` = {`retrieval_ok`, `answer_correct`, `grounded`} et un `diagnosis` qui en dérive :
+Each trace holds `analysis` = {`retrieval_ok`, `answer_correct`, `grounded`} and a derived `diagnosis`:
 
-| `retrieval_ok` | réponse | `diagnosis` |
+| `retrieval_ok` | answer | `diagnosis` |
 |---|---|---|
-| non | fausse | `RETRIEVAL_FAILURE` — les preuves manquent dans le top-K max |
-| oui | fausse | `GENERATION_FAILURE` — les preuves étaient là, mal exploitées |
-| — | juste mais `groundedness` < seuil | `GROUNDING_FAILURE` (nécessite le judge) |
-| — | juste | `SUCCESS` |
-| — | erreur HTTP / timeout | `PIPELINE_ERROR` |
+| no | wrong | `RETRIEVAL_FAILURE` — the evidence is missing from the top-K |
+| yes | wrong | `GENERATION_FAILURE` — the evidence was there, badly used |
+| — | right but `groundedness` < threshold | `GROUNDING_FAILURE` (needs the judge) |
+| — | right | `SUCCESS` |
+| — | HTTP error / timeout | `PIPELINE_ERROR` |
 
-- `retrieval_ok` = **toutes** les preuves annotées sont dans le top-K max (`max(top_k)`) : strict pour le multi-hop.
-- « réponse juste » = `correctness` du judge ≥ 0,5 s'il est activé, sinon Token F1 ≥ 0,5 (seuils dans `benchmark`).
-  Sans judge, le F1 est un proxy grossier : l'EM vaut ~0 dès que la formulation diffère.
-- Le rapport donne la table 2×2 (preuves × réponse) et la part des mauvaises réponses due au retrieval vs à la génération.
+- `retrieval_ok` = **all** annotated evidence is within the top-K max (`max(top_k)`): strict for multi-hop.
+- "Right answer" = judge `correctness` ≥ 0.5 if enabled, else Token F1 ≥ 0.5 (thresholds in `benchmark`).
+  Without a judge, F1 is a coarse proxy: EM is ~0 whenever the wording differs.
+- The report gives the 2×2 table (evidence × answer) and the share of wrong answers due to retrieval vs generation.
 
 ## Configuration (`configs/pipeline.yaml`)
 
-YAML validé (clés inconnues refusées). `${VAR}` est résolu depuis l'environnement (URL, tokens) ; les valeurs des
-headers sont masquées dans `summary.json`. Judge Anthropic : `ANTHROPIC_API_KEY` ou `ant auth login` ; `temperature`
-n'est pas envoyée (refusée par certains modèles récents).
+Validated YAML (unknown keys rejected). `${VAR}` is resolved from the environment (URL, tokens); header values are masked in
+`summary.json`. Anthropic judge: `ANTHROPIC_API_KEY` or `ant auth login`; `temperature` is not sent (refused by some recent models).
 
-## Sorties d'un run
+## Run outputs
 
-- `traces.jsonl` : une ligne par question (écrite au fil de l'eau) — entrée, vérité terrain, sortie pipeline complète,
-  métriques, judge, analyse, diagnostic, latence, erreur.
-- `summary.json` : `run` (run_id, timestamp, pipeline + version, dataset + version + sha256, configuration), agrégats,
-  latence (mean/p50/p95), compteurs de diagnostic, analyse des échecs.
-- Les erreurs pipeline sont comptées à 0 dans les moyennes (et signalées), les latences ne portent que sur les succès.
+- `traces.jsonl`: one line per question (written as it goes) — input, ground truth, full pipeline output, metrics, judge, analysis,
+  diagnosis, latency, error.
+- `summary.json`: `run` (run_id, timestamp, pipeline + version, dataset + version + sha256, configuration), aggregates,
+  latency (mean/p50/p95), diagnosis counters, failure analysis.
+- Pipeline errors count as 0 in the averages (and are flagged); latencies cover successes only.
 
-## Structure
+## Layout
 
 ```
-benchmark.py            point d'entrée CLI (→ ragbench/cli.py)
+benchmark.py            CLI entry point (→ ragbench/cli.py)
 ragbench/
-  models.py             structures Pydantic (Sample, PipelineResult, Trace, Summary…)
-  config.py  dataset.py chargement/validation YAML et JSONL
-  runner.py             boucle dataset → pipeline → métriques → traces
-  storage.py            results/<run_id>/ (écriture incrémentale, relecture)
+  models.py             Pydantic structures (Sample, PipelineResult, Trace, Summary…)
+  config.py  dataset.py YAML and JSONL loading/validation
+  runner.py             loop dataset → pipeline → metrics → traces
+  storage.py            results/<run_id>/ (incremental writing, reading back)
   pipelines/            base.py (PipelineAdapter), http.py (HTTPPipelineAdapter)
   evaluation/           retrieval.py, qa.py, judge.py, diagnosis.py
   reporting/            aggregator.py, report.py, analyze.py
-examples/mock_pipeline.py   pipeline factice (n'importe pas ragbench)
+examples/mock_pipeline.py   mock pipeline (does not import ragbench)
+finance_benchmark/      FinanceBench V1: frozen corpus, annotation tools, dataset (see its README)
 ```
 
-## Limites connues de la V1
+## Known V1 limits
 
-Exécution séquentielle (pas de parallélisme ni de reprise après interruption — les traces déjà écrites sont conservées) ;
-le judge Anthropic/OpenAI-compatible n'est testé qu'avec un faux client dans les tests ; pas de comparaison statistique
-(intervalles de confiance) entre runs ; sur de petits datasets, les écarts entre runs ne sont pas significatifs.
+Sequential execution (no parallelism, no resume after interruption — traces already written are kept); the Anthropic /
+OpenAI-compatible judge is only tested with a fake client; no statistical comparison (confidence intervals) between runs;
+on small datasets, differences between runs are not significant.

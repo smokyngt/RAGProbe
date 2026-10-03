@@ -25,10 +25,10 @@ def parse_chunk(item: Any) -> RetrievedChunk:
     if isinstance(item, dict):
         cid = item.get("chunk_id", item.get("id"))
         if cid is None:
-            raise PipelineError(f"chunk sans identifiant : {item!r}")
+            raise PipelineError(f"chunk without identifier: {item!r}")
         return RetrievedChunk(chunk_id=str(cid), text=item.get("text", item.get("content")),
                               score=item.get("score"))
-    raise PipelineError(f"chunk de type inattendu : {type(item).__name__}")
+    raise PipelineError(f"unexpected chunk type: {type(item).__name__}")
 
 
 class HTTPPipelineAdapter(PipelineAdapter):
@@ -37,7 +37,7 @@ class HTTPPipelineAdapter(PipelineAdapter):
         self.session = session or requests.Session()
 
     def query(self, question: str) -> PipelineResult:
-        cfg, last = self.cfg, "aucune tentative"
+        cfg, last = self.cfg, "no attempt"
         for attempt in range(cfg.max_retries + 1):
             if attempt:
                 time.sleep(cfg.retry_backoff_s * 2 ** (attempt - 1))
@@ -55,8 +55,8 @@ class HTTPPipelineAdapter(PipelineAdapter):
                     raise PipelineError(f"HTTP {resp.status_code}: {resp.text[:200]}")
                 else:
                     return self._parse(resp, latency_ms)
-            log.warning("tentative %d/%d échouée (%s)", attempt + 1, cfg.max_retries + 1, last)
-        raise PipelineError(f"échec après {cfg.max_retries + 1} tentatives : {last}")
+            log.warning("attempt %d/%d failed (%s)", attempt + 1, cfg.max_retries + 1, last)
+        raise PipelineError(f"failed after {cfg.max_retries + 1} attempts: {last}")
 
     def _parse(self, resp: requests.Response, latency_ms: float) -> PipelineResult:
         try:
@@ -64,8 +64,8 @@ class HTTPPipelineAdapter(PipelineAdapter):
             answer = body[self.cfg.answer_field]
             chunks = body[self.cfg.chunks_field]
         except (ValueError, KeyError, TypeError) as e:
-            raise PipelineError(f"réponse invalide ({type(e).__name__}: {e})") from e
+            raise PipelineError(f"invalid response ({type(e).__name__}: {e})") from e
         if not isinstance(answer, str) or not isinstance(chunks, list):
-            raise PipelineError("`answer` doit être une chaîne et `retrieved_chunks` une liste")
+            raise PipelineError("`answer` must be a string and `retrieved_chunks` a list")
         return PipelineResult(answer=answer, retrieved_chunks=[parse_chunk(c) for c in chunks],
                               latency_ms=latency_ms, raw=body)

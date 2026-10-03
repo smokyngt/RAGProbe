@@ -20,28 +20,28 @@ log = logging.getLogger("ragbench")
 
 
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(prog="benchmark.py", description="Benchmark de pipelines RAG (retrieval + QA).")
+    p = argparse.ArgumentParser(prog="benchmark.py", description="Benchmark runner for RAG pipelines (retrieval + QA).")
     p.add_argument("-v", "--verbose", action="store_true")
     p.add_argument("--results-dir", default="results")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    r = sub.add_parser("run", help="exécuter un benchmark")
+    r = sub.add_parser("run", help="run a benchmark")
     r.add_argument("--dataset", required=True)
     r.add_argument("--config", required=True)
-    r.add_argument("--run-id", help="défaut : <date>_<pipeline>_<version>")
-    r.add_argument("--limit", type=int, help="n'évaluer que les N premières questions")
-    r.add_argument("--no-judge", action="store_true", help="désactiver le judge même si la config l'active")
+    r.add_argument("--run-id", help="default: <date>_<pipeline>_<version>")
+    r.add_argument("--limit", type=int, help="only evaluate the first N questions")
+    r.add_argument("--no-judge", action="store_true", help="disable the judge even if the config enables it")
 
-    rp = sub.add_parser("report", help="afficher le rapport d'un run")
+    rp = sub.add_parser("report", help="print the report of a run")
     rp.add_argument("--run", required=True)
 
-    a = sub.add_parser("analyze", help="afficher les pires résultats d'un run")
+    a = sub.add_parser("analyze", help="print the worst results of a run")
     a.add_argument("--run", required=True)
-    a.add_argument("--metric", help="défaut : correctness si judge, sinon token_f1")
+    a.add_argument("--metric", help="default: correctness if judged, else token_f1")
     a.add_argument("--worst", type=int, default=10)
     a.add_argument("--failure-type", choices=[f.value for f in FailureType])
 
-    c = sub.add_parser("compare", help="comparer deux runs")
+    c = sub.add_parser("compare", help="compare two runs")
     c.add_argument("baseline")
     c.add_argument("candidate")
     return p
@@ -56,11 +56,11 @@ def cmd_run(args) -> int:
     adapter = HTTPPipelineAdapter(cfg.pipeline)
     base_id = args.run_id or f"{date.today().isoformat()}_{slug(adapter.name)}_{slug(adapter.version)}"
     run_id, run_dir = create_run_dir(args.results_dir, base_id, explicit=bool(args.run_id))
-    log.info("run %s : %d questions, pipeline=%s, judge=%s", run_id, len(dataset.samples),
+    log.info("run %s: %d questions, pipeline=%s, judge=%s", run_id, len(dataset.samples),
              cfg.pipeline.endpoint, judge.name if judge else "off")
     summary = BenchmarkRunner(cfg, adapter, judge).run(dataset, run_id, run_dir)
     print(format_report(summary))
-    print(f"\nrésultats : {run_dir}/summary.json, traces.jsonl")
+    print(f"\nresults: {run_dir}/summary.json, traces.jsonl")
     return 1 if summary.n_errors == summary.n_questions else 0
 
 
@@ -76,10 +76,10 @@ def cmd_analyze(args) -> int:
     try:
         selected = worst(traces, metric, args.worst, ft)
     except ValueError as e:
-        print(f"erreur : {e}", file=sys.stderr)
+        print(f"error: {e}", file=sys.stderr)
         return 2
-    print(f"{len(selected)} pires traces sur '{metric}'" + (f" (diagnostic {ft.value})" if ft else "")
-          + f" — métriques disponibles : {', '.join(available_metrics(traces))}\n")
+    print(f"{len(selected)} worst traces on '{metric}'" + (f" (diagnosis {ft.value})" if ft else "")
+          + f" — available metrics: {', '.join(available_metrics(traces))}\n")
     for i, t in enumerate(selected, 1):
         print(format_trace(t, metric, i), end="\n\n")
     return 0
@@ -97,5 +97,5 @@ def main(argv: list[str] | None = None) -> int:
     try:
         return {"run": cmd_run, "report": cmd_report, "analyze": cmd_analyze, "compare": cmd_compare}[args.cmd](args)
     except (ConfigError, DatasetError, JudgeError, RunNotFound, FileExistsError) as e:
-        print(f"erreur : {e}", file=sys.stderr)
+        print(f"error: {e}", file=sys.stderr)
         return 2

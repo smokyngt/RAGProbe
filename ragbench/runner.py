@@ -36,7 +36,7 @@ class BenchmarkRunner:
         try:
             result = self.adapter.query(sample.question)
         except Exception as e:  # une panne sur une question ne doit pas arrêter le run
-            log.warning("%s : erreur pipeline : %s", sample.id, e)
+            log.warning("%s: pipeline error: %s", sample.id, e)
             # métriques à zéro : une pipeline qui plante n'est pas "meilleure" qu'une qui se trompe
             metrics = evaluate_retrieval([], sample.relevant_chunks, bench.top_k, bench.retrieval_metrics)
             metrics |= evaluate_answer("", sample.reference_answer)
@@ -55,7 +55,7 @@ class BenchmarkRunner:
                 judge_scores = self.judge.evaluate(sample.question, sample.reference_answer, result.answer, evidence)
             except Exception as e:
                 judge_error = f"{type(e).__name__}: {e}"
-                log.warning("%s : judge en échec : %s", sample.id, judge_error)
+                log.warning("%s: judge failed: %s", sample.id, judge_error)
 
         retrieval_ok = recall_at_k(dedupe(ids), set(sample.relevant_chunks), max(bench.top_k)) >= 1.0
         if judge_scores:

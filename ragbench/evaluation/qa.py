@@ -7,7 +7,7 @@ import unicodedata
 from collections import Counter
 
 # Articles/déterminants courts. "a" est volontairement absent : c'est le verbe avoir en français.
-_ARTICLES = {"le", "la", "les", "l", "un", "une", "des", "du", "de", "d", "the"}
+_ARTICLES = {"le", "la", "les", "l", "un", "une", "des", "du", "de", "d", "the", "an"}  # + "an" (EN)
 _PUNCT = set(string.punctuation) | set("«»’“”…–—")
 
 

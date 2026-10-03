@@ -22,7 +22,7 @@ def create_run_dir(results_dir: str | Path, base_id: str, explicit: bool) -> tup
     run_id, n = base_id, 1
     while (root / run_id).exists():
         if explicit:
-            raise FileExistsError(f"le run '{run_id}' existe déjà (choisir un autre --run-id)")
+            raise FileExistsError(f"run '{run_id}' already exists (choose another --run-id)")
         n += 1
         run_id = f"{base_id}_{n}"
     path = root / run_id
@@ -58,7 +58,7 @@ def _run_path(results_dir: str | Path, run_id: str) -> Path:
     path = Path(results_dir) / run_id
     if not path.is_dir():
         known = sorted(p.name for p in Path(results_dir).glob("*") if p.is_dir())
-        raise RunNotFound(f"run '{run_id}' introuvable dans {results_dir} (existants : {known or 'aucun'})")
+        raise RunNotFound(f"run '{run_id}' not found in {results_dir} (existing: {known or 'none'})")
     return path
 
 

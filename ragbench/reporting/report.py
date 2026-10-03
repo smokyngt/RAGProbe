@@ -28,7 +28,7 @@ def format_report(s: Summary) -> str:
              f"Run:       {r.run_id}",
              f"Pipeline:  {r.pipeline} ({r.pipeline_version})",
              f"Dataset:   {r.dataset} ({r.dataset_version}, sha256 {r.dataset_sha256[:8]})",
-             f"Questions: {s.n_questions}" + (f"   ⚠ erreurs pipeline : {s.n_errors} (comptées à 0)" if s.n_errors else ""),
+             f"Questions: {s.n_questions}" + (f"   ⚠ pipeline errors: {s.n_errors} (counted as 0)" if s.n_errors else ""),
              "", "RETRIEVAL", ""]
     lines += [f"{_label(k):<16}{v:.2f}" for k, v in s.retrieval.items()]
     lines += ["", "QA", ""]
@@ -58,7 +58,7 @@ def format_report(s: Summary) -> str:
 def format_comparison(a: Summary, b: Summary) -> str:
     notes = []
     if a.run.dataset_sha256 != b.run.dataset_sha256:
-        notes.append("⚠ datasets différents (hash) : comparaison non rigoureuse")
+        notes.append("⚠ different datasets (hash): comparison is not rigorous")
     rows = [f"{'metric':<22}{a.run.run_id[-22:]:>24}{b.run.run_id[-22:]:>24}{'delta':>9}"]
     for section in ("retrieval", "qa", "judge"):
         da, db = getattr(a, section) or {}, getattr(b, section) or {}

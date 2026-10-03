@@ -67,7 +67,7 @@ def parse_scores(raw: str) -> JudgeScores:
     """Extrait le premier objet JSON du texte (tolère ```json ... ``` et bavardage) et le valide."""
     start = raw.find("{")
     if start < 0:
-        raise ValueError("aucun objet JSON dans la réponse du judge")
+        raise ValueError("no JSON object in the judge response")
     obj, _ = json.JSONDecoder().raw_decode(raw[start:])
     return JudgeScores.model_validate(obj)
 
@@ -89,7 +89,7 @@ class LLMJudge(AnswerJudge):
                 return parse_scores(raw)
             except (ValueError, ValidationError) as e:  # JSONDecodeError ⊂ ValueError
                 last = e
-        raise JudgeError(f"sortie du judge invalide après {self.max_attempts} essais : {last}")
+        raise JudgeError(f"invalid judge output after {self.max_attempts} attempts: {last}")
 
 
 # ---------- Clients par fournisseur ----------
@@ -114,7 +114,7 @@ class AnthropicClient:
                 messages=[{"role": "user", "content": prompt}],
             )
         except self._anthropic.APIError as e:
-            raise JudgeError(f"appel Anthropic échoué : {e}") from e
+            raise JudgeError(f"Anthropic call failed: {e}") from e
         return "".join(b.text for b in msg.content if b.type == "text")
 
 
@@ -137,7 +137,7 @@ class OpenAICompatibleClient:
             r.raise_for_status()
             return r.json()["choices"][0]["message"]["content"]
         except (requests.RequestException, KeyError, IndexError, ValueError) as e:
-            raise JudgeError(f"appel judge échoué : {e}") from e
+            raise JudgeError(f"judge call failed: {e}") from e
 
 
 def build_judge(cfg: JudgeConfig) -> AnswerJudge | None:
@@ -147,7 +147,7 @@ def build_judge(cfg: JudgeConfig) -> AnswerJudge | None:
         client: LLMClient = AnthropicClient(cfg.model, cfg.max_tokens)
     else:
         if not cfg.base_url:
-            raise JudgeError("judge.base_url est requis pour provider=openai_compatible")
+            raise JudgeError("judge.base_url is required for provider=openai_compatible")
         key = os.environ.get(cfg.api_key_env) if cfg.api_key_env else None
         client = OpenAICompatibleClient(cfg.model, cfg.base_url, key, cfg.max_tokens, cfg.temperature)
     return LLMJudge(client, name=f"{cfg.provider}:{cfg.model}")

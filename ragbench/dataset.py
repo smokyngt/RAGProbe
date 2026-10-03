@@ -30,7 +30,7 @@ def load_dataset(path: str | Path, name: str | None = None, version: str = "unve
     try:
         data = path.read_bytes()
     except OSError as e:
-        raise DatasetError(f"dataset illisible : {e}") from e
+        raise DatasetError(f"unreadable dataset : {e}") from e
     samples: list[Sample] = []
     seen: set[str] = set()
     for lineno, line in enumerate(data.decode("utf-8").splitlines(), start=1):
@@ -41,11 +41,11 @@ def load_dataset(path: str | Path, name: str | None = None, version: str = "unve
         except (json.JSONDecodeError, ValidationError) as e:
             raise DatasetError(f"{path}:{lineno}: {e}") from e
         if sample.id in seen:
-            raise DatasetError(f"{path}:{lineno}: id dupliqué '{sample.id}'")
+            raise DatasetError(f"{path}:{lineno}: duplicate id '{sample.id}'")
         seen.add(sample.id)
         samples.append(sample)
     if not samples:
-        raise DatasetError(f"{path} : dataset vide")
+        raise DatasetError(f"{path} : empty dataset")
     if limit is not None:
         samples = samples[:limit]
     return Dataset(name or path.stem, version, path, hashlib.sha256(data).hexdigest(), samples)

@@ -42,7 +42,7 @@ RANK_METRICS: dict[str, Callable[[Sequence[str], set[str]], float]] = {"mrr": re
 def validate_metric_names(names: Sequence[str]) -> None:
     unknown = [n for n in names if n not in K_METRICS and n not in RANK_METRICS]
     if unknown:
-        raise ValueError(f"métriques de retrieval inconnues {unknown} ; disponibles : "
+        raise ValueError(f"unknown retrieval metrics {unknown}; available: "
                          f"{sorted(K_METRICS) + sorted(RANK_METRICS)}")
 
 

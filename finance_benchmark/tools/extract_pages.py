@@ -3,6 +3,7 @@
 
     python tools/extract_pages.py                 # -> analysis/text/<document_id>.txt  (pages séparées par \\f)
     python tools/extract_pages.py --grep "operating income" [--doc fin_doc_001]
+    python tools/extract_pages.py --doc fin_doc_001 --page 12            # print page 12 (1-based); --page 12-14 for a range
 
 Ces fichiers sont dérivés (analysis/ est ignoré par git) et ne font pas partie du corpus gelé.
 Une page vide dans un PDF qui n'est pas vide signale un scan : OCR nécessaire avant annotation.
@@ -33,6 +34,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--grep")
     ap.add_argument("--doc")
+    ap.add_argument("--page", help="N or A-B (1-based, requires --doc)")
     a = ap.parse_args()
     out_dir = ROOT / "analysis" / "text"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -46,6 +48,11 @@ def main() -> int:
         empty = sum(not p.strip() for p in pages)
         if empty > len(pages) * 0.5:
             print(f"⚠ {d['document_id']} : {empty}/{len(pages)} pages sans texte (scan ? OCR requis)", file=sys.stderr)
+        if a.page:
+            lo, _, hi = a.page.partition("-")
+            for n in range(int(lo), int(hi or lo) + 1):
+                print(f"===== {d['document_id']} PAGE {n} / {len(pages)} =====")
+                print(pages[n - 1].rstrip())
         if a.grep:
             rx = re.compile(a.grep, re.I)
             for n, text in enumerate(pages, 1):
