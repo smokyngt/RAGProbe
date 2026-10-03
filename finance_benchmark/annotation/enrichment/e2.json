@@ -1,0 +1,720 @@
+{
+ "fin_q_029": {
+  "question_natural": "Which had the higher CET1 ratio at end-2025: ASN Bank or Luzerner Kantonalbank Group?",
+  "key_facts": [
+   {
+    "fact": "ASN Bank CET1 ratio 31 Dec 2025",
+    "value": "19.79%",
+    "accept": [
+     "19.79 per cent",
+     "19.8%"
+    ]
+   },
+   {
+    "fact": "LUKB Group CET1 ratio 31 Dec 2025",
+    "value": "14.66%",
+    "accept": [
+     "14.66 per cent",
+     "14.7%"
+    ]
+   }
+  ]
+ },
+ "fin_q_030": {
+  "question_natural": "Was Belfius's LCR at end-2025 higher than Luzerner Kantonalbank Group's?",
+  "key_facts": [
+   {
+    "fact": "Belfius LCR end-2025",
+    "value": "144%",
+    "accept": [
+     "144 per cent"
+    ]
+   },
+   {
+    "fact": "LUKB Group LCR 31 Dec 2025",
+    "value": "129.69%",
+    "accept": [
+     "129.7%",
+     "129.69 per cent"
+    ]
+   }
+  ]
+ },
+ "fin_q_031": {
+  "question_natural": "What was Luzerner Kantonalbank's CET1 ratio at 30 June 2026?",
+  "key_facts": []
+ },
+ "fin_q_032": {
+  "question_natural": "What was the ECB's total financial risk (99% expected shortfall) at end-2025, and how did it compare with 2024?",
+  "key_facts": [
+   {
+    "fact": "ECB total financial risk end-2025",
+    "value": "15.2 billion",
+    "accept": [
+     "€15.2 billion",
+     "EUR 15,200 million",
+     "€15,200 million"
+    ]
+   },
+   {
+    "fact": "change vs end-2024",
+    "value": "slightly lower",
+    "accept": [
+     "lower",
+     "decreased",
+     "declined",
+     "down"
+    ]
+   }
+  ]
+ },
+ "fin_q_033": {
+  "question_natural": "What was Belfius Insurance's Solvency II ratio at end-2025, and its risk-appetite minimum?",
+  "key_facts": [
+   {
+    "fact": "Solvency II ratio 31 Dec 2025",
+    "value": "201%",
+    "accept": [
+     "201 per cent"
+    ]
+   },
+   {
+    "fact": "risk appetite minimum Solvency II ratio",
+    "value": "160%",
+    "accept": [
+     "160 per cent"
+    ]
+   }
+  ]
+ },
+ "fin_q_034": {
+  "question_natural": "How does the Turkish central bank manage credit risk in reserve management versus monetary and FX policy operations?",
+  "key_facts": [
+   {
+    "fact": "reserve management: high-quality counterparties",
+    "value": "high credit quality",
+    "accept": [
+     "highly rated",
+     "high credit rating",
+     "creditworthy"
+    ]
+   },
+   {
+    "fact": "reserve management: limits per counterparty",
+    "value": "credit risk limits",
+    "accept": [
+     "credit limits",
+     "exposure limits",
+     "risk limits"
+    ]
+   },
+   {
+    "fact": "policy operations: full collateral",
+    "value": "collateral covering the full transaction amount",
+    "accept": [
+     "fully collateralised",
+     "fully collateralized",
+     "collateral covering the full amount",
+     "collateral for the full amount"
+    ]
+   },
+   {
+    "fact": "policy operations: additional margin",
+    "value": "margin",
+    "accept": [
+     "haircut"
+    ]
+   }
+  ]
+ },
+ "fin_q_035": {
+  "question_natural": "What were Belfius Insurance's insurance, credit and operational risk SCR components and total SCR at end-2025?",
+  "key_facts": [
+   {
+    "fact": "Insurance Risk SCR",
+    "value": "867",
+    "accept": [
+     "EUR 867 million",
+     "€867 million"
+    ]
+   },
+   {
+    "fact": "Credit Risk SCR",
+    "value": "97",
+    "accept": [
+     "EUR 97 million",
+     "€97 million"
+    ]
+   },
+   {
+    "fact": "Operational Risk SCR",
+    "value": "86",
+    "accept": [
+     "EUR 86 million",
+     "€86 million"
+    ]
+   },
+   {
+    "fact": "total SCR",
+    "value": "1,134",
+    "accept": [
+     "EUR 1.134 billion",
+     "€1.13 billion",
+     "EUR 1.13 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_036": {
+  "question_natural": "How much were banks' required reserves in blocked accounts at the CBRT at end-2025, split between cash and gold?",
+  "key_facts": [
+   {
+    "fact": "total required reserves in blocked accounts",
+    "value": "3,694,946,197,020",
+    "accept": [
+     "TRY 3.69 trillion",
+     "TRY 3.7 trillion",
+     "TRY 3,694.9 billion",
+     "TRY 3,695 billion"
+    ]
+   },
+   {
+    "fact": "cash portion",
+    "value": "2,798,495,224,730",
+    "accept": [
+     "TRY 2.80 trillion",
+     "TRY 2.8 trillion",
+     "TRY 2,798.5 billion",
+     "TRY 2,798 billion"
+    ]
+   },
+   {
+    "fact": "gold portion",
+    "value": "896,450,972,290",
+    "accept": [
+     "TRY 896.5 billion",
+     "TRY 896 billion",
+     "TRY 0.90 trillion"
+    ]
+   }
+  ]
+ },
+ "fin_q_037": {
+  "question_natural": "How did the ECB's annual result change from 2024 to 2025?",
+  "key_facts": [
+   {
+    "fact": "2025 loss",
+    "value": "1,254",
+    "accept": [
+     "EUR 1.25 billion",
+     "€1.25 billion",
+     "EUR 1.3 billion",
+     "€1.3 billion"
+    ]
+   },
+   {
+    "fact": "2024 loss",
+    "value": "7,944",
+    "accept": [
+     "EUR 7.94 billion",
+     "€7.94 billion",
+     "EUR 7.9 billion",
+     "€7.9 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_038": {
+  "question_natural": "How did the CBRT's net interest income/expense, interest income and interest expense change in 2025 vs 2024?",
+  "key_facts": [
+   {
+    "fact": "net interest expense 2025",
+    "value": "898,488,575,631",
+    "accept": [
+     "TRY 898.5 billion",
+     "TRY 898 billion",
+     "TRY 0.90 trillion"
+    ]
+   },
+   {
+    "fact": "net interest expense 2024",
+    "value": "261,022,874,810",
+    "accept": [
+     "TRY 261.0 billion",
+     "TRY 261 billion"
+    ]
+   },
+   {
+    "fact": "interest expense 2025",
+    "value": "1,353,576,337,401",
+    "accept": [
+     "TRY 1.35 trillion",
+     "TRY 1,353.6 billion",
+     "TRY 1,354 billion"
+    ]
+   },
+   {
+    "fact": "interest income 2025",
+    "value": "455,087,761,770",
+    "accept": [
+     "TRY 455.1 billion",
+     "TRY 455 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_039": {
+  "question_natural": "By what percentage did Prudential International Assurance's total SCR fall in 2025, using the whole-£ million totals?",
+  "key_facts": [
+   {
+    "fact": "SCR decrease %",
+    "value": "51.7%",
+    "accept": [
+     "51.74%",
+     "52%",
+     "51.7 per cent"
+    ]
+   },
+   {
+    "fact": "SCR 31 Dec 2025",
+    "value": "139",
+    "accept": [
+     "£139 million",
+     "GBP 139 million",
+     "£139m"
+    ]
+   },
+   {
+    "fact": "SCR 31 Dec 2024",
+    "value": "288",
+    "accept": [
+     "£288 million",
+     "GBP 288 million",
+     "£288m"
+    ]
+   }
+  ]
+ },
+ "fin_q_040": {
+  "question_natural": "How does the ECB account for unrealised gains and losses on gold, currencies and securities?",
+  "key_facts": [
+   {
+    "fact": "unrealised gains go to revaluation account, not income",
+    "value": "revaluation account",
+    "accept": [
+     "revaluation accounts"
+    ]
+   },
+   {
+    "fact": "losses to P&L only above prior revaluation gains",
+    "value": "exceed previous revaluation gains",
+    "accept": [
+     "exceed the previous revaluation gains",
+     "in excess of previous revaluation gains",
+     "exceed accumulated revaluation gains",
+     "exceed revaluation gains"
+    ]
+   },
+   {
+    "fact": "no netting across items",
+    "value": "not netted",
+    "accept": [
+     "no netting",
+     "not offset",
+     "cannot be netted",
+     "are not netted"
+    ]
+   }
+  ]
+ },
+ "fin_q_041": {
+  "question_natural": "What were Belfius Insurance's AFR and SCR at end-2025, and the Solvency II ratio impact of a +50bp government spread shock?",
+  "key_facts": [
+   {
+    "fact": "available financial resources",
+    "value": "2,278",
+    "accept": [
+     "EUR 2.28 billion",
+     "€2.28 billion",
+     "EUR 2.3 billion"
+    ]
+   },
+   {
+    "fact": "SCR",
+    "value": "1,134",
+    "accept": [
+     "EUR 1.13 billion",
+     "€1.13 billion",
+     "EUR 1.134 billion"
+    ]
+   },
+   {
+    "fact": "ratio after +50bp govt spread shock",
+    "value": "185%",
+    "accept": [
+     "185 per cent"
+    ]
+   }
+  ]
+ },
+ "fin_q_042": {
+  "question_natural": "What Solvency II ratio does Belfius Insurance project for end-2026?",
+  "key_facts": []
+ },
+ "fin_q_044": {
+  "question_natural": "How big was the expense waiver for Guggenheim's GGI Fund in 2025, and its net operating expense after it?",
+  "key_facts": [
+   {
+    "fact": "expense waiver 2025",
+    "value": "237",
+    "accept": [
+     "USD 237,000",
+     "$237 thousand",
+     "USD 0.24 million"
+    ]
+   },
+   {
+    "fact": "total operating expense after waiver",
+    "value": "155",
+    "accept": [
+     "USD 155,000",
+     "$155 thousand",
+     "USD 0.16 million"
+    ]
+   }
+  ]
+ },
+ "fin_q_045": {
+  "question_natural": "How did redemptions in Guggenheim's GGI Fund change in 2025 vs 2024?",
+  "key_facts": [
+   {
+    "fact": "redemptions 2025",
+    "value": "1,660",
+    "accept": [
+     "USD 1.66 million",
+     "$1.66 million",
+     "USD 1.7 million"
+    ]
+   },
+   {
+    "fact": "redemptions 2024",
+    "value": "18,496",
+    "accept": [
+     "USD 18.5 million",
+     "$18.5 million",
+     "USD 18.50 million"
+    ]
+   }
+  ]
+ },
+ "fin_q_046": {
+  "question_natural": "By what percentage did net assets of Guggenheim's GFI Fund change in 2025?",
+  "key_facts": [
+   {
+    "fact": "change in net assets",
+    "value": "6.9%",
+    "accept": [
+     "6.89%",
+     "6.9 per cent"
+    ]
+   }
+  ]
+ },
+ "fin_q_047": {
+  "question_natural": "What was Fresenius's goodwill at December 31, 2025?",
+  "key_facts": [
+   {
+    "fact": "goodwill 31 Dec 2025",
+    "value": "14,527",
+    "accept": [
+     "€14.53 billion",
+     "EUR 14.53 billion",
+     "€14.5 billion",
+     "EUR 14.5 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_048": {
+  "question_natural": "What was Fresenius Kabi's 2025 segment EBIT, and is it before or after special items?",
+  "key_facts": [
+   {
+    "fact": "Kabi EBIT 2025",
+    "value": "1,413",
+    "accept": [
+     "€1.41 billion",
+     "EUR 1.41 billion",
+     "€1.4 billion"
+    ]
+   },
+   {
+    "fact": "basis",
+    "value": "before special items",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_049": {
+  "question_natural": "How did Fresenius's net income attributable to shareholders change in 2025 vs 2024?",
+  "key_facts": [
+   {
+    "fact": "net income 2025",
+    "value": "1,264",
+    "accept": [
+     "€1.26 billion",
+     "EUR 1.26 billion",
+     "€1.3 billion"
+    ]
+   },
+   {
+    "fact": "net income 2024",
+    "value": "471",
+    "accept": [
+     "€0.47 billion",
+     "EUR 0.47 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_050": {
+  "question_natural": "What was Fresenius Group's 2025 operating cash flow, and Helios's segment operating cash flow and its basis?",
+  "key_facts": [
+   {
+    "fact": "Group net cash from operating activities 2025",
+    "value": "2,574",
+    "accept": [
+     "€2.57 billion",
+     "EUR 2.57 billion",
+     "€2.6 billion"
+    ]
+   },
+   {
+    "fact": "Helios operating cash flow 2025",
+    "value": "1,607",
+    "accept": [
+     "€1.61 billion",
+     "EUR 1.61 billion",
+     "€1.6 billion"
+    ]
+   },
+   {
+    "fact": "Helios basis",
+    "value": "before special items",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_051": {
+  "question_natural": "Which DHL Group division had the highest EBIT margin on total revenue in 2025, and what was it?",
+  "key_facts": [
+   {
+    "fact": "highest-margin division",
+    "value": "Express",
+    "accept": []
+   },
+   {
+    "fact": "Express EBIT margin",
+    "value": "12.9%",
+    "accept": [
+     "12.94%",
+     "12.9 per cent"
+    ]
+   }
+  ]
+ },
+ "fin_q_052": {
+  "question_natural": "Rank DHL Group's divisions by total revenue in 2025.",
+  "key_facts": [
+   {
+    "fact": "Express revenue (1st)",
+    "value": "24,430",
+    "accept": [
+     "€24.43 billion",
+     "€24.4 billion"
+    ]
+   },
+   {
+    "fact": "Global Forwarding, Freight revenue (2nd)",
+    "value": "18,643",
+    "accept": [
+     "€18.64 billion",
+     "€18.6 billion"
+    ]
+   },
+   {
+    "fact": "Post & Parcel Germany revenue (3rd)",
+    "value": "17,874",
+    "accept": [
+     "€17.87 billion",
+     "€17.9 billion"
+    ]
+   },
+   {
+    "fact": "Supply Chain revenue (4th)",
+    "value": "17,778",
+    "accept": [
+     "€17.78 billion",
+     "€17.8 billion"
+    ]
+   },
+   {
+    "fact": "eCommerce revenue (5th)",
+    "value": "6,884",
+    "accept": [
+     "€6.88 billion",
+     "€6.9 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_053": {
+  "question_natural": "Which DHL division cut average FTEs the most in 2025, and by how many?",
+  "key_facts": [
+   {
+    "fact": "division with largest FTE reduction",
+    "value": "Post & Parcel Germany",
+    "accept": [
+     "Post and Parcel Germany",
+     "P&P Germany"
+    ]
+   },
+   {
+    "fact": "reduction in average FTEs",
+    "value": "3,723",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_054": {
+  "question_natural": "At which year-end from 2020 to 2025 was DHL Group's net debt lowest, and which was next-lowest?",
+  "key_facts": [
+   {
+    "fact": "lowest: 31 Dec 2021",
+    "value": "12,772",
+    "accept": [
+     "€12.77 billion",
+     "€12.8 billion"
+    ]
+   },
+   {
+    "fact": "next-lowest: 31 Dec 2020",
+    "value": "12,928",
+    "accept": [
+     "€12.93 billion",
+     "€12.9 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_055": {
+  "question_natural": "Did DHL meet its 2025 free cash flow guidance, both including and excluding M&A?",
+  "key_facts": [
+   {
+    "fact": "FCF incl. M&A target",
+    "value": "€2.75 billion",
+    "accept": [
+     "€2,750 million",
+     "EUR 2.75 billion"
+    ]
+   },
+   {
+    "fact": "FCF incl. M&A actual",
+    "value": "€2.3 billion",
+    "accept": [
+     "€2,300 million",
+     "EUR 2.3 billion"
+    ]
+   },
+   {
+    "fact": "FCF excl. M&A target",
+    "value": "€3.0 billion",
+    "accept": [
+     "€3 billion",
+     "€3,000 million",
+     "EUR 3.0 billion"
+    ]
+   },
+   {
+    "fact": "FCF excl. M&A actual",
+    "value": "€3.2 billion",
+    "accept": [
+     "€3,200 million",
+     "EUR 3.2 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_056": {
+  "question_natural": "Was DHL's 2025 operating cash flow the highest of 2021–2025?",
+  "key_facts": [
+   {
+    "fact": "2025 net cash from operating activities",
+    "value": "9,119",
+    "accept": [
+     "€9.12 billion",
+     "€9.1 billion"
+    ]
+   },
+   {
+    "fact": "2022 (highest)",
+    "value": "10,965",
+    "accept": [
+     "€10.97 billion",
+     "€11.0 billion"
+    ]
+   },
+   {
+    "fact": "2021",
+    "value": "9,993",
+    "accept": [
+     "€9.99 billion",
+     "€10.0 billion"
+    ]
+   },
+   {
+    "fact": "2023",
+    "value": "9,258",
+    "accept": [
+     "€9.26 billion",
+     "€9.3 billion"
+    ]
+   },
+   {
+    "fact": "2024",
+    "value": "8,722",
+    "accept": [
+     "€8.72 billion",
+     "€8.7 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_057": {
+  "question_natural": "Which had higher 2025 capex at DHL, Supply Chain or Post & Parcel Germany, and by how much?",
+  "key_facts": [
+   {
+    "fact": "Supply Chain total capex",
+    "value": "1,600",
+    "accept": [
+     "€1.6 billion",
+     "€1.60 billion"
+    ]
+   },
+   {
+    "fact": "Post & Parcel Germany total capex",
+    "value": "1,197",
+    "accept": [
+     "€1.2 billion",
+     "€1.20 billion"
+    ]
+   },
+   {
+    "fact": "gap",
+    "value": "403",
+    "accept": [
+     "402"
+    ]
+   }
+  ]
+ }
+}

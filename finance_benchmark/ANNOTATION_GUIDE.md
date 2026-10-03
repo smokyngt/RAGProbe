@@ -85,6 +85,33 @@ Text is `pdftotext -layout`: tables are column-aligned. Always read the table he
 Styles combine with any `type` (e.g. a `table` question with `superlative` style). Traps to avoid: superlatives with ties,
 open scope ("largest company" when only some entities are in the document), and "why" questions whose causes are not in the text.
 
+## Natural question and key facts (every question)
+
+```json
+"question_natural": "What was DHL's effective tax rate in 2025?",
+"key_facts": [{"fact": "effective tax rate 2025", "value": "29.4%", "accept": ["29.36%", "29.4 per cent"]}]
+```
+
+- `question_natural` = how a real analyst would type it: short (aim ≤ 20 words, max 30), no document titles, section names,
+  page or table references, no list of the candidate rows. Keep only what is needed so that the SAME reference answer stays the
+  only defensible answer: entity, period, and the basis when the basis is the point of the question ("before special items",
+  "in the results press release", "on a CRR3 basis"). If that is impossible, keep the extra words: ambiguity is worse than length.
+- `key_facts` = 1–6 atomic facts a correct answer MUST contain, used for deterministic scoring (all present ⇒ correct):
+  numbers with their unit, the extreme item of a superlative, every item of a list/ranking, the count of a count question,
+  the defined term's essential content. `value` is copied as written in the reference answer (it must be found there by the
+  matcher: thousands separators, spaces before %, and unicode minus signs are ignored); `accept` lists equivalent
+  formulations (other scale "€1.54 billion", unrounded "29.36%", "EUR" vs "€"). Do not use bare "Yes"/"No" as a value: use the
+  figures or the phrase that justify the verdict. Leave out context-only details ("for comparison…"). No key facts for
+  unanswerable questions (abstention is scored separately).
+- Check a file with `python tools/check_enrichment.py <file>`.
+
+## Unanswerable questions: vary the pattern
+
+Do not rely only on "a period after the report date". Patterns: an entity not in the corpus; a metric the document explicitly
+does not disclose; a segment / sub-fund / share class that does not exist; a figure that would only be in a document type absent
+from the corpus (e.g. a quarterly report); a false premise the documents contradict (the answer must say what the documents
+actually show and that the premise cannot be confirmed). Grep all 17 documents (synonyms included) before keeping one.
+
 ## Review file (written later, after blind re-answering)
 
 `datasets/finance_benchmark_v1_review.json` — per question: `status` (verified|flagged), `method`

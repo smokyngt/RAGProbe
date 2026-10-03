@@ -28,11 +28,13 @@ def format_report(s: Summary) -> str:
              f"Run:       {r.run_id}",
              f"Pipeline:  {r.pipeline} ({r.pipeline_version})",
              f"Dataset:   {r.dataset} ({r.dataset_version}, sha256 {r.dataset_sha256[:8]})",
+             f"Questions sent as: {r.configuration.get('benchmark', {}).get('question_field', 'question')}",
              f"Questions: {s.n_questions}" + (f"   ⚠ pipeline errors: {s.n_errors} (counted as 0)" if s.n_errors else ""),
              "", "RETRIEVAL", ""]
     lines += [f"{_label(k):<16}{v:.2f}" for k, v in s.retrieval.items()]
     lines += ["", "QA", ""]
-    lines += [f"{'Exact Match' if k == 'exact_match' else 'Token F1':<16}{v:.2f}" for k, v in s.qa.items()]
+    qa_labels = {"exact_match": "Exact Match", "token_f1": "Token F1", "key_fact_recall": "Key facts", "key_facts_all": "All key facts"}
+    lines += [f"{qa_labels.get(k, k):<16}{v:.2f}" for k, v in s.qa.items()]
     if s.judge:
         lines += ["", f"LLM JUDGE  (n={s.n_judged}/{s.n_questions})", ""]
         lines += [f"{k.capitalize():<16}{v:.2f}" for k, v in s.judge.items()]

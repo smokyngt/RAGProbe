@@ -30,6 +30,8 @@ from typing import Callable, Literal
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT.parent))  # repository root: key facts are matched exactly as the ragbench runner matches them
+from ragbench.evaluation.qa import fact_present  # noqa: E402
 QTYPES = ("direct", "table", "temporal", "calculation", "multi_evidence", "multi_document", "definition", "risk", "negative")
 TARGET_50 = {"direct": 10, "table": 10, "temporal": 8, "calculation": 7, "multi_evidence": 5, "multi_document": 4,
              "definition": 3, "negative": 3}
@@ -61,6 +63,12 @@ class InputSource(_S):
     scale: float  # multiplicateur vers l'unité de base : 1e6 pour "million", 0.01 pour "%"
 
 
+class KeyFact(_S):
+    fact: str = Field(min_length=3)  # what the fact is about, e.g. "effective tax rate 2025"
+    value: str = Field(min_length=1)  # as written in the reference answer, e.g. "29.4%"
+    accept: list[str] = Field(default_factory=list)  # equivalent formulations, e.g. ["29.36%", "29.4 per cent"]
+
+
 class Calculation(_S):
     inputs: dict[str, float]
     operation: str
@@ -83,7 +91,9 @@ class Metadata(_S):
 class Example(_S):
     id: str = Field(pattern=r"^fin_q_\d{3,4}$")
     question: str = Field(min_length=10)
+    question_natural: str | None = None  # short, user-like phrasing with the same reference answer
     reference_answer: str = Field(min_length=3)
+    key_facts: list[KeyFact] = Field(default_factory=list)
     evidence: list[Evidence]
     metadata: Metadata
     calculation: Calculation | None = None
@@ -97,6 +107,8 @@ class Example(_S):
             raise ValueError("empty evidence for an answerable question")
         if m.type == "negative" and m.answerable:
             raise ValueError("type negative implies answerable=false")
+        if not m.answerable and self.key_facts:
+            raise ValueError("an unanswerable question has no key facts (abstention is scored separately)")
         if m.requires_calculation != (self.calculation is not None):
             raise ValueError("requires_calculation inconsistent with the presence of `calculation`")
         multi = len({e.document_id for e in ev}) > 1
@@ -205,6 +217,25 @@ class Report:
 
     def warn(self, qid: str, msg: str):
         self.warnings.append(f"{qid}: {msg}")
+
+
+def check_enrichment(ex: Example, rep: Report, required: bool) -> None:
+    """question_natural and key_facts: present when required, consistent with the verified reference answer."""
+    if ex.question_natural is None:
+        if required:
+            rep.err(ex.id, "question_natural missing")
+    else:
+        n = len(ex.question_natural.split())
+        if n > 30:
+            rep.warn(ex.id, f"question_natural is long ({n} words); aim for how a user would ask")
+        if re.search(r"\b(page|p\.\s?\d+|table \d|section \d)", ex.question_natural, re.I):
+            rep.err(ex.id, "question_natural must not mention pages, tables or sections")
+    if ex.metadata.answerable:
+        if not ex.key_facts and required:
+            rep.err(ex.id, "key_facts missing")
+        for i, kf in enumerate(ex.key_facts):
+            if not fact_present(ex.reference_answer, [kf.value]):
+                rep.err(ex.id, f"key_facts[{i}] value '{kf.value}' not found in the reference answer")
 
 
 def check_example(ex: Example, pages: dict[str, int], load: Callable[[str], list[str]], rep: Report) -> None:
@@ -317,7 +348,7 @@ def load_examples(path: Path, rep: Report) -> list[Example]:
 
 
 def run(root: Path, draft: Path, review_path: Path, final: Path, export: bool,
-        no_review: bool = False, load: Callable[[str], list[str]] | None = None) -> int:
+        no_review: bool = False, require_enrichment: bool = False, load: Callable[[str], list[str]] | None = None) -> int:
     rep = Report()
     manifest = json.loads((root / "corpus" / "manifest.json").read_text("utf-8"))
     pages = {d["document_id"]: d["pages"] for d in manifest["documents"]}
@@ -327,6 +358,7 @@ def run(root: Path, draft: Path, review_path: Path, final: Path, export: bool,
     examples = load_examples(draft, rep)
     for ex in examples:
         check_example(ex, pages, load, rep)
+        check_enrichment(ex, rep, require_enrichment)
     status = {}
     if review_path.exists():
         status = check_review(examples, json.loads(review_path.read_text("utf-8")), rep)
@@ -357,5 +389,6 @@ if __name__ == "__main__":
     ap.add_argument("--final", default=str(ROOT / "datasets" / "finance_benchmark_v1.jsonl"))
     ap.add_argument("--export", action="store_true")
     ap.add_argument("--no-review", action="store_true", help="draft self-check: skip the review-file requirement")
+    ap.add_argument("--require-enrichment", action="store_true", help="question_natural and key_facts are mandatory")
     a = ap.parse_args()
-    sys.exit(run(ROOT, Path(a.draft), Path(a.review), Path(a.final), a.export, a.no_review))
+    sys.exit(run(ROOT, Path(a.draft), Path(a.review), Path(a.final), a.export, a.no_review, a.require_enrichment))

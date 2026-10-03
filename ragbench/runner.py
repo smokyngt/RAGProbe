@@ -37,32 +37,34 @@ class BenchmarkRunner:
 
     def evaluate_sample(self, sample: Sample) -> Trace:
         bench = self.cfg.benchmark
+        natural = bench.question_field == "question_natural" and bool(sample.question_natural)
+        question = sample.question_natural if natural else sample.question
         base = dict(
             question_id=sample.id,
-            input=TraceInput(question=sample.question),
+            input=TraceInput(question=question, variant="question_natural" if natural else "question"),
             ground_truth=TraceGroundTruth(answer=sample.reference_answer, relevant_chunks=sample.relevant_chunks,
                                           evidence=sample.evidence, answerable=sample.answerable,
                                           document_id=sample.document_id, metadata=sample.metadata),
         )
         try:
-            result = self.adapter.query(sample.question)
+            result = self.adapter.query(question)
         except Exception as e:  # a failure on one question must not stop the run
             log.warning("%s: pipeline error: %s", sample.id, e)
             # metrics at zero: a pipeline that crashes is not "better" than one that answers wrongly
             metrics = retrieval_metrics(sample, [], bench.top_k, bench.retrieval_metrics)
-            metrics |= evaluate_answer("", sample.reference_answer)
+            metrics |= evaluate_answer("", sample.reference_answer, sample.key_facts)
             return Trace(**base, metrics=metrics, diagnosis=FailureType.PIPELINE_ERROR,
                          error=f"{type(e).__name__}: {e}")
 
         metrics = retrieval_metrics(sample, result.retrieved_chunks, bench.top_k, bench.retrieval_metrics)
-        metrics |= evaluate_answer(result.answer, sample.reference_answer)
+        metrics |= evaluate_answer(result.answer, sample.reference_answer, sample.key_facts)
 
         judge_scores: JudgeScores | None = None
         judge_error: str | None = None
         if self.judge:
             evidence = [c.text for c in result.retrieved_chunks if c.text][: self.cfg.judge.max_evidence_chunks]
             try:
-                judge_scores = self.judge.evaluate(sample.question, sample.reference_answer, result.answer, evidence)
+                judge_scores = self.judge.evaluate(question, sample.reference_answer, result.answer, evidence)
             except Exception as e:
                 judge_error = f"{type(e).__name__}: {e}"
                 log.warning("%s: judge failed: %s", sample.id, judge_error)
@@ -82,6 +84,8 @@ class BenchmarkRunner:
             grounded = judge_scores.groundedness >= bench.grounded_threshold
         elif not sample.answerable:  # the right answer is "this cannot be established from the documents"
             answer_correct, source = is_abstention(result.answer), "abstention_check"
+        elif sample.key_facts:  # deterministic: every key fact must be in the answer
+            answer_correct, source = metrics["key_facts_all"] == 1.0, "key_facts"
         else:
             answer_correct, source = metrics["token_f1"] >= bench.answer_correct_f1_threshold, "token_f1"
         if not sample.answerable:

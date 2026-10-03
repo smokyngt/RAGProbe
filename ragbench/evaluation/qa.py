@@ -34,8 +34,44 @@ def token_f1(predicted: str, reference: str) -> float:
     return 2 * precision * recall / (precision + recall)
 
 
-def evaluate_answer(predicted: str, reference: str) -> dict[str, float]:
-    return {"exact_match": exact_match(predicted, reference), "token_f1": token_f1(predicted, reference)}
+def fact_normalize(text: str) -> str:
+    """Normalisation for key-fact matching: keeps numbers intact but makes their formatting irrelevant.
+
+    '€ 1,540 million' -> '€1540 million' ; '29.4 %' -> '29.4%' ; '−1 494' -> '-1494' ; "CHF 1'234.5" -> 'chf 1234.5'.
+    """
+    t = unicodedata.normalize("NFKC", text or "").lower()
+    t = re.sub(r"[\u2010-\u2015\u2212]", "-", t)  # dashes / unicode minus
+    t = re.sub(r"(?<=\d)[\s'’](?=\d{3}\b)", "", t)  # thousands separators: space, thin space, apostrophe
+    t = re.sub(r"(?<=\d),(?=\d{3}\b)", "", t)  # thousands separators: comma
+    t = re.sub(r"\s+%", "%", t)
+    t = re.sub(r"([€$£])\s+", r"\1", t)
+    return " ".join(t.split())
+
+
+def fact_present(answer: str, accept: list[str]) -> bool:
+    """True if one accepted formulation appears in the answer (a number never matches inside a longer number)."""
+    a = fact_normalize(answer)
+    for v in accept:
+        v = fact_normalize(v).rstrip(".")
+        if not v:
+            continue
+        pattern = (r"(?<![\d.])" if v[0].isdigit() else "") + re.escape(v) + (r"(?![\d])" if v[-1].isdigit() else "")
+        if re.search(pattern, a):
+            return True
+    return False
+
+
+def key_fact_scores(predicted: str, key_facts: list) -> dict[str, float]:
+    """Share of the key facts present in the answer, and whether all of them are (deterministic scoring)."""
+    found = [fact_present(predicted, [f.value, *f.accept]) for f in key_facts]
+    return {"key_fact_recall": sum(found) / len(found), "key_facts_all": float(all(found))}
+
+
+def evaluate_answer(predicted: str, reference: str, key_facts: list | None = None) -> dict[str, float]:
+    out = {"exact_match": exact_match(predicted, reference), "token_f1": token_f1(predicted, reference)}
+    if key_facts:
+        out |= key_fact_scores(predicted, key_facts)
+    return out
 
 
 _ABSTENTION = re.compile(

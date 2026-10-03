@@ -39,7 +39,8 @@ class DatasetConfig(_Strict):
 class BenchmarkConfig(_Strict):
     top_k: list[int] = [1, 5, 10]
     retrieval_metrics: list[str] = ["recall", "mrr"]  # + "precision", "ndcg" disponibles
-    answer_correct_f1_threshold: float = Field(0.5, ge=0, le=1)  # sans judge
+    question_field: Literal["question", "question_natural"] = "question"  # natural = short user-like phrasing
+    answer_correct_f1_threshold: float = Field(0.5, ge=0, le=1)  # without judge and without key facts
     judge_correct_threshold: float = Field(0.5, ge=0, le=1)
     grounded_threshold: float = Field(0.5, ge=0, le=1)
 

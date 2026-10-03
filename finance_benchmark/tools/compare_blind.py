@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compare blind answers (annotation/blind/answers_*.jsonl) with the annotated drafts (annotation/drafts/*.jsonl).
 
-    python tools/compare_blind.py 1|2|3     # wave 1 (g*), 2 (h*) or 3 (k*) -> annotation/blind/comparison_waveN.json
+    python tools/compare_blind.py 1|2|3|4   # wave 1 (g*), 2 (h*), 3 (k*) or 4 (m*) -> annotation/blind/comparison_waveN.json
 
 Blind answer format:
   {"id", "answer", "evidence": [{"document_id","page","text"}], "calculation": {"inputs","operation","result"}|null,
@@ -70,7 +70,7 @@ def compare(ref: dict, blind: dict | None) -> dict:
 
 def main() -> int:
     wave = sys.argv[1] if len(sys.argv) > 1 else "1"  # "1": g*.jsonl + answers_v*.jsonl ; "2": h*.jsonl + answers_w2v*.jsonl
-    prefix = {"1": ("g", "v"), "2": ("h", "w2v"), "3": ("k", "w3v")}[wave]  # drafts g/h/k*.jsonl, blind answers answers_<prefix>*.jsonl
+    prefix = {"1": ("g", "v"), "2": ("h", "w2v"), "3": ("k", "w3v"), "4": ("m", "w4v")}[wave]  # drafts g/h/k*.jsonl, blind answers answers_<prefix>*.jsonl
     refs = load(f"drafts/{prefix[0]}*.jsonl")
     blinds = load(f"blind/answers_{prefix[1]}*.jsonl")
     rows = [compare(refs[i], blinds.get(i)) for i in sorted(refs)]

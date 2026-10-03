@@ -6,7 +6,7 @@ from typing import Sequence
 
 from ..models import FailureType, RunMetadata, Summary, Trace
 
-QA_KEYS = ("exact_match", "token_f1")
+QA_KEYS = ("exact_match", "token_f1", "key_fact_recall", "key_facts_all")
 JUDGE_KEYS = ("correctness", "completeness", "groundedness")
 
 
@@ -65,7 +65,7 @@ def aggregate(traces: Sequence[Trace], meta: RunMetadata) -> Summary:
         n_errors=counts[FailureType.PIPELINE_ERROR.value],
         # retrieval averaged over the questions that have something to retrieve (pipeline errors count as 0)
         retrieval={k: _mean([t.metrics[k] for t in traces if k in t.metrics]) for k in retrieval_keys},
-        qa={k: _mean([t.metrics[k] for t in traces]) for k in QA_KEYS if k in metric_keys},
+        qa={k: _mean([t.metrics[k] for t in traces if k in t.metrics]) for k in QA_KEYS if k in metric_keys},
         judge={k: _mean([getattr(j, k) for j in judged]) for k in JUDGE_KEYS} if judged else None,
         n_judged=len(judged),
         latency_ms={"mean": _mean(latencies), "p50": percentile(latencies, 50), "p95": percentile(latencies, 95)}

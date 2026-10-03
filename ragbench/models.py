@@ -15,6 +15,16 @@ class EvidenceRef(BaseModel):
     text: str | None = None
 
 
+class KeyFact(BaseModel):
+    """An atomic fact the answer must contain, for deterministic scoring (FinanceBench `key_facts`)."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    fact: str
+    value: str  # canonical formulation, as written in the reference answer
+    accept: list[str] = Field(default_factory=list)  # equivalent formulations (other scale, rounding, wording)
+
+
 class Sample(BaseModel):
     """One JSONL line: question + ground truth.
 
@@ -28,7 +38,9 @@ class Sample(BaseModel):
 
     id: str
     question: str
+    question_natural: str | None = None  # short, user-like variant of the same question (same reference answer)
     reference_answer: str
+    key_facts: list[KeyFact] = Field(default_factory=list)
     relevant_chunks: list[str] = Field(default_factory=list)
     evidence: list[EvidenceRef] = Field(default_factory=list)
     answerable: bool | None = None
@@ -78,7 +90,8 @@ class FailureType(str, Enum):
 
 
 class TraceInput(BaseModel):
-    question: str
+    question: str  # the text actually sent to the pipeline
+    variant: str = "question"  # "question" | "question_natural"
 
 
 class TraceGroundTruth(BaseModel):
@@ -100,7 +113,7 @@ class TraceAnalysis(BaseModel):
 
     retrieval_ok: bool | None  # all annotated evidence within the max top-K; None for unanswerable questions
     answer_correct: bool
-    answer_correct_source: str  # "judge" | "token_f1" | "abstention_check"
+    answer_correct_source: str  # "judge" | "key_facts" | "token_f1" | "abstention_check"
     grounded: bool | None = None  # None si pas de judge
 
 

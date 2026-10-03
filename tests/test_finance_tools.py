@@ -175,3 +175,16 @@ def test_schema_consistency(project, capsys):
     assert write(project, [ex("fin_q_001"), ex("fin_q_001")], {"fin_q_001": review("fin_q_001")}) == 1
     assert "duplicate id" in capsys.readouterr().out
     assert write(project, [ex("fin_q_005", "negative", answerable=True)], {}) == 1
+
+
+def test_enrichment_rules(project, capsys):
+    good = ex("fin_q_001") | {"question_natural": "What was revenue in 2025?",
+                              "key_facts": [{"fact": "revenue", "value": "EUR 1.284 billion"}]}
+    assert write(project, [good], {"fin_q_001": review("fin_q_001")}) == 0
+    wrong_fact = ex("fin_q_001") | {"question_natural": "Revenue 2025?", "key_facts": [{"fact": "revenue", "value": "EUR 9 billion"}]}
+    assert write(project, [wrong_fact], {"fin_q_001": review("fin_q_001")}) == 1
+    assert "not found in the reference answer" in capsys.readouterr().out
+    page_ref = ex("fin_q_001") | {"question_natural": "What is on page 2?"}
+    assert write(project, [page_ref], {"fin_q_001": review("fin_q_001")}) == 1
+    neg = ex("fin_q_003", "negative", [], answerable=False, answer="This cannot be established.") | {"key_facts": [{"fact": "x", "value": "y"}]}
+    assert write(project, [neg], {"fin_q_003": review("fin_q_003")}) == 1

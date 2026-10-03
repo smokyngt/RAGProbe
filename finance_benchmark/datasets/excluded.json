@@ -1,7 +1,20 @@
 [
   {
     "id": "fin_q_102",
+    "kind": "flagged_by_adjudication",
     "reasons": "Source conflict: Statement of Comprehensive Income (p.17) shows Directors' fees USD 140k for the Company (GFI 134 + GGI 6), linked to Note 10, whereas the Note 10 text (p.52) says fees charged were USD 73k (EUR 65k) plus separate EUR 49k pension contributions. The two do not reconcile (USD 140k is roughly EUR 120k at year-end rates, above the EUR 114k cap, whereas EUR 65k is below it; EUR 65k + EUR 49k pension = EUR 114k exactly equals the cap). The yes/no answer and headroom flip depending on which figure/scope is used, and the prospectus wording ('remuneration') does not exclude pension contributions. Cannot be made unambiguous; recommend dropping or replacing.",
     "question": "Guggenheim Global Investments plc's Prospectus (consolidated Prospectus for Germany dated 9 November 2023, consolidating the prospectus of 4 September 2023) caps the aggregate Directors' remuneration at a stated annual amount. Were the Directors' fees charged for the financial year ended 31 December 2025 (excluding pension contributions), as reported in the Company's 2025 annual report and audited financial statements, within that cap? Give both amounts in euro and the headroom."
+  },
+  {
+    "id": "fin_q_043",
+    "kind": "retired",
+    "reasons": "Near-duplicate: same answer as fin_q_083 (lowest TER of the GFI Fund share classes is Class S GBP Distributing, 0.49%); replaced by a Guggenheim question on another topic.",
+    "question": "What was the total expense ratio (TER) of the Class S GBP Distributing share class of the GFI Fund sub-fund of Guggenheim Global Investments plc for the financial year ended 31 December 2025?"
+  },
+  {
+    "id": "fin_q_090",
+    "kind": "retired",
+    "reasons": "Near-duplicate: same table row (GFI Fund Class I USD Accumulating TER) as fin_q_087; replaced by a Guggenheim question on another topic.",
+    "question": "Did the total expense ratio (TER) of Class I USD Accumulating of the GFI Fund sub-fund of Guggenheim Global Investments plc rise or fall between the financial year ended 31 December 2024 and the financial year ended 31 December 2025, and by how many percentage points?"
   }
 ]
