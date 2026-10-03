@@ -96,7 +96,7 @@ open scope ("largest company" when only some entities are in the document), and 
   page or table references, no list of the candidate rows. Keep only what is needed so that the SAME reference answer stays the
   only defensible answer: entity, period, and the basis when the basis is the point of the question ("before special items",
   "in the results press release", "on a CRR3 basis"). If that is impossible, keep the extra words: ambiguity is worse than length.
-- `key_facts` = 1–6 atomic facts a correct answer MUST contain, used for deterministic scoring (all present ⇒ correct):
+- `key_facts` = 1–6 atomic facts (more only for a list, ranking or count: one per item, plus the count) a correct answer MUST contain, used for deterministic scoring (all present ⇒ correct):
   numbers with their unit, the extreme item of a superlative, every item of a list/ranking, the count of a count question,
   the defined term's essential content. `value` is copied as written in the reference answer (it must be found there by the
   matcher: thousands separators, spaces before %, and unicode minus signs are ignored); `accept` lists equivalent

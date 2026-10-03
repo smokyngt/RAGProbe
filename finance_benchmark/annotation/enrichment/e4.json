@@ -1,0 +1,994 @@
+{
+ "fin_q_086": {
+  "question_natural": "Did Fresenius Group's EBIT margin before special items improve in 2025 versus 2024?",
+  "key_facts": [
+   {
+    "fact": "EBIT margin before special items 2025",
+    "value": "11.5%",
+    "accept": []
+   },
+   {
+    "fact": "EBIT margin before special items 2024",
+    "value": "11.6%",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_087": {
+  "question_natural": "Which had the higher 2025 TER at Guggenheim Global Investments: GFI Fund or GGI Fund Class I USD Accumulating, and by how much?",
+  "key_facts": [
+   {
+    "fact": "TER GFI Fund Class I USD Acc 2025",
+    "value": "0.81%",
+    "accept": []
+   },
+   {
+    "fact": "TER GGI Fund Class I USD Acc 2025",
+    "value": "0.79%",
+    "accept": []
+   },
+   {
+    "fact": "TER gap",
+    "value": "0.02 percentage points",
+    "accept": [
+     "0.02 pp",
+     "0.02pp",
+     "0.02 points",
+     "0.02%",
+     "2 basis points",
+     "2 bps",
+     "2 bp"
+    ]
+   }
+  ]
+ },
+ "fin_q_088": {
+  "question_natural": "Which Guggenheim GFI Fund share classes had a TER above 1% in 2025, and how many?",
+  "key_facts": [
+   {
+    "fact": "class 1",
+    "value": "W EUR Accumulating Hedged",
+    "accept": []
+   },
+   {
+    "fact": "class 2",
+    "value": "W EUR Distributing Hedged",
+    "accept": []
+   },
+   {
+    "fact": "class 3",
+    "value": "W GBP Accumulating Hedged",
+    "accept": []
+   },
+   {
+    "fact": "class 4",
+    "value": "W STG Distributing Hedged",
+    "accept": []
+   },
+   {
+    "fact": "class 5",
+    "value": "W USD Accumulating",
+    "accept": []
+   },
+   {
+    "fact": "class 6",
+    "value": "W USD Distributing",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_089": {
+  "question_natural": "Which Fresenius segments had lower depreciation and amortization in 2025 than in 2024, and by how much?",
+  "key_facts": [
+   {
+    "fact": "segment with lower D&A",
+    "value": "Fresenius Kabi",
+    "accept": [
+     "Kabi"
+    ]
+   },
+   {
+    "fact": "Kabi D&A decrease",
+    "value": "€35 million",
+    "accept": [
+     "EUR 35 million",
+     "35 million"
+    ]
+   },
+   {
+    "fact": "segment with lower D&A",
+    "value": "Corporate / Other",
+    "accept": [
+     "Corporate/Other",
+     "Corporate and Other"
+    ]
+   },
+   {
+    "fact": "Corporate/Other D&A decrease",
+    "value": "€103 million",
+    "accept": [
+     "EUR 103 million",
+     "103 million"
+    ]
+   }
+  ]
+ },
+ "fin_q_091": {
+  "question_natural": "How does the Pillar 2 add-on in Belfius's 2025 minimum CET1 requirement compare with its total P2R, and why?",
+  "key_facts": [
+   {
+    "fact": "Pillar 2 add-on counted in 2025 CET1 requirement",
+    "value": "1.15%",
+    "accept": []
+   },
+   {
+    "fact": "total P2R 2025",
+    "value": "2.02%",
+    "accept": []
+   },
+   {
+    "fact": "CET1 share of general P2R",
+    "value": "56.25%",
+    "accept": []
+   },
+   {
+    "fact": "NPE prudential add-on",
+    "value": "2 bps",
+    "accept": [
+     "2 basis points",
+     "2 bp",
+     "0.02%"
+    ]
+   }
+  ]
+ },
+ "fin_q_092": {
+  "question_natural": "At end-2025, was Belfius's cushion over target larger for total MREL or for MREL subordination (% of TREA)?",
+  "key_facts": [
+   {
+    "fact": "total MREL cushion",
+    "value": "2.29 percentage points",
+    "accept": [
+     "2.29 pp",
+     "2.29pp",
+     "2.29 points",
+     "2.29%",
+     "229 bps",
+     "229 basis points"
+    ]
+   },
+   {
+    "fact": "subordination cushion",
+    "value": "3.97 percentage points",
+    "accept": [
+     "3.97 pp",
+     "3.97pp",
+     "3.97 points",
+     "3.97%",
+     "397 bps",
+     "397 basis points"
+    ]
+   },
+   {
+    "fact": "difference",
+    "value": "1.68 percentage points",
+    "accept": [
+     "1.68 pp",
+     "1.68pp",
+     "1.68 points",
+     "1.68%",
+     "168 bps",
+     "168 basis points"
+    ]
+   }
+  ]
+ },
+ "fin_q_093": {
+  "question_natural": "What was Belfius Bank's 2025 IFRS effective tax rate, and was it above the statutory rate?",
+  "key_facts": [
+   {
+    "fact": "effective tax rate 2025",
+    "value": "27.3%",
+    "accept": [
+     "27.30%",
+     "27.29%"
+    ]
+   },
+   {
+    "fact": "statutory tax rate",
+    "value": "25%",
+    "accept": [
+     "25.0%",
+     "25 per cent"
+    ]
+   }
+  ]
+ },
+ "fin_q_094": {
+  "question_natural": "Under Belfius's EMTN terms, how is the Amortised Face Amount due on an Event of Default calculated, and what triggers acceleration?",
+  "key_facts": [
+   {
+    "fact": "discount rate",
+    "value": "Amortisation Yield",
+    "accept": [
+     "Amortization Yield"
+    ]
+   },
+   {
+    "fact": "compounding",
+    "value": "compounded annually",
+    "accept": [
+     "annual compounding",
+     "compounded on an annual basis"
+    ]
+   },
+   {
+    "fact": "basis amount",
+    "value": "Zero Coupon Note Redemption Amount",
+    "accept": [
+     "Zero Coupon Redemption Amount"
+    ]
+   },
+   {
+    "fact": "acceleration trigger",
+    "value": "dissolution or liquidation of the Issuer",
+    "accept": [
+     "liquidation or dissolution",
+     "dissolution or liquidation",
+     "liquidation of the Issuer",
+     "liquidation of Belfius"
+    ]
+   }
+  ]
+ },
+ "fin_q_095": {
+  "question_natural": "What conditions must be met before Belfius's EMTN notes can be bailed in, and how many grounds support 'failing or likely to fail'?",
+  "key_facts": [
+   {
+    "fact": "number of cumulative conditions",
+    "value": "Three cumulative conditions",
+    "accept": [
+     "3 cumulative conditions",
+     "three conditions",
+     "3 conditions"
+    ]
+   },
+   {
+    "fact": "no private-sector alternative",
+    "value": "no reasonable prospect",
+    "accept": [
+     "alternative private sector measures",
+     "private sector measures"
+    ]
+   },
+   {
+    "fact": "public interest",
+    "value": "public interest",
+    "accept": []
+   },
+   {
+    "fact": "number of FOLTF circumstances",
+    "value": "four circumstances",
+    "accept": [
+     "4 circumstances",
+     "four alternative circumstances",
+     "four situations",
+     "4 situations"
+    ]
+   }
+  ]
+ },
+ "fin_q_096": {
+  "question_natural": "What were Belfius Bank's 2025 and 2024 IFRS income, expenses and net income before tax and impairments, and were 2024 figures restated?",
+  "key_facts": [
+   {
+    "fact": "Income 2025",
+    "value": "3,284,231,922",
+    "accept": [
+     "3,284 million",
+     "3,284.2 million",
+     "3.28 billion"
+    ]
+   },
+   {
+    "fact": "Income 2024",
+    "value": "3,256,698,231",
+    "accept": [
+     "3,257 million",
+     "3,256.7 million",
+     "3.26 billion"
+    ]
+   },
+   {
+    "fact": "Expenses 2025",
+    "value": "1,605,280,242",
+    "accept": [
+     "1,605 million",
+     "1,605.3 million",
+     "1.61 billion"
+    ]
+   },
+   {
+    "fact": "Expenses 2024",
+    "value": "1,610,380,519",
+    "accept": [
+     "1,610 million",
+     "1,610.4 million",
+     "1.61 billion"
+    ]
+   },
+   {
+    "fact": "Net income before tax and impairments 2025",
+    "value": "1,678,951,680",
+    "accept": [
+     "1,679 million",
+     "1,679.0 million",
+     "1.68 billion"
+    ]
+   },
+   {
+    "fact": "restatement reason",
+    "value": "commissions on payment transactions",
+    "accept": [
+     "commissions on payments"
+    ]
+   }
+  ]
+ },
+ "fin_q_097": {
+  "question_natural": "Why does Belfius's Pillar 3 report show its CET1 ratio changing differently in 2025 than the prospectus does?",
+  "key_facts": [
+   {
+    "fact": "CET1 end-2025",
+    "value": "15.87%",
+    "accept": []
+   },
+   {
+    "fact": "published end-2024 CET1",
+    "value": "15.38%",
+    "accept": []
+   },
+   {
+    "fact": "prospectus change",
+    "value": "49 bps",
+    "accept": [
+     "49 basis points",
+     "0.49 percentage points",
+     "0.49 pp"
+    ]
+   },
+   {
+    "fact": "Pillar 3 change",
+    "value": "29 bps",
+    "accept": [
+     "29 basis points",
+     "0.29 percentage points",
+     "0.29 pp"
+    ]
+   },
+   {
+    "fact": "Pillar 3 reference point",
+    "value": "pro forma",
+    "accept": [
+     "pro-forma"
+    ]
+   },
+   {
+    "fact": "Pillar 3 basis",
+    "value": "CRR 3",
+    "accept": [
+     "CRR3",
+     "Basel IV",
+     "Basel 4"
+    ]
+   }
+  ]
+ },
+ "fin_q_098": {
+  "question_natural": "Can Guggenheim Global Investments plc set up a fund with only one Dealing Day a month? How are Dealing Day and Business Day defined?",
+  "key_facts": [
+   {
+    "fact": "minimum dealing frequency",
+    "value": "at least two Dealing Days in each month",
+    "accept": [
+     "at least two Dealing Days",
+     "at least 2 Dealing Days",
+     "two Dealing Days per month",
+     "two Dealing Days a month",
+     "two Dealing Days each month"
+    ]
+   },
+   {
+    "fact": "regularity",
+    "value": "regular intervals",
+    "accept": []
+   },
+   {
+    "fact": "Business Day defined in",
+    "value": "Supplement for the relevant Fund",
+    "accept": [
+     "Supplement"
+    ]
+   }
+  ]
+ },
+ "fin_q_099": {
+  "question_natural": "Is Guggenheim Global Investments plc's maximum administration fee higher than its depositary fee, and what is the minimum admin fee?",
+  "key_facts": [
+   {
+    "fact": "max admin fee",
+    "value": "0.05%",
+    "accept": []
+   },
+   {
+    "fact": "max depositary fee",
+    "value": "0.023%",
+    "accept": []
+   },
+   {
+    "fact": "gap",
+    "value": "0.027 percentage points",
+    "accept": [
+     "2.7 basis points",
+     "2.7 bps",
+     "0.027 pp",
+     "0.027%",
+     "0.027 points"
+    ]
+   },
+   {
+    "fact": "minimum admin fee",
+    "value": "USD 50,000",
+    "accept": [
+     "$50,000",
+     "US$50,000",
+     "50,000 USD",
+     "USD 50k",
+     "$50k"
+    ]
+   }
+  ]
+ },
+ "fin_q_100": {
+  "question_natural": "What risk does class-level currency hedging pose for other share classes at Guggenheim Global Investments plc, and what over/under-hedging limits apply?",
+  "key_facts": [
+   {
+    "fact": "risk",
+    "value": "cross contamination",
+    "accept": [
+     "cross-contamination"
+    ]
+   },
+   {
+    "fact": "collateral posted at Fund level",
+    "value": "collateral",
+    "accept": []
+   },
+   {
+    "fact": "over-hedge limit",
+    "value": "105%",
+    "accept": []
+   },
+   {
+    "fact": "under-hedge limit",
+    "value": "95%",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_101": {
+  "question_natural": "Can a Guggenheim Global Investments plc fund with USD 500m net assets have USD 40m OTC derivative exposure to one UK bank?",
+  "key_facts": [
+   {
+    "fact": "exposure",
+    "value": "8%",
+    "accept": []
+   },
+   {
+    "fact": "general OTC counterparty limit",
+    "value": "5%",
+    "accept": []
+   },
+   {
+    "fact": "limit for Relevant Institution",
+    "value": "10%",
+    "accept": []
+   },
+   {
+    "fact": "UK bank qualifies as",
+    "value": "Relevant Institution",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_103": {
+  "question_natural": "Rank the AMF's 2025 contribution revenue by category, largest to smallest, with amounts.",
+  "key_facts": [
+   {
+    "fact": "savings providers and products",
+    "value": "€89.37 million",
+    "accept": [
+     "EUR 89.37 million",
+     "89.37 million"
+    ]
+   },
+   {
+    "fact": "market capitalisation",
+    "value": "€20.79 million",
+    "accept": [
+     "EUR 20.79 million",
+     "20.79 million"
+    ]
+   },
+   {
+    "fact": "dealing on own account",
+    "value": "€12.73 million",
+    "accept": [
+     "EUR 12.73 million",
+     "12.73 million"
+    ]
+   },
+   {
+    "fact": "issue of financial instruments/takeover bids/major holdings",
+    "value": "€11.93 million",
+    "accept": [
+     "EUR 11.93 million",
+     "11.93 million"
+    ]
+   },
+   {
+    "fact": "market infrastructures",
+    "value": "€2.28 million",
+    "accept": [
+     "EUR 2.28 million",
+     "2.28 million"
+    ]
+   }
+  ]
+ },
+ "fin_q_104": {
+  "question_natural": "How did the AMF's net result and working capital change between 2024 and 2025?",
+  "key_facts": [
+   {
+    "fact": "net result 2024",
+    "value": "€3.83 million",
+    "accept": [
+     "EUR 3.83 million",
+     "3.83 million"
+    ]
+   },
+   {
+    "fact": "net result 2025",
+    "value": "€0.66 million",
+    "accept": [
+     "EUR 0.66 million",
+     "0.66 million",
+     "€660 thousand",
+     "€660,000"
+    ]
+   },
+   {
+    "fact": "working capital 2024",
+    "value": "€19.03 million",
+    "accept": [
+     "EUR 19.03 million",
+     "19.03 million"
+    ]
+   },
+   {
+    "fact": "working capital 2025",
+    "value": "€8.61 million",
+    "accept": [
+     "EUR 8.61 million",
+     "8.61 million"
+    ]
+   },
+   {
+    "fact": "working capital improvement",
+    "value": "€10.42 million",
+    "accept": [
+     "EUR 10.42 million",
+     "10.42 million"
+    ]
+   }
+  ]
+ },
+ "fin_q_105": {
+  "question_natural": "By how much did the AMF's 2025 operating income exceed its operating expenses?",
+  "key_facts": [
+   {
+    "fact": "difference",
+    "value": "€0.06 million",
+    "accept": [
+     "EUR 0.06 million",
+     "0.06 million",
+     "€60 thousand",
+     "€60,000",
+     "EUR 60,000",
+     "€60k",
+     "60 thousand"
+    ]
+   },
+   {
+    "fact": "operating income 2025",
+    "value": "€148.16 million",
+    "accept": [
+     "EUR 148.16 million",
+     "148.16 million",
+     "148.2 million"
+    ]
+   },
+   {
+    "fact": "operating expenses 2025",
+    "value": "€148.10 million",
+    "accept": [
+     "EUR 148.10 million",
+     "148.10 million",
+     "148.1 million"
+    ]
+   }
+  ]
+ },
+ "fin_q_106": {
+  "question_natural": "What maximum fines can the AMF Enforcement Committee impose, including as a share of turnover?",
+  "key_facts": [
+   {
+    "fact": "general maximum",
+    "value": "€100 million",
+    "accept": [
+     "EUR 100 million",
+     "100 million",
+     "100 million euros"
+    ]
+   },
+   {
+    "fact": "benefit-based maximum",
+    "value": "ten times",
+    "accept": [
+     "10 times",
+     "tenfold",
+     "10x"
+    ]
+   },
+   {
+    "fact": "turnover-based maximum",
+    "value": "15%",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_107": {
+  "question_natural": "What does the AMF's annual risk analysis draw on, and which Impact 2027 priorities drove 80% of its 2025 inspections?",
+  "key_facts": [
+   {
+    "fact": "source 1",
+    "value": "AMF's risk map",
+    "accept": [
+     "AMF risk map"
+    ]
+   },
+   {
+    "fact": "source 2",
+    "value": "ESMA's risk map",
+    "accept": [
+     "ESMA risk map"
+    ]
+   },
+   {
+    "fact": "source 3",
+    "value": "monitoring and inspection",
+    "accept": [
+     "supervision and inspection"
+    ]
+   },
+   {
+    "fact": "priority 1",
+    "value": "retail investor protection",
+    "accept": [
+     "protection of retail investors",
+     "retail investors"
+    ]
+   },
+   {
+    "fact": "priority 2",
+    "value": "sustainable finance",
+    "accept": []
+   },
+   {
+    "fact": "priority 3",
+    "value": "innovation",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_108": {
+  "question_natural": "What net result and investment did the AMF budget for 2027?",
+  "key_facts": []
+ },
+ "fin_q_109": {
+  "question_natural": "Did Fresenius Group free cash flow rise in FY and Q4 2025 versus 2024, and what is it measured after?",
+  "key_facts": [
+   {
+    "fact": "FCF FY 2025",
+    "value": "€1,285 million",
+    "accept": [
+     "EUR 1,285 million",
+     "1,285 million",
+     "€1.29 billion",
+     "€1.285 billion"
+    ]
+   },
+   {
+    "fact": "FCF FY 2024",
+    "value": "€1,679 million",
+    "accept": [
+     "EUR 1,679 million",
+     "1,679 million",
+     "€1.68 billion",
+     "€1.679 billion"
+    ]
+   },
+   {
+    "fact": "FCF Q4/25",
+    "value": "€966 million",
+    "accept": [
+     "EUR 966 million",
+     "966 million"
+    ]
+   },
+   {
+    "fact": "FCF Q4/24",
+    "value": "€580 million",
+    "accept": [
+     "EUR 580 million",
+     "580 million"
+    ]
+   },
+   {
+    "fact": "measured after",
+    "value": "acquisitions, dividends and lease liabilities",
+    "accept": [
+     "acquisitions, dividends, and lease liabilities",
+     "acquisitions, dividends & lease liabilities"
+    ]
+   }
+  ]
+ },
+ "fin_q_110": {
+  "question_natural": "What was Fresenius's net debt/EBITDA at end-2025 vs 2024, against what target corridor, and how is it calculated?",
+  "key_facts": [
+   {
+    "fact": "net debt/EBITDA 2025",
+    "value": "2.7x",
+    "accept": [
+     "2.7 x",
+     "2.7 times"
+    ]
+   },
+   {
+    "fact": "net debt/EBITDA 2024",
+    "value": "3.0x",
+    "accept": [
+     "3.0 x",
+     "3.0 times",
+     "3x"
+    ]
+   },
+   {
+    "fact": "target corridor",
+    "value": "2.5 to 3.0x",
+    "accept": [
+     "2.5-3.0x",
+     "2.5x to 3.0x",
+     "2.5x-3.0x",
+     "2.5 - 3.0x",
+     "2.5 to 3.0 x",
+     "2.5x and 3.0x"
+    ]
+   },
+   {
+    "fact": "FX basis",
+    "value": "average exchange rates",
+    "accept": [
+     "average FX rates"
+    ]
+   },
+   {
+    "fact": "leases",
+    "value": "lease liabilities",
+    "accept": []
+   },
+   {
+    "fact": "bond adjustment",
+    "value": "exchangeable bond",
+    "accept": []
+   }
+  ]
+ },
+ "fin_q_111": {
+  "question_natural": "What is Fresenius's FY 2026 guidance and 2025 base, and is the EBIT margin part of the official guidance?",
+  "key_facts": [
+   {
+    "fact": "organic revenue growth",
+    "value": "4% to 7%",
+    "accept": [
+     "4-7%",
+     "4% - 7%",
+     "4 to 7%",
+     "4%-7%"
+    ]
+   },
+   {
+    "fact": "2025 revenue base",
+    "value": "€22,554 million",
+    "accept": [
+     "EUR 22,554 million",
+     "22,554 million",
+     "€22.6 billion",
+     "€22.55 billion"
+    ]
+   },
+   {
+    "fact": "cc Core EPS growth",
+    "value": "5% to 10%",
+    "accept": [
+     "5-10%",
+     "5% - 10%",
+     "5 to 10%",
+     "5%-10%"
+    ]
+   },
+   {
+    "fact": "2025 Core EPS base",
+    "value": "€2.87",
+    "accept": [
+     "EUR 2.87",
+     "2.87"
+    ]
+   },
+   {
+    "fact": "EBIT margin",
+    "value": "11.5%",
+    "accept": []
+   },
+   {
+    "fact": "EBIT margin status",
+    "value": "modelling purposes",
+    "accept": [
+     "modeling purposes"
+    ]
+   }
+  ]
+ },
+ "fin_q_112": {
+  "question_natural": "Did Belfius's TREA fall or rise in 2025 per its results release and its Pillar 3 report, and what CET1 ratios do they give?",
+  "key_facts": [
+   {
+    "fact": "press release CET1",
+    "value": "15.9%",
+    "accept": []
+   },
+   {
+    "fact": "press release TREA end-2025",
+    "value": "€72.1 billion",
+    "accept": [
+     "72.1 billion",
+     "EUR 72.1 billion"
+    ]
+   },
+   {
+    "fact": "press release TREA end-2024 (CRR2)",
+    "value": "€75.2 billion",
+    "accept": [
+     "75.2 billion",
+     "EUR 75.2 billion"
+    ]
+   },
+   {
+    "fact": "Pillar 3 CET1",
+    "value": "15.87%",
+    "accept": []
+   },
+   {
+    "fact": "Pillar 3 TREA end-2025",
+    "value": "72.148 billion",
+    "accept": [
+     "72,148 million",
+     "72.15 billion"
+    ]
+   },
+   {
+    "fact": "Pillar 3 TREA end-2024 pro forma CRR3",
+    "value": "71.533 billion",
+    "accept": [
+     "71,533 million",
+     "71.53 billion"
+    ]
+   }
+  ]
+ },
+ "fin_q_113": {
+  "question_natural": "Why is Fresenius's 2025 Group EBIT €2,595m in the press release but €2,310m in the financial statements?",
+  "key_facts": [
+   {
+    "fact": "difference / total special items",
+    "value": "€285 million",
+    "accept": [
+     "EUR 285 million",
+     "285 million"
+    ]
+   },
+   {
+    "fact": "cost and efficiency programs",
+    "value": "€174 million",
+    "accept": [
+     "EUR 174 million",
+     "174 million"
+    ]
+   },
+   {
+    "fact": "Fresenius transformation",
+    "value": "€190 million",
+    "accept": [
+     "EUR 190 million",
+     "190 million"
+    ]
+   },
+   {
+    "fact": "reduction of participation in FMC",
+    "value": "€85 million",
+    "accept": [
+     "EUR 85 million",
+     "85 million"
+    ]
+   },
+   {
+    "fact": "legacy portfolio adjustments",
+    "value": "€6 million",
+    "accept": [
+     "EUR 6 million",
+     "6 million"
+    ]
+   },
+   {
+    "fact": "legal and regulatory matters",
+    "value": "€12 million",
+    "accept": [
+     "EUR 12 million",
+     "12 million"
+    ]
+   }
+  ]
+ },
+ "fin_q_114": {
+  "question_natural": "Do Belfius's 2025 management-report costs and income reproduce its reported 43.0% cost-income ratio?",
+  "key_facts": [
+   {
+    "fact": "COSTS 2025",
+    "value": "€1,845 million",
+    "accept": [
+     "EUR 1,845 million",
+     "1,845 million",
+     "€1.845 billion"
+    ]
+   },
+   {
+    "fact": "INCOME 2025",
+    "value": "€4,295 million",
+    "accept": [
+     "EUR 4,295 million",
+     "4,295 million",
+     "€4.295 billion"
+    ]
+   },
+   {
+    "fact": "recomputed ratio",
+    "value": "42.96%",
+    "accept": [
+     "42.957%",
+     "42.95%"
+    ]
+   }
+  ]
+ }
+}
