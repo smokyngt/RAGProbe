@@ -284,13 +284,13 @@ def distribution(examples: list[Example]) -> str:
     n = len(examples)
     types = Counter(e.metadata.type for e in examples)
     scale = n / sum(TARGET_50.values()) if n else 0
-    lines = [f"{n} exemples", "type             n   cible(proportionnelle)"]
+    lines = [f"{n} examples", "type             n   target (scaled)"]
     for t in QTYPES:
         lines.append(f"{t:<16}{types.get(t, 0):>3}   {TARGET_50.get(t, 0) * scale:>5.1f}")
     lines.append("tier : " + ", ".join(f"{k}={v}" for k, v in sorted(Counter(e.metadata.tier for e in examples).items())))
-    lines.append("difficulté : " + ", ".join(f"{k}={v}" for k, v in sorted(Counter(e.metadata.difficulty for e in examples).items())))
+    lines.append("difficulty: " + ", ".join(f"{k}={v}" for k, v in sorted(Counter(e.metadata.difficulty for e in examples).items())))
     fm = Counter(f for e in examples for f in e.metadata.failure_modes)
-    lines.append("modes d'échec couverts : " + (", ".join(f"{k}={fm[k]}" for k in FAILURE_MODES if fm[k]) or "aucun"))
+    lines.append("failure modes covered: " + (", ".join(f"{k}={fm[k]}" for k in FAILURE_MODES if fm[k]) or "none"))
     return "\n".join(lines)
 
 
@@ -333,14 +333,14 @@ def run(root: Path, draft: Path, review_path: Path, final: Path, export: bool,
     for e in rep.errors:
         print("ERR ", e)
     n_ok = sum(s == "verified" for s in status.values())
-    print(f"\nverified={n_ok} flagged={sum(s == 'flagged' for s in status.values())} erreurs={len(rep.errors)}")
+    print(f"\nverified={n_ok} flagged={sum(s == 'flagged' for s in status.values())} errors={len(rep.errors)}")
     if export:
         if rep.errors:
             print("export refused: fix the errors first", file=sys.stderr)
             return 1
         verified = [e for e in examples if status.get(e.id) == "verified"]
         final.write_text("".join(e.model_dump_json(exclude_defaults=False) + "\n" for e in verified), "utf-8")
-        print(f"écrit {final} ({len(verified)} exemples vérifiés ; les flagged restent dans le fichier de revue)")
+        print(f"wrote {final} ({len(verified)} verified examples; flagged ones stay in the review file)")
     return 1 if rep.errors else 0
 
 
