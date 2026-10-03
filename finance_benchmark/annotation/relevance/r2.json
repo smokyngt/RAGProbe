@@ -1,0 +1,425 @@
+{
+ "fin_q_034": {
+  "user_realism": 3,
+  "decision_value": 2,
+  "financial_depth": 2,
+  "benchmark_value": 2,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [],
+  "recommendation": "rewrite",
+  "note": "Qualitative paraphrase-retrieval of one passage; key fact 'margin' is a bare generic word that any answer passes. Tighten it to 'specified margin' or 'collateral plus margin', and add 'payment-after-collection' as a fact."
+ },
+ "fin_q_035": {
+  "user_realism": 4,
+  "decision_value": 5,
+  "financial_depth": 4,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_041"
+  ],
+  "recommendation": "keep",
+  "note": "Total SCR 1,134 is also asked in fin_q_041; the prior-year column is a good look-alike trap."
+ },
+ "fin_q_036": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Niche central-bank balance-sheet line, but it is a strong test of whole-lira units and prior-year look-alikes."
+ },
+ "fin_q_037": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 3,
+  "benchmark_value": 2,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Key facts give bare 1,254 / 7,944 with no 'loss' qualifier, so an answer calling them profits would pass. Add 'loss' to the facts (e.g. 'loss of EUR 1,254 million') or add a fact for the narrowing of the loss."
+ },
+ "fin_q_038": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Good sign and unit test. Key facts could add the 2024 interest income and expense lines, and should mark the net figure as an expense."
+ },
+ "fin_q_039": {
+  "user_realism": 3,
+  "decision_value": 4,
+  "financial_depth": 3,
+  "benchmark_value": 3,
+  "clarity": 3,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_117"
+  ],
+  "recommendation": "rewrite",
+  "note": "The 'whole-£ million basis' instruction is a test artefact that exists only because 51.7% and 51.9% conflict. Ask for the SCR change and its driver (the new PAC reinsurance treaty) and accept both percentages."
+ },
+ "fin_q_040": {
+  "user_realism": 4,
+  "decision_value": 3,
+  "financial_depth": 4,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Solid accounting-policy question for auditors."
+ },
+ "fin_q_041": {
+  "user_realism": 3,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 3,
+  "clarity": 3,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [
+   "fin_q_035",
+   "fin_q_078",
+   "fin_q_033"
+  ],
+  "recommendation": "rewrite",
+  "note": "This bundles SCR (fin_q_035) with a sensitivity row (fin_q_078). It asks for the pp change, but the key facts check 185% instead of -15pp, and the 15 vs 16 rounding is left open. Focus on the sensitivity, put '-15pp' in the facts and accept 16pp."
+ },
+ "fin_q_042": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 3,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Good abstention trap: the 201% actual and the qualitative ORSA projection sit right next to it."
+ },
+ "fin_q_044": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "A good multi-entity column trap (GFI vs GGI vs Company), though fund-expense waivers are a niche topic."
+ },
+ "fin_q_045": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 3,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Useful trap between the statement of changes and the cash-flow basis, and between sub-fund columns; the wording of the original question is heavy."
+ },
+ "fin_q_046": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 3,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "The only key fact is a bare '6.9%', so a '-6.9%' or 'fell 6.9%' answer passes. Add 'increase' and the two net-asset figures (752,433 / 703,905)."
+ },
+ "fin_q_047": {
+  "user_realism": 4,
+  "decision_value": 3,
+  "financial_depth": 2,
+  "benchmark_value": 1,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "drop",
+  "note": "Trivial single-cell balance-sheet lookup with no trap beyond the prior-year column; it adds little to the benchmark."
+ },
+ "fin_q_048": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_084"
+  ],
+  "recommendation": "keep",
+  "note": "Overlaps fin_q_084 (Kabi EBIT 1,413 before special items). Keep one, or make fin_q_084 cover only Helios and Corporate/Other."
+ },
+ "fin_q_049": {
+  "user_realism": 4,
+  "decision_value": 5,
+  "financial_depth": 3,
+  "benchmark_value": 2,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Core KPI, but the restated and previous 2024 columns are identical, so the intended trap does not bite."
+ },
+ "fin_q_050": {
+  "user_realism": 3,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Two unrelated figures stitched together. The value is the basis footnote and the split between the cash-flow statement and the segment table."
+ },
+ "fin_q_051": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_062",
+   "fin_q_012"
+  ],
+  "recommendation": "keep",
+  "note": "A good computation across two pages. Express margin 12.9% is also stated in the text (p.43) and reused in fin_q_062, so it can be read off directly."
+ },
+ "fin_q_052": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 2,
+  "benchmark_value": 2,
+  "clarity": 4,
+  "natural_ok": false,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_058"
+  ],
+  "recommendation": "rewrite",
+  "note": "Same revenue line and pages as fin_q_058. The natural form does not ask for amounts although the key facts require them. Merge with fin_q_058 or drop one."
+ },
+ "fin_q_053": {
+  "user_realism": 2,
+  "decision_value": 2,
+  "financial_depth": 2,
+  "benchmark_value": 3,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Mechanical diff of headcount across columns, with low decision value. It is acceptable as a multi-page arithmetic test."
+ },
+ "fin_q_054": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 2,
+  "benchmark_value": 3,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_009"
+  ],
+  "recommendation": "keep",
+  "note": "The cross-report need is genuine only for 2020. Asking for the minimum of a six-year series is a puzzle-like framing."
+ },
+ "fin_q_055": {
+  "user_realism": 5,
+  "decision_value": 5,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Excellent guidance-vs-actual question with an incl./excl. M&A look-alike."
+ },
+ "fin_q_056": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 3,
+  "benchmark_value": 2,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "A simple five-year series check. It is acceptable but has low distinct value next to fin_q_060 (same key-figures page)."
+ },
+ "fin_q_057": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 3,
+  "benchmark_value": 3,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_059",
+   "fin_q_010"
+  ],
+  "recommendation": "keep",
+  "note": "Arbitrary pairing of two divisions. The rounding caveat is handled by accepting 402. It overlaps the capex rows used in fin_q_059 and fin_q_010."
+ },
+ "fin_q_058": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 2,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_052"
+  ],
+  "recommendation": "keep",
+  "note": "Same data as fin_q_052; this is the more realistic of the two."
+ },
+ "fin_q_059": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_057",
+   "fin_q_010"
+  ],
+  "recommendation": "keep",
+  "note": "A meaningful lease-intensity angle and a good row look-alike trap; the count framing is slightly artificial."
+ },
+ "fin_q_060": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 3,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Clean trend lookup; the adjusted basis is well specified."
+ },
+ "fin_q_061": {
+  "user_realism": 4,
+  "decision_value": 3,
+  "financial_depth": 2,
+  "benchmark_value": 2,
+  "clarity": 5,
+  "natural_ok": false,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "A simple narrative lookup. The natural form asks only 'why', but the key facts require both amounts, so add 'from what to what' to it."
+ },
+ "fin_q_062": {
+  "user_realism": 5,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_051"
+  ],
+  "recommendation": "keep",
+  "note": "A realistic underlying-margin adjustment. Reusing the Express margin overlaps fin_q_051."
+ },
+ "fin_q_063": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Good table question: the Bank/Insurer split columns are a look-alike trap, and the answer needs a change computation."
+ },
+ "fin_q_064": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Clean Pillar 3 lookup with a clear answer."
+ },
+ "fin_q_065": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Good 'of which' sub-line trap (the IPRRE line at 8,790 exceeds Corporates). The natural form drops the 'main asset classes only' qualifier but should still be read that way."
+ },
+ "fin_q_066": {
+  "user_realism": 5,
+  "decision_value": 5,
+  "financial_depth": 4,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Core capital-adequacy check and highly realistic."
+ },
+ "fin_q_067": {
+  "user_realism": 2,
+  "decision_value": 3,
+  "financial_depth": 3,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Peer comparison of a retail bank with a small subsidiary at different reporting dates is artificial, though it is a valid multi-document test. It would be more meaningful against each bank's 3% requirement."
+ }
+}

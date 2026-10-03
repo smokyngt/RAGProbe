@@ -1,0 +1,400 @@
+{
+ "fin_q_103": {
+  "user_realism": 3,
+  "decision_value": 2,
+  "financial_depth": 2,
+  "benchmark_value": 3,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Regulator funding mix is of niche interest; key facts do not enforce the ranking order, so consider adding rank positions."
+ },
+ "fin_q_104": {
+  "user_realism": 4,
+  "decision_value": 3,
+  "financial_depth": 3,
+  "benchmark_value": 3,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [],
+  "recommendation": "rewrite",
+  "note": "Key facts drop the signs: 2024 net result is a loss (-€3.83m), 2025 a loss (-€0.66m) and working capital is negative in both years (-€19.03m, -€8.61m); an answer stating positive values would pass. Add signs/'loss'/'negative' to the facts."
+ },
+ "fin_q_105": {
+  "user_realism": 2,
+  "decision_value": 2,
+  "financial_depth": 2,
+  "benchmark_value": 2,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "drop",
+  "note": "Subtracting two rounded published totals to get €0.06m is a mechanical test artefact with spurious precision; if kept, ask simply for the 2025 operating result (income vs expenses) without the rounding caveat."
+ },
+ "fin_q_106": {
+  "user_realism": 4,
+  "decision_value": 3,
+  "financial_depth": 2,
+  "benchmark_value": 2,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": ""
+ },
+ "fin_q_107": {
+  "user_realism": 2,
+  "decision_value": 2,
+  "financial_depth": 1,
+  "benchmark_value": 3,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [],
+  "recommendation": "rewrite",
+  "note": "Key facts list only 3 of the 4 sources (missing 'Impact 2027 strategic orientations'), so an incomplete answer passes; low decision value and generic text lookup."
+ },
+ "fin_q_108": {
+  "user_realism": 2,
+  "decision_value": 2,
+  "financial_depth": 2,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Valid period-trap abstention (2026 outlook exists, 2027 does not), but realism is low; one of many negatives in this block."
+ },
+ "fin_q_109": {
+  "user_realism": 5,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": ""
+ },
+ "fin_q_110": {
+  "user_realism": 5,
+  "decision_value": 5,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": ""
+ },
+ "fin_q_111": {
+  "user_realism": 5,
+  "decision_value": 5,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": ""
+ },
+ "fin_q_112": {
+  "user_realism": 3,
+  "decision_value": 4,
+  "financial_depth": 5,
+  "benchmark_value": 3,
+  "clarity": 3,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [
+   "fin_q_097",
+   "fin_q_028"
+  ],
+  "recommendation": "rewrite",
+  "note": "Same CRR2-vs-pro-forma-CRR3 basis trap as fin_q_097 (prospectus vs Pillar 3 CET1 direction); question is overlong. Key facts omit the directions (decrease/increase) and the basis explanation that are the point of the question; merge with fin_q_097 or keep only one."
+ },
+ "fin_q_113": {
+  "user_realism": 5,
+  "decision_value": 5,
+  "financial_depth": 5,
+  "benchmark_value": 5,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [
+   "fin_q_084"
+  ],
+  "recommendation": "keep",
+  "note": "Excellent multi-document reconciliation; key facts should carry signs (-174, +6, -190, +85, -12) since an answer with wrong signs would otherwise pass."
+ },
+ "fin_q_114": {
+  "user_realism": 2,
+  "decision_value": 3,
+  "financial_depth": 2,
+  "benchmark_value": 2,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [],
+  "recommendation": "drop",
+  "note": "Mechanical recomputation of a ratio the document already reports; key facts lack the 'yes, matches 43.0%' conclusion. Low value beyond a simple division."
+ },
+ "fin_q_115": {
+  "user_realism": 3,
+  "decision_value": 2,
+  "financial_depth": 3,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_037"
+  ],
+  "recommendation": "keep",
+  "note": "Good false-premise item (ECB made a loss); overlaps fin_q_037 on the ECB 2025 result but tests a different behaviour."
+ },
+ "fin_q_116": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 3,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Good parent/subsidiary entity trap."
+ },
+ "fin_q_117": {
+  "user_realism": 3,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_039"
+  ],
+  "recommendation": "keep",
+  "note": "Good false-premise item; shares the reinsurance/SCR narrative with fin_q_039."
+ },
+ "fin_q_118": {
+  "user_realism": 5,
+  "decision_value": 4,
+  "financial_depth": 3,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Realistic abstention: Pillar 3 has no income statement; tempting retained-earnings distractor."
+ },
+ "fin_q_119": {
+  "user_realism": 2,
+  "decision_value": 2,
+  "financial_depth": 3,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Footnote-aggregation abstention is a good trap, though niche for users."
+ },
+ "fin_q_120": {
+  "user_realism": 4,
+  "decision_value": 3,
+  "financial_depth": 2,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": ""
+ },
+ "fin_q_121": {
+  "user_realism": 3,
+  "decision_value": 2,
+  "financial_depth": 2,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Fictitious sub-fund; plausible user slip but low depth."
+ },
+ "fin_q_122": {
+  "user_realism": 2,
+  "decision_value": 1,
+  "financial_depth": 1,
+  "benchmark_value": 2,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_116"
+  ],
+  "recommendation": "drop",
+  "note": "Out-of-corpus entity abstention with negligible decision value; the entity-trap pattern is already covered by fin_q_116 and others."
+ },
+ "fin_q_123": {
+  "user_realism": 3,
+  "decision_value": 4,
+  "financial_depth": 5,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": false,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "question_natural drops the request for the total difference (£546m) that the key facts require; add 'the total gap' to the natural phrasing."
+ },
+ "fin_q_124": {
+  "user_realism": 4,
+  "decision_value": 5,
+  "financial_depth": 5,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": false,
+  "redundant_with": [],
+  "recommendation": "rewrite",
+  "note": "Key facts omit the explicitly requested intermediate excess of assets over liabilities (£495m) and the deferred tax item (-39); bare '283'/'430' are loose. Add 495 and -39."
+ },
+ "fin_q_125": {
+  "user_realism": 4,
+  "decision_value": 3,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 4,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": ""
+ },
+ "fin_q_126": {
+  "user_realism": 2,
+  "decision_value": 4,
+  "financial_depth": 3,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [
+   "fin_q_027",
+   "fin_q_026"
+  ],
+  "recommendation": "rewrite",
+  "note": "Recomputing a ratio already reported is a test artefact (same pattern as fin_q_026/027); better ask for NSFR, ASF and RSF with correct units to keep the absolute-vs-thousands trap."
+ },
+ "fin_q_127": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": false,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "question_natural omits the 30 June 2024 most-adverse scenario required by the key facts; add it to the natural phrasing."
+ },
+ "fin_q_128": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 4,
+  "benchmark_value": 3,
+  "clarity": 4,
+  "natural_ok": false,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "question_natural omits the specialised lending part that a key fact requires; key facts also miss 2024 RWEA (1,008,284)."
+ },
+ "fin_q_129": {
+  "user_realism": 3,
+  "decision_value": 2,
+  "financial_depth": 3,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Calculation-based superlative over a single table; moderate user value."
+ },
+ "fin_q_130": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": ""
+ },
+ "fin_q_131": {
+  "user_realism": 3,
+  "decision_value": 3,
+  "financial_depth": 2,
+  "benchmark_value": 3,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "Key facts do not enforce the order explicitly but name each growth; acceptable."
+ },
+ "fin_q_132": {
+  "user_realism": 5,
+  "decision_value": 5,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": ""
+ },
+ "fin_q_133": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 5,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": true,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": ""
+ },
+ "fin_q_134": {
+  "user_realism": 4,
+  "decision_value": 4,
+  "financial_depth": 4,
+  "benchmark_value": 4,
+  "clarity": 5,
+  "natural_ok": false,
+  "key_facts_ok": true,
+  "redundant_with": [],
+  "recommendation": "keep",
+  "note": "question_natural drops the durations and amounts required by key facts; add 'with durations and sensitivities' to the natural phrasing."
+ }
+}
