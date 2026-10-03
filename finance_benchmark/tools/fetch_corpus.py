@@ -3,6 +3,8 @@
 
     python tools/fetch_corpus.py            # télécharge + écrit corpus/manifest.json et corpus/fetch_report.json
     python tools/fetch_corpus.py --freeze   # vérifie les SHA-256, écrit corpus/FROZEN.json, passe les fichiers en lecture seule
+    python tools/fetch_corpus.py --add      # corpus déjà gelé : AJOUTE les candidats selected:true absents du manifest
+                                            # (ids existants inchangés, SHA-256 existants revérifiés, nouveau gel + historique)
 
 Provenance conservée par document : source_url, domaine, date de récupération, SHA-256, taille, pages (pdfinfo).
 Un échec (HTTP, pas un PDF, trop gros) est consigné dans fetch_report.json, jamais masqué.
@@ -102,6 +104,71 @@ def build(args) -> int:
     return 0 if manifest else 1
 
 
+def add(args) -> int:
+    """Ajout contrôlé à un corpus gelé : les documents existants ne bougent pas (ids, fichiers, SHA-256)."""
+    mpath, fpath = CORPUS / "manifest.json", CORPUS / "FROZEN.json"
+    manifest = json.loads(mpath.read_text("utf-8"))
+    for d in manifest["documents"]:  # on ne construit rien sur une base altérée
+        p = DOCS / d["filename"]
+        if not p.exists() or sha256_file(p) != d["sha256"]:
+            print(f"ajout refusé : {d['document_id']} absent ou modifié", file=sys.stderr)
+            return 2
+    known = {d["source_url"] for d in manifest["documents"]}
+    todo = [c for c in json.loads((CORPUS / "candidates.json").read_text("utf-8"))["candidates"]
+            if c.get("selected") and c.get("direct_pdf") and c["source_url"] not in known]
+    if not todo:
+        print("rien à ajouter")
+        return 0
+    n, report, added = max(int(d["document_id"].split("_")[-1]) for d in manifest["documents"]), [], []  # ids are never reused
+    for c in todo:
+        doc_id = f"fin_doc_{n + len(added) + 1:03d}"
+        dest = DOCS / f"{doc_id}.pdf"
+        try:
+            ctype, size = download(c["source_url"], dest)
+            npages = pdf_pages(dest)
+            if npages < 4 and not c.get("allow_short"):  # a 3-page "PDF" is usually a web page printed by the site, not the document
+                raise ValueError(f"only {npages} pages: suspicious (web print?). Set allow_short:true in candidates.json if genuine")
+            entry = {
+                "document_id": doc_id, "filename": dest.name, "company": c["company"], "title": c["title"],
+                "reporting_period": c["reporting_period"], "document_type": c["document_type"],
+                "institution_type": c["institution_type"], "source_url": c["source_url"],
+                "source_domain": c["source_domain"], "pages": npages,
+                "retrieved_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "sha256": sha256_file(dest), "bytes": size, "content_type": ctype,
+                "language": c.get("language", "en"), "added_in": args.label,
+            }
+            added.append(entry)
+            report.append({"candidate_id": c["candidate_id"], "document_id": doc_id, "ok": True, "pages": entry["pages"]})
+            print(f"ok   {doc_id} {entry['pages']:>4} p  {c['company']} — {c['title']}")
+        except Exception as e:  # noqa: BLE001
+            dest.unlink(missing_ok=True)
+            report.append({"candidate_id": c["candidate_id"], "ok": False, "error": f"{type(e).__name__}: {e}"})
+            print(f"FAIL {c['candidate_id']} {c['source_url']} : {e}", file=sys.stderr)
+    if not added:
+        return 1
+    previous = json.loads(fpath.read_text("utf-8")) if fpath.exists() else None
+    history = (previous or {}).get("freeze_history", []) + ([{k: previous[k] for k in previous if k != "freeze_history"}] if previous else [])
+    for p in [mpath, fpath]:
+        if p.exists():
+            os.chmod(p, 0o644)
+    manifest["documents"].extend(added)
+    manifest["n_documents"], manifest["total_pages"] = len(manifest["documents"]), sum(d["pages"] for d in manifest["documents"])
+    mpath.write_text(json.dumps(manifest, indent=2, ensure_ascii=False), "utf-8")
+    (CORPUS / f"fetch_report_{args.label}.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), "utf-8")
+    fpath.unlink(missing_ok=True)
+    for d in added:
+        os.chmod(DOCS / d["filename"], 0o444)
+    rc = freeze(args)
+    if rc == 0:
+        data = json.loads(fpath.read_text("utf-8"))
+        data["freeze_history"] = history  # previous freezes kept: what was frozen when, with which manifest hash
+        data["last_addition"] = {"label": args.label, "added": [d["document_id"] for d in added]}
+        os.chmod(fpath, 0o644)
+        fpath.write_text(json.dumps(data, indent=2), "utf-8")
+        os.chmod(fpath, 0o444)
+    return rc
+
+
 def freeze(args) -> int:
     path = CORPUS / "manifest.json"
     manifest = json.loads(path.read_text("utf-8"))
@@ -126,5 +193,7 @@ def freeze(args) -> int:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--freeze", action="store_true")
+    ap.add_argument("--add", action="store_true", help="add new selected candidates to an already frozen corpus")
+    ap.add_argument("--label", default="addition", help="label recorded for an --add batch (e.g. v1.1)")
     a = ap.parse_args()
-    sys.exit(freeze(a) if a.freeze else build(a))
+    sys.exit(freeze(a) if a.freeze else add(a) if a.add else build(a))

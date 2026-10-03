@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "c19",
+    "document_id": "fin_doc_013",
+    "ok": true,
+    "pages": 224
+  },
+  {
+    "candidate_id": "c20",
+    "document_id": "fin_doc_014",
+    "ok": true,
+    "pages": 131
+  },
+  {
+    "candidate_id": "c21",
+    "document_id": "fin_doc_015",
+    "ok": true,
+    "pages": 3
+  },
+  {
+    "candidate_id": "c22",
+    "document_id": "fin_doc_016",
+    "ok": true,
+    "pages": 12
+  },
+  {
+    "candidate_id": "c23",
+    "document_id": "fin_doc_017",
+    "ok": true,
+    "pages": 10
+  }
+]

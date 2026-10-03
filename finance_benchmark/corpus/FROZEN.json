@@ -1,6 +1,32 @@
 {
-  "frozen_at": "2026-10-03T17:44:45+00:00",
-  "manifest_sha256": "b1a5333c4cdbf5a3c29b79c927456b72069d80c1fa6247b122d90ac82dc588eb",
-  "n_documents": 12,
-  "total_pages": 1443
+  "frozen_at": "2026-10-03T18:12:39+00:00",
+  "manifest_sha256": "cbcf9139dc8ace60382e40d752b8c21c0afc618e83040b7fe073152cea6fccef",
+  "n_documents": 17,
+  "total_pages": 1995,
+  "freeze_history": [
+    {
+      "frozen_at": "2026-10-03T17:44:45+00:00",
+      "manifest_sha256": "b1a5333c4cdbf5a3c29b79c927456b72069d80c1fa6247b122d90ac82dc588eb",
+      "n_documents": 12,
+      "total_pages": 1443
+    },
+    {
+      "frozen_at": "2026-10-03T18:11:53+00:00",
+      "manifest_sha256": "e9d5c4165a2a65b91a11e86963eeee331ea4ad58d4ff0a64efdcb4ebfbfcfe62",
+      "n_documents": 17,
+      "total_pages": 1823,
+      "note": "superseded: fin_doc_015 was a 3-page web print, replaced in place before any annotation"
+    }
+  ],
+  "last_addition": {
+    "label": "v1.1",
+    "added": [
+      "fin_doc_013",
+      "fin_doc_014",
+      "fin_doc_015",
+      "fin_doc_016",
+      "fin_doc_017"
+    ],
+    "pending": "French URD (fin_doc_018, blocked egress)"
+  }
 }
