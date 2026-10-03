@@ -1,0 +1,142 @@
+{
+"fin_q_058": {"question_natural": "Which DHL Group divisions had lower revenue in 2025 than in 2024, and by how much?",
+ "key_facts": [
+  {"fact": "Express revenue 2025", "value": "€24,430 million", "accept": ["€24.43 billion", "€24.4 billion", "EUR 24,430 million"]},
+  {"fact": "Express revenue 2024", "value": "€25,134 million", "accept": ["€25.13 billion", "€25.1 billion", "EUR 25,134 million"]},
+  {"fact": "Global Forwarding, Freight revenue 2025", "value": "€18,643 million", "accept": ["€18.64 billion", "€18.6 billion", "EUR 18,643 million"]},
+  {"fact": "Global Forwarding, Freight revenue 2024", "value": "€19,649 million", "accept": ["€19.65 billion", "€19.6 billion", "EUR 19,649 million"]},
+  {"fact": "eCommerce revenue 2025", "value": "€6,884 million", "accept": ["€6.88 billion", "€6.9 billion", "EUR 6,884 million"]},
+  {"fact": "eCommerce revenue 2024", "value": "€6,962 million", "accept": ["€6.96 billion", "€7.0 billion", "EUR 6,962 million"]}]},
+"fin_q_059": {"question_natural": "In which DHL Group divisions did right-of-use capex exceed capex for acquired assets in 2025?",
+ "key_facts": [
+  {"fact": "number of divisions", "value": "Three", "accept": ["3", "three"]},
+  {"fact": "division: Express", "value": "Express", "accept": []},
+  {"fact": "division: Global Forwarding, Freight", "value": "Global Forwarding", "accept": ["Forwarding"]},
+  {"fact": "division: Supply Chain", "value": "Supply Chain", "accept": []}]},
+"fin_q_060": {"question_natural": "How did DHL Group's return on sales evolve from 2021 to 2025, on the adjusted basis of its 2025 annual report?",
+ "key_facts": [
+  {"fact": "return on sales 2021 (adjusted)", "value": "9.8%", "accept": ["9.8 per cent"]},
+  {"fact": "return on sales 2022 (adjusted)", "value": "8.9%", "accept": ["8.9 per cent"]},
+  {"fact": "return on sales 2023 (adjusted)", "value": "7.8%", "accept": ["7.8 per cent"]},
+  {"fact": "return on sales 2024 (adjusted)", "value": "7.0%", "accept": ["7 %", "7 per cent"]},
+  {"fact": "return on sales 2025", "value": "7.4%", "accept": ["7.4 per cent"]}]},
+"fin_q_061": {"question_natural": "Why did DHL Group's material expense fall in 2025?",
+ "key_facts": [
+  {"fact": "material expense 2025", "value": "€40,910 million", "accept": ["€40.9 billion", "€40.91 billion", "EUR 40,910 million"]},
+  {"fact": "material expense 2024", "value": "€42,766 million", "accept": ["€42.8 billion", "€42.77 billion", "EUR 42,766 million"]},
+  {"fact": "reason: lower transport costs in Global Forwarding, Freight", "value": "lower transport costs", "accept": ["transport costs", "transportation costs"]},
+  {"fact": "reason: lower aviation fuel costs in Express", "value": "aviation fuel", "accept": ["jet fuel", "fuel costs", "kerosene"]}]},
+"fin_q_062": {"question_natural": "What would DHL Express's 2025 EBIT and EBIT margin have been excluding the net non-recurring effects?",
+ "key_facts": [
+  {"fact": "Express EBIT excluding non-recurring effect", "value": "€3,291 million", "accept": ["€3.29 billion", "€3.3 billion", "EUR 3,291 million"]},
+  {"fact": "adjusted Express EBIT margin", "value": "13.5%", "accept": ["13.47%", "13.5 per cent"]}]},
+"fin_q_063": {"question_natural": "Which counterparty category saw the largest increase in Belfius's credit risk exposure (FEAD) in 2025, and by how much?",
+ "key_facts": [
+  {"fact": "category with largest FEAD increase", "value": "Retail", "accept": ["retail"]},
+  {"fact": "increase in retail FEAD", "value": "EUR 3,363 million", "accept": ["€3,363 million", "EUR 3.36 billion", "EUR 3.4 billion", "€3.4 billion", "€3.36 billion"]}]},
+"fin_q_064": {"question_natural": "Which market risk category had the largest capital requirement at Luzerner Kantonalbank at end-2025, and how much?",
+ "key_facts": [
+  {"fact": "largest market risk category", "value": "Credit spread risk", "accept": ["credit spread"]},
+  {"fact": "credit spread risk capital requirement", "value": "CHF 140.7 million", "accept": ["CHF 141 million", "CHF 0.14 billion"]}]},
+"fin_q_065": {"question_natural": "What were Luzerner Kantonalbank's three largest asset classes by standardised credit risk RWA at end-2025?",
+ "key_facts": [
+  {"fact": "1st: secured real estate exposures RWA", "value": "CHF 19,055.2 million", "accept": ["CHF 19.1 billion", "CHF 19.06 billion", "CHF 19,055 million"]},
+  {"fact": "2nd: corporates RWA", "value": "CHF 2,949.3 million", "accept": ["CHF 2.9 billion", "CHF 2.95 billion", "CHF 2,949 million"]},
+  {"fact": "3rd: retail RWA", "value": "CHF 530.2 million", "accept": ["CHF 530 million", "CHF 0.53 billion"]}]},
+"fin_q_066": {"question_natural": "Was ASN Bank's total capital ratio above its overall capital requirement at end-2025?",
+ "key_facts": [
+  {"fact": "total capital ratio 31 Dec 2025", "value": "24.13%", "accept": ["24.1%"]},
+  {"fact": "overall capital requirement", "value": "16.16%", "accept": ["16.2%"]}]},
+"fin_q_067": {"question_natural": "Whose leverage ratio was higher: ASN Bank at end-2025 or CBA Europe N.V. at June 2025, and by how much?",
+ "key_facts": [
+  {"fact": "CBA Europe leverage ratio 30 June 2025", "value": "20.79%", "accept": ["20.8%"]},
+  {"fact": "ASN Bank leverage ratio 31 Dec 2025", "value": "5.09%", "accept": ["5.1%"]},
+  {"fact": "gap", "value": "15.70 percentage points", "accept": ["15.7 percentage points", "15.70 pp", "15.7 pp", "15.70pp", "15.7pp"]}]},
+"fin_q_068": {"question_natural": "In which supervisory interest rate shock scenarios did Luzerner Kantonalbank's EVE fall at end-2025?",
+ "key_facts": [
+  {"fact": "number of scenarios with EVE decrease", "value": "3", "accept": ["three"]},
+  {"fact": "scenario: parallel down", "value": "parallel down", "accept": ["parallel shock down"]},
+  {"fact": "scenario: flattener", "value": "flattener", "accept": []},
+  {"fact": "scenario: short rate up", "value": "short rate up", "accept": ["short rates up", "short rate shock up"]}]},
+"fin_q_069": {"question_natural": "How did ASN Bank's CET1 capital develop quarter by quarter from end-2024 to end-2025?",
+ "key_facts": [
+  {"fact": "CET1 31 Dec 2024", "value": "€3,442 million", "accept": ["€3.44 billion", "EUR 3,442 million"]},
+  {"fact": "CET1 31 Mar 2025", "value": "€3,587 million", "accept": ["€3.59 billion", "EUR 3,587 million"]},
+  {"fact": "CET1 30 Jun 2025", "value": "€3,586 million", "accept": ["EUR 3,586 million"]},
+  {"fact": "CET1 30 Sep 2025", "value": "€3,626 million", "accept": ["€3.63 billion", "EUR 3,626 million"]},
+  {"fact": "CET1 31 Dec 2025", "value": "€3,613 million", "accept": ["€3.61 billion", "EUR 3,613 million"]}]},
+"fin_q_070": {"question_natural": "Why did CBA Europe N.V.'s standardised credit risk and CCR risk exposure amounts change in the year to June 2025?",
+ "key_facts": [
+  {"fact": "standardised credit risk decrease due to less exposure to institutions", "value": "less exposure to institutions", "accept": ["lower exposure to institutions", "reduced exposure to institutions", "lower exposures to institutions"]},
+  {"fact": "CCR increase due to 6 new derivatives transactions", "value": "6 new derivatives", "accept": ["six new derivative", "6 new derivative", "six new derivatives"]}]},
+"fin_q_071": {"question_natural": "What would ASN Bank's end-2025 CET1 ratio be if the €1,879m Article 3 add-on were removed from RWA, CET1 capital unchanged?",
+ "key_facts": [
+  {"fact": "recomputed CET1 ratio", "value": "22.06%", "accept": ["22.1%"]}]},
+"fin_q_072": {"question_natural": "Does Belfius's Prudential Transition Plan set a quantitative limit on ESG-related credit risk exposure, and what is it?",
+ "key_facts": []},
+"fin_q_073": {"question_natural": "What was the largest asset class in Belfius Insurance's investment portfolio (excluding Branch 23) at end-2025, and its share?",
+ "key_facts": [
+  {"fact": "largest asset class", "value": "Government bonds", "accept": ["government bonds", "sovereign bonds"]},
+  {"fact": "share of total portfolio", "value": "40.0%", "accept": ["40%", "40 per cent"]}]},
+"fin_q_074": {"question_natural": "Where was most of the CBRT's own international-standard gold held at end-2025, and what was it worth?",
+ "key_facts": [
+  {"fact": "largest custodian location", "value": "BIST", "accept": ["Borsa Istanbul", "Borsa İstanbul"]},
+  {"fact": "value held at BIST", "value": "TRY 2,273,278,248,357", "accept": ["TRY 2.27 trillion", "TRY 2.3 trillion", "TRY 2,273 billion", "TRY 2,273.3 billion"]}]},
+"fin_q_075": {"question_natural": "How do Prudential International Assurance's market, default and life underwriting SCR modules rank at end-2025?",
+ "key_facts": [
+  {"fact": "1st: market risk", "value": "£81.1m", "accept": ["£81.1 million", "GBP 81.1 million"]},
+  {"fact": "2nd: life underwriting risk", "value": "£74.2m", "accept": ["£74.2 million", "GBP 74.2 million"]},
+  {"fact": "3rd: default risk", "value": "£45.7m", "accept": ["£45.7 million", "GBP 45.7 million"]}]},
+"fin_q_076": {"question_natural": "Did the ECB's 2025 write-downs on financial assets exceed its realised gains from financial operations?",
+ "key_facts": [
+  {"fact": "write-downs 2025", "value": "EUR 1,446 million", "accept": ["€1,446 million", "EUR 1.45 billion", "€1.45 billion", "EUR 1.4 billion", "€1.4 billion"]},
+  {"fact": "realised gains 2025", "value": "EUR 950 million", "accept": ["€950 million", "EUR 0.95 billion", "€0.95 billion"]}]},
+"fin_q_077": {"question_natural": "Was the fair value of the CBRT's Treasury-issued securities portfolio above or below cost at end-2025?",
+ "key_facts": [
+  {"fact": "total cost", "value": "TRY 261,780,766,266", "accept": ["TRY 261.8 billion", "TRY 261.78 billion", "TRY 262 billion"]},
+  {"fact": "total fair value", "value": "TRY 245,737,421,652", "accept": ["TRY 245.7 billion", "TRY 245.74 billion", "TRY 246 billion"]}]},
+"fin_q_078": {"question_natural": "Which of Belfius Insurance's Solvency II stress scenarios lowered its ratio below the 201% base case at end-2025?",
+ "key_facts": [
+  {"fact": "equity -30%", "value": "196%", "accept": ["-5pp", "-5 pp"]},
+  {"fact": "credit spread on government bonds +50bps", "value": "185%", "accept": ["-15pp", "-15 pp"]},
+  {"fact": "credit spread on corporate and government bonds +50bps", "value": "188%", "accept": ["-13pp", "-13 pp"]},
+  {"fact": "real estate -15%", "value": "193%", "accept": ["-8pp", "-8 pp"]},
+  {"fact": "no volatility adjustment", "value": "192%", "accept": ["-9pp", "-9 pp"]},
+  {"fact": "ultimate forward rate 3%", "value": "200%", "accept": ["-1pp", "-1 pp"]}]},
+"fin_q_079": {"question_natural": "How many of Belfius Insurance's ten largest counterparty exposures at end-2025 are classified as government bonds, and which?",
+ "key_facts": [
+  {"fact": "count classified as government bonds", "value": "Eight", "accept": ["8", "eight"]},
+  {"fact": "includes European Union", "value": "European Union", "accept": ["EU"]},
+  {"fact": "includes Belgian government", "value": "Belgian government", "accept": ["Belgium", "Belgian"]},
+  {"fact": "includes Austrian government", "value": "Austrian government", "accept": ["Austria", "Austrian"]},
+  {"fact": "includes Italian government", "value": "Italian government", "accept": ["Italy", "Italian"]},
+  {"fact": "includes Irish government", "value": "Irish government", "accept": ["Ireland", "Irish"]}]},
+"fin_q_080": {"question_natural": "What drove the ECB's EUR 1,446 million of write-downs on financial assets in 2025?",
+ "key_facts": [
+  {"fact": "unrealised exchange rate losses", "value": "EUR 1,316 million", "accept": ["€1,316 million", "EUR 1.3 billion", "€1.3 billion", "EUR 1.32 billion"]},
+  {"fact": "unrealised price losses on securities", "value": "EUR 130 million", "accept": ["€130 million"]},
+  {"fact": "main currency: Japanese yen", "value": "Japanese yen", "accept": ["yen", "JPY"]},
+  {"fact": "price losses due to higher yields", "value": "higher yields", "accept": ["rising yields", "yields increased", "increase in yields"]}]},
+"fin_q_081": {"question_natural": "What is the impact of a 25% equity fall on Prudential International Assurance's SCR coverage, own funds, SCR and surplus?",
+ "key_facts": [
+  {"fact": "SCR coverage ratio impact", "value": "32%", "accept": ["32 percentage points", "32pp"]},
+  {"fact": "Own Funds impact", "value": "£11m", "accept": ["£11 million", "(11)"]},
+  {"fact": "SCR impact", "value": "£15m", "accept": ["£15 million", "(15)"]},
+  {"fact": "surplus impact", "value": "£4m", "accept": ["£4 million"]}]},
+"fin_q_082": {"question_natural": "Was Prudential International Assurance's Solvency II coverage ratio still above 300% at 30 June 2026?",
+ "key_facts": []},
+"fin_q_083": {"question_natural": "Which share class of Guggenheim's GFI Fund had the lowest TER in 2025?",
+ "key_facts": [
+  {"fact": "share class with lowest TER", "value": "Class S GBP Distributing", "accept": ["S GBP Distributing", "Class S GBP Dist"]},
+  {"fact": "lowest TER", "value": "0.49%", "accept": ["0.49 per cent"]}]},
+"fin_q_084": {"question_natural": "Which Fresenius segment had the highest 2025 EBIT, and what were Kabi's, Helios's and Corporate/Other's EBIT?",
+ "key_facts": [
+  {"fact": "Fresenius Kabi EBIT before special items (highest)", "value": "€1,413 million", "accept": ["€1.41 billion", "€1.4 billion", "EUR 1,413 million"]},
+  {"fact": "Fresenius Helios EBIT before special items", "value": "€1,328 million", "accept": ["€1.33 billion", "€1.3 billion", "EUR 1,328 million"]},
+  {"fact": "Corporate / Other EBIT", "value": "€431 million", "accept": ["EUR 431 million", "€0.43 billion"]}]},
+"fin_q_085": {"question_natural": "Rank Fresenius's segments by employees at 31 December 2025.",
+ "key_facts": [
+  {"fact": "1st: Fresenius Helios employees", "value": "130,240", "accept": []},
+  {"fact": "2nd: Fresenius Kabi employees", "value": "40,913", "accept": []},
+  {"fact": "3rd: Corporate / Other employees", "value": "7,241", "accept": []}]}
+}
