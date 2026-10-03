@@ -32,6 +32,7 @@ ROOT = Path(__file__).resolve().parent.parent
 QTYPES = ("direct", "table", "temporal", "calculation", "multi_evidence", "multi_document", "definition", "risk", "negative")
 TARGET_50 = {"direct": 10, "table": 10, "temporal": 8, "calculation": 7, "multi_evidence": 5, "multi_document": 4,
              "definition": 3, "negative": 3}
+STYLES = ("lookup", "superlative", "ranking", "yes_no", "comparison", "list", "count", "trend", "explanatory", "conditional")
 FAILURE_MODES = ("same_metric_multiple_years", "similar_table_labels", "multiple_entities", "footnote",
                  "terminology_mismatch", "unit_mismatch", "split_across_pages", "header_dependency",
                  "deep_in_report", "multi_evidence_combination")
@@ -73,6 +74,7 @@ class Metadata(_S):
     requires_multiple_documents: bool
     answerable: bool = True
     tier: Literal["gold", "silver"] = "silver"
+    style: Literal[STYLES] = "lookup"  # type: ignore[valid-type]  # form of the question (orthogonal to `type`)
     topic: str | None = None  # e.g. "risk:liquidity", "capital:CET1", "profitability"
     failure_modes: list[Literal[FAILURE_MODES]] = Field(default_factory=list)  # type: ignore[valid-type]
 
@@ -288,6 +290,8 @@ def distribution(examples: list[Example]) -> str:
     for t in QTYPES:
         lines.append(f"{t:<16}{types.get(t, 0):>3}   {TARGET_50.get(t, 0) * scale:>5.1f}")
     lines.append("tier : " + ", ".join(f"{k}={v}" for k, v in sorted(Counter(e.metadata.tier for e in examples).items())))
+    st = Counter(e.metadata.style for e in examples)
+    lines.append("styles: " + ", ".join(f"{k}={st[k]}" for k in STYLES if st[k]))
     lines.append("difficulty: " + ", ".join(f"{k}={v}" for k, v in sorted(Counter(e.metadata.difficulty for e in examples).items())))
     fm = Counter(f for e in examples for f in e.metadata.failure_modes)
     lines.append("failure modes covered: " + (", ".join(f"{k}={fm[k]}" for k in FAILURE_MODES if fm[k]) or "none"))

@@ -27,6 +27,8 @@ Text is `pdftotext -layout`: tables are column-aligned. Always read the table he
 
 - `type`: direct | table | temporal | calculation | multi_evidence | multi_document | definition | risk | negative.
 - `difficulty`: easy | medium | hard. `tier`: always `gold`.
+- `style` (form of the question, orthogonal to `type`): lookup | superlative | ranking | yes_no | comparison | list | count | trend |
+  explanatory | conditional. See "Question styles" below. Default `lookup`.
 - `failure_modes` (≥1 when genuinely applicable): same_metric_multiple_years, similar_table_labels, multiple_entities,
   footnote, terminology_mismatch, unit_mismatch, split_across_pages, header_dependency, deep_in_report, multi_evidence_combination.
 - `topic`: short free label such as `risk:credit`, `risk:liquidity`, `risk:market`, `risk:operational`, `risk:concentration`,
@@ -65,6 +67,23 @@ Text is `pdftotext -layout`: tables are column-aligned. Always read the table he
 8. **Never invent.** Every number and definition must be read from the page. If you are not sure, drop the question.
 9. Self-check before returning: `python finance_benchmark/tools/validate_dataset.py --draft <your file> --no-review`
    (errors about missing review entries do not apply in this mode). Fix every ERR it reports.
+
+## Question styles (vary the form, not only "What was X?")
+
+| style | example shape | what the answer and evidence must contain |
+|---|---|---|
+| superlative | "Which division had the highest/lowest/largest decline in …?" | the extreme item AND its value; evidence must cover **every candidate** compared (all rows/segments/years/entities in scope), so the extreme is verifiable; no ties; scope and period explicit |
+| ranking | "Rank the divisions by EBIT in 2025" / "the three largest …" | the full ordered list with values; evidence covers all ranked items |
+| yes_no | "Did X exceed/meet Y?", "Was Z higher in 2025 than in 2024?" | Yes/No first, then the figures and threshold that justify it (a bare yes/no is never acceptable) |
+| comparison | "Which was higher, A or B, and by how much?" | both values with units, the winner, the gap |
+| list | "Which … reported a decline?", "List the …" | the complete list, nothing omitted; evidence covers the full set |
+| count | "How many … ?" | the number plus the items counted |
+| trend | "How did X evolve over 2023–2025?" (≥3 data points) | direction and the values for each period |
+| explanatory | "What drove the change in …?" "Why did … ?" | the reasons exactly as the report states them (cite the passage; do not infer drivers the report does not give) |
+| conditional | "What would the ratio be under the +50bp shock?", "If X were excluded, …" | the figure given by the report's sensitivity/scenario table or a deterministic recomputation with `calculation` |
+
+Styles combine with any `type` (e.g. a `table` question with `superlative` style). Traps to avoid: superlatives with ties,
+open scope ("largest company" when only some entities are in the document), and "why" questions whose causes are not in the text.
 
 ## Review file (written later, after blind re-answering)
 

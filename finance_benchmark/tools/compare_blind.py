@@ -67,9 +67,11 @@ def compare(ref: dict, blind: dict | None) -> dict:
 
 
 def main() -> int:
-    refs, blinds = load("drafts/g*.jsonl"), load("blind/answers_v*.jsonl")
+    wave = sys.argv[1] if len(sys.argv) > 1 else "1"  # "1": g*.jsonl + answers_v*.jsonl ; "2": h*.jsonl + answers_w2v*.jsonl
+    refs = load("drafts/g*.jsonl" if wave == "1" else "drafts/h*.jsonl")
+    blinds = load("blind/answers_v*.jsonl" if wave == "1" else "blind/answers_w2v*.jsonl")
     rows = [compare(refs[i], blinds.get(i)) for i in sorted(refs)]
-    (ROOT / "analysis" / "blind" / "comparison.json").write_text(json.dumps(rows, indent=2, ensure_ascii=False), "utf-8")
+    (ROOT / "analysis" / "blind" / f"comparison_wave{wave}.json").write_text(json.dumps(rows, indent=2, ensure_ascii=False), "utf-8")
     agree = sum(r["auto_status"] == "agree" for r in rows)
     print(f"{agree}/{len(rows)} agree automatically; {len(rows) - agree} to adjudicate")
     for r in rows:
