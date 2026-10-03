@@ -49,6 +49,9 @@ def format_report(s: Summary) -> str:
               "",
               f"Accuracy when evidence retrieved : {_pct(f['answer_accuracy_when_retrieval_ok'])}",
               f"Accuracy when evidence missing   : {_pct(f['answer_accuracy_when_retrieval_missed'])}"]
+    if f.get("n_unanswerable"):
+        lines += [f"Unanswerable questions: {f['unanswerable_correctly_abstained']}/{f['n_unanswerable']} correctly abstained "
+                  "(not included in the table above)"]
     if f["n_wrong_answers"]:
         lines += [f"Wrong answers ({f['n_wrong_answers']}): {_pct(f['wrong_answers_due_to_retrieval'])} retrieval failure, "
                   f"{_pct(f['wrong_answers_due_to_generation'])} generation failure"]

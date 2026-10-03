@@ -7,6 +7,7 @@
                         sinon SUCCESS
 
 `retrieval_ok` exige TOUTES les preuves annotées dans le top-K max (multi-hop compris).
+Question sans réponse possible : rien à retrouver, une réponse inventée compte comme GENERATION_FAILURE.
 Règles volontairement simples et lisibles ; les faits bruts restent dans `trace.analysis`.
 """
 from __future__ import annotations

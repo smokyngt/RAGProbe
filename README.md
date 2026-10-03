@@ -1,39 +1,58 @@
-# ragbench — benchmark runner for RAG pipelines (V1: retrieval + QA)
+# ragbench + FinanceBench
 
-An **independent** runner: it sends the questions of a dataset to an existing pipeline (HTTP), collects `answer` +
-`retrieved_chunks`, computes metrics, and keeps a **complete trace per question**. It contains no RAG pipeline.
-The central question of V1:
+**Measure a document-QA / RAG pipeline objectively, and find out _why_ it fails.**
 
-> When an answer is wrong, did the system **not find** the information (retrieval) or **fail to use it** (generation)?
+This repository contains two independent pieces:
 
+| | What it is | Where |
+|---|---|---|
+| **ragbench** | A benchmark runner that calls any RAG pipeline over HTTP, scores retrieval and answers, keeps a full trace per question and tells retrieval failures apart from generation failures. | `ragbench/`, `benchmark.py` |
+| **FinanceBench V1.1** | An English financial QA benchmark: 113 independently checked questions over a frozen corpus of 17 public financial PDFs (1,995 pages), with evidence pointing to the original document and page. | `finance_benchmark/` |
+
+The runner contains no RAG pipeline, and the dataset was built without using the pipeline it will evaluate.
+
+---
+
+## The question it answers
+
+> When the system gives a wrong answer, did it **not find** the information, or **not use** it correctly?
+
+```mermaid
+flowchart LR
+    D[(dataset<br/>question + ground truth)] --> R[ragbench runner]
+    R -- "POST {question}" --> P[RAG pipeline<br/>under test]
+    P -- "answer + retrieved chunks" --> R
+    R --> M1[retrieval metrics<br/>Recall@K · MRR · nDCG]
+    R --> M2[answer metrics<br/>EM · F1 · LLM judge]
+    M1 & M2 --> DG{diagnosis}
+    DG --> O[(results/run_id/<br/>summary.json · traces.jsonl)]
 ```
-datasets/*.jsonl ─► Runner ──HTTP──► RAG pipeline (any)
-                      │                  │
-                      │      {answer, retrieved_chunks[]}
-                      ▼                  ▼
-              evaluation/retrieval   evaluation/qa (+ optional LLM judge)
-                      └────────┬─────────┘
-                               ▼
-                diagnosis (retrieval / generation / grounding)
-                               ▼
-               results/<run_id>/{summary.json, traces.jsonl}
-```
 
-All benchmark content (datasets, reports, messages) is in **English**. Internal code comments are partly French.
+| evidence retrieved? | answer | diagnosis |
+|---|---|---|
+| no | wrong | `RETRIEVAL_FAILURE` — the information was not found |
+| yes | wrong | `GENERATION_FAILURE` — it was found but not used correctly |
+| — | right, not supported by the retrieved text | `GROUNDING_FAILURE` (needs the judge) |
+| — | right | `SUCCESS` |
+| — | HTTP error / timeout / invalid payload | `PIPELINE_ERROR` |
 
-## Install and try it in 2 minutes
+Unanswerable questions have nothing to retrieve: answering "this cannot be established" is a success, an invented
+answer is a `GENERATION_FAILURE`. Every report ends with the 2×2 table *evidence retrieved × answer correct* and the
+share of wrong answers caused by retrieval vs generation.
+
+---
+
+## Quickstart (2 minutes, no API key)
 
 ```bash
-pip install -r requirements.txt pytest          # + `pip install anthropic` for the Anthropic judge
-python examples/mock_pipeline.py --port 8000 &  # mock pipeline (BM25 + extractive answer)
+pip install -r requirements.txt pytest
+python examples/mock_pipeline.py --port 8000 &            # a toy BM25 pipeline exposed over HTTP
 
 python benchmark.py run --dataset datasets/sample.jsonl --config configs/pipeline.yaml --run-id demo
 python benchmark.py report  --run demo
 python benchmark.py analyze --run demo --metric token_f1 --worst 5
-python -m pytest
+python -m pytest                                          # 57 tests
 ```
-
-Sample output (10 financial example questions):
 
 ```
 RETRIEVAL                          WHY DO ANSWERS FAIL?
@@ -45,108 +64,132 @@ Exact Match     0.00               Wrong answers (4): 0% retrieval failure, 100%
 Token F1        0.54
 ```
 
-With `--top-k 2` on the mock pipeline, the same questions yield 2 `RETRIEVAL_FAILURE` and 2 `GENERATION_FAILURE`.
+`datasets/sample.jsonl` is a 10-question **synthetic** toy set (fictional companies) used for smoke tests only.
 
-## Commands
+---
 
-| Command | Purpose |
-|---|---|
-| `run --dataset D --config C [--run-id ID] [--limit N] [--no-judge]` | run the benchmark, write `results/<run_id>/` |
-| `report --run ID` | print the report (retrieval, QA, judge, latency, diagnosis) |
-| `analyze --run ID [--metric M] [--worst N] [--failure-type T]` | worst traces by `recall_at_5`, `mrr`, `token_f1`, `correctness`, `groundedness`… |
-| `compare A B` | metric differences between two runs (warns if the datasets differ) |
+## Run FinanceBench against your pipeline (e.g. the Prosperify API)
 
-Default `run_id`: `<date>_<pipeline>_<version>` (suffix `_2`, `_3` on collision; an explicit `--run-id` never overwrites).
-Global option: `--results-dir` (default `results`).
+1. **Ingest** `finance_benchmark/corpus/documents/fin_doc_001.pdf … fin_doc_017.pdf` into the pipeline, keeping the
+   file name (or `fin_doc_NNN`) as the document id and the page number of every chunk.
+2. **Expose** an HTTP endpoint that follows the contract below.
+3. **Run**:
 
-## Contract with the tested pipeline
-
-`POST <endpoint>` with `{"question": "..."}` → `200` with:
-
-```json
-{"answer": "The contract runs for five years.",
- "retrieved_chunks": [{"chunk_id": "contract_12_chunk_084", "text": "…", "score": 12.3}, "contract_12_chunk_021"]}
+```bash
+export PIPELINE_URL=https://…/query PIPELINE_TOKEN=… ANTHROPIC_API_KEY=…
+python benchmark.py run --dataset finance_benchmark/datasets/finance_benchmark_v1.jsonl \
+                        --config configs/financebench.yaml --run-id prosperify_v1
+python benchmark.py analyze --run prosperify_v1 --failure-type RETRIEVAL_FAILURE
+python benchmark.py compare prosperify_v1 prosperify_v2
 ```
 
-A chunk is an id (`str`) or an object (`chunk_id`|`id`, `text`|`content`, `score`). Order = retriever ranking.
-**Returning `text`** is required for the judge to assess groundedness. Field names are configurable
-(`request_field`, `answer_field`, `chunks_field`). For a non-HTTP pipeline: subclass `PipelineAdapter.query()`.
+### HTTP contract
 
-Error handling: timeout, limited retries with backoff (network, 408/425/429/5xx; **no** retry on 4xx), invalid payloads →
-the error is isolated **to the question** (`PIPELINE_ERROR`, metrics at 0) and the run continues.
-
-## Dataset
-
-JSONL, one question per line (validated with Pydantic, unique ids, errors carry the line number):
+`POST <endpoint>` with `{"question": "..."}` → `200`:
 
 ```json
-{"id": "q_001", "question": "…", "reference_answer": "…", "document_id": "alpha_2025",
- "relevant_chunks": ["alpha_2025_chunk_001"], "metadata": {"category": "factual", "difficulty": "easy"}}
+{
+  "answer": "DHL Group's effective tax rate for 2025 was 29.4%.",
+  "retrieved_chunks": [
+    {"chunk_id": "c_8812", "text": "…Profit before income taxes 5,062 5,246…", "score": 12.3,
+     "document_id": "fin_doc_011.pdf", "page": 162, "page_end": 162}
+  ]
+}
 ```
 
-`relevant_chunks` (≥ 1) must contain the ids **exposed by the pipeline**. Each run records the dataset SHA-256: two runs are
-comparable iff the hashes are equal. `datasets/sample.jsonl`: 10 fictional financial questions (factual, numeric, multi-hop);
-`sample_corpus.jsonl` is only used by the mock pipeline. The real finance benchmark lives in `finance_benchmark/`
-(see its README); its ground truth references original documents (document + page), not RAG chunks.
+- Order of `retrieved_chunks` = ranking of the retriever. A chunk may also be a bare id string.
+- Accepted aliases: `id`, `content`, `doc_id` / `source`, `page_number`. Field names of the payload are configurable.
+- `text` is needed by the judge (groundedness); `document_id` + `page` let the runner match the annotated evidence.
+  Without pages, a chunk matches an evidence item when it contains most of the evidence text.
+- Errors are isolated per question: timeout, retries with backoff on network/408/425/429/5xx (never on other 4xx),
+  invalid payload → `PIPELINE_ERROR`, metrics at 0, the run continues.
+
+---
+
+## Ground truth formats
+
+One JSONL line per question. Two formats are accepted, so the same runner serves both datasets:
+
+```jsonc
+// chunk ids (tied to one chunking of the corpus) — datasets/sample.jsonl
+{"id": "q_001", "question": "…", "reference_answer": "…", "relevant_chunks": ["alpha_2025_chunk_001"]}
+
+// evidence in the original documents (independent of chunking) — FinanceBench
+{"id": "fin_q_011", "question": "…", "reference_answer": "…",
+ "evidence": [{"document_id": "fin_doc_011", "page": 162, "text": "Profit before income taxes 5,062 5,246 …"}],
+ "metadata": {"type": "calculation", "style": "lookup", "answerable": true, "…": "…"},
+ "calculation": {"inputs": {"…": 0}, "operation": "…", "result": 0.2936}}
+```
+
+Unanswerable questions carry `"answerable": false` (top level or in `metadata`) and no evidence.
 
 ## Metrics
 
-- **Retrieval** (`evaluation/retrieval.py`): Recall@K, MRR; Precision@K and nDCG@K available (`benchmark.retrieval_metrics`).
-  Duplicate chunks count once. Adding a metric = one function + one line in `K_METRICS`/`RANK_METRICS` (e.g. MAP).
-- **Deterministic QA** (`evaluation/qa.py`): Exact Match, Token F1 after normalisation (lowercase, accents, punctuation, articles).
-- **LLM judge** (`evaluation/judge.py`): `correctness`, `completeness`, `groundedness` ∈ [0,1] + `reason`, JSON validated by Pydantic
-  (one retry if invalid; otherwise `judge_error` in the trace and fallback to Token F1). The provider is in the config
-  (`anthropic` or `openai_compatible`); the benchmark only depends on the `AnswerJudge` interface. The evaluated answer is
-  treated as data (tags + instruction), not as instructions. Several judges: write a composite `AnswerJudge`.
-
-## Diagnosis (the central point)
-
-Each trace holds `analysis` = {`retrieval_ok`, `answer_correct`, `grounded`} and a derived `diagnosis`:
-
-| `retrieval_ok` | answer | `diagnosis` |
+| Family | Metrics | Notes |
 |---|---|---|
-| no | wrong | `RETRIEVAL_FAILURE` — the evidence is missing from the top-K |
-| yes | wrong | `GENERATION_FAILURE` — the evidence was there, badly used |
-| — | right but `groundedness` < threshold | `GROUNDING_FAILURE` (needs the judge) |
-| — | right | `SUCCESS` |
-| — | HTTP error / timeout | `PIPELINE_ERROR` |
+| Retrieval | Recall@K, MRR (default) · Precision@K, nDCG@K | duplicates count once; averaged over answerable questions |
+| Answer, deterministic | Exact Match, Token F1 | normalised (case, accents, punctuation, articles); a coarse proxy for long answers |
+| Answer, LLM judge | correctness, completeness, groundedness ∈ [0, 1] + reason | JSON validated by Pydantic; provider `anthropic` or `openai_compatible`; the evaluated answer is treated as data, not instructions |
+| Latency | mean, p50, p95 | successful calls only |
 
-- `retrieval_ok` = **all** annotated evidence is within the top-K max (`max(top_k)`): strict for multi-hop.
-- "Right answer" = judge `correctness` ≥ 0.5 if enabled, else Token F1 ≥ 0.5 (thresholds in `benchmark`).
-  Without a judge, F1 is a coarse proxy: EM is ~0 whenever the wording differs.
-- The report gives the 2×2 table (evidence × answer) and the share of wrong answers due to retrieval vs generation.
+Answer correctness = judge `correctness ≥ 0.5` when the judge is on, else Token F1 ≥ 0.5 (thresholds configurable);
+for unanswerable questions without judge, an explicit abstention ("cannot be established…") is required.
+Adding a retrieval metric = one function on `(hits, n_relevant, k)` in `ragbench/evaluation/retrieval.py`.
 
-## Configuration (`configs/pipeline.yaml`)
+## CLI
 
-Validated YAML (unknown keys rejected). `${VAR}` is resolved from the environment (URL, tokens); header values are masked in
-`summary.json`. Anthropic judge: `ANTHROPIC_API_KEY` or `ant auth login`; `temperature` is not sent (refused by some recent models).
+| Command | Purpose |
+|---|---|
+| `run --dataset D --config C [--run-id ID] [--limit N] [--no-judge]` | run, write `results/<run_id>/summary.json` + `traces.jsonl` |
+| `report --run ID` | retrieval, QA, judge, latency, diagnosis, 2×2 failure table |
+| `analyze --run ID [--metric M] [--worst N] [--failure-type T]` | worst traces with question, expected evidence, top-5 chunks, judge reason |
+| `compare A B` | metric deltas between two runs (warns when the dataset hash differs) |
 
-## Run outputs
+Each run records `run_id`, timestamp, pipeline name/version, dataset name/version/**SHA-256**, and the full configuration
+(header values masked). `${VAR}` in YAML is read from the environment, so no secret lives in the config.
 
-- `traces.jsonl`: one line per question (written as it goes) — input, ground truth, full pipeline output, metrics, judge, analysis,
-  diagnosis, latency, error.
-- `summary.json`: `run` (run_id, timestamp, pipeline + version, dataset + version + sha256, configuration), aggregates,
-  latency (mean/p50/p95), diagnosis counters, failure analysis.
-- Pipeline errors count as 0 in the averages (and are flagged); latencies cover successes only.
+---
 
-## Layout
+## FinanceBench V1.1 at a glance
+
+- **Corpus (frozen, SHA-256 per file):** ECB annual accounts · Belfius Bank Pillar 3, EMTN base prospectus, FY2025 results release ·
+  Belfius Insurance SFCR · ASN Bank Pillar 3 · M&G/PIA SFCR · Central Bank of Türkiye · Luzerner Kantonalbank · CBA Europe Pillar 3 ·
+  Guggenheim UCITS annual report and prospectus · Fresenius consolidated statements and Q4/FY2025 release · DHL annual reports 2025 and 2024 ·
+  AMF (French markets regulator) 2025 annual report.
+- **113 questions** — types: table 38 · calculation 19 · temporal 12 · direct 11 · multi-document 9 · multi-evidence 7 · definition 7 ·
+  unanswerable 6 · risk 4; forms: lookup 31 · comparison 23 · explanatory 13 · yes/no 12 · superlative 10 · count 6 · list 5 · ranking 5 ·
+  conditional 5 · trend 3. 23 carry a deterministic `calculation` with the printed inputs, units and scale.
+- **Validation:** annotation by model agents → automatic checks (every evidence quote verbatim on its page, every calculation
+  recomputed, units checked) → **blind re-answer** by separate agents → adjudication of every disagreement against the source
+  (41 questions rewritten, 1 withheld). **No human review yet:** `datasets/human_review_priority.json` lists the 20 questions to read first.
+- **Missing:** a French Universal Registration Document (the issuer's domain is blocked by this environment's network policy).
+
+Dataset card, document table, protocol and limits: **[finance_benchmark/README.md](finance_benchmark/README.md)**.
+
+---
+
+## Repository layout
 
 ```
-benchmark.py            CLI entry point (→ ragbench/cli.py)
+benchmark.py                  CLI entry point (→ ragbench/cli.py)
 ragbench/
-  models.py             Pydantic structures (Sample, PipelineResult, Trace, Summary…)
-  config.py  dataset.py YAML and JSONL loading/validation
-  runner.py             loop dataset → pipeline → metrics → traces
-  storage.py            results/<run_id>/ (incremental writing, reading back)
-  pipelines/            base.py (PipelineAdapter), http.py (HTTPPipelineAdapter)
-  evaluation/           retrieval.py, qa.py, judge.py, diagnosis.py
-  reporting/            aggregator.py, report.py, analyze.py
-examples/mock_pipeline.py   mock pipeline (does not import ragbench)
-finance_benchmark/      FinanceBench V1: frozen corpus, annotation tools, dataset (see its README)
+  models.py                   Pydantic structures (Sample, EvidenceRef, PipelineResult, Trace, Summary…)
+  config.py · dataset.py      YAML config and JSONL dataset loading/validation
+  runner.py                   dataset → pipeline → metrics → diagnosis → traces
+  storage.py                  results/<run_id>/ (incremental traces, read back)
+  pipelines/                  base.py (PipelineAdapter), http.py (HTTPPipelineAdapter)
+  evaluation/                 retrieval.py, qa.py, judge.py, diagnosis.py
+  reporting/                  aggregator.py, report.py, analyze.py
+configs/                      pipeline.yaml (mock demo), financebench.yaml (real pipeline + judge)
+datasets/                     sample.jsonl + sample_corpus.jsonl (synthetic toy set for the mock pipeline)
+examples/mock_pipeline.py     toy BM25 pipeline over HTTP (does not import ragbench)
+finance_benchmark/            FinanceBench: corpus/, datasets/, annotation/ (audit trail), tools/, guide
+tests/                        57 tests (metrics, judge, HTTP adapter, runner, evidence matching, CLI end-to-end, dataset tools)
 ```
 
-## Known V1 limits
+## Known limits
 
-Sequential execution (no parallelism, no resume after interruption — traces already written are kept); the Anthropic /
-OpenAI-compatible judge is only tested with a fake client; no statistical comparison (confidence intervals) between runs;
-on small datasets, differences between runs are not significant.
+- Sequential execution, no resume after interruption (traces already written are kept).
+- The Anthropic / OpenAI-compatible judge clients are only tested with a fake client.
+- No confidence intervals between runs: on ~100 questions, small differences are not significant.
+- FinanceBench reference answers are long and often answer several sub-questions: use the judge, not EM/F1, to score them.

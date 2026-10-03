@@ -102,7 +102,10 @@ class AnthropicClient:
     """
 
     def __init__(self, model: str, max_tokens: int):
-        import anthropic  # dépendance optionnelle
+        try:
+            import anthropic  # dépendance optionnelle
+        except ImportError as e:
+            raise JudgeError("the Anthropic judge needs the SDK: pip install anthropic") from e
 
         self._anthropic, self.model, self.max_tokens = anthropic, model, max_tokens
         self._client = anthropic.Anthropic()

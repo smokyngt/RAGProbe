@@ -10,8 +10,8 @@ from .config import Config
 from .dataset import Dataset
 from .evaluation.diagnosis import diagnose
 from .evaluation.judge import AnswerJudge
-from .evaluation.qa import evaluate_answer
-from .evaluation.retrieval import dedupe, evaluate_retrieval, recall_at_k
+from .evaluation.qa import evaluate_answer, is_abstention
+from .evaluation.retrieval import chunk_hits, evidence_hits, metrics_from_hits
 from .models import (FailureType, JudgeScores, RunMetadata, Sample, Summary, Trace, TraceAnalysis,
                      TraceGroundTruth, TraceInput, TracePipelineOutput)
 from .pipelines.base import PipelineAdapter
@@ -19,6 +19,16 @@ from .reporting.aggregator import aggregate
 from .storage import TraceWriter, write_summary
 
 log = logging.getLogger(__name__)
+
+
+def retrieval_metrics(sample: Sample, retrieved, ks, names) -> dict[str, float]:
+    """Retrieval metrics for an answerable question; {} for an unanswerable one (nothing to retrieve)."""
+    if not sample.answerable:
+        return {}
+    if sample.evidence:
+        return metrics_from_hits(evidence_hits(retrieved, sample.evidence), len(sample.evidence), ks, names)
+    rel = set(sample.relevant_chunks)
+    return metrics_from_hits(chunk_hits([c.chunk_id for c in retrieved], rel), len(rel), ks, names)
 
 
 class BenchmarkRunner:
@@ -31,20 +41,20 @@ class BenchmarkRunner:
             question_id=sample.id,
             input=TraceInput(question=sample.question),
             ground_truth=TraceGroundTruth(answer=sample.reference_answer, relevant_chunks=sample.relevant_chunks,
+                                          evidence=sample.evidence, answerable=sample.answerable,
                                           document_id=sample.document_id, metadata=sample.metadata),
         )
         try:
             result = self.adapter.query(sample.question)
-        except Exception as e:  # une panne sur une question ne doit pas arrêter le run
+        except Exception as e:  # a failure on one question must not stop the run
             log.warning("%s: pipeline error: %s", sample.id, e)
-            # métriques à zéro : une pipeline qui plante n'est pas "meilleure" qu'une qui se trompe
-            metrics = evaluate_retrieval([], sample.relevant_chunks, bench.top_k, bench.retrieval_metrics)
+            # metrics at zero: a pipeline that crashes is not "better" than one that answers wrongly
+            metrics = retrieval_metrics(sample, [], bench.top_k, bench.retrieval_metrics)
             metrics |= evaluate_answer("", sample.reference_answer)
             return Trace(**base, metrics=metrics, diagnosis=FailureType.PIPELINE_ERROR,
                          error=f"{type(e).__name__}: {e}")
 
-        ids = [c.chunk_id for c in result.retrieved_chunks]
-        metrics = evaluate_retrieval(ids, sample.relevant_chunks, bench.top_k, bench.retrieval_metrics)
+        metrics = retrieval_metrics(sample, result.retrieved_chunks, bench.top_k, bench.retrieval_metrics)
         metrics |= evaluate_answer(result.answer, sample.reference_answer)
 
         judge_scores: JudgeScores | None = None
@@ -57,20 +67,32 @@ class BenchmarkRunner:
                 judge_error = f"{type(e).__name__}: {e}"
                 log.warning("%s: judge failed: %s", sample.id, judge_error)
 
-        retrieval_ok = recall_at_k(dedupe(ids), set(sample.relevant_chunks), max(bench.top_k)) >= 1.0
+        # all annotated evidence within the max top-K (recall is computed for every k in top_k, max included)
+        if sample.answerable:
+            k_max = max(bench.top_k)
+            recall = metrics.get(f"recall_at_{k_max}")
+            if recall is None:  # recall not among the configured metrics: compute it for the diagnosis anyway
+                recall = retrieval_metrics(sample, result.retrieved_chunks, [k_max], ["recall"])[f"recall_at_{k_max}"]
+            retrieval_ok: bool | None = recall >= 1.0
+        else:
+            retrieval_ok = None
+        grounded: bool | None = None
         if judge_scores:
             answer_correct, source = judge_scores.correctness >= bench.judge_correct_threshold, "judge"
-            grounded: bool | None = judge_scores.groundedness >= bench.grounded_threshold
+            grounded = judge_scores.groundedness >= bench.grounded_threshold
+        elif not sample.answerable:  # the right answer is "this cannot be established from the documents"
+            answer_correct, source = is_abstention(result.answer), "abstention_check"
         else:
             answer_correct, source = metrics["token_f1"] >= bench.answer_correct_f1_threshold, "token_f1"
-            grounded = None
+        if not sample.answerable:
+            grounded = None  # nothing to be grounded in
         return Trace(
             **base,
             pipeline_output=TracePipelineOutput(answer=result.answer, retrieved_chunks=result.retrieved_chunks),
             metrics=metrics, judge=judge_scores, judge_error=judge_error,
             analysis=TraceAnalysis(retrieval_ok=retrieval_ok, answer_correct=answer_correct,
                                    answer_correct_source=source, grounded=grounded),
-            diagnosis=diagnose(retrieval_ok, answer_correct, grounded),
+            diagnosis=diagnose(retrieval_ok is not False, answer_correct, grounded),
             latency_ms=result.latency_ms,
         )
 
@@ -89,7 +111,7 @@ class BenchmarkRunner:
                 writer.write(trace)
                 traces.append(trace)
                 log.info("[%d/%d] %s %s %s", i, n, sample.id, trace.diagnosis.value,
-                         f"f1={trace.metrics['token_f1']:.2f}" + (f" {trace.latency_ms:.0f}ms" if trace.latency_ms else ""))
+                         f"f1={trace.metrics['token_f1']:.2f}" + (f" {trace.latency_ms:.0f}ms" if trace.latency_ms is not None else ""))
         summary = aggregate(traces, meta)
         write_summary(run_dir, summary)
         return summary

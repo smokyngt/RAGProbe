@@ -36,3 +36,16 @@ def token_f1(predicted: str, reference: str) -> float:
 
 def evaluate_answer(predicted: str, reference: str) -> dict[str, float]:
     return {"exact_match": exact_match(predicted, reference), "token_f1": token_f1(predicted, reference)}
+
+
+_ABSTENTION = re.compile(
+    r"cannot be (established|determined|found|answered|derived|confirmed)|can ?not (determine|find|answer)|"
+    r"(is|are) not (provided|disclosed|available|reported|stated|mentioned|included)|no (information|data|figure)|"
+    r"insufficient (information|evidence)|unable to (find|determine|answer)|does not (contain|provide|disclose|mention|report)|"
+    r"not possible to (determine|establish)|ne (peut|permet) pas|aucune (information|donnée)|n'est pas (disponible|fourni|indiqué)",
+    re.I)
+
+
+def is_abstention(answer: str) -> bool:
+    """True when the answer says the information cannot be established (expected for unanswerable questions)."""
+    return bool(_ABSTENTION.search(answer or ""))

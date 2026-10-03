@@ -15,7 +15,7 @@ def metric_value(t: Trace, metric: str) -> float | None:
 
 
 def available_metrics(traces: Sequence[Trace]) -> list[str]:
-    names = list(traces[0].metrics) if traces else []
+    names = list(dict.fromkeys(k for t in traces for k in t.metrics))
     return names + (list(JUDGE_DIMS) if any(t.judge for t in traces) else [])
 
 
@@ -35,9 +35,12 @@ def format_trace(t: Trace, metric: str, rank: int) -> str:
         out.append(f"  ERROR    : {t.error}")
         return "\n".join(out)
     po = t.pipeline_output
-    got = [c.chunk_id for c in po.retrieved_chunks[:5]]
+    gt = t.ground_truth
+    expected = ([f"{e.document_id} p.{e.page}" for e in gt.evidence] or gt.relevant_chunks) if gt.answerable \
+        else "nothing (unanswerable: an abstention is expected)"
+    got = [c.chunk_id + (f" ({c.document_id} p.{c.page})" if c.document_id and c.page else "") for c in po.retrieved_chunks[:5]]
     out += [f"  answer   : {po.answer}",
-            f"  expected : {t.ground_truth.relevant_chunks}",
+            f"  expected : {expected}",
             f"  top-5    : {got}"]
     if t.judge:
         out.append(f"  judge    : corr={t.judge.correctness:.2f} compl={t.judge.completeness:.2f} "

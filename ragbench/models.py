@@ -4,24 +4,53 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+
+class EvidenceRef(BaseModel):
+    """Ground truth tied to the ORIGINAL document (FinanceBench format), independent of any chunking."""
+
+    document_id: str
+    page: int = Field(ge=1)
+    text: str | None = None
 
 
 class Sample(BaseModel):
-    """Une ligne du dataset JSONL : question + vérité terrain."""
+    """One JSONL line: question + ground truth.
+
+    Two ground-truth formats are accepted:
+      - `relevant_chunks`: ids of the pipeline's own chunks (simple, but tied to one chunking);
+      - `evidence`: [{document_id, page, text}] in the original documents (FinanceBench) — a retrieved chunk
+        counts as relevant when it comes from the same document and page, or contains most of the evidence text.
+    An unanswerable question (`answerable: false`, also read from `metadata.answerable`) has no evidence:
+    the expected behaviour is to say the information cannot be established.
+    """
 
     id: str
     question: str
     reference_answer: str
-    relevant_chunks: list[str] = Field(min_length=1)
+    relevant_chunks: list[str] = Field(default_factory=list)
+    evidence: list[EvidenceRef] = Field(default_factory=list)
+    answerable: bool | None = None
     document_id: str | None = None
     metadata: dict[str, Any] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def _ground_truth(self):
+        if self.answerable is None:
+            self.answerable = bool(self.metadata.get("answerable", True))
+        if self.answerable and not (self.relevant_chunks or self.evidence):
+            raise ValueError("an answerable question needs `relevant_chunks` or `evidence`")
+        return self
 
 
 class RetrievedChunk(BaseModel):
     chunk_id: str
-    text: str | None = None  # nécessaire au judge (groundedness)
+    text: str | None = None  # needed by the judge (groundedness) and by evidence matching
     score: float | None = None
+    document_id: str | None = None  # provenance, needed to match `evidence` by page
+    page: int | None = None  # first page of the chunk (1-based)
+    page_end: int | None = None  # last page if the chunk spans several pages
 
 
 class PipelineResult(BaseModel):
@@ -54,7 +83,9 @@ class TraceInput(BaseModel):
 
 class TraceGroundTruth(BaseModel):
     answer: str
-    relevant_chunks: list[str]
+    relevant_chunks: list[str] = Field(default_factory=list)
+    evidence: list[EvidenceRef] = Field(default_factory=list)
+    answerable: bool = True
     document_id: str | None = None
     metadata: dict[str, Any] = Field(default_factory=dict)
 
@@ -67,9 +98,9 @@ class TracePipelineOutput(BaseModel):
 class TraceAnalysis(BaseModel):
     """Les trois faits dont dérive le diagnostic (voir evaluation/diagnosis.py)."""
 
-    retrieval_ok: bool  # toutes les preuves annotées sont dans le top-K max
+    retrieval_ok: bool | None  # all annotated evidence within the max top-K; None for unanswerable questions
     answer_correct: bool
-    answer_correct_source: str  # "judge" | "token_f1"
+    answer_correct_source: str  # "judge" | "token_f1" | "abstention_check"
     grounded: bool | None = None  # None si pas de judge
 
 
@@ -80,7 +111,7 @@ class Trace(BaseModel):
     input: TraceInput
     ground_truth: TraceGroundTruth
     pipeline_output: TracePipelineOutput | None = None
-    metrics: dict[str, float] = Field(default_factory=dict)
+    metrics: dict[str, float] = Field(default_factory=dict)  # retrieval metrics absent for unanswerable questions
     judge: JudgeScores | None = None
     judge_error: str | None = None
     analysis: TraceAnalysis | None = None

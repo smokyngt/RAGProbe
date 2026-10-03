@@ -30,7 +30,8 @@ def _rate(num: int, den: int) -> float | None:
 
 def failure_analysis(traces: Sequence[Trace]) -> dict:
     """Table 2×2 (preuves retrouvées × réponse correcte) et répartition des mauvaises réponses."""
-    ev = [t for t in traces if t.analysis]  # hors erreurs pipeline
+    ev = [t for t in traces if t.analysis and t.analysis.retrieval_ok is not None]  # answerable, no pipeline error
+    unans = [t for t in traces if t.analysis and t.analysis.retrieval_ok is None]
     cell = lambda ok, good: sum(t.analysis.retrieval_ok == ok and t.analysis.answer_correct == good for t in ev)
     ok_good, ok_bad, miss_good, miss_bad = cell(True, True), cell(True, False), cell(False, True), cell(False, False)
     wrong = ok_bad + miss_bad
@@ -45,11 +46,13 @@ def failure_analysis(traces: Sequence[Trace]) -> dict:
         "n_wrong_answers": wrong,
         "wrong_answers_due_to_retrieval": _rate(miss_bad, wrong),
         "wrong_answers_due_to_generation": _rate(ok_bad, wrong),
+        "n_unanswerable": len(unans),
+        "unanswerable_correctly_abstained": sum(t.analysis.answer_correct for t in unans),
     }
 
 
 def aggregate(traces: Sequence[Trace], meta: RunMetadata) -> Summary:
-    metric_keys = list(traces[0].metrics) if traces else []
+    metric_keys = list(dict.fromkeys(k for t in traces for k in t.metrics))  # union: unanswerable traces lack retrieval keys
     retrieval_keys = [k for k in metric_keys if k not in QA_KEYS]
     judged = [t.judge for t in traces if t.judge]
     latencies = [t.latency_ms for t in traces if t.latency_ms is not None]
@@ -60,7 +63,8 @@ def aggregate(traces: Sequence[Trace], meta: RunMetadata) -> Summary:
         run=meta,
         n_questions=len(traces),
         n_errors=counts[FailureType.PIPELINE_ERROR.value],
-        retrieval={k: _mean([t.metrics[k] for t in traces]) for k in retrieval_keys},
+        # retrieval averaged over the questions that have something to retrieve (pipeline errors count as 0)
+        retrieval={k: _mean([t.metrics[k] for t in traces if k in t.metrics]) for k in retrieval_keys},
         qa={k: _mean([t.metrics[k] for t in traces]) for k in QA_KEYS if k in metric_keys},
         judge={k: _mean([getattr(j, k) for j in judged]) for k in JUDGE_KEYS} if judged else None,
         n_judged=len(judged),

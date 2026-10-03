@@ -43,10 +43,10 @@ def recompute(ref: dict, blind: dict) -> dict | None:
 
 
 def main() -> int:
-    draft = {json.loads(l)["id"]: json.loads(l) for l in (ROOT / "datasets" / "finance_benchmark_v1_draft.jsonl").read_text("utf-8").splitlines() if l.strip()}
+    draft = {json.loads(l)["id"]: json.loads(l) for l in (ROOT / "annotation" / "merged_draft.jsonl").read_text("utf-8").splitlines() if l.strip()}
     blinds = load("blind/answers_*.jsonl")
     adj: dict[str, dict] = {}
-    for f in sorted((ROOT / "analysis" / "adjudication").glob("adj*.json")):
+    for f in sorted((ROOT / "annotation" / "adjudication").glob("adj*.json")):
         adj.update(json.loads(f.read_text("utf-8"))["decisions"])
     reviews, attention = {}, []
     for qid, ex in sorted(draft.items()):

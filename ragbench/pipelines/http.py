@@ -1,7 +1,8 @@
 """Adaptateur HTTP : POST JSON {"question": ...} -> {"answer": ..., "retrieved_chunks": [...]}.
 
-`retrieved_chunks` : liste d'ids (str) ou d'objets {"chunk_id"|"id", "text"|"content", "score"}.
-Fournir le texte permet au judge d'évaluer la groundedness.
+`retrieved_chunks`: list of ids (str) or objects {"chunk_id"|"id", "text"|"content", "score",
+"document_id"|"doc_id"|"source", "page"|"page_number", "page_end"}. The text is needed by the judge (groundedness);
+document_id + page let the benchmark match evidence annotated in the original documents (FinanceBench).
 """
 from __future__ import annotations
 
@@ -26,8 +27,15 @@ def parse_chunk(item: Any) -> RetrievedChunk:
         cid = item.get("chunk_id", item.get("id"))
         if cid is None:
             raise PipelineError(f"chunk without identifier: {item!r}")
-        return RetrievedChunk(chunk_id=str(cid), text=item.get("text", item.get("content")),
-                              score=item.get("score"))
+        doc = item.get("document_id", item.get("doc_id", item.get("source")))
+        try:
+            page = item.get("page", item.get("page_number"))
+            return RetrievedChunk(chunk_id=str(cid), text=item.get("text", item.get("content")), score=item.get("score"),
+                                  document_id=str(doc) if doc is not None else None,
+                                  page=int(page) if page is not None else None,
+                                  page_end=int(item["page_end"]) if item.get("page_end") is not None else None)
+        except (TypeError, ValueError) as e:  # e.g. a non-numeric score or page
+            raise PipelineError(f"invalid chunk {item!r}: {e}") from e
     raise PipelineError(f"unexpected chunk type: {type(item).__name__}")
 
 

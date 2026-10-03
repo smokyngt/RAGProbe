@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Texte par page (pdftotext -layout) pour aider l'annotation et vérifier les citations d'evidence.
+"""Page-level text (pdftotext -layout) to support annotation and to check evidence quotes.
 
-    python tools/extract_pages.py                 # -> analysis/text/<document_id>.txt  (pages séparées par \\f)
+    python tools/extract_pages.py                                   # -> analysis/text/<document_id>.txt (pages split by \f)
     python tools/extract_pages.py --grep "operating income" [--doc fin_doc_001]
-    python tools/extract_pages.py --doc fin_doc_001 --page 12            # print page 12 (1-based); --page 12-14 for a range
+    python tools/extract_pages.py --doc fin_doc_001 --page 12       # print page 12 (1-based PDF index); --page 12-14
 
-Ces fichiers sont dérivés (analysis/ est ignoré par git) et ne font pas partie du corpus gelé.
-Une page vide dans un PDF qui n'est pas vide signale un scan : OCR nécessaire avant annotation.
+analysis/ is derived and git-ignored; it is not part of the frozen corpus.
+A document whose pages are mostly empty is probably scanned: it needs OCR before annotation.
 """
 from __future__ import annotations
 

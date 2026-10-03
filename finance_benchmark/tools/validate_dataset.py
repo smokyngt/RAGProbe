@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""Validation automatique du dataset (draft) + du fichier de revue ; export des seuls exemples vérifiés.
+"""Automatic validation of the dataset (merged draft) and of the review file; export of verified examples only.
 
-    python tools/validate_dataset.py                 # contrôles + rapport de distribution
-    python tools/validate_dataset.py --export        # écrit datasets/finance_benchmark_v1.jsonl (exemples `verified` uniquement)
+    python tools/validate_dataset.py                 # checks + distribution report
+    python tools/validate_dataset.py --no-review     # annotator self-check (no review file required)
+    python tools/validate_dataset.py --export        # writes datasets/finance_benchmark_v1.jsonl (`verified` examples only)
 
-Contrôles automatiques (ils NE remplacent PAS la lecture du document source) :
-  - schéma, ids uniques, document_id/page existants dans corpus/manifest.json ;
-  - chaque `evidence.text` figure VERBATIM sur la page indiquée du PDF (fragments séparés par « … » acceptés) ;
-  - calculs : opération réévaluée (AST restreint) = `result` ; chaque entrée est retrouvée telle qu'imprimée (`raw`)
-    dans l'evidence citée, et raw × scale = valeur (les unités ne disparaissent jamais en silence) ;
-  - cohérence des drapeaux (multi-documents, calcul, négatif sans evidence) ;
-  - review: une entrée par question, 10 contrôles renseignés, recalcul indépendant concordant,
-    tier `gold` ⇒ revue manuelle ; une revue automatique ne peut produire que du `silver`.
+Automatic checks (they do NOT replace reading the source document):
+  - schema, unique ids, document_id/page present in corpus/manifest.json;
+  - every `evidence.text` appears VERBATIM on the cited page of the PDF ("…" separates fragments, in order);
+  - calculations: the operation is re-evaluated (restricted AST) and equals `result`; every input is found as printed
+    (`raw`) in the cited evidence and raw × scale = value (units never disappear silently);
+  - flag consistency (multi-document, calculation, unanswerable without evidence);
+  - review: one entry per question, 10 checks filled in, matching independent recompute; tier `gold` needs a manual or
+    llm_blind_reverify review, and llm_blind_reverify must declare human_reviewed=false.
 """
 from __future__ import annotations
 
@@ -351,7 +352,7 @@ def run(root: Path, draft: Path, review_path: Path, final: Path, export: bool,
 if __name__ == "__main__":
     sys.path.insert(0, str(Path(__file__).parent))
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--draft", default=str(ROOT / "datasets" / "finance_benchmark_v1_draft.jsonl"))
+    ap.add_argument("--draft", default=str(ROOT / "annotation" / "merged_draft.jsonl"))
     ap.add_argument("--review", default=str(ROOT / "datasets" / "finance_benchmark_v1_review.json"))
     ap.add_argument("--final", default=str(ROOT / "datasets" / "finance_benchmark_v1.jsonl"))
     ap.add_argument("--export", action="store_true")

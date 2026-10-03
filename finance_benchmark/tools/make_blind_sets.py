@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Prépare la validation indépendante : extrait de chaque brouillon UNIQUEMENT {id, question}.
+"""Prepare the independent validation: extract ONLY {id, question} from the drafts.
 
-    python tools/make_blind_sets.py [--sets 4]     # analysis/drafts/g*.jsonl -> analysis/blind/v1.jsonl … vN.jsonl
+    python tools/make_blind_sets.py [--sets 4] [--glob 'h*.jsonl' --prefix w2v]
+                                    # annotation/drafts/g*.jsonl -> annotation/blind/v1.jsonl … vN.jsonl
 
-Les questions sont mélangées de façon déterministe entre les lots : un relecteur ne reçoit ni la réponse de référence,
-ni l'evidence, ni le groupe de l'annotateur. Il répond à partir des PDF seulement (voir tools/compare_blind.py).
+Questions are shuffled deterministically across sets: a reviewer never sees the reference answer, the evidence or the
+annotator's group, and answers from the PDFs only (see tools/compare_blind.py).
 """
 from __future__ import annotations
 
@@ -23,13 +24,13 @@ def main() -> None:
     ap.add_argument("--prefix", default="v", help="output prefix (wave 2: w2v -> w2v1.jsonl)")
     a = ap.parse_args()
     qs = []
-    for f in sorted((ROOT / "analysis" / "drafts").glob(a.glob)):
+    for f in sorted((ROOT / "annotation" / "drafts").glob(a.glob)):
         for line in f.read_text("utf-8").splitlines():
             if line.strip():
                 d = json.loads(line)
                 qs.append({"id": d["id"], "question": d["question"]})
     random.Random(2026).shuffle(qs)
-    out = ROOT / "analysis" / "blind"
+    out = ROOT / "annotation" / "blind"
     out.mkdir(parents=True, exist_ok=True)
     for i in range(a.sets):
         chunk = sorted(qs[i::a.sets], key=lambda q: q["id"])

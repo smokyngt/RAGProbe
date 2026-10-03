@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-"""Compare les réponses en aveugle (analysis/blind/answers_v*.jsonl) aux brouillons (analysis/drafts/g*.jsonl).
+"""Compare blind answers (annotation/blind/answers_*.jsonl) with the annotated drafts (annotation/drafts/*.jsonl).
 
-Format d'une réponse en aveugle :
+    python tools/compare_blind.py 1|2|3     # wave 1 (g*), 2 (h*) or 3 (k*) -> annotation/blind/comparison_waveN.json
+
+Blind answer format:
   {"id", "answer", "evidence": [{"document_id","page","text"}], "calculation": {"inputs","operation","result"}|null,
-   "cannot_be_established": bool, "notes": "..."}
+   "cannot_be_established": bool, "confidence": "high|medium|low", "notes": "..."}
 
-Signaux automatiques par question (la décision finale reste une adjudication humaine/agent sur les désaccords) :
-  - négatif : le relecteur conclut-il aussi « cannot be established » ?
-  - calcul  : résultat recalculé en aveugle ≈ résultat annoté (tolérance relative 1e-4) ?
-  - evidence : au moins une page (document, page) en commun ?
-  - nombres : chaque nombre de la réponse de référence apparaît-il dans la réponse en aveugle ?
+Automatic signals per question (crude on purpose; every disagreement goes to an adjudicator who re-reads the source):
+  - answerability: does the reviewer also conclude "cannot be established"?
+  - calculation: blind result ≈ annotated result (relative tolerance 1e-4)?
+  - evidence: at least one (document, page) in common?
+  - numbers: does every number of the reference answer appear in the blind answer?
 """
 from __future__ import annotations
 
@@ -25,7 +27,7 @@ NUM = re.compile(r"\d[\d,\. ]*\d|\d")
 
 def load(pattern: str) -> dict[str, dict]:
     out = {}
-    for f in sorted((ROOT / "analysis").glob(pattern)):
+    for f in sorted((ROOT / "annotation").glob(pattern)):
         for line in f.read_text("utf-8").splitlines():
             if line.strip():
                 d = json.loads(line)
@@ -72,7 +74,7 @@ def main() -> int:
     refs = load(f"drafts/{prefix[0]}*.jsonl")
     blinds = load(f"blind/answers_{prefix[1]}*.jsonl")
     rows = [compare(refs[i], blinds.get(i)) for i in sorted(refs)]
-    (ROOT / "analysis" / "blind" / f"comparison_wave{wave}.json").write_text(json.dumps(rows, indent=2, ensure_ascii=False), "utf-8")
+    (ROOT / "annotation" / "blind" / f"comparison_wave{wave}.json").write_text(json.dumps(rows, indent=2, ensure_ascii=False), "utf-8")
     agree = sum(r["auto_status"] == "agree" for r in rows)
     print(f"{agree}/{len(rows)} agree automatically; {len(rows) - agree} to adjudicate")
     for r in rows:

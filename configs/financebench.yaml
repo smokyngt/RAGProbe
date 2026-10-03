@@ -1,0 +1,30 @@
+# FinanceBench V1.1 against a real pipeline (e.g. the Prosperify API).
+#   export PIPELINE_URL=https://.../query  PIPELINE_TOKEN=...   (+ ANTHROPIC_API_KEY for the judge)
+#   python benchmark.py run --dataset finance_benchmark/datasets/finance_benchmark_v1.jsonl --config configs/financebench.yaml
+#
+# The pipeline must return, for each retrieved chunk, its source document and page so that the benchmark can match
+# the evidence annotated in the original PDFs: {"chunk_id", "text", "document_id": "fin_doc_011" (or "fin_doc_011.pdf"),
+# "page": 162, "page_end": 162}. Without page numbers, matching falls back to text overlap (less precise).
+pipeline:
+  name: "prosperify"
+  version: "v1"
+  endpoint: "${PIPELINE_URL}"
+  timeout: 120
+  max_retries: 2
+  headers:
+    Authorization: "Bearer ${PIPELINE_TOKEN}"
+
+dataset:
+  name: "financebench"
+  version: "v1.1"
+
+benchmark:
+  top_k: [1, 5, 10]
+  retrieval_metrics: [recall, mrr, ndcg]
+
+# Reference answers are explanatory (median 54 words): Exact Match / Token F1 are only indicative here,
+# the judge decides answer correctness. Unanswerable questions are scored on abstention.
+judge:
+  enabled: true
+  provider: "anthropic"
+  model: "claude-opus-5-5"

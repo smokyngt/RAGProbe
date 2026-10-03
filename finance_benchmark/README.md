@@ -1,131 +1,168 @@
-# FinanceBench V1.1 — frozen financial corpus and independently checked QA ground truth (English)
+# FinanceBench V1.1 — dataset card
 
-**Status: complete EXCEPT the French URD category (blocked by the network policy — see "Finishing the URD step"). 113 verified questions over 17 documents / 1995 pages. The RAG has not been run, and nothing here was produced or validated with it.**
+An English benchmark for question answering over real financial documents: **113 questions** over a **frozen corpus
+of 17 public PDFs (1995 pages)**. Every answer is tied to the original document, PDF page and a verbatim quote.
+It is designed to be run with the `ragbench` runner at the root of this repository (see the root README).
+
+> **Status.** Complete except one category: a French Universal Registration Document (URD), blocked by the network policy of the
+> environment it was built in (see [Adding the URD](#adding-the-urd)). No human has reviewed the questions yet (see [Validation](#validation)).
+
+## Contents
 
 ```
 finance_benchmark/
 ├── corpus/
-│   ├── documents/fin_doc_001.pdf … fin_doc_017.pdf   17 public PDFs, read-only
-│   ├── manifest.json        provenance per document: source_url, domain, retrieved_at, SHA-256, pages, added_in
-│   ├── FROZEN.json          current freeze + freeze_history (v1: 12 docs / 1,443 p.; v1.1: 17 docs / 1995 p.)
-│   └── candidates.json      discovery log (dork-style searches; selected / reserve / excluded + why)
+│   ├── documents/fin_doc_001.pdf … fin_doc_017.pdf   read-only
+│   ├── manifest.json        provenance per document: source URL, domain, retrieval time, SHA-256, pages, batch
+│   ├── FROZEN.json          current freeze (manifest hash) + freeze history
+│   ├── candidates.json      discovery log: selected / reserve / excluded documents and why
+│   └── fetch_report*.json   download logs
 ├── datasets/
-│   ├── finance_benchmark_v1.jsonl          the benchmark: 113 verified examples (ids fin_q_001…114; fin_q_102 withheld)
-│   ├── finance_benchmark_v1_review.json    per-question review record (method, basis, checks, recompute)
-│   ├── human_review_priority.json          the 20 questions a human should read first, with the reason and what to check
-│   ├── finance_benchmark_v1_stats.json     distributions (types, styles, documents, evidence)
-│   ├── excluded_flagged.json               questions withheld by adjudication (fin_q_102) and why
-│   └── finance_benchmark_v1_draft.jsonl, style_tags_wave1.json
-├── validation_artifacts/    annotator drafts, blind re-answers, comparisons, adjudication verdicts (audit trail)
-├── tools/                   fetch_corpus (--freeze / --add), extract_pages, make_blind_sets, compare_blind, build_draft,
-│                            build_review, validate_dataset, human_review_priority, report_stats
-└── ANNOTATION_GUIDE.md
+│   ├── finance_benchmark_v1.jsonl          ← the benchmark
+│   ├── finance_benchmark_v1_review.json    review record per question (method, basis, checks, recompute)
+│   ├── human_review_priority.json          the 20 questions a human should read first, with what to check
+│   ├── finance_benchmark_v1_stats.json     distributions
+│   └── excluded_flagged.json               questions withheld after adjudication, with the reason
+├── annotation/              audit trail: annotator drafts, blind sets and answers, comparisons, adjudication verdicts,
+│                            merged_draft.jsonl (everything needed to rebuild datasets/ from scratch)
+├── tools/                   corpus, annotation and validation tools (below)
+└── ANNOTATION_GUIDE.md      the rules annotators followed
 ```
 
-## Corpus (frozen, 17 documents, 1995 pages)
+## Corpus
 
-Original 12 (v1): ECB annual accounts 2025 · Belfius Bank Pillar 3 · Belfius Insurance SFCR · ASN Bank Pillar 3 · M&G/PIA SFCR ·
-Central Bank of Türkiye · Luzerner Kantonalbank · CBA Europe NV Pillar 3 · Guggenheim UCITS annual report · Fresenius consolidated
-statements · DHL annual reports 2025 and 2024.
-Added in v1.1 to cover the missing categories (all downloaded from the issuer's or regulator's own site, SHA-256 recorded):
-**prospectus** — Belfius Bank EMTN Base Prospectus dated 6 May 2026 (224 p.) and Guggenheim UCITS prospectus (131 p., the "Germany"
-version dated 9 Nov 2023 consolidating the 4 Sep 2023 prospectus); **regulator report** — AMF 2025 Annual Report, English (175 p.,
-15 image-only pages); **earnings/results releases** — Belfius FY2025 (12 p.) and Fresenius Q4/FY2025 (10 p.).
-Correction log: the first download for fin_doc_015 was a 3-page web print of the AMF page; it was replaced in place by the real report
-*before any annotation used it* (recorded in `manifest.json` and `FROZEN.json`); the fetch tool now rejects PDFs under 4 pages.
-Not obtainable: SEC Agency Financial Report (sec.gov "Request Rate Threshold Exceeded"), Bahamas central bank, MetLife IM UCITS.
+| id | issuer | document | type | pages | primary Q | Q touching | evidence |
+|---|---|---|---|---|---|---|---|
+| `fin_doc_001` | European Central Bank | ECB Annual Accounts 2025 | annual_accounts | 87 | 5 | 5 | 5 |
+| `fin_doc_002` | Belfius Bank | Belfius 2025 Pillar 3 Report | pillar3 | 111 | 5 | 7 | 12 |
+| `fin_doc_003` | Belfius Insurance | Belfius Insurance consolidated SFCR 2025 (EN) | solvency_report | 71 | 6 | 6 | 7 |
+| `fin_doc_004` | ASN Bank | ASN Bank Pillar 3 Report 2025 | pillar3 | 138 | 7 | 7 | 9 |
+| `fin_doc_005` | M&G / Prudential International Assurance | Solvency and Financial Condition Report 31 Dec 2025 | solvency_report | 64 | 3 | 3 | 3 |
+| `fin_doc_006` | Central Bank of the Republic of Türkiye | Annual Report 2025 (financial report, YFR_2025_V4) | annual_report | 135 | 5 | 5 | 7 |
+| `fin_doc_007` | Luzerner Kantonalbank (LUKB) | LUKB Disclosure Report 2025 | regulatory_disclosure | 48 | 7 | 9 | 10 |
+| `fin_doc_008` | Commonwealth Bank of Australia (CBA Europe NV) | CBA NV Pillar 3 Report 2025 | pillar3 | 67 | 2 | 3 | 6 |
+| `fin_doc_009` | Guggenheim Global Investments plc | UCITS Annual Report & Audited Financial Statements FY2025 | fund_annual_report | 82 | 8 | 8 | 9 |
+| `fin_doc_010` | Fresenius SE & Co. KGaA | Fresenius consolidated financial statements 2025 (extract of t | annual_report | 107 | 8 | 9 | 13 |
+| `fin_doc_011` | DHL Group | DHL Group Annual Report 2025 | annual_report | 277 | 24 | 26 | 42 |
+| `fin_doc_012` | DHL Group | DHL Group Annual Report 2024 | annual_report | 256 | 5 | 6 | 6 |
+| `fin_doc_013` | Belfius Bank | Belfius Bank EMTN Programme Base Prospectus dated 6 May 2026 ( | prospectus | 224 | 7 | 7 | 12 |
+| `fin_doc_014` | Guggenheim Global Investments plc | UCITS Prospectus (Germany version) | prospectus | 131 | 4 | 4 | 9 |
+| `fin_doc_015` | Autorité des marchés financiers (AMF) | AMF 2025 Annual Report (English) | regulator_report | 175 | 5 | 5 | 7 |
+| `fin_doc_016` | Belfius Bank | Belfius annual results 2025: press release | earnings_release | 12 | 2 | 2 | 5 |
+| `fin_doc_017` | Fresenius SE & Co. KGaA | Fresenius press release Q4 and FY 2025 | earnings_release | 10 | 4 | 4 | 9 |
 
-## Finishing the URD step (the only missing category)
+All documents were downloaded from the issuer's or regulator's own website (provenance and SHA-256 in `manifest.json`).
+Institution types: banks, insurers, central banks, a UCITS fund, industrial groups, a market regulator. Document types: annual reports
+and accounts, Pillar 3 and solvency reports, financial statements, a fund report, two prospectuses, two results releases, a regulator report.
+Batches: v1 (`fin_doc_001`–`012`, 1,443 pages) and v1.1 (`013`–`017`, adding prospectus, regulator report and results releases).
+`fin_doc_015` was first downloaded as a 3-page web print; it was replaced by the real report before any annotation used it (logged in
+the manifest). Not obtainable: SEC agency financial report (rate limit), Bahamas central bank (403), MetLife UCITS (HTML disclaimer).
 
-A French Universal Registration Document is only published as a PDF on the issuer's own site (the AMF's BDIF database holds URDs as
-XHTML/ZIP plus a 2-page visa PDF). The selected candidate is **Guillemot Corporation URD 2025** (`candidates.json` c24); its domain is
-refused by the environment's egress policy. To finish:
-1. Network access → add the allowed domain `*.guillemot.com` (one entry; any other French issuer's URD PDF works too — update `c24`).
-2. Set `"selected": true` on c24 and run `python finance_benchmark/tools/fetch_corpus.py --add --label v1.2` (ids are never reused; the freeze history gets a new entry).
-3. Annotate ~6 URD questions with the same protocol (`ANNOTATION_GUIDE.md` → blind re-answer → adjudication → `build_draft`, `build_review`, `validate_dataset --export`), then regenerate stats and the priority list.
+## Questions
 
-## Dataset (113 questions)
+```json
+{"id": "fin_q_011",
+ "question": "What was DHL Group's effective income tax rate for fiscal year 2025 (income taxes divided by profit before income taxes, consolidated)? Give the answer as a percentage to one decimal place.",
+ "reference_answer": "… 1,540 / 5,246 = 29.4% …",
+ "evidence": [{"document_id": "fin_doc_011", "page": 162, "text": "€m Note 2024 2025 … Profit before income taxes 5,062 5,246 Income taxes 19 -1,494 -1,540"}],
+ "metadata": {"type": "calculation", "style": "lookup", "difficulty": "medium", "requires_calculation": true,
+              "requires_multiple_documents": false, "answerable": true, "tier": "gold", "topic": "profitability",
+              "failure_modes": ["terminology_mismatch"]},
+ "calculation": {"inputs": {"2025_income_taxes": -1540000000, "2025_profit_before_income_taxes": 5246000000},
+                 "operation": "-2025_income_taxes / 2025_profit_before_income_taxes", "result": 0.29356,
+                 "input_sources": {"…": {"evidence_index": 0, "raw": "-1,540", "unit": "€ million", "scale": 1000000}}}}
+```
 
 | | |
 |---|---|
-| `type` | table 38, calculation 19, temporal 12, direct 11, multi_document 9, multi_evidence 7, definition 7, negative 6, risk 4 |
-| `style` (form of the question) | lookup 31, comparison 23, explanatory 13, yes_no 12, superlative 10, count 6, list 5, conditional 5, ranking 5, trend 3 |
-| flags | 23 with a `calculation` block · 9 need several documents · 6 unanswerable from the corpus |
+| type | table 38, calculation 19, temporal 12, direct 11, multi_document 9, multi_evidence 7, definition 7, negative 6, risk 4 |
+| style (form) | lookup 31, comparison 23, explanatory 13, yes_no 12, superlative 10, count 6, list 5, conditional 5, ranking 5, trend 3 |
 | difficulty | medium 75, hard 20, easy 18 |
-| top failure-mode tags | same_metric_multiple_years 44, similar_table_labels 37, multiple_entities 27, header_dependency 25, terminology_mismatch 24, split_across_pages 23, multi_evidence_combination 22, footnote 19 |
+| flags | 23 with a calculation · 9 multi-document · 6 unanswerable |
+| retrieval traps (`failure_modes`) | same metric multiple years 44 · similar table labels 37 · multiple entities 27 · header dependency 25 · terminology mismatch 24 · split across pages 23 · multi evidence combination 22 · footnote 19 · unit mismatch 13 · deep in report 3 |
 
-Wave 3 (23 questions kept of 24) targets the structures the first 90 under-represented: cross-referenced definitions, prospectus risk
-factors and regulatory limits, footnoted tables, regulator statistics and accounts, guidance/outlook, release-vs-audited-report comparisons.
+Conventions: page = 1-based PDF page index (not the printed number); evidence text = verbatim `pdftotext -layout` excerpt, `…` joins
+fragments of the same page; calculation `inputs` are in base units (`raw × scale`), results unrounded, percentages and percentage-point
+gaps as fractions (1.68 pp → 0.0168); answers state currency, scale and period; unanswerable questions have `evidence: []` and an answer
+stating that the information cannot be established from the documents.
 
-### Documents: primary questions, questions touching the document, evidence items
+## Validation
 
-| document | title | type | pages | primary | touching | evidence |
-|---|---|---|---|---|---|---|
-| fin_doc_001 | European Central Bank — ECB Annual Accounts 2025 | annual_accounts | 87 | 5 | 5 | 5 |
-| fin_doc_002 | Belfius Bank — Belfius 2025 Pillar 3 Report | pillar3 | 111 | 5 | 7 | 12 |
-| fin_doc_003 | Belfius Insurance — Belfius Insurance consolidated SFCR 2025 (EN) | solvency_report | 71 | 6 | 6 | 7 |
-| fin_doc_004 | ASN Bank — ASN Bank Pillar 3 Report 2025 | pillar3 | 138 | 7 | 7 | 9 |
-| fin_doc_005 | M&G / Prudential International Assurance — Solvency and Financial Condition Report 31 Dec 2025 | solvency_report | 64 | 3 | 3 | 3 |
-| fin_doc_006 | Central Bank of the Republic of Türkiye — Annual Report 2025 (financial report, YFR_2025_V4) | annual_report | 135 | 5 | 5 | 7 |
-| fin_doc_007 | Luzerner Kantonalbank (LUKB) — LUKB Disclosure Report 2025 | regulatory_disclosure | 48 | 7 | 9 | 10 |
-| fin_doc_008 | Commonwealth Bank of Australia (CBA Europe NV) — CBA NV Pillar 3 Report 2025 | pillar3 | 67 | 2 | 3 | 6 |
-| fin_doc_009 | Guggenheim Global Investments plc — UCITS Annual Report & Audited Financial Statements FY2025 | fund_annual_report | 82 | 8 | 8 | 9 |
-| fin_doc_010 | Fresenius SE & Co. KGaA — Fresenius consolidated financial statements 2025 (extract  | annual_report | 107 | 8 | 9 | 13 |
-| fin_doc_011 | DHL Group — DHL Group Annual Report 2025 | annual_report | 277 | 24 | 26 | 42 |
-| fin_doc_012 | DHL Group — DHL Group Annual Report 2024 | annual_report | 256 | 5 | 6 | 6 |
-| fin_doc_013 | Belfius Bank — Belfius Bank EMTN Programme Base Prospectus dated 6 May 20 | prospectus | 224 | 7 | 7 | 12 |
-| fin_doc_014 | Guggenheim Global Investments plc — UCITS Prospectus (Germany version) | prospectus | 131 | 4 | 4 | 9 |
-| fin_doc_015 | Autorité des marchés financiers (AMF) — AMF 2025 Annual Report (English) | regulator_report | 175 | 5 | 5 | 7 |
-| fin_doc_016 | Belfius Bank — Belfius annual results 2025: press release | earnings_release | 12 | 2 | 2 | 5 |
-| fin_doc_017 | Fresenius SE & Co. KGaA — Fresenius press release Q4 and FY 2025 | earnings_release | 10 | 4 | 4 | 9 |
+Same protocol for the three annotation waves (50 + 40 + 24 questions):
 
-DHL 2025 (fin_doc_011) is the primary source of ~21% of the questions; fin_doc_005, 008, 016 are lightly covered.
+1. **Annotation** by parallel model agents, one per document group, following `ANNOTATION_GUIDE.md`.
+2. **Automatic checks** (`tools/validate_dataset.py`): schema and flag consistency; every evidence quote found verbatim on its page;
+   every calculation re-evaluated; every input found as printed in its evidence with `raw × scale = value`.
+3. **Blind re-answer:** separate agents answered every question from the PDFs only, without the reference answer or evidence.
+4. **Adjudication:** every disagreement or reviewer doubt (all of wave 3) was re-checked against the source by a third agent:
+   confirmed / fixed / withheld. 41 questions were rewritten (ambiguous scope or basis, unsupported claim, incomplete footnote evidence);
+   `fin_q_102` was withheld (two conflicting fee figures in the source).
 
-Every example has `evidence` = `{document_id, page, text}` from the **original PDF** (1-based PDF page; verbatim `pdftotext -layout`
-excerpt) — never RAG chunk ids. Units, currencies and scales are kept in answers; calculations carry `inputs` (base units),
-`operation`, `result` (unrounded) and `input_sources` (number as printed, unit, scale). Percentage-point gaps use scale 0.01
-(1.68 pp → 0.0168). Negative questions have `evidence: []`, `answerable: false` (each searched across the whole corpus).
+**No human has reviewed these questions.** Each review entry states `method: llm_blind_reverify, human_reviewed: false`;
+`tier: gold` means "checked against the source by an independent pass plus adjudication". Annotators and reviewers belong to the same
+model family, so shared blind spots are possible. Read these 20 first (`datasets/human_review_priority.json` lists what to check for each):
 
-## How it was validated — and what that does NOT mean
+| # | id | type / style | main reasons |
+|---|---|---|---|
+| 1 | `fin_q_014` | multi_document / comparison | multi-document; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 2 | `fin_q_113` | multi_document / explanatory | calculation; multi-document; rewritten by adjudicator (ambiguity existed) |
+| 3 | `fin_q_112` | multi_document / comparison | multi-document; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 4 | `fin_q_105` | calculation / comparison | calculation; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 5 | `fin_q_057` | calculation / comparison | calculation; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 6 | `fin_q_096` | table / lookup | rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication; unit_mismatch |
+| 7 | `fin_q_030` | multi_document / comparison | multi-document; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 8 | `fin_q_053` | calculation / superlative | calculation; style=superlative; rewritten by adjudicator (ambiguity existed) |
+| 9 | `fin_q_084` | table / superlative | style=superlative; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 10 | `fin_q_093` | calculation / yes_no | calculation; style=yes_no; scope/basis issue discussed in adjudication |
+| 11 | `fin_q_111` | multi_evidence / list | style=list; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 12 | `fin_q_010` | calculation / lookup | calculation; scope/basis issue discussed in adjudication; similar_table_labels |
+| 13 | `fin_q_039` | calculation / lookup | calculation; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 14 | `fin_q_041` | multi_evidence / conditional | style=conditional; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 15 | `fin_q_051` | calculation / superlative | calculation; style=superlative; rewritten by adjudicator (ambiguity existed) |
+| 16 | `fin_q_052` | table / ranking | style=ranking; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 17 | `fin_q_074` | table / superlative | style=superlative; scope/basis issue discussed in adjudication; unit_mismatch |
+| 18 | `fin_q_077` | table / yes_no | style=yes_no; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
+| 19 | `fin_q_079` | table / count | style=count; rewritten by adjudicator (ambiguity existed); similar_table_labels |
+| 20 | `fin_q_092` | calculation / comparison | calculation; rewritten by adjudicator (ambiguity existed); scope/basis issue discussed in adjudication |
 
-Same protocol for all three waves: (1) annotation by parallel Claude agents per document group (guide: `ANNOTATION_GUIDE.md`);
-(2) automatic checks — schema, every evidence excerpt **verbatim** on its cited page, every calculation re-evaluated, every input found
-as printed with `raw × scale = value`; (3) separate agents re-answered every question **blind** from the PDFs;
-(4) automatic comparison, then **adjudication** by third agents who re-read the sources (confirmed / fix / flag) — wave 1: 33 questions,
-wave 2: 35, wave 3: all 24. Across the three waves 41 questions were rewritten (ambiguous scope or basis, unsupported claims, loose
-wording, incomplete footnote evidence) and 1 was withheld (fin_q_102: the Directors' fees differ between the income statement and
-Note 10, and whether pension contributions count as "remuneration" changes the answer).
-**No human has reviewed these examples.** Every review entry says `method: llm_blind_reverify, human_reviewed: false`; `tier: gold`
-means "checked against the source by an independent pass plus adjudication", not "human verified". Annotators and reviewers are the
-same model family, so shared blind spots are possible.
+## Using it
 
-### The 20 questions to review first (`datasets/human_review_priority.json`)
-
-Explainable additive score (calculation, superlative/ranking/count/list, multi-document, rewritten by adjudicator, scope/basis words,
-unit mismatch, look-alike values, blind-reviewer doubt, multi-page evidence), max 5 per primary document:
-fin_q_014, fin_q_113, fin_q_112, fin_q_105, fin_q_057, fin_q_096, fin_q_030, fin_q_053, fin_q_084, fin_q_093, fin_q_111, fin_q_010, fin_q_039, fin_q_041, fin_q_051, fin_q_052, fin_q_074, fin_q_077, fin_q_079, fin_q_092.
-Each entry lists why it was selected and what to check (recompute from the page, scan every row for the extreme, confirm the basis…).
-
-## Known limits
-
-- URD category still missing (above). Only 6 negative questions; DHL 2025 over-represented.
-- Evidence text comes from `pdftotext -layout`; another PDF parser splits table rows differently, so mapping evidence to RAG chunks
-  must use fuzzy overlap on numbers and labels, not exact string equality.
-- Several answers hinge on a stated basis (CRR2 vs pro forma CRR3, before/after special items, rounded vs component sums); the question
-  wording pins it, but a pipeline that ignores footnotes will fail exactly as intended.
-- 113 questions is not the 1,000-question silver tier, which has deliberately not been started.
-
-## Reproduce
+With the runner at the repository root (no conversion needed: the runner matches evidence by document + page, or by text overlap):
 
 ```bash
-python finance_benchmark/tools/fetch_corpus.py --freeze        # verify SHA-256 of all documents and re-freeze
-python finance_benchmark/tools/build_draft.py                  # merge waves + adjudication fixes (drops flagged)
-python finance_benchmark/tools/build_review.py                 # review record from blind answers + adjudication
-python finance_benchmark/tools/validate_dataset.py --export    # errors=0 required; rewrites finance_benchmark_v1.jsonl
+python benchmark.py run --dataset finance_benchmark/datasets/finance_benchmark_v1.jsonl --config configs/financebench.yaml
+```
+
+Use the LLM judge: reference answers are explanatory (median ~54 words) and 49 questions ask several things at once, so Exact Match
+and Token F1 are only indicative.
+
+## Tools and reproducibility
+
+```bash
+python finance_benchmark/tools/fetch_corpus.py --freeze      # verify every SHA-256 (no change → nothing rewritten)
+python finance_benchmark/tools/extract_pages.py --doc fin_doc_011 --page 162      # read a page (text cached in analysis/, git-ignored)
+python finance_benchmark/tools/build_draft.py                # annotation/drafts + adjudication → annotation/merged_draft.jsonl
+python finance_benchmark/tools/build_review.py               # blind answers + adjudication → datasets/…_review.json
+python finance_benchmark/tools/validate_dataset.py --export  # must report errors=0; writes datasets/finance_benchmark_v1.jsonl
 python finance_benchmark/tools/report_stats.py ; python finance_benchmark/tools/human_review_priority.py
 ```
 
-## Next phase (not done here)
+Running these from a fresh clone reproduces `datasets/` byte for byte. Annotation tools: `make_blind_sets.py` (questions only, for blind
+reviewers), `compare_blind.py` (automatic comparison, crude on purpose: every flag goes to adjudication).
 
-Ingest `corpus/documents/` into the Prosperify RAG, convert each `evidence` (document, page, text) into `relevant_chunks` for the
-`ragbench` runner by text overlap, then run `finance_benchmark_v1.jsonl`. Do not use the RAG to edit the ground truth.
+## Adding the URD
+
+A French URD is only published as a PDF on the issuer's site (the AMF's BDIF database serves URDs as XHTML/ZIP). The selected candidate
+is Guillemot Corporation's 2025 URD (`candidates.json`, `c24`), whose domain was blocked. To add it: allow `*.guillemot.com` in the
+environment's network settings (or pick another issuer and update `c24`), set `"selected": true`, run
+`python finance_benchmark/tools/fetch_corpus.py --label v1.2` (new id `fin_doc_018`, ids never reused, freeze history kept), then annotate
+~6 questions with the same protocol and rebuild `datasets/`.
+
+## Known limits
+
+- DHL 2025 is the primary source of ~21% of the questions; a few documents are lightly covered (M&G/PIA, CBA Europe, Belfius release).
+- Only 6 unanswerable questions, and 5 of them rely on the same pattern (a period after the reports' date).
+- Questions are explicit about entity, period and basis (that is what makes them unambiguous), so they are longer and more lexically
+  helpful to a retriever than real user questions.
+- Several answers hinge on a stated basis (CRR2 vs pro forma CRR3, before/after special items, rounded vs component sums): a pipeline
+  that ignores footnotes is expected to fail them.
