@@ -5,7 +5,7 @@
 
 Risk features (additive):
   calculation +3 · superlative/ranking/count/list +3 (the extreme must be checked against every row) · multi-document +3 ·
-  adjudicator had to REWRITE it (ambiguity existed) +3 · scope/basis words in the adjudication reason +2 ·
+  adjudicator had to REWRITE it (ambiguity existed) +3 · rewritten after the relevance review +3 · scope/basis words in the adjudication reason +2 ·
   unit_mismatch +2 · similar_table_labels/same_metric_multiple_years/footnote/header_dependency +1 each ·
   blind reviewer not 'high' confidence or voiced doubt +2 · automatic blind comparison disagreed +1 ·
   multi-page evidence +1 · ≥4 evidence items +1 · negative (verified by search only) +1 · yes_no/conditional +1.
@@ -47,6 +47,14 @@ def main() -> int:
     adj: dict[str, dict] = {}
     for f in sorted((ROOT / "annotation" / "adjudication").glob("adj*.json")):
         adj.update(json.loads(f.read_text("utf-8"))["decisions"])
+    repaired = {json.loads(l)["id"] for f in sorted((ROOT / "annotation" / "repairs").glob("sub*.jsonl"))
+                for l in f.read_text("utf-8").splitlines() if l.strip()}
+    for qid in repaired:  # rewritten after the relevance review: only their own re-verification counts
+        blinds.pop(qid, None)
+        adj.pop(qid, None)
+    blinds.update(load("repairs/blind_answers*.jsonl"))
+    for f in sorted((ROOT / "annotation" / "repairs").glob("verdicts*.json")):
+        adj.update(json.loads(f.read_text("utf-8"))["decisions"])
     rows = []
     for qid, e in ex.items():
         m, fm, score, why, hints = e["metadata"], set(e["metadata"].get("failure_modes", [])), 0, [], set()
@@ -61,6 +69,7 @@ def main() -> int:
         if m.get("style") in ("yes_no", "conditional"): add(1, f"style={m['style']}")
         if m.get("requires_multiple_documents"): add(3, "multi-document", "multi_doc")
         v = adj.get(qid)
+        if qid in repaired: add(3, "rewritten after the relevance review", "rewritten")
         if v and v["verdict"] == "fix": add(3, "rewritten by adjudicator (ambiguity existed)", "rewritten")
         if v and SCOPE.search(v.get("reasons", "")): add(2, "scope/basis issue discussed in adjudication", "scope")
         if "unit_mismatch" in fm: add(2, "unit_mismatch", "units")
