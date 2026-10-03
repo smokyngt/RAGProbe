@@ -1,0 +1,239 @@
+{
+ "decisions": {
+  "fin_q_115": {
+   "verdict": "fix",
+   "reasons": "False premise positively contradicted: fin_doc_001 p.86 states the ECB's 2025 loss of EUR 1,254 million is carried forward and offset against future profits; p.82 five-year P&L shows Profit distribution '-' for 2025; p.65 confirms Banque de France key 16.3575% (paid-up EUR 1,771m). The documents establish the answer (nothing was distributed), so converted to answerable multi_evidence/explanatory, keeping the question wording. Blind reviewer w4v1 answered the same way.",
+   "example": {
+    "id": "fin_q_115",
+    "question": "How much did the Banque de France receive from the European Central Bank's distribution of its 2025 profit, given its 16.3575% share of the ECB's capital key?",
+    "question_natural": "How much of the ECB's 2025 profit distribution went to the Banque de France?",
+    "reference_answer": "The Banque de France received nothing, because the premise is false: the ECB made no profit for 2025 to distribute. The ECB Annual Accounts 2025 report a loss for 2025 of €1,254 million (2024: loss of €7,944 million), and, following a decision by the Governing Council, this loss will be carried forward on the ECB's balance sheet and offset against future profits. The five-year profit and loss summary shows no profit distribution for 2025 (the last one was €192 million for 2021). Profit is only distributed to the shareholding NCBs in proportion to their paid-up shares when there is net profit; the Banque de France's capital key of 16.3575% (paid-up capital €1,771 million) therefore yields no 2025 distribution.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_001",
+      "page": 86,
+      "text": "The ECB’s loss for 2025 was €1,254 million, compared with a loss of €7,944 million in 2024. Following a decision by the Governing Council, this loss will be carried forward on the ECB’s balance sheet and offset against future profits."
+     },
+     {
+      "document_id": "fin_doc_001",
+      "page": 82,
+      "text": "(EUR millions) … 2021 2022 2023 2024 2025 … Profit/(loss) for the year 192 - (1,266) (7,944) (1,254) … Profit distribution 192 - - - -"
+     },
+     {
+      "document_id": "fin_doc_001",
+      "page": 65,
+      "text": "Capital key Subscribed capital Paid-up capital … Banque de France (France) 16.3575 1,771 1,771"
+     }
+    ],
+    "metadata": {
+     "type": "multi_evidence",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "profitability",
+     "failure_modes": [
+      "terminology_mismatch",
+      "multiple_entities"
+     ],
+     "style": "explanatory"
+    },
+    "calculation": null,
+    "key_facts": [
+     {
+      "fact": "amount received by the Banque de France",
+      "value": "received nothing",
+      "accept": [
+       "nothing",
+       "EUR 0",
+       "€0",
+       "zero",
+       "no distribution"
+      ]
+     },
+     {
+      "fact": "ECB result for 2025 was a loss",
+      "value": "loss for 2025 of €1,254 million",
+      "accept": [
+       "loss of €1,254 million",
+       "loss of EUR 1,254 million",
+       "€1.254 billion loss",
+       "€1.3 billion loss",
+       "1,254 million"
+      ]
+     },
+     {
+      "fact": "loss carried forward, not distributed",
+      "value": "carried forward",
+      "accept": [
+       "carried forward on the ECB's balance sheet",
+       "offset against future profits"
+      ]
+     }
+    ]
+   }
+  },
+  "fin_q_116": {
+   "verdict": "confirmed",
+   "reasons": "fin_doc_005 names PAC as immediate parent (p.8) and only says PIA monitors 'PAC's solvency ratio' (p.40) without a value; corpus-wide grep finds no PAC or M&G SFCR/annual report. PIA's own 309.7%/141.2% (p.5-6) correctly described in the reference. Blind reviewer agreed.",
+   "example": null
+  },
+  "fin_q_117": {
+   "verdict": "fix",
+   "reasons": "False premise positively contradicted: fin_doc_005 p.5 says the reinsurance agreement with PAC (effective Q4 2025) significantly strengthened the coverage ratio, which increased from 141.2% to 309.7%; p.6 and p.27 give SCR 288.4->138.7 GBPm and own funds 407->430 GBPm. Converted to answerable multi_evidence/explanatory with the correction as the answer. Blind reviewer w4v2 answered the same way.",
+   "example": {
+    "id": "fin_q_117",
+    "question": "Why did Prudential International Assurance plc's Solvency II coverage ratio fall in 2025 after it entered into the new reinsurance agreement with its parent PAC?",
+    "question_natural": "Why did PIA's Solvency II ratio fall in 2025?",
+    "reference_answer": "It did not fall: the premise is false. According to Prudential International Assurance plc's (PIA) 2025 Solvency and Financial Condition Report, the Solvency II coverage ratio rose from 141.2% at end-2024 to 309.7% at end-2025 (after recognition of foreseeable dividends). The report attributes the increase to the new reinsurance agreement with its parent PAC, effective from Q4 2025, which reduced profit by £2.5m but significantly strengthened the solvency coverage ratio. It lowered the Solvency Capital Requirement from £288m to £139m (£288.4m to £138.7m), with market risk down from £159.2m to £81.1m and life underwriting risk down from £196.5m to £74.2m, while own funds increased from £407m to £430m.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_005",
+      "page": 5,
+      "text": "effective from Q4 2025, PIA entered a new reinsurance agreement with its parent company PAC which had the effect of reducing profit by £2.5m, but this significantly strengthened its solvency coverage ratio, which increased from 141.2% at YE24 to 309.7% (after recognition of foreseeable dividends) at YE25."
+     },
+     {
+      "document_id": "fin_doc_005",
+      "page": 6,
+      "text": "2025 2024 £m £m … 139 288 Solvency Capital Requirement (SCR) 430 407 Own Funds1 309.7% 141.2% Solvency Ratio %"
+     },
+     {
+      "document_id": "fin_doc_005",
+      "page": 27,
+      "text": "Overall, the new reinsurance results in a lower solvency capital requirement and a more balanced risk profile … £m £m … Market Risk 81.1 159.2 … Life Underwriting Risk 74.2 196.5 … Solvency Capital Requirement 138.7 288.4"
+     }
+    ],
+    "metadata": {
+     "type": "multi_evidence",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": false,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "solvency",
+     "failure_modes": [
+      "terminology_mismatch",
+      "same_metric_multiple_years"
+     ],
+     "style": "explanatory"
+    },
+    "calculation": null,
+    "key_facts": [
+     {
+      "fact": "ratio did not fall; end-2025 coverage ratio",
+      "value": "309.7%",
+      "accept": [
+       "309.7 %",
+       "309.7 per cent"
+      ]
+     },
+     {
+      "fact": "end-2024 coverage ratio",
+      "value": "141.2%",
+      "accept": [
+       "141.2 %",
+       "141.2 per cent"
+      ]
+     },
+     {
+      "fact": "driver: new reinsurance agreement with PAC strengthened the ratio",
+      "value": "reinsurance agreement with its parent PAC",
+      "accept": [
+       "reinsurance agreement with PAC",
+       "new reinsurance agreement"
+      ]
+     },
+     {
+      "fact": "SCR fell",
+      "value": "£288m to £139m",
+      "accept": [
+       "£288.4m to £138.7m",
+       "288.4 to 138.7",
+       "288 to 139"
+      ]
+     }
+    ]
+   }
+  },
+  "fin_q_118": {
+   "verdict": "confirmed",
+   "reasons": "fin_doc_008 (only CBA NV document) has no income statement; refers to the 2025 Annual Report (p.10), not in corpus. CC1 (p.19, EUR thousands per p.5) gives retained earnings -5,728 vs -17,274 and 'profit retention' wording; OR2 rows 3a/3b are 0 and are not net profit. Reference answer accurate. Blind reviewer agreed.",
+   "example": null
+  },
+  "fin_q_119": {
+   "verdict": "confirmed",
+   "reasons": "fin_doc_008 p.66 EU REM5: 1 identified staff in independent internal control functions, remuneration shown as '-', footnote [23] says it is aggregated into 'All other' (EUR 1,426,223). Not disclosed separately; reference accurate. Blind reviewer agreed.",
+   "example": null
+  },
+  "fin_q_120": {
+   "verdict": "confirmed",
+   "reasons": "fin_doc_016 p.8/p.10 give only FY figures (net income group share EUR 1,160m 2025 vs 1,127m 2024; bank 872, insurance 289); grep of fin_doc_013/002/003 finds no quarterly, 9M or H1 2025 income statement. Reference accurate. Blind reviewer agreed.",
+   "example": null
+  },
+  "fin_q_121": {
+   "verdict": "fix",
+   "reasons": "Per the false-premise rule: the documents positively establish that the named sub-fund does not exist and list the existing ones (fin_doc_014 p.130: GFI Fund and Guggenheim Global Income Fund; fin_doc_009 p.5: two authorised sub-funds GFI and GGI). Converted to answerable multi_document/explanatory; answer also notes the prospectus refers fees to the relevant Supplement (p.54). Blind reviewer w4v2 gave the same facts but flagged it 'cannot be established', so the key facts focus on the non-existence and the two existing sub-funds.",
+   "example": {
+    "id": "fin_q_121",
+    "question": "What investment management fee does the Prospectus for Germany of Guggenheim Global Investments plc set for the Guggenheim Global High Yield Fund sub-fund?",
+    "question_natural": "What's the management fee of the Guggenheim Global High Yield Fund?",
+    "reference_answer": "None: the premise is false. Guggenheim Global Investments plc's Prospectus for Germany (9 November 2023) contains no sub-fund called Guggenheim Global High Yield Fund. It lists only two sub-funds admitted to public distribution in Germany: the GFI Fund and the Guggenheim Global Income Fund. The 2025 annual report likewise states that the Company has two authorised sub-funds, the GFI Fund and the GGI Fund. \"High yield securities\" appear in the prospectus only as an asset type/risk factor. For the existing Funds, the prospectus does not state a rate either: it says the investment management fee for each Fund or Class is as specified in the relevant Supplement.",
+    "evidence": [
+     {
+      "document_id": "fin_doc_014",
+      "page": 130,
+      "text": "shares in the following sub-funds are admitted to public distribution in Germany: 1. GFI Fund 2. Guggenheim Global Income Fund (the “Funds”)"
+     },
+     {
+      "document_id": "fin_doc_009",
+      "page": 5,
+      "text": "As of the date of this report, there are two Sub-Funds authorised by the Central Bank, and both the GFI Fund (\"the Sub- Fund\") and GGI Fund (\"the Sub-Fund\") are open and actively seeking new investors."
+     },
+     {
+      "document_id": "fin_doc_014",
+      "page": 54,
+      "text": "10.1 Investment Management Fee The Investment Manager shall be entitled to receive from the Company a fee in relation to each Fund or Class as specified in the relevant Supplement."
+     }
+    ],
+    "metadata": {
+     "type": "multi_document",
+     "difficulty": "medium",
+     "requires_calculation": false,
+     "requires_multiple_documents": true,
+     "answerable": true,
+     "tier": "gold",
+     "topic": "fund_expenses",
+     "failure_modes": [
+      "terminology_mismatch",
+      "multiple_entities"
+     ],
+     "style": "explanatory"
+    },
+    "calculation": null,
+    "key_facts": [
+     {
+      "fact": "no such sub-fund exists",
+      "value": "no sub-fund called Guggenheim Global High Yield Fund",
+      "accept": [
+       "does not exist",
+       "no such sub-fund"
+      ]
+     },
+     {
+      "fact": "existing sub-fund 1",
+      "value": "GFI Fund",
+      "accept": []
+     },
+     {
+      "fact": "existing sub-fund 2",
+      "value": "Guggenheim Global Income Fund",
+      "accept": [
+       "GGI Fund"
+      ]
+     }
+    ]
+   }
+  }
+ }
+}
