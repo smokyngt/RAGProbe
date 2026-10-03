@@ -162,34 +162,6 @@
       "status": "verified",
       "basis": "adjudicator confirmed"
     },
-    "fin_q_009": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "",
-      "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)",
-      "independent_recompute": {
-        "result": 0.13254026739656807,
-        "matches": true,
-        "blind_result": 0.13254,
-        "equivalence": [
-          "exact"
-        ]
-      }
-    },
     "fin_q_010": {
       "method": "llm_blind_reverify",
       "human_reviewed": false,
@@ -350,9 +322,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
-      "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_017": {
       "method": "llm_blind_reverify",
@@ -410,9 +382,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; Question did not say whether the MREL requirement is stated with or without the combined buffer requirement; Belfius reports 23.68%/13.50% of TREA excluding CBR (5.23%) and binding 28.91%/18.73% including CBR. Question now specifies 'excluding CBR'; answer and evidence extended.",
-      "status": "verified",
-      "basis": "adjudicator fix"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_020": {
       "method": "llm_blind_reverify",
@@ -430,9 +402,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "",
-      "status": "verified",
-      "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_021": {
       "method": "llm_blind_reverify",
@@ -550,16 +522,12 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Verified LR2 (Group/consolidated): 5,050.6/65,472.3 = 7.714%; matches reported 7.71%, KM1 on p.7 identical. Parent-company figure differs but question specifies Group.",
-      "status": "verified",
-      "basis": "adjudicator confirmed",
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none",
       "independent_recompute": {
-        "result": 0.07714101994278497,
-        "matches": true,
-        "blind_result": 0.077143,
-        "equivalence": [
-          "exact"
-        ]
+        "result": null,
+        "matches": false
       }
     },
     "fin_q_027": {
@@ -578,16 +546,12 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Verified KM1: 351,400/1,118,137 = 31.427% = 31.43%; EUR thousand units stated on p.5. Disagreement was a unit-scale false alarm.",
-      "status": "verified",
-      "basis": "adjudicator confirmed",
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none",
       "independent_recompute": {
-        "result": 0.31427275906261937,
-        "matches": true,
-        "blind_result": 0.314275,
-        "equivalence": [
-          "exact"
-        ]
+        "result": null,
+        "matches": false
       }
     },
     "fin_q_028": {
@@ -646,9 +610,13 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; LUKB 129.69% is the Q4 2025 average of monthly values (LIQ1, p.21) shown under the 31.12.2025 column of KM1, while Belfius' 144% is just 'at the end of 2025' with unstated basis; they cannot be strictly reconciled. Question reworded to 'headline reported' figures, answer discloses the basis difference; ranking conclusion is robust (14pp gap).",
-      "status": "verified",
-      "basis": "adjudicator fix"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none",
+      "independent_recompute": {
+        "result": null,
+        "matches": false
+      }
     },
     "fin_q_031": {
       "method": "llm_blind_reverify",
@@ -834,16 +802,12 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; Two defensible answers: 51.7% from the whole-million SCR in the SCR section (139 vs 288) and 51.9% from one-decimal figures (138.7 vs 288.4) in the risk profile table. Question now pins the whole-million basis; answer mentions the alternative.",
-      "status": "verified",
-      "basis": "adjudicator fix",
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none",
       "independent_recompute": {
-        "result": -0.5173611111111112,
-        "matches": true,
-        "blind_result": -0.5173611111111112,
-        "equivalence": [
-          "exact"
-        ]
+        "result": null,
+        "matches": false
       }
     },
     "fin_q_040": {
@@ -882,9 +846,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; Table shows -15pp but the rounded ratios 201% and 185% differ by 16. Question now asks what the report's sensitivity table shows; answer notes the rounding effect. AFR 2,278 and SCR 1,134 verified.",
-      "status": "verified",
-      "basis": "adjudicator fix"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_042": {
       "method": "llm_blind_reverify",
@@ -903,26 +867,6 @@
         "completeness": true
       },
       "notes": "Negative confirmed: SFCR p.62/66/67 gives only qualitative capital-planning statements, 201% at end 2025 and 196% at end 2024, 160% internal minimum, shock table on 2025 base; no numeric 31 Dec 2026 ratio. No other document has a Belfius Insurance projection (Solvency ratio grep over corpus).",
-      "status": "verified",
-      "basis": "adjudicator confirmed"
-    },
-    "fin_q_043": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "TER 0.49% / 0.32% / 0.00% for GFI Fund Class S GBP Distributing, FY2025, verified on page; reviewer agrees.",
       "status": "verified",
       "basis": "adjudicator confirmed"
     },
@@ -993,26 +937,6 @@
           "exact"
         ]
       }
-    },
-    "fin_q_047": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "Goodwill 14,527 (2024: 15,085) EUR million on the statement of financial position; reviewer agrees.",
-      "status": "verified",
-      "basis": "adjudicator confirmed"
     },
     "fin_q_048": {
       "method": "llm_blind_reverify",
@@ -1101,26 +1025,6 @@
           "exact"
         ]
       }
-    },
-    "fin_q_052": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "Corrected after blind pass; Same 'five' vs six listed names defect; reworded and made basis (total revenue incl. internal) and exclusion of Group Functions/Consolidation explicit. Values and order verified (24,430; 18,643; 17,874; 17,778; 6,884).",
-      "status": "verified",
-      "basis": "adjudicator fix"
     },
     "fin_q_053": {
       "method": "llm_blind_reverify",
@@ -1514,34 +1418,6 @@
       "status": "verified",
       "basis": "adjudicator fix"
     },
-    "fin_q_071": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "Corrected after blind pass; Arithmetic correct (3,613/16,380=22.06%). But the report says the add-on is neutralised by an equal CET1 deduction (pp. 8, 18, 42), so the question was misleading. Made the hypothetical and the ignored offsetting deduction explicit in question and answer; added page 8 evidence.",
-      "status": "verified",
-      "basis": "adjudicator fix",
-      "independent_recompute": {
-        "result": 0.22057387057387057,
-        "matches": true,
-        "blind_result": 0.220574,
-        "equivalence": [
-          "exact"
-        ]
-      }
-    },
     "fin_q_072": {
       "method": "llm_blind_reverify",
       "human_reviewed": false,
@@ -1606,9 +1482,13 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "p.112 Table 3.4.2.1.1: CBRT-owned gold BIST 2,273,278,248,357 TRY > BoE 707,647,035,234 > CBRT 201,938,624,147; sums to 3,182,863,907,739. Scope explicitly excludes bank/Treasury gold. Unambiguous.",
-      "status": "verified",
-      "basis": "adjudicator confirmed"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none",
+      "independent_recompute": {
+        "result": null,
+        "matches": false
+      }
     },
     "fin_q_075": {
       "method": "llm_blind_reverify",
@@ -1629,26 +1509,6 @@
       "notes": "",
       "status": "verified",
       "basis": "blind answer agreed (answerability, calculation, evidence page, numbers)"
-    },
-    "fin_q_076": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "p.33: write-downs (1,446) vs realised gains 950, EUR million; net (497) matches the table (rounding). Correct.",
-      "status": "verified",
-      "basis": "adjudicator confirmed"
     },
     "fin_q_077": {
       "method": "llm_blind_reverify",
@@ -1706,9 +1566,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; Count is classification-dependent (European Union is supranational but labelled 'Government bonds'). Question now says 'classified under the category Government bonds in the report's table'; answer notes that national-only counting would give seven. Numbers verified (sum 5,560).",
-      "status": "verified",
-      "basis": "adjudicator fix"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_080": {
       "method": "llm_blind_reverify",
@@ -1806,9 +1666,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; Columns use mixed bases (Kabi/Helios before special items, Corporate/Other after); the Group 2025 figure of 2,310 carries no marker (it is the as-reported figure, revenue 22,873 incl. special items) and was left unlabelled. Question now asks for figures as printed; answer labels bases. Ranking itself unaffected.",
-      "status": "verified",
-      "basis": "adjudicator fix"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_085": {
       "method": "llm_blind_reverify",
@@ -1850,54 +1710,6 @@
       "status": "verified",
       "basis": "adjudicator fix"
     },
-    "fin_q_087": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "Corrected after blind pass; Values correct. Calculation encoding (scale 0.01, result 0.0002 as fraction = 0.02 pp) matches dataset convention (e.g. fin_q_067: 0.157 = 15.70 pp); only the answer text was made explicit about the encoding.",
-      "status": "verified",
-      "basis": "adjudicator fix",
-      "independent_recompute": {
-        "result": 0.0002,
-        "matches": true,
-        "blind_result": 0.02,
-        "equivalence": [
-          "scale"
-        ]
-      }
-    },
-    "fin_q_088": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "Six W classes >1.00% (1.26/1.27%), all others <=0.82%; GFI Fund scope explicit; evidence covers all 20 classes.",
-      "status": "verified",
-      "basis": "adjudicator confirmed"
-    },
     "fin_q_089": {
       "method": "llm_blind_reverify",
       "human_reviewed": false,
@@ -1917,26 +1729,6 @@
       "notes": "Verified from table: Kabi 556->521 (-35, -6.3%), Corporate/Other 167->64 (-103, -61.7%), Helios 517->535 up, Group 1,240->1,120. Reference lists each segment's decrease separately with no calculation object (the reviewer's 138 sum is not part of the reference), so no ambiguity; bases per column footnotes are as printed.",
       "status": "verified",
       "basis": "adjudicator confirmed"
-    },
-    "fin_q_090": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "Corrected after blind pass; Values correct (0.83% -> 0.81%) but only two data points, whereas style 'trend' requires >=3; restyled as comparison and question made explicit on direction and gap.",
-      "status": "verified",
-      "basis": "adjudicator fix"
     },
     "fin_q_091": {
       "method": "llm_blind_reverify",
@@ -2030,9 +1822,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; Substance correct (verified p.87-88, 103-104). Original answer attributed 'plus accrued interest if applicable' to Condition 3(b); it comes from Condition 11 (p.104). Reworded and noted that 3(b)(i)(B) is the bridge for Notes specifying Amortised Face Amount (evidence on p.88 and p.104 already supports; p.87 cross-reference stated as additional context, quote not required for answer).",
-      "status": "verified",
-      "basis": "adjudicator fix"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_095": {
       "method": "llm_blind_reverify",
@@ -2070,9 +1862,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; Numbers verified (p.181). Original question/answer asserted all 2024 figures were restated, but the footnote marker is not on the Net income before tax and impairments line (blind reviewer noted this); question reworded to ask what the footnote says and answer stated precisely. 1,845 vs 1,605: differs by 240 = 'directly attributable from insurance' in the press release, consistent with footnote 4 on p.129.",
-      "status": "verified",
-      "basis": "adjudicator fix"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_097": {
       "method": "llm_blind_reverify",
@@ -2130,17 +1922,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Verified p.54 (administrator up to 0.05% p.a. of NAV, minimum $50,000) and p.55 (depositary up to 0.023%, tiered/minimums noted). Question asks for maximum rates, so tiering does not create ambiguity; gap 0.027 pp (result 0.00027, scale 0.01) correct.",
-      "status": "verified",
-      "basis": "adjudicator confirmed",
-      "independent_recompute": {
-        "result": 0.00027,
-        "matches": true,
-        "blind_result": 0.027,
-        "equivalence": [
-          "scale"
-        ]
-      }
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_100": {
       "method": "llm_blind_reverify",
@@ -2218,37 +2002,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "p.164: net loss 0.66 (2025) vs deficit 3.83 (2024); working capital -19.03 to -8.61 (+10.42, matches stated contribution). Correct.",
-      "status": "verified",
-      "basis": "adjudicator confirmed"
-    },
-    "fin_q_105": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "Corrected after blind pass; No printed operating result exists; the difference of two figures rounded to €0.01m has precision ±€0.01m, so '€60 thousand' was spuriously precise. Reworded to ask for the gap on the figures as published in € million with explicit rounding caveat; calculation unchanged (60,000).",
-      "status": "verified",
-      "basis": "adjudicator fix",
-      "independent_recompute": {
-        "result": 60000,
-        "matches": true,
-        "blind_result": 60.0,
-        "equivalence": [
-          "scale"
-        ]
-      }
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_106": {
       "method": "llm_blind_reverify",
@@ -2286,9 +2042,9 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "Corrected after blind pass; Answer correct (sources: AMF risk map, ESMA risk map, Impact 2027 orientations, findings of monitoring/inspection work; 80% of 2025 inspections: retail investor protection, sustainable finance, innovation; p33/p34 confirmed). Evidence excerpts were truncated and lacked 'innovation' and 'SPOT inspections'/'determines the topics'; evidence completed verbatim. Question and answer unchanged.",
-      "status": "verified",
-      "basis": "adjudicator fix"
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
     },
     "fin_q_108": {
       "method": "llm_blind_reverify",
@@ -2370,26 +2126,6 @@
       "status": "verified",
       "basis": "adjudicator fix"
     },
-    "fin_q_112": {
-      "method": "llm_blind_reverify",
-      "human_reviewed": false,
-      "reviewer": "independent blind re-answer + adjudication by separate model agents",
-      "checks": {
-        "answer_correctness": true,
-        "numerical_correctness": true,
-        "currency": true,
-        "units": true,
-        "reporting_period": true,
-        "entity": true,
-        "evidence_location": true,
-        "calculation": true,
-        "ambiguity": true,
-        "completeness": true
-      },
-      "notes": "Corrected after blind pass; Underlying figures right, but basis was under-pinned: press release 'CRR2' label for 75.2bn comes from the p11 footnote (slightly updated after late Corep correction), not 'as originally reported'. Question now explicitly names each document's own end-2024 comparison figure (CRR2 vs pro forma CRR3); evidence adds the p11 footnote; answer states the 75.2bn is slightly updated.",
-      "status": "verified",
-      "basis": "adjudicator fix"
-    },
     "fin_q_113": {
       "method": "llm_blind_reverify",
       "human_reviewed": false,
@@ -2418,7 +2154,7 @@
         ]
       }
     },
-    "fin_q_114": {
+    "fin_q_115": {
       "method": "llm_blind_reverify",
       "human_reviewed": false,
       "reviewer": "independent blind re-answer + adjudication by separate model agents",
@@ -2434,13 +2170,417 @@
         "ambiguity": true,
         "completeness": true
       },
-      "notes": "INCOME 4,295, COSTS -1,845 (p8), 1,845/4,295 = 42.96% -> 43.0%; release's own C/I ratio 43.0% (2025) / 43.2% (2024, 1,834/4,241 = 43.24%) on p11, so the 'matches' claim is true for both years. The 43.2 is the 2024 comparative, a false alarm. Calculation block correct.",
+      "notes": "Corrected after blind pass; False premise positively contradicted: fin_doc_001 p.86 states the ECB's 2025 loss of EUR 1,254 million is carried forward and offset against future profits; p.82 five-year P&L shows Profit distribution '-' for 2025; p.65 confirms Banque de France key 16.3575% (paid-up EUR 1,771m). The documents establish the answer (nothing was distributed), so converted to answerable multi_evidence/explanatory, keeping the question wording. Blind reviewer w4v1 answered the same way.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_116": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "fin_doc_005 names PAC as immediate parent (p.8) and only says PIA monitors 'PAC's solvency ratio' (p.40) without a value; corpus-wide grep finds no PAC or M&G SFCR/annual report. PIA's own 309.7%/141.2% (p.5-6) correctly described in the reference. Blind reviewer agreed.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_117": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; False premise positively contradicted: fin_doc_005 p.5 says the reinsurance agreement with PAC (effective Q4 2025) significantly strengthened the coverage ratio, which increased from 141.2% to 309.7%; p.6 and p.27 give SCR 288.4->138.7 GBPm and own funds 407->430 GBPm. Converted to answerable multi_evidence/explanatory with the correction as the answer. Blind reviewer w4v2 answered the same way.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_118": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "fin_doc_008 (only CBA NV document) has no income statement; refers to the 2025 Annual Report (p.10), not in corpus. CC1 (p.19, EUR thousands per p.5) gives retained earnings -5,728 vs -17,274 and 'profit retention' wording; OR2 rows 3a/3b are 0 and are not net profit. Reference answer accurate. Blind reviewer agreed.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_119": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "fin_doc_008 p.66 EU REM5: 1 identified staff in independent internal control functions, remuneration shown as '-', footnote [23] says it is aggregated into 'All other' (EUR 1,426,223). Not disclosed separately; reference accurate. Blind reviewer agreed.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_120": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "fin_doc_016 p.8/p.10 give only FY figures (net income group share EUR 1,160m 2025 vs 1,127m 2024; bank 872, insurance 289); grep of fin_doc_013/002/003 finds no quarterly, 9M or H1 2025 income statement. Reference accurate. Blind reviewer agreed.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_121": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Per the false-premise rule: the documents positively establish that the named sub-fund does not exist and list the existing ones (fin_doc_014 p.130: GFI Fund and Guggenheim Global Income Fund; fin_doc_009 p.5: two authorised sub-funds GFI and GGI). Converted to answerable multi_document/explanatory; answer also notes the prospectus refers fees to the relevant Supplement (p.54). Blind reviewer w4v2 gave the same facts but flagged it 'cannot be established', so the key facts focus on the non-existence and the two existing sub-funds.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_123": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Figures verified on fin_doc_005 pp.49-50 (total difference GBP 546m; with-profits 416 = 76.2% of 546; BEL vs total-difference distinction handled by the question). Only question_natural changed so that it asks for the total gap, the with-profits amount and the share, as the key facts require.",
+      "status": "verified",
+      "basis": "adjudicator fix",
+      "independent_recompute": {
+        "result": 0.7619047619047619,
+        "matches": true,
+        "blind_result": 0.7619,
+        "equivalence": [
+          "exact"
+        ]
+      }
+    },
+    "fin_q_124": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none"
+    },
+    "fin_q_125": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified fin_doc_005 p.11-12: total income 24.3 vs 24.6 (decrease), total investment return 255.1 vs 193.3, driver text quoted. Blind reviewer agrees. Asking for both income and total return keeps the 'income excluding gains' basis clear. Key facts match the question.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_126": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "no blind re-answer available",
+      "status": "flagged",
+      "basis": "none",
+      "independent_recompute": {
+        "result": null,
+        "matches": false
+      }
+    },
+    "fin_q_127": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Values verified on fin_doc_008 p.55 (absolute EUR per footnote 10). Short rates up -965,790.94 is the largest EVE decrease in 2025; Parallel down -679,002.25 is the worst in 2024. Blind reviewer agrees. question_natural now also asks for the June 2024 scenario, which a key fact requires. The negative sign is kept in the key fact value.",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_128": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; CR4 (fin_doc_008 pp.41-42) defines density as RWEA / (on-balance post-CRM c + off-balance post-CCF d). This recomputes for 2024 (100.00%), specialised lending (107.75%) and the totals (62.66%), but not for 2025 corporates: 1,011,231/1,009,464 = 100.18% vs the printed 101.15%, so the printed figure appears to be an error in the report. The density was removed from the question and key facts. The answer explains the inconsistency as context only. The question now asks for on-balance exposures and RWEA in both years plus 2025 specialised lending, with a key fact for each, and question_natural mat",
+      "status": "verified",
+      "basis": "adjudicator fix"
+    },
+    "fin_q_129": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Verified fin_doc_001 p.47: ABSPP 7,047 to 3,038 (change column (4,010)), -56.9%, the largest percentage decline among the six portfolios (recomputed SMP -35.3%, CBPP3 -15.2%, PSPP -13.8%, PEPP govt -11.4%, PEPP CB -9.3%). Sign handling is now consistent: the calculation is a signed % change (result -0.5689) and the answer says '-56.9% (a decline of about 56.9%)'. Key facts carry the direction (decrease of EUR 4,010 million; -56.9%). The decrease amount (what 'by how much' asks for) replaced the end-2025 balance as a key fact, and question_natural asks for the euro and percentage fall.",
+      "status": "verified",
+      "basis": "adjudicator fix",
+      "independent_recompute": {
+        "result": -0.5688945650631474,
+        "matches": true,
+        "blind_result": -0.5689,
+        "equivalence": [
+          "exact"
+        ]
+      }
+    },
+    "fin_q_130": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified fin_doc_001 p.81 (five-year table) and p.16 (drivers of the EUR 34.6bn decrease). The peak is 2023 at 404,336. Blind reviewer agrees; the reviewer's p.57 wording ('maturing of securities under the APP and the PEPP') is consistent with the reference. question_natural matches the key facts.",
+      "status": "verified",
+      "basis": "adjudicator confirmed"
+    },
+    "fin_q_131": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Inputs verified on fin_doc_016 p.8. Rounding check: with inputs rounded to EUR 0.1bn, Corporate growth lies in about [4.17%, 4.95%] and Business in about [3.29%, 4.41%]. The ranges overlap, so the Corporate/Business order is not robust (the text on p.3 even gives +0.5% for Public & Social vs 0.41% computed). First and last places are robust. Fix: the question and question_natural now ask for the ranking computed from the published one-decimal figures and whether it is robust. The answer gives the caveat and the intervals, and a key fact checks the robustness statement.",
+      "status": "verified",
+      "basis": "adjudicator fix",
+      "independent_recompute": {
+        "result": 0.06250000000000003,
+        "matches": true,
+        "blind_result": 0.0625,
+        "equivalence": [
+          "exact"
+        ]
+      }
+    },
+    "fin_q_132": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified fin_doc_016 p.8 (cost of risk -133 / -80) and p.6 (40% fall; phase 3 EUR 186.6m; net reversal EUR 106.3m on phases 1-2). 186.6 - 106.3 = 80.3, which reconciles to 80. Blind reviewer agrees. question_natural covers every key fact.",
       "status": "verified",
       "basis": "adjudicator confirmed",
       "independent_recompute": {
-        "result": 0.42956926658905703,
+        "result": 80300000.0,
         "matches": true,
-        "blind_result": 0.42957,
+        "blind_result": 80300000.0,
+        "equivalence": [
+          "exact"
+        ]
+      }
+    },
+    "fin_q_133": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Verified fin_doc_009 p.38 (GFI Level 3 34,751/822,568 = 4.22%; 43,596/819,578 = 5.32%) and p.39 (sales (8,471) are the largest reduction; the reconciliation ties). Blind reviewer agrees. Entity scope is GFI only.",
+      "status": "verified",
+      "basis": "adjudicator confirmed",
+      "independent_recompute": {
+        "result": 0.04224696316900244,
+        "matches": true,
+        "blind_result": 0.0422,
+        "equivalence": [
+          "exact"
+        ]
+      }
+    },
+    "fin_q_134": {
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "reviewer": "independent blind re-answer + adjudication by separate model agents",
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "notes": "Corrected after blind pass; Verified fin_doc_009 pp.32-33: GFI decrease 33,859 / net assets 752,433 = 4.50%; GGI 667 / 37,039 = 1.80%; durations 6.0 / 2.4 years. The question asked for each sub-fund's duration but only the GFI duration was a key fact, and the 6-fact limit leaves no room for a GGI one. The duration request was therefore removed from question/question_natural (durations stay in the answer as context) and the GFI duration key fact dropped. question_natural now asks for each decrease and percentage, matching the 5 remaining key facts.",
+      "status": "verified",
+      "basis": "adjudicator fix",
+      "independent_recompute": {
+        "result": 0.044999355424336786,
+        "matches": true,
+        "blind_result": 0.045,
         "equivalence": [
           "exact"
         ]
