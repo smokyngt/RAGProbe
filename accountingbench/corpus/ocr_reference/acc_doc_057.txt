@@ -1,19 +1,19 @@
-                   Monaco Rigging & Sails S.A.R.L.                                      SERVICE REPORT
+                   Monaco Rigging & Sails S.A.R.L.                                                  SERVICE REPORT
   MRS
                    2 Rue de la Lüjerneta · 98000 Monaco
                    Tel. +377 93 50 88 12 · office@monacorigging.example
 
 
-Azur Marine Services S.A.M.                                               No.               MRS-SR-26-0715
-Delivery: Quai Antoine Ier                                                Date              15/07/2026
-98000 Monaco                                                              Customer PO       PO-2026-0324
-                                                                          Vessel            S/Y Blue Horizon
+Azur Marine Services S.A.M.                                                         No.                      MRS-SR-26-0715
+Delivery: Quai Antoine Ier                                                          Date                     15/07/2026
+98000 Monaco                                                                        Customer PO              PO-2026-0324
+                                                                                    Vessel                   S/Y Blue Horizon
 
 
 
-Work performed                                                                    Planned          Done        Unit
-Halyard replacement, Dyneema 12 mm                                                      3             3        pc
-Rigger labour                                                                           8             8         h
+Work performed                                                                                Planned               Done        Unit
+Halyard replacement, Dyneema 12 mm                                                                       3             3        pc
+Rigger labour                                                                                            8             8         h
 
 
 
@@ -21,6 +21,24 @@ Rigger labour                                                                   
 
  Bosun A. Kowalski
  15/07/2026
+
+
+
+
+Packages
+
+   #      Type                               Dimensions                                        Weight
+   1      Drum                               48x56x73 cm                                       20.2 kg
+   2      Crate                              79x51x25 cm                                       69.5 kg
+   3      Pallet                             89x48x33 cm                                      176.7 kg
+   4      Drum                               59x55x52 cm                                      160.5 kg
+
+Transport
+Carrier                   Own vehicle                                  Arrival on quay       13:50
+Vehicle                   FR-619-KZ                                    Check                 Quantities counted on board
+Conditions
+Any reservation must be written on this document and confirmed in writing within 48 hours.
+Goods travel at the consignee's risk after signature.
 
 
 

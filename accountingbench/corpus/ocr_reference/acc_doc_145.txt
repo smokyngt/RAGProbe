@@ -1,20 +1,20 @@
-                   SeaGlass Coatings S.r.l.                                                       DELIVERY NOTE
+                   SeaGlass Coatings S.r.l.                                                                  DELIVERY NOTE
    SC              Via del Molo 18 · 16128 Genova (GE)
                    Tel. +39 010 247 3381 · amministrazione@seaglass-coatings.example
 
 
-Azur Marine Services S.A.M.                                                    No.                SG-DDT-2026/0641
-Delivery: Quai Antoine Ier                                                     Date               14/08/2026
-98000 Monaco                                                                   Customer PO        PO-2026-0328
-                                                                               Vessel             S/Y Blue Horizon
+Azur Marine Services S.A.M.                                                         No.                      SG-DDT-2026/0641
+Delivery: Quai Antoine Ier                                                          Date                     14/08/2026
+98000 Monaco                                                                        Customer PO              PO-2026-0328
+                                                                                    Vessel                   S/Y Blue Horizon
 
 
 
-Description                                                                            Ordered       Delivered   Unit
-Antifouling Pro-X self-polishing, red, 2.5 L tin                                             36            36        tin
-Epoxy primer 2-pack, 5 L                                                                     12            12    set
-Thinner No. 7, 5 L                                                                           10            10    can
-Application kit (rollers, trays, brushes)                                                    8              8        kit
+Description                                                                                   Ordered           Delivered   Unit
+Antifouling Pro-X self-polishing, red, 2.5 L tin                                                     36               36        tin
+Epoxy primer 2-pack, 5 L                                                                             12               12    set
+Thinner No. 7, 5 L                                                                                   10               10    can
+Application kit (rollers, trays, brushes)                                                                8             8        kit
 
 Remarks: 4 tins PX-R-25 received dented, reserve noted on CMR
 
@@ -23,6 +23,26 @@ Remarks: 4 tins PX-R-25 received dented, reserve noted on CMR
 
  Bosun A. Kowalski
  14/08/2026
+
+
+
+
+Packages
+
+   #      Type                              Dimensions                                         Weight
+   1      Carton                            66x76x27 cm                                        46.2 kg
+   2      Carton                            78x40x74 cm                                       138.4 kg
+   3      Drum                              41x84x44 cm                                        86.2 kg
+   4      Drum                              38x37x65 cm                                       124.9 kg
+   5      Drum                              116x61x35 cm                                       84.6 kg
+   6      Drum                              44x30x47 cm                                        85.9 kg
+
+Transport
+Carrier                   Own vehicle                                  Arrival on quay       10:50
+Vehicle                   FR-849-AB                                    Check                 Quantities counted on board
+Conditions
+Any reservation must be written on this document and confirmed in writing within 48 hours.
+Goods travel at the consignee's risk after signature.
 
 
 

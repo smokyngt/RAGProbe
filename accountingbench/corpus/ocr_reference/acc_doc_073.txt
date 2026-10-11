@@ -1,18 +1,18 @@
-                   Mediterra Marine Supplies S.A.M.
+                      Mediterra Marine Supplies S.A.M.
    MMS
-                   Ship chandlery & engine-room consumables
-                                                                                                                      INVOICE
+                      Ship chandlery & engine-room consumables
+                                                                                                                               INVOICE
 
 
-Mediterra Marine Supplies S.A.M.                                                      Invoice No.             INV-2026-0418
-4 Rue du Gabian                                                                       Invoice date            30/09/2026
-98000 Monaco, Monaco                                                                  Due date                30/10/2026
-Tel. +377 92 05 61 40                                                                 Customer No.            AZM-0041
-billing@mediterra-marine.example                                                      Your PO                 PO-2026-0344
+Mediterra Marine Supplies S.A.M.                                                          Invoice No.                  INV-2026-0418
+4 Rue du Gabian                                                                           Invoice date                 30/09/2026
+98000 Monaco, Monaco                                                                      Due date                     30/10/2026
+Tel. +377 92 05 61 40                                                                     Customer No.                 AZM-0041
+billing@mediterra-marine.example                                                          Your PO                      PO-2026-0344
 VAT ID FR 23 000 487 115
-                                                                                      Delivery note           MMS-DN-26-0925
-                                                                                      Vessel                  M/Y Aurelia
-                                                                                      Service period          September 2026
+                                                                                          Delivery note                MMS-DN-26-0925
+                                                                                          Vessel                       M/Y Aurelia
+                                                                                          Service period               September 2026
 
  BILL TO
  Azur Marine Services S.A.M.
@@ -21,38 +21,151 @@ VAT ID FR 23 000 487 115
  Principality of Monaco
  VAT ID FR 64 000 512 748
 
-  #    Item               Description                                                    Qty       Unit      Unit price     VAT            Amount
-  1    LO-1540-208        Lube oil SAE 15W-40, 208 L drum                                     8   drum          742.00     20 %            5,936.00
-  2    FF-5320            Fuel filter element FF-5320                                     36       pc            38.50     20 %            1,386.00
-  3    HO-46-208          Hydraulic oil ISO VG 46, 208 L drum                                 3   drum          698.00     20 %            2,094.00
-  4    IMP-17937          Impeller kit for raw-water pump                                     8    kit          186.00     20 %            1,488.00
-  5    CC-20              Coolant concentrate, 20 L                                       12       can           64.50     20 %              774.00
-  6    OAP-200            Oil absorbent pads (bale of 200)                                13       bale          58.00     20 %              754.00
-  7    GL-N100            Nitrile gloves (box of 100)                                         4    box           12.00     20 %               48.00
-  8    SRV-DEL            Delivery and handling                                               1    lot          320.00     20 %              320.00
-                                                                                       Net total                                     12,800.00
-                                                                                       VAT 20 %                                       2,560.00
-                                                                                       TOTAL EUR                                     15,360.00
+  #       Item             Description                                                         Qty        Unit        Unit price   VAT            Amount
+  1       LO-1540-208      Lube oil SAE 15W-40, 208 L drum                                        8   drum                742.00   20 %           5,936.00
+  2       FF-5320          Fuel filter element FF-5320                                           36       pc               38.50   20 %           1,386.00
+  3       HO-46-208        Hydraulic oil ISO VG 46, 208 L drum                                    3   drum                698.00   20 %           2,094.00
+  4       IMP-17937        Impeller kit for raw-water pump                                        8       kit             186.00   20 %           1,488.00
+  5       CC-20            Coolant concentrate, 20 L                                             12       can              64.50   20 %             774.00
+  6       OAP-200          Oil absorbent pads (bale of 200)                                      13       bale             58.00   20 %             754.00
+  7       GL-N100          Nitrile gloves (box of 100)                                            4       box              12.00   20 %              48.00
+  8       SRV-DEL          Delivery and handling                                                  1       lot             320.00   20 %             320.00
+                                                                                              Net total                                     12,800.00
+                                                                                              VAT 20 %                                       2,560.00
+                                                                                              TOTAL EUR                                     15,360.00
 
 
 
  Payment details
- IBAN         MC57 1146 9000 1000 0345 6789 052                           Payment reference          INV-2026-0418
- BIC          MEDBMCM1XXX                                                 Payment terms              30 days net from invoice date
+ IBAN            MC57 1146 9000 1000 0345 6789 052                        Payment reference                 INV-2026-0418
+ BIC             MEDBMCM1XXX                                              Payment terms                     30 days net from invoice date
  Crédit Monégasque du Port
 
+Shipment details
+Incoterm                   Delivered on board                                  Packages                    100
+Carrier                    Riviera Express Fret                                Gross weight                2,648.48 kg
+Tracking no.               RXF449437651                                        Delivered                   25/09/2026 – MMS-DN-26-0925
+Customs and Intrastat data per line
 
-
-
-                                                                                                  AZUR MARINE SERVICES
-                                                                                                   RECEIVED 02/10/2026
-                                                                                                   ACCOUNTS PAYABLE
+      #     Item                       HS code                                 Origin                            Net weight
+      1     LO-1540-208                2710.19                                  FR                               1,488.00 kg
+      2     FF-5320                    8421.23                                  FR                                 21.60 kg
+      3     HO-46-208                  2710.19                                  FR                                552.00 kg
+      4     IMP-17937                  8413.91                                  FR                                   6.40 kg
+      5     CC-20                      3820.00                                  FR                                258.00 kg
+      6     OAP-200                    5603.94                                  FR                                123.50 kg
+      7     GL-N100                    4015.19                                  FR                          2.80 kg SERVICES
+                                                                                                      AZUR MARINE
+                                                                                                       RECEIVED 02/10/2026
+                                                                                                       ACCOUNTS PAYABLE
 
 
 
 
 Mediterra Marine Supplies S.A.M. · RCI 02 S 03981 · VAT ID FR 23 000 487 115
-                                                                                                                                      Page 1 of 2
+                                                                                                                                             Page 1 of 4
+Mediterra Marine Supplies S.A.M.                                                        Annex to invoice INV-2026-0418
+
+
+
+Notes
+Claims must be notified within 8 days of receipt.
+
+ISO 9001:2015 certified – certificate no. 15813-Q.
+
+Customer service: +377 92 05 61 40 – billing@mediterra-marine.example.
+
+Packing list and traceability
+Lots and serial numbers shipped. Delivery note MMS-DN-26-0925.
+
+Line       Item             Description                                  Qty Lot         Serial/batch    Expiry
+1.1        LO-1540-208      Lube oil SAE 15W-40, 208 L drum               1 L26098426    B4825079        05/01/2030
+1.2        LO-1540-208      Lube oil SAE 15W-40, 208 L drum               1 L26094995    SN5130408       07/05/2030
+1.3        LO-1540-208      Lube oil SAE 15W-40, 208 L drum               1 L26095254    SN5355997       01/08/2030
+1.4        LO-1540-208      Lube oil SAE 15W-40, 208 L drum               1 L26096582    SN4714436       24/03/2029
+1.5        LO-1540-208      Lube oil SAE 15W-40, 208 L drum               1 L26098550    SN8200557       16/12/2028
+1.6        LO-1540-208      Lube oil SAE 15W-40, 208 L drum               1 L26096827    SN1898013       23/07/2030
+1.7        LO-1540-208      Lube oil SAE 15W-40, 208 L drum               1 L26096840    B7947077        22/03/2029
+1.8        LO-1540-208      Lube oil SAE 15W-40, 208 L drum               1 L26095383    SN5101263       25/04/2030
+2.1        FF-5320          Fuel filter element FF-5320                   3 L26093011    B2673318        —
+2.2        FF-5320          Fuel filter element FF-5320                   3 L26094396    SN9890095       —
+2.3        FF-5320          Fuel filter element FF-5320                   3 L26098029    B5893231        —
+2.4        FF-5320          Fuel filter element FF-5320                   3 L26093120    SN1163936       —
+2.5        FF-5320          Fuel filter element FF-5320                   3 L26092928    B7418038        —
+2.6        FF-5320          Fuel filter element FF-5320                   3 L26092960    B1139150        —
+2.7        FF-5320          Fuel filter element FF-5320                   3 L26093450    B5106099        —
+2.8        FF-5320          Fuel filter element FF-5320                   3 L26092849    SN6632089       —
+2.9        FF-5320          Fuel filter element FF-5320                   3 L26094536    B2641305        —
+2.10       FF-5320          Fuel filter element FF-5320                   3 L26091152    B9512941        —
+2.11       FF-5320          Fuel filter element FF-5320                   3 L26091424    B6887685        —
+2.12       FF-5320          Fuel filter element FF-5320                   3 L26098878    B6908824        —
+3.1        HO-46-208        Hydraulic oil ISO VG 46, 208 L drum           1 L26099871    SN8461368       18/01/2030
+3.2        HO-46-208        Hydraulic oil ISO VG 46, 208 L drum           1 L26097587    SN4982415       25/12/2028
+3.3        HO-46-208        Hydraulic oil ISO VG 46, 208 L drum           1 L26094601    B3842083        11/06/2030
+4.1        IMP-17937        Impeller kit for raw-water pump               1 L26099672    SN5816053       —
+4.2        IMP-17937        Impeller kit for raw-water pump               1 L26092377    B9392644        —
+4.3        IMP-17937        Impeller kit for raw-water pump               1 L26099144    SN2586791       —
+4.4        IMP-17937        Impeller kit for raw-water pump               1 L26094106    SN3124069       —
+4.5        IMP-17937        Impeller kit for raw-water pump               1 L26097453    SN9128261       —
+4.6        IMP-17937        Impeller kit for raw-water pump               1 L26099871    B2477868        —
+4.7        IMP-17937        Impeller kit for raw-water pump               1 L26095754    SN4438804       —
+4.8        IMP-17937        Impeller kit for raw-water pump               1 L26098230    B3615551        —
+5.1        CC-20            Coolant concentrate, 20 L                     1 L26096415    SN4992398       24/08/2028
+5.2        CC-20            Coolant concentrate, 20 L                     1 L26097099    B5314091        25/10/2030
+5.3        CC-20            Coolant concentrate, 20 L                     1 L26097546    B6788253        06/11/2028
+5.4        CC-20            Coolant concentrate, 20 L                     1 L26098644    SN6695079       17/11/2027
+5.5        CC-20            Coolant concentrate, 20 L                     1 L26091330    B1089030        29/02/2028
+5.6        CC-20            Coolant concentrate, 20 L                     1 L26093583    SN2607157       02/11/2030
+5.7        CC-20            Coolant concentrate, 20 L                     1 L26097627    SN2853789       06/07/2028
+5.8        CC-20            Coolant concentrate, 20 L                     1 L26097099    SN9078301       25/05/2030
+5.9        CC-20            Coolant concentrate, 20 L                     1 L26093574    SN4378375       24/11/2029
+
+
+
+
+                                                                                                             Page 2 of 4
+Mediterra Marine Supplies S.A.M.                                                                 Annex to invoice INV-2026-0418
+
+
+
+
+Line      Item                Description                                     Qty Lot             Serial/batch    Expiry
+5.10      CC-20               Coolant concentrate, 20 L                          1 L26093791      SN8892882       06/07/2029
+5.11      CC-20               Coolant concentrate, 20 L                          1 L26096972      SN1413518       05/08/2030
+5.12      CC-20               Coolant concentrate, 20 L                          1 L26099940      SN1962502       09/08/2029
+6.1       OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26091651    SN2417371       —
+6.2       OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26098367    SN2857802       —
+6.3       OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26093485    B4885376        —
+6.4       OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26095927    SN1411406       —
+6.5       OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26093672    B2900441        —
+6.6       OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26092355    SN8301910       —
+6.7       OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26094424    B7869480        —
+6.8       OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26099688    B1732811        —
+6.9       OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26097193    B2826244        —
+6.10      OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26092584    B1386398        —
+6.11      OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26099265    B3260574        —
+6.12      OAP-200             Oil absorbent pads (bale of 200)           1.08333…    L26096083    B9498836        —
+7.1       GL-N100             Nitrile gloves (box of 100)                        1 L26094221      SN2040892       —
+7.2       GL-N100             Nitrile gloves (box of 100)                        1 L26091590      B2409668        —
+7.3       GL-N100             Nitrile gloves (box of 100)                        1 L26093169      SN5209991       —
+7.4       GL-N100             Nitrile gloves (box of 100)                        1 L26097754      SN1844142       —
+
+Certificates and documents supplied
+
+   #   Item                                                      Document                             Reference
+   1   Lube oil SAE 15W-40, 208 L drum                           Type approval                        DOC-93491
+   2   Fuel filter element FF-5320                               Material certificate 3.1             DOC-25154
+   3   Hydraulic oil ISO VG 46, 208 L drum                       Type approval                        DOC-98224
+   4   Impeller kit for raw-water pump                           Declaration of conformity            DOC-54546
+   5   Coolant concentrate, 20 L                                 Safety data sheet                    DOC-31392
+   6   Oil absorbent pads (bale of 200)                          Material certificate 3.1             DOC-65121
+   7   Nitrile gloves (box of 100)                               Type approval                        DOC-11642
+Certificates accompany the delivery and are available on request in electronic form.
+
+
+
+
+                                                                                                                      Page 3 of 4
 Mediterra Marine Supplies S.A.M.                                                                                                    Invoice INV-2026-0418
 
 
@@ -95,5 +208,5 @@ These terms are governed by the law of the seller's registered office. The court
 
 
 Mediterra Marine Supplies S.A.M. · RCI 02 S 03981
-                                                                                                                                                   Page 2 of 2
+                                                                                                                                                   Page 4 of 4
 

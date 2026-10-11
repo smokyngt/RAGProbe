@@ -1,22 +1,22 @@
-                  Côte d'Azur Ship Chandlers SAS                                        BON DE LIVRAISON
+                   Côte d'Azur Ship Chandlers SAS                                                     BON DE LIVRAISON
   CDA
-                  Quai Cassini 9 · 06300 Nice
-                  Tel. +33 4 93 55 21 90 · compta@ca-shipchandlers.example
+                   Quai Cassini 9 · 06300 Nice
+                   Tel. +33 4 93 55 21 90 · compta@ca-shipchandlers.example
 
 
-Azur Marine Services S.A.M.                                                  N°                    BL-26-0805
-Delivery: Quai Antoine Ier                                                   Date                  05/08/2026
-98000 Monaco                                                                 Commande client       PO-2026-0327
-                                                                             Navire                M/Y Aurelia
+Azur Marine Services S.A.M.                                                            N°                         BL-26-0805
+Delivery: Quai Antoine Ier                                                             Date                       05/08/2026
+98000 Monaco                                                                           Commande client            PO-2026-0327
+                                                                                       Navire                     M/Y Aurelia
 
 
 
-Désignation                                                                      Qté commandée        Qté livrée     U
-Cordage polyamide 18 mm (bobine 50 m)                                                          2              2      u
-Manilles inox 12 mm                                                                        20                20      u
-Produit nettoyant pont teck 5 L                                                            12                12      u
-Livraison quai                                                                                 1              1    forfait
-Gants de manutention (lot de 12)                                                               5              5      lot
+Désignation                                                                                Qté commandée             Qté livrée     U
+Cordage polyamide 18 mm (bobine 50 m)                                                                         2              2      u
+Manilles inox 12 mm                                                                                      20                 20      u
+Produit nettoyant pont teck 5 L                                                                          12                 12      u
+Livraison quai                                                                                                1              1    forfait
+Gants de manutention (lot de 12)                                                                              5              5      lot
 
 
 
@@ -24,6 +24,26 @@ Gants de manutention (lot de 12)                                                
 
  Bosun A. Kowalski
  05/08/2026
+
+
+
+
+Colisage
+
+   #     Type                              Dimensions                                                Poids
+   1     Fût                               63x41x76 cm                                              75.8 kg
+   2     Palette                           35x48x66 cm                                               6.9 kg
+   3     Caisse                            44x88x28 cm                                          101.6 kg
+   4     Palette                           51x76x66 cm                                              26.4 kg
+   5     Carton                            36x49x31 cm                                          159.7 kg
+   6     Fût                               49x50x45 cm                                              81.7 kg
+
+Transport
+Transporteur               Own vehicle                                Arrivée à quai           14:50
+Véhicule                   MC-660-TR                                  Contrôle                 Quantités comptées à bord
+Conditions
+Les réserves doivent être portées sur le présent document et confirmées par écrit sous 48 heures.
+Marchandises voyageant aux risques du destinataire après signature.
 
 
 

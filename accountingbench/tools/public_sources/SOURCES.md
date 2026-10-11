@@ -1,6 +1,7 @@
 # Public reference documents included in the corpus
 
-Real public documents, filed in the company's reference library as an accounting department would. They are not
+Real public documents. eu_vat_invoicing_notes.pdf is appended as annex K of the procurement policy PRC-FIN-04
+(corpus document key `policy:procurement`); eu_sme_definition_user_guide.pdf is kept for later use. They are not
 fictional and are not linked to any question. Reuse is authorised under the European Commission reuse policy
 (Commission Decision 2011/833/EU), with acknowledgement of the source.
 

@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from PIL import Image, ImageFilter  # noqa: E402
 
+import fill as FILL  # noqa: E402
 import longdocs as LD  # noqa: E402
 import render as R  # noqa: E402
 from common import D, ROOT, date, fdate, fmt, prev_business_day as R_prev  # noqa: E402
@@ -56,8 +57,43 @@ BREAKS = {
 POLICY_BREAKS = ("3. Approval", "6. Payments", "Annex A", "Annex C", "Annex D", "Annex E", "Annex F", "Annex G", "Annex I")
 
 
-def invoice_annex(i):
-    """Annex pages printed by some suppliers: call detail (telecom), monthly service report (IT)."""
+PUBLIC_ANNEXES = {
+    "policy:procurement": ("eu_vat_invoicing_notes.pdf", "Annex K – Reference: EU VAT invoicing rules",
+                           "Explanatory notes on the VAT invoicing rules (Council Directive 2010/45/EU), published by the "
+                           "European Commission (DG TAXUD). Reproduced for reference with acknowledgement of the source; "
+                           "the authentic texts are those published in the Official Journal of the European Union.",
+                           "https://taxation-customs.ec.europa.eu/system/files/2016-09/explanatory_notes_en.pdf"),
+}
+
+
+def with_public_annex(draw, key):
+    """Render a document, then append a separator page and a public reference PDF as its last annex."""
+    from pypdf import PdfReader, PdfWriter
+    fname, title, note, url = PUBLIC_ANNEXES[key]
+
+    def run(path):
+        with tempfile.TemporaryDirectory() as td:
+            main_pdf, sep_pdf = Path(td) / "main.pdf", Path(td) / "sep.pdf"
+            draw(main_pdf)
+            R.render_text_doc(sep_pdf, title, "Azur Marine Services S.A.M. – Finance", [("Source", [note, f"Source: {url}"])],
+                              date(15, 1), ref="PRC-FIN-04 v3")
+            out = PdfWriter()
+            for f in (main_pdf, sep_pdf, Path(__file__).parent / "public_sources" / fname):
+                for page in PdfReader(str(f)).pages:
+                    out.add_page(page)
+            with open(path, "wb") as fh:
+                out.write(fh)
+    return run
+
+
+def invoice_annex(i, w=None):
+    """Annex pages printed by suppliers: packing list, timesheet, bunker detail, licences, call detail, IT report."""
+    base = _base_annex(i)
+    detail = FILL.invoice_annex_for(i, w) if w is not None and i.sup in TERMS_SUPPLIERS else None
+    return (detail or []) + (base or []) or None
+
+
+def _base_annex(i):
     if i.sup == "RTL":
         return LD.telecom_detail(i.date.month)
     if i.sup == "KIT" and i.date.month >= 7:
@@ -80,6 +116,7 @@ class Spec:
     scanned: bool = False
     tags: list = field(default_factory=list)
     ext: str = "pdf"
+    meta: dict = field(default_factory=dict)
 
 
 def ts(d: dt.date, h: int, m: int) -> dt.datetime:
@@ -100,7 +137,7 @@ def build_specs():
             continue
         kind = "credit_note" if i.kind == "credit_note" else "supplier_invoice"
         add(f"inv:{i.number}", kind, f"{'Credit note' if kind == 'credit_note' else 'Invoice'} {i.number}", i.s.name,
-            E[i.customer]["name"], i.date, i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w, terms_page=i.sup in TERMS_SUPPLIERS, annex=invoice_annex(i)),
+            E[i.customer]["name"], i.date, i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w, terms_page=i.sup in TERMS_SUPPLIERS, annex=invoice_annex(i, w)),
             scanned=i.scanned)
     dup = next(i for i in w.invoices if i.number == "FA-2026-0917")
     dup_copy = Invoice(**{**dup.__dict__, "copy_mark": "DUPLICATA", "booked": [], "scanned": True,
@@ -403,7 +440,11 @@ def build_specs():
 
     # ---------------- policies, contracts and other reference documents
     add("policy:procurement", "policy", "Procurement and payment policy PRC-FIN-04", E["AMS"]["name"], "internal", date(15, 1),
-        "en", lambda p: R.render_text_doc(p, "Procurement and payment policy", "Azur Marine Services S.A.M. – Finance",
+        "en", with_public_annex(lambda p: R_policy(p), "policy:procurement"))
+    specs[-1].meta = {"public_annex_source": PUBLIC_ANNEXES["policy:procurement"][3],
+                      "public_annex_licence": "European Commission reuse policy (Decision 2011/833/EU)"}
+
+    def R_policy(p): return R.render_text_doc(p, "Procurement and payment policy", "Azur Marine Services S.A.M. – Finance",
               [("1. Purpose and scope", "This policy defines how goods and services are ordered, received, invoiced and "
                 "paid by Azur Marine Services S.A.M. It applies to all purchases made for the office and for the vessels "
                 "under management, whatever the amount. It does not apply to payroll, social contributions and taxes."),
@@ -469,7 +510,7 @@ def build_specs():
                ("Annex B – Document retention", [("table", [("Document", 80 * R.mm, "l"), ("Retention", 40 * R.mm, "l")],
                  [["Purchase orders, invoices, credit notes", "10 years"], ["Delivery notes, service reports", "10 years"],
                   ["Bank statements and payment notices", "10 years"], ["Supplier correspondence", "5 years"]])])]
-              + LD.POLICY_MORE, date(15, 1), ref="PRC-FIN-04 v3", breaks=POLICY_BREAKS, subtitle="Approved by the Board on 15/01/2026"))
+              + LD.POLICY_MORE, date(15, 1), ref="PRC-FIN-04 v3", breaks=POLICY_BREAKS, subtitle="Approved by the Board on 15/01/2026")
     add("contract:berth", "contract", "Berth rental agreement M/Y Aurelia", SUPPLIERS["MBM"].name, E["AMS"]["name"], date(18, 12, 2025),
         "en", lambda p: R.render_text_doc(p, "Annual berth rental agreement – Berth B-14, Quai Antoine Ier",
               SUPPLIERS["MBM"].name, [
@@ -820,7 +861,9 @@ def main() -> int:
     keys = [s.key for s in specs]
     assert len(keys) == len(set(keys)), "duplicate document keys"
     random.Random(20260930).shuffle(specs)
-    for d in (DOCS, OCR):
+    final_docs, final_ocr = DOCS, OCR
+    docs_dir, ocr_dir = CORPUS / ".staging_documents", CORPUS / ".staging_ocr"
+    for d in (docs_dir, ocr_dir):
         if d.exists():
             shutil.rmtree(d)
         d.mkdir(parents=True)
@@ -828,11 +871,11 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as td:
         for n, s in enumerate(specs, 1):
             doc_id = f"acc_doc_{n:03d}"
-            out = DOCS / f"{doc_id}.{s.ext}"
+            out = docs_dir / f"{doc_id}.{s.ext}"
             if s.scanned:
                 native = Path(td) / f"{doc_id}.pdf"
                 s.draw(native)
-                (OCR / f"{doc_id}.txt").write_text(pdf_text(native), "utf-8")
+                (ocr_dir / f"{doc_id}.txt").write_text(pdf_text(native), "utf-8")
                 scan(native, out, seed=n)
                 pages = page_count(native)
             else:
@@ -842,7 +885,11 @@ def main() -> int:
             manifest.append(dict(document_id=doc_id, filename=out.name, key=s.key, document_type=s.doc_type, title=s.title,
                                  issuer=s.issuer, addressee=s.addressee, document_date=s.doc_date.isoformat(),
                                  language=s.lang, pages=pages, scanned=s.scanned, sha256=hashlib.sha256(data).hexdigest(),
-                                 bytes=len(data)))
+                                 bytes=len(data), **s.meta))
+    for final, staged in ((final_docs, docs_dir), (final_ocr, ocr_dir)):  # every document built: swap in
+        if final.exists():
+            shutil.rmtree(final)
+        staged.rename(final)
     body = {"corpus": "accountingbench_corpus_v1", "n_documents": len(manifest),
             "total_pages": sum(d["pages"] for d in manifest), "n_scanned": sum(d["scanned"] for d in manifest),
             "note": "Fictional documents generated by tools/generate_corpus.py. Ingest corpus/documents/ only: this "

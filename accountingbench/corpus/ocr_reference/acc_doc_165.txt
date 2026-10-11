@@ -15,12 +15,12 @@ N° TVA FR 64 000 512 748                                                       
 
 
 
-  #    Réf.                 Désignation                                                             Qté       U               PU HT          TVA         Montant HT
-  1    —                    Cordage polyester 14 mm (bobine 100 m)                                    2       u               310,00        20 %                  620,00
-  2    —                    Défenses cylindriques F6                                                  6       u               145,00        20 %                  870,00
-  3    —                    Produit nettoyant pont teck 5 L                                          10       u                 38,50       20 %                  385,00
-  4    —                    Gants de manutention (lot de 12)                                          5      lot                42,00       20 %                  210,00
-  5    —                    Livraison quai                                                            1
+  #       Réf.               Désignation                                                            Qté       U               PU HT          TVA         Montant HT
+  1       —                  Cordage polyester 14 mm (bobine 100 m)                                   2       u               310,00        20 %                  620,00
+  2       —                  Défenses cylindriques F6                                                 6       u               145,00        20 %                  870,00
+  3       —                  Produit nettoyant pont teck 5 L                                         10       u                 38,50       20 %                  385,00
+  4       —                  Gants de manutention (lot de 12)                                         5      lot                42,00       20 %                  210,00
+  5       —                  Livraison quai                                                           1
                                                                                                  Total HT
                                                                                                  TVA 20 %
 
@@ -43,8 +43,8 @@ Duplicata adressé le 21/09/2026 à la demande du client.
                                                                         I          C
                                                                       L
  Règlement
- IBAN         FR46 1009 6180 4500 0781 2345 639                                 Référence à rappeler              FA-2026-0917
- BIC          CMCIFRPPXXX
+ IBAN             FR46 1009 6180 4500 0781 2345 639                             Référence à rappeler              FA-2026-0917
+ BIC              CMCIFRPPXXX
  Crédit Maritime Azur
 
 
@@ -55,10 +55,33 @@ Duplicata adressé le 21/09/2026 à la demande du client.
 En cas de retard de paiement : pénalités au taux de 3 fois le taux d'intérêt légal et indemnité forfaitaire pour frais de recouvrement de 40 € (art. L441-10 du
 Code de commerce). Pas d'escompte pour paiement anticipé.
 
-
-
-
+Expédition
+Incoterm
+Transporteur
+N° de suivi
                                        D
+                            DAP Monaco – Quai Antoine Ier
+                            TransAlp Logistics
+                            MMS947938775
+                                                                                 Colis
+                                                                                 Poids brut
+                                                                                 Livraison
+                                                                                                              6
+                                                                                                              117,94 kg
+                                                                                                              02/09/2026 – BL-26-0902
+Données douanières par ligne
+
+      #       Réf.                        Code NC                                Origine                              Poids net
+      1       —                           5607.50                                   FR                                  28,00 kg
+      2       —                           4016.94                                   FR                                  21,60 kg
+      3       —                           3402.90                                   FR                                  54,00 kg
+      4       —                           6116.10                                   FR                                   4,00 kg
+      5       —                           8526.91                                   FR                                   1,60 kg
+
+Notes
+Toute réclamation doit nous parvenir sous 8 jours à réception.
+Certifié ISO 9001:2015 – certificat n° FR59760-Q.
+Interlocuteur : service clients, +33 4 93 55 21 90.
 
 
 

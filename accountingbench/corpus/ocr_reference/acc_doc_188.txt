@@ -1,22 +1,22 @@
-                  Côte d'Azur Ship Chandlers SAS                                        BON DE LIVRAISON
+                   Côte d'Azur Ship Chandlers SAS                                                     BON DE LIVRAISON
   CDA
-                  Quai Cassini 9 · 06300 Nice
-                  Tel. +33 4 93 55 21 90 · compta@ca-shipchandlers.example
+                   Quai Cassini 9 · 06300 Nice
+                   Tel. +33 4 93 55 21 90 · compta@ca-shipchandlers.example
 
 
-Azur Marine Services S.A.M.                                                  N°                    BL-26-0706
-Delivery: Quai Antoine Ier                                                   Date                  06/07/2026
-98000 Monaco                                                                 Commande client       PO-2026-0322
-                                                                             Navire                S/Y Blue Horizon
+Azur Marine Services S.A.M.                                                            N°                         BL-26-0706
+Delivery: Quai Antoine Ier                                                             Date                       06/07/2026
+98000 Monaco                                                                           Commande client            PO-2026-0322
+                                                                                       Navire                     S/Y Blue Horizon
 
 
 
-Désignation                                                                      Qté commandée        Qté livrée        U
-Cordage polyester 14 mm (bobine 100 m)                                                         2              2         u
-Défenses cylindriques F6                                                                       4              4         u
-Livraison quai                                                                                 1              1       forfait
-Produit nettoyant pont teck 5 L                                                                4              4         u
-Éponges et brosses pont (lot)                                                                  1              1         lot
+Désignation                                                                                Qté commandée             Qté livrée        U
+Cordage polyester 14 mm (bobine 100 m)                                                                        2              2         u
+Défenses cylindriques F6                                                                                      4              4         u
+Livraison quai                                                                                                1              1       forfait
+Produit nettoyant pont teck 5 L                                                                               4              4         u
+Éponges et brosses pont (lot)                                                                                 1              1         lot
 
 
 
@@ -24,6 +24,25 @@ Produit nettoyant pont teck 5 L                                                 
 
  Bosun A. Kowalski
  06/07/2026
+
+
+
+
+Colisage
+
+   #     Type                              Dimensions                                                Poids
+   1     Caisse                            72x74x64 cm                                              34.5 kg
+   2     Carton                            40x67x36 cm                                          145.7 kg
+   3     Fût                               89x45x75 cm                                          168.9 kg
+   4     Carton                            52x63x26 cm                                          171.5 kg
+   5     Palette                           100x76x58 cm                                         134.8 kg
+
+Transport
+Transporteur               Own vehicle                                Arrivée à quai           15:05
+Véhicule                   MC-149-KZ                                  Contrôle                 Quantités comptées à bord
+Conditions
+Les réserves doivent être portées sur le présent document et confirmées par écrit sous 48 heures.
+Marchandises voyageant aux risques du destinataire après signature.
 
 
 

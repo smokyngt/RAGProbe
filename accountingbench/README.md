@@ -1,7 +1,7 @@
 # AccountingBench V1 — dataset card
 
 An accounts-payable benchmark for document assistants (Prosperify): **20 deterministic questions** over a **corpus of
-200 fictional but professional-grade documents** (180 PDFs totalling 329 pages: 90 single-page and 90 multi-page documents of 2 to 10 pages, 239 pages between them; 20 image-only scans; 20 e-mails as `.eml` files) from one company's September
+200 fictional but professional-grade documents** (180 PDFs totalling 401 pages: 90 single-page and 90 multi-page documents of 2 to 52 pages; 20 image-only scans; 20 e-mails as `.eml` files) from one company's September
 2026 close. It uses the **same JSON format as FinanceBench** (`finance_benchmark/`), so it can be run with the `ragbench` runner at
 the root of this repository or with any external runner.
 
@@ -16,12 +16,12 @@ The pilot's documents could not support a reliable test:
 
 | pilot problem | what AccountingBench does instead |
 |---|---|
-| ~20 one-page documents: retrieval was barely exercised | 200 documents, 329 PDF pages. Only 46 are cited as evidence; the rest are routine flows, other months, a sister company, contracts, policies, sales invoices and unrelated documents |
+| ~20 one-page documents: retrieval was barely exercised | 200 documents, 401 PDF pages. Only 46 are cited as evidence; the rest are routine flows, other months, a sister company, contracts, policies, sales invoices and unrelated documents |
 | Invoices without VAT number, address, IBAN, PO, quantities or unit prices; one without VAT or due date | Invoices with the mandatory EU invoice mentions (art. 226 directive 2006/112/EC), 4 supplier layouts, line items, VAT summary, bank details, legal footer. The only non-compliant invoice (Quick Marine Repairs) is non-compliant on purpose and listed in the anomaly register |
 | A "scanned copy" that was a clean digital PDF | 20 real image-only scans (rotated, noisy, no text layer): OCR is actually tested |
 | Corrupted characters in a bank reference (`■■■FUEL 1182■■■`) | No accidental defects; every anomaly is planted on purpose and recorded |
 | File titles giving the answer away (`Email MarinaFuel Discrepancy`, `Sept_Final`) | Neutral file names (`acc_doc_001` … `acc_doc_200`) in a shuffled order |
-| Every document one page long; e-mails printed as PDFs | Half of the PDFs are multi-page, as long as their real counterparts: procurement policy with annexes (10 pages), 2025 internal audit report (9), 2025 annual accounts (8), vessel survey (7), insurance policy (6), AP ledger July–September (6), bank statements with end-of-day balances, fees and information annexes (4–5), double-entry purchase journal with centralisation (5), lease, IT and berth contracts, supplier statements since January, invoices with call detail, IT service report or terms of sale overleaf, POs above EUR 5,000 with purchasing conditions overleaf. The other half stays single-page: delivery notes, payment notices, aged payables, master file, small invoices. E-mails are real `.eml` messages (headers, plain text + HTML), one message per file |
+| Every document one page long; e-mails printed as PDFs | Half of the PDFs are multi-page, as long as their real counterparts: procurement policy with annexes (52 pages, including the European Commission's explanatory notes on VAT invoicing rules as annex K, a real public document reproduced with its source), 2025 internal audit report (9), 2025 annual accounts (8), vessel survey (7), insurance policy (6), AP ledger July–September (6), bank statements with end-of-day balances, fees and information annexes (4–5), double-entry purchase journal with centralisation (5), lease, IT and berth contracts, supplier statements since January, invoices with a filled first page (shipment, customs data per line, notes) and annexes – packing list with lots and serial numbers and certificates, engineers' timesheets, bunker delivery details, licence schedules, call detail, IT service report – then the supplier's terms of sale, POs above EUR 5,000 with purchasing conditions overleaf. The other half stays single-page: delivery notes, payment notices, aged payables, master file, small invoices. E-mails are real `.eml` messages (headers, plain text + HTML), one message per file |
 | Open questions ("do a full review", "is the rest expected later or split?") with no single answer | One verifiable answer per question; any judgement is settled by a rule stated in the question |
 | Totals that could not be traced (`Total paid EUR 40,880`) | Every total is reconcilable line by line and checked against the statement total |
 | Store isolation "tested" through an accounting answer | A technical probe: a document ingested only in another store (see T15) |

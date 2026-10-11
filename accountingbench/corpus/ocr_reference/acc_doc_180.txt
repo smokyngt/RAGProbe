@@ -1,20 +1,20 @@
-                  Côte d'Azur Ship Chandlers SAS                                        BON DE LIVRAISON
+                  Côte d'Azur Ship Chandlers SAS                                                      BON DE LIVRAISON
   CDA
                   Quai Cassini 9 · 06300 Nice
                   Tel. +33 4 93 55 21 90 · compta@ca-shipchandlers.example
 
 
-Azur Marine Services S.A.M.                                                  N°                    BL-26-0923
-Delivery: Quai Antoine Ier                                                   Date                  23/09/2026
-98000 Monaco                                                                 Commande client       PO-2026-0342
-                                                                             Navire                M/Y Selene
+Azur Marine Services S.A.M.                                                            N°                         BL-26-0923
+Delivery: Quai Antoine Ier                                                             Date                       23/09/2026
+98000 Monaco                                                                           Commande client            PO-2026-0342
+                                                                                       Navire                     M/Y Selene
 
 
 
-Désignation                                                                      Qté commandée        Qté livrée   U
-Bidons huile 2T 1 L                                                                        24                24    u
-Seaux inox 10 L                                                                                6              6    u
-Ruban adhésif marine (lot de 10)                                                               4              4    lot
+Désignation                                                                                Qté commandée             Qté livrée   U
+Bidons huile 2T 1 L                                                                                      24                 24    u
+Seaux inox 10 L                                                                                               6              6    u
+Ruban adhésif marine (lot de 10)                                                                              4              4    lot
 
 
 
@@ -22,6 +22,23 @@ Ruban adhésif marine (lot de 10)                                               
 
  Bosun A. Kowalski
  23/09/2026
+
+
+
+
+Colisage
+
+   #     Type                              Dimensions                                                Poids
+   1     Caisse                            96x84x69 cm                                              23.8 kg
+   2     Fût                               65x68x68 cm                                          129.4 kg
+   3     Caisse                            43x64x40 cm                                          122.7 kg
+
+Transport
+Transporteur               Riviera Express Fret                       Arrivée à quai           10:20
+Véhicule                   MC-894-AB                                  Contrôle                 Quantités comptées à bord
+Conditions
+Les réserves doivent être portées sur le présent document et confirmées par écrit sous 48 heures.
+Marchandises voyageant aux risques du destinataire après signature.
 
 
 
