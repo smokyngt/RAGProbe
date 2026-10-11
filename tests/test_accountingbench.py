@@ -61,7 +61,9 @@ def test_corpus_manifest_matches_files():
     assert all(d["filename"].endswith(".eml") == (d["document_type"] == "email") for d in m["documents"])
     pdfs = [d for d in m["documents"] if d["filename"].endswith(".pdf")]
     multi = sum(d["pages"] > 1 for d in pdfs)
-    assert multi == len(pdfs) - multi and max(d["pages"] for d in pdfs) >= 10  # half multi-page, long documents
+    assert multi > 1.5 * (len(pdfs) - multi) and max(d["pages"] for d in pdfs) >= 10  # mostly multi-page, long documents
+    assert all(not d["filename"].startswith("acc_doc_") for d in m["documents"])  # realistic file names
+    assert all(d["document_id"] == d["filename"].rsplit(".", 1)[0] for d in m["documents"])
     for d in m["documents"]:
         data = (ROOT / "corpus" / "documents" / d["filename"]).read_bytes()
         assert hashlib.sha256(data).hexdigest() == d["sha256"], d["filename"]

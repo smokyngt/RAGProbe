@@ -1,6 +1,6 @@
 {
-  "manifest_sha256": "0663646104b9e0376ddc6c599ba344c3003115d321469ad3a245fe51d2c636fa",
+  "manifest_sha256": "34e74a115bd7a3202f2f94bee6ccb18364383ac1a20c16b170fa1e586d326d18",
   "n_documents": 200,
-  "total_pages": 421,
+  "total_pages": 661,
   "generator": "tools/generate_corpus.py"
 }

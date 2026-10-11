@@ -26,8 +26,9 @@ import fill as FILL  # noqa: E402
 import longdocs as LD  # noqa: E402
 import render as R  # noqa: E402
 from common import D, ROOT, date, fdate, fmt, prev_business_day as R_prev  # noqa: E402
+AMS_NAME = "Azur Marine Services S.A.M."
 from world import (BANK, EMAILS, ENTITIES, LME_NEW_BIC, LME_NEW_IBAN, PEOPLE, SUPPLIERS, Invoice, L,  # noqa: E402
-                   Supplier, build_world, journal, ledger_entries, open_items)
+                   Supplier, build_world, journal, ledger_balance, ledger_entries, open_items)
 
 CORPUS = ROOT / "corpus"
 DOCS = CORPUS / "documents"
@@ -36,7 +37,13 @@ PROBE = ROOT / "isolation_probe"
 # signed delivery notes / service reports that reach accounts payable as scans
 SCANNED_DN_SUPPLIERS = {"CAS", "PRH", "SME", "ECO", "MRS", "SEA", "MFS"}
 # suppliers that print their general terms of sale overleaf (2-page invoices)
-TERMS_SUPPLIERS = {"MED", "MFS", "OSE", "NTS", "NYS", "CAS", "PRH", "RVE", "SME", "ECO", "VPN", "SEA", "LME", "HAR", "MRS", "CRW"}
+TERMS_SUPPLIERS = {"MED", "MFS", "OSE", "NTS", "NYS", "CAS", "PRH", "RVE", "SME", "ECO", "VPN", "SEA", "LME", "HAR", "MRS", "CRW",
+                   "ACS"}
+# short unrelated documents replaced by long contracts and accounting documents (corpus stays at 200 files)
+REMOVED_KEYS = {"noise:fuel_bulletin", "noise:payroll", "noise:vat_aug", "noise:it_policy", "noise:board", "noise:mgmt_q2",
+                "sales:AMS-2026-0801", "sales:AMS-2026-0802", "sales:AMS-2026-0803", "sales:AMS-2026-0902",
+                "sales:AMS-2026-0903", "inv:HP-25-0988", "inv:SG-2025/1310", "inv:RE-2026-0741", "inv:SME-26-0462",
+                "quote:CSS-2026-221"}
 # unrelated one-page documents removed to keep the corpus at 200 files
 DROPPED_NOISE = {"travel", "stcw", "expo", "port_notice", "drill", "assets", "fees", "expenses", "rotation", "charter"}
 
@@ -53,6 +60,17 @@ BREAKS = {
     "audit": ("Calendrier", "Honoraires"),
     "pricelist": ("Lubricants", "Safety"),
     "loan": ("Échéancier",),
+}
+# chapters that always start a new page (statements, findings, schedules), as in the real documents
+FORCE = {
+    "annual_accounts": ("Bilan actif", "Bilan passif", "Compte de résultat", "Tableau des immobilisations", "Note 1",
+                        "Rapport de gestion"),
+    "internal_audit": ("2. Scope", "3. Summary", "4. F", "5. Rating", "Annex"),
+    "insurance": ("Policy wording", "Schedule of equipment", "Claims history", "Premium calculation"),
+    "lease": ("Article 1", "Annexe"),
+    "survey": ("Hull", "Safety equipment", "Inspection", "Recommendations"),
+    "audit": ("Calendrier", "Honoraires"),
+    "mgmt_aug": ("Income statement", "Balance sheet", "Budget"),
 }
 POLICY_BREAKS = ("3. Approval", "6. Payments", "Annex A", "Annex C", "Annex D", "Annex E", "Annex F", "Annex G", "Annex I")
 
@@ -98,6 +116,10 @@ def _base_annex(i):
         return LD.telecom_detail(i.date.month)
     if i.sup == "KIT" and i.date.month >= 7:
         return LD.it_activity(i.date.month)
+    if i.sup == "MBM":
+        return FILL.berth_detail(i)
+    if i.sup == "LMP":
+        return FILL.lmp_detail(i)
     if i.sup == "LIB":
         return LD.premium_schedule(i.number)
     return None
@@ -805,7 +827,7 @@ def build_specs():
         sections = sections + ([] if key == "board" else extra.get(key, []))  # board minutes: one page
         add(f"noise:{key}", t, title, issuer, "internal" if issuer == "Azur Marine Services S.A.M." else E["AMS"]["name"], d, lang,
             lambda p, title=title, issuer=issuer, sections=sections, d=d, key=key: R.render_text_doc(
-                p, title, issuer, sections, d, breaks=BREAKS.get(key, ())))
+                p, title, issuer, sections, d, breaks=BREAKS.get(key, ()), force=FORCE.get(key, ()), size=10.5, leading=16))
 
     # sales invoices issued by Azur Marine Services (sales cycle, not purchases)
     clients = {
@@ -823,6 +845,44 @@ def build_specs():
     add("sales:AMS-2026-0911", "sales_invoice", "Sales invoice AMS-2026-0911", E["AMS"]["name"], "Aurelia Yachting Ltd",
         date(8, 9), "en", lambda p: R.render_sales_invoice(p, "AMS-2026-0911", date(8, 9), clients["01"][0],
                                                           [("Recharge of third-party costs – August 2026 (detail attached)", D("34396.33"))], E["AMS"]))
+    # long contracts and accounting documents
+    import contracts as C
+    for key, (title, lang, d, sections) in C.all_contracts(SUPPLIERS).items():
+        add(f"contract:{key}", "contract", title, AMS_NAME if key.startswith("mgmt") else sections[0][1].split(" and ")[0].split(" (")[0],
+            E["AMS"]["name"], d, lang, lambda p, title=title, sections=sections, d=d: R.render_text_doc(
+                p, title, "Contract", sections, d, size=11, leading=17.5, force=("Schedule", "Signatures", "Annexe")))
+    add("contract:bank_account", "contract", "Convention de compte courant professionnel – Banque Riviera Monaco", BANK["name"],
+        E["AMS"]["name"], date(12, 1, 2022), "fr", lambda p: R.render_text_doc(
+            p, "Convention de compte courant professionnel", BANK["name"], C.bank_account_agreement(), date(12, 1, 2022),
+            ref="CONV-PRO-2022-0418", color="#7A1F2B", size=11, leading=17.5, force=("Article 9", "Signatures")))
+    bal_aug = w.opening_bank + sum((b.credit - b.debit for b in w.bank if b.date <= date(31, 8)), D(0))
+    add("acct:trial_balance_0831", "trial_balance", "Balance générale au 31/08/2026", E["AMS"]["name"], "internal", date(4, 9), "fr",
+        lambda p: R.render_text_doc(p, "Balance générale au 31/08/2026", "Azur Marine Services S.A.M. – Comptabilité",
+                                    C.trial_balance(w, ledger_balance, bal_aug), date(4, 9), ref="BG-2026-08"))
+    add("acct:bank_rec_0831", "bank_reconciliation", "Rapprochement bancaire au 31/08/2026", E["AMS"]["name"], "internal", date(4, 9),
+        "fr", lambda p: R.render_text_doc(p, "Rapprochement bancaire au 31/08/2026", "Azur Marine Services S.A.M. – Comptabilité",
+                                          C.bank_reconciliation_aug(bal_aug, bal_aug), date(4, 9), ref="RB-2026-08"))
+    add("acct:closing_manual", "procedure", "Manuel de clôture mensuelle – achats et trésorerie", E["AMS"]["name"], "internal",
+        date(20, 1), "fr", lambda p: R.render_text_doc(p, "Manuel de clôture mensuelle – achats et trésorerie",
+                                                       "Azur Marine Services S.A.M. – Finance", C.closing_manual(), date(20, 1),
+                                                       ref="PRC-FIN-07 v2", size=10.5, leading=16.5,
+                                                       force=("2. Calendrier", "7. Registre")))
+    add("acct:budget_2026", "budget", "Operating budgets 2026 by vessel", E["AMS"]["name"], "internal", date(28, 11, 2025), "en",
+        lambda p: R.render_text_doc(p, "Operating budgets 2026 by vessel", "Azur Marine Services S.A.M. – Finance",
+                                    C.budget_2026(), date(28, 11, 2025), breaks=("Budget 2026",)))
+    add("acct:agm_2026", "minutes", "Procès-verbal de l'assemblée générale ordinaire du 25/06/2026", E["AMS"]["name"], "internal",
+        date(25, 6), "fr", lambda p: R.render_text_doc(p, "Procès-verbal de l'assemblée générale ordinaire du 25 juin 2026",
+                                                       "Azur Marine Services S.A.M.", C.agm_minutes(), date(25, 6)))
+    for key, fname, title, d, url in [
+            ("public:eu_sme_guide", "eu_sme_definition_user_guide.pdf", "User guide to the SME Definition", date(1, 1, 2020),
+             "https://ec.europa.eu/docsroom/documents/42921"),
+            ("public:eu_vat_place_of_supply", "eu_vat_place_of_supply_2015_notes.pdf",
+             "Explanatory notes on the EU VAT place of supply rules (2015)", date(3, 4, 2014),
+             "https://taxation-customs.ec.europa.eu/system/files/2016-09/explanatory_notes_2015_en.pdf")]:
+        add(key, "regulatory_guidance", title, "European Commission", "public", d, "en",
+            lambda p, fname=fname: shutil.copyfile(Path(__file__).parent / "public_sources" / fname, p))
+        specs[-1].meta = {"source_url": url, "licence": "European Commission reuse policy (Decision 2011/833/EU)"}
+    specs = [x for x in specs if x.key not in REMOVED_KEYS]
     return w, specs
 
 
@@ -856,6 +916,63 @@ def page_count(pdf: Path) -> int:
     return int(next(l for l in out.splitlines() if l.startswith("Pages:")).split()[1])
 
 
+def _slug(text: str, n: int = 60) -> str:
+    import unicodedata
+    t = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
+    t = "".join(c if c.isalnum() or c in "-." else "_" for c in t)
+    while "__" in t:
+        t = t.replace("__", "_")
+    return t.strip("_.")[:n].rstrip("_")
+
+
+def _short(name: str) -> str:
+    skip = {"S.A.M.", "SAS", "SARL", "S.A.R.L.", "GmbH", "B.V.", "Ltd", "S.r.l.", "SA", "&"}
+    return _slug("".join(w[:1].upper() + w[1:] for w in name.replace("'", " ").split() if w not in skip), 40)
+
+
+def file_name(s: Spec, scan_seq: dict) -> str:
+    """Realistic file name, as found in an accounting department's document store (never states an anomaly)."""
+    kind, _, ref = s.key.partition(":")
+    ref = ref.split(":")[0].replace("/", "-").replace(" ", "_")
+    d = s.doc_date
+    if s.scanned:  # copier output: date and time only
+        n = scan_seq[d] = scan_seq.get(d, 0) + 1
+        return f"SCAN_{d:%Y%m%d}_{8 + n:02d}{(n * 17) % 60:02d}.pdf"
+    fr = s.lang == "fr"
+    if kind == "inv":
+        word = ("Avoir" if fr else "CreditNote") if s.doc_type == "credit_note" else ("Facture" if fr else "Invoice")
+        return f"{_short(s.issuer)}_{word}_{ref}.pdf"
+    if kind == "po":
+        return f"{ref}_{_short(s.addressee)}.pdf"
+    if kind == "dn":
+        word = ("FicheIntervention" if fr else "ServiceReport") if s.doc_type == "service_report" else ("BL" if fr else "DeliveryNote")
+        return f"{_short(s.issuer)}_{word}_{ref}.pdf"
+    if kind in ("quote", "pf"):
+        word = "Proforma" if kind == "pf" else ("Devis" if fr else "Quotation")
+        return f"{_short(s.issuer)}_{word}_{ref}.pdf"
+    if kind == "stmt":
+        return f"{_short(s.issuer)}_{'Releve_compte' if fr else 'Statement'}_{d:%Y-%m-%d}.pdf"
+    if kind == "bank":
+        return f"BRM_Releve_{ref}.pdf"
+    if kind == "batch":
+        return f"BRM_AvisExecution_{ref}.pdf"
+    if kind == "journal":
+        return f"Journal_Achats_AC_2026-{int(ref):02d}.pdf"
+    if kind == "ledger":
+        return "GrandLivre_Fournisseurs_2026-07_a_2026-09.pdf"
+    if kind == "aged":
+        return "Balance_Agee_Fournisseurs_2026-09-30.pdf"
+    if kind == "master":
+        return "Fichier_Fournisseurs_2026-09-01.pdf"
+    if kind == "mail":
+        return f"{d:%Y-%m-%d}_{_slug(s.title, 70)}.eml"
+    if kind == "sales":
+        return f"AMS_Invoice_{ref}.pdf"
+    if kind == "policy":
+        return "PRC-FIN-04_Procurement_and_Payment_Policy_v3.pdf"
+    return f"{_slug(s.title, 70)}.pdf"
+
+
 def main() -> int:
     w, specs = build_specs()
     keys = [s.key for s in specs]
@@ -868,12 +985,18 @@ def main() -> int:
             shutil.rmtree(d)
         d.mkdir(parents=True)
     manifest = []
+    scan_seq: dict = {}
+    used: set = set()
     with tempfile.TemporaryDirectory() as td:
         for n, s in enumerate(specs, 1):
-            doc_id = f"acc_doc_{n:03d}"
-            out = docs_dir / f"{doc_id}.{s.ext}"
+            fname = file_name(s, scan_seq)
+            if fname in used:
+                fname = fname.replace(".", f"_{n:03d}.", 1) if fname.count(".") == 1 else f"{n:03d}_{fname}"
+            used.add(fname)
+            doc_id = fname.rsplit(".", 1)[0]
+            out = docs_dir / fname
             if s.scanned:
-                native = Path(td) / f"{doc_id}.pdf"
+                native = Path(td) / "native.pdf"
                 s.draw(native)
                 (ocr_dir / f"{doc_id}.txt").write_text(pdf_text(native), "utf-8")
                 scan(native, out, seed=n)

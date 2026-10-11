@@ -292,3 +292,45 @@ def batch_details(payments):
         rows.append([str(k), f"E2E-{p.date:%y%m%d}-{hashlib.sha1(p.label.encode()).hexdigest()[:8].upper()}", "SHA",
                      "SUPP" if p.settles else "OTHR", f"{p.date:%d/%m/%Y} 07:{10 + k:02d}", "ACSC"])
     return rows
+
+
+def lmp_detail(inv):
+    """Detailed delivery list of a provisions invoice: items whose amounts add up exactly to each invoiced lot."""
+    r = _rnd("lmp", inv.number)
+    cat = {"Fruits et légumes frais": ["Tomates grappe", "Salade batavia", "Citrons de Menton", "Avocats", "Fraises", "Courgettes",
+                                       "Herbes fraîches (botte)", "Mangues", "Pommes de terre grenaille"],
+           "Viandes et poissons": ["Filet de bœuf", "Suprêmes de volaille", "Loup de Méditerranée", "Gambas", "Carré d'agneau",
+                                   "Saumon label rouge", "Jambon cru", "Saint-Pierre"],
+           "Épicerie fine et produits secs": ["Huile d'olive AOP", "Riz arborio", "Pâtes artisanales", "Chocolat 70 %", "Farine T55",
+                                              "Miel de lavande", "Thé et infusions", "Café en grains"],
+           "Vins et spiritueux": ["Champagne brut", "Côtes de Provence rosé", "Bordeaux rouge", "Gin premium", "Vodka", "Rhum vieux"],
+           "Eaux minérales et boissons sans alcool": ["Eau plate 1 L", "Eau gazeuse 1 L", "Jus d'orange frais", "Sodas assortis", "Tonic"]}
+    rows = []
+    for ln in inv.lines:
+        names = r.sample(cat[ln.desc], min(len(cat[ln.desc]), r.randrange(4, 7)))
+        total, left = ln.amount, ln.amount
+        for k, nm in enumerate(names):
+            amt = left if k == len(names) - 1 else (total * Decimal(r.uniform(0.1, 0.3))).quantize(Decimal("0.01"))
+            if amt >= left:
+                amt = left
+            left -= amt
+            rows.append([ln.desc, nm, fmt(amt, "fr")])
+            if left <= 0:
+                break
+    return [("Détail de la livraison", ["Détail des articles livrés à bord ; les montants HT par famille correspondent aux "
+             "lignes de la facture.", T([("Famille", 62 * mm, "l"), ("Article", 80 * mm, "l"), ("Montant HT", 32 * mm, "r")], rows)])]
+
+
+def berth_detail(inv):
+    r = _rnd("mbm", inv.number)
+    d0 = inv.date
+    rows = []
+    for k in range(0, 28, 1):
+        d = d0 + dt.timedelta(days=k)
+        if d.month != d0.month:
+            break
+        rows.append([fdate(d), "Occupied", f"{r.randrange(180, 420)} kWh", f"{r.uniform(1.5, 6.0):.1f} m3", r.choice(["—", "—", "Pump-out", "—"])])
+    return [("Berth occupancy and meter readings", ["Daily occupancy record of the berth. Electricity and water are invoiced "
+             "separately on meter readings, in accordance with the berth rental agreement.",
+             T([("Date", 28 * mm, "l"), ("Status", 28 * mm, "l"), ("Electricity", 34 * mm, "r"), ("Water", 30 * mm, "r"),
+                ("Services", 50 * mm, "l")], rows)])]

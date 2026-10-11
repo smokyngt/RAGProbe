@@ -1,7 +1,7 @@
 # AccountingBench V1 — dataset card
 
 An accounts-payable benchmark for document assistants (Prosperify): **20 deterministic questions** over a **corpus of
-200 fictional but professional-grade documents** (180 PDFs totalling 401 pages: 90 single-page and 90 multi-page documents of 2 to 52 pages; 20 image-only scans; 20 e-mails as `.eml` files) from one company's September
+200 fictional but professional-grade documents** (180 PDFs totalling 641 pages: 116 multi-page documents of 2 to 92 pages and 64 single-page ones; 20 image-only scans; 20 e-mails as `.eml` files; realistic file names) from one company's September
 2026 close. It uses the **same JSON format as FinanceBench** (`finance_benchmark/`), so it can be run with the `ragbench` runner at
 the root of this repository or with any external runner.
 
@@ -16,11 +16,11 @@ The pilot's documents could not support a reliable test:
 
 | pilot problem | what AccountingBench does instead |
 |---|---|
-| ~20 one-page documents: retrieval was barely exercised | 200 documents, 401 PDF pages. Only 46 are cited as evidence; the rest are routine flows, other months, a sister company, contracts, policies, sales invoices and unrelated documents |
+| ~20 one-page documents: retrieval was barely exercised | 200 documents, 641 PDF pages. Only 46 are cited as evidence; the rest are routine flows, other months, a sister company, contracts, policies, sales invoices and unrelated documents |
 | Invoices without VAT number, address, IBAN, PO, quantities or unit prices; one without VAT or due date | Invoices with the mandatory EU invoice mentions (art. 226 directive 2006/112/EC), 4 supplier layouts, line items, VAT summary, bank details, legal footer. The only non-compliant invoice (Quick Marine Repairs) is non-compliant on purpose and listed in the anomaly register |
 | A "scanned copy" that was a clean digital PDF | 20 real image-only scans (rotated, noisy, no text layer): OCR is actually tested |
 | Corrupted characters in a bank reference (`■■■FUEL 1182■■■`) | No accidental defects; every anomaly is planted on purpose and recorded |
-| File titles giving the answer away (`Email MarinaFuel Discrepancy`, `Sept_Final`) | Neutral file names (`acc_doc_001` … `acc_doc_200`) in a shuffled order |
+| File titles giving the answer away (`Email MarinaFuel Discrepancy`, `Sept_Final`) | File names as found in a document store (`HarborParts_Invoice_HP-26-1450.pdf`, `BRM_Releve_2026-09.pdf`, `PO-2026-0339_NavTechSystems.pdf`, `2026-09-14_Updated_bank_details_….eml`; scans are named by the copier, `SCAN_20260921_0917.pdf`); no name states an anomaly. The file name without extension is the `document_id` used in the dataset |
 | Every document one page long; e-mails printed as PDFs | Half of the PDFs are multi-page, as long as their real counterparts: procurement policy with annexes (52 pages, including the European Commission's explanatory notes on VAT invoicing rules as annex K, a real public document reproduced with its source), 2025 internal audit report (9), 2025 annual accounts (8), vessel survey (7), insurance policy (6), AP ledger July–September (6), bank statements with end-of-day balances, fees and information annexes (4–5), double-entry purchase journal with centralisation (5), lease, IT and berth contracts, supplier statements since January, invoices with a filled first page (shipment, customs data per line, notes) and annexes – packing list with lots and serial numbers and certificates, engineers' timesheets, bunker delivery details, licence schedules, call detail, IT service report – then the supplier's terms of sale, POs above EUR 5,000 with purchasing conditions overleaf. The other half stays single-page: delivery notes, payment notices, aged payables, master file, small invoices. E-mails are real `.eml` messages (headers, plain text + HTML), one message per file |
 | Open questions ("do a full review", "is the rest expected later or split?") with no single answer | One verifiable answer per question; any judgement is settled by a rule stated in the question |
 | Totals that could not be traced (`Total paid EUR 40,880`) | Every total is reconcilable line by line and checked against the statement total |
@@ -31,7 +31,7 @@ The pilot's documents could not support a reliable test:
 ```
 accountingbench/
 ├── corpus/
-│   ├── documents/acc_doc_001 … acc_doc_200 (.pdf, .eml)   ← the ONLY folder to ingest
+│   ├── documents/  200 files (.pdf, .eml) with realistic names   ← the ONLY folder to ingest
 │   ├── manifest.json         per document: type, issuer, addressee, date, language, pages, scanned, SHA-256, internal key
 │   ├── FROZEN.json           manifest hash
 │   └── ocr_reference/        reference text of the 20 scans (used only to check evidence quotes; never ingest)
@@ -65,14 +65,15 @@ check digits and e-mail domains use the reserved `.example` TLD.
 
 | documents | n | | documents | n |
 |---|---|---|---|---|
-| supplier invoices (incl. sister company, 2025) | 69 | | payment execution notices (beneficiary IBANs) | 12 |
-| purchase orders (with approver and signature) | 27 | | sales invoices (sales cycle, out of scope) | 7 |
-| delivery notes / service reports | 20 / 6 | | contracts (berth, IT, waste, office lease) | 4 |
+| supplier invoices (incl. sister company, 2025) | 65 | | payment execution notices (beneficiary IBANs) | 12 |
+| purchase orders (with approver and signature) | 27 | | sales invoices (sales cycle, out of scope) | 2 |
+| delivery notes / service reports | 20 / 6 | | contracts, 4 to 8 pages (yacht management, framework supply, fuel, crew, brokerage, telecom, cleaning, bank account, berth, IT, waste, lease) | 13 |
 | e-mails, `.eml` (supplier, internal, phishing, noise) | 20 | | bank statements Jul / Aug / Sep / 1–9 Oct | 4 |
-| quotes / pro-forma / credit note | 4 / 1 / 1 | | purchase journals Jul–Sep, AP ledger, aged payables, master file | 3 / 1 / 1 / 1 |
-| supplier statements of account | 3 | | annual accounts 2025, internal audit report, management reports, policies, insurance, survey, minutes, loan, VAT, payroll, other | 16 |
+| quotes / pro-forma / credit note | 3 / 1 / 1 | | purchase journals Jul–Sep, AP ledger, aged payables, master file | 3 / 1 / 1 / 1 |
+| supplier statements of account | 3 | | annual accounts 2025, trial balance 31/08, bank reconciliation 31/08, closing manual, budgets 2026, internal audit report (14 p.), survey (12 p.), insurance policy, management accounts, AGM minutes, loan, price list, other | 15 |
+| EU public guidance (real documents, source in the manifest) | 2 | | | |
 
-Languages: 122 English, 78 French (accounting exports and bank documents are in French, as at a Monaco company: the question
+Languages: 121 English, 79 French (accounting exports and bank documents are in French, as at a Monaco company: the question
 says "purchase journal", the document says "Journal des achats").
 
 ## Questions
@@ -139,7 +140,7 @@ words): run both to measure how much the briefing helps.
 
 ## Running it
 
-1. **Ingest** `corpus/documents/` (180 PDFs + 20 `.eml`) into one store, for example `azur-marine-2026-09`. Ingest
+1. **Ingest** `corpus/documents/` (180 PDFs + 20 `.eml`) into one store, keeping the file names, for example `azur-marine-2026-09`. Ingest
    `isolation_probe/probe_doc_001.pdf` into **another** store.
 2. **Query** the Azur store with each `question` (and, separately, with `question_natural`). Keep the first answer and the
    sources displayed (document, page).
@@ -183,7 +184,7 @@ words): run both to measure how much the briefing helps.
 
 ```bash
 pip install reportlab pillow          # + poppler-utils (pdftotext, pdftoppm)
-python accountingbench/tools/generate_corpus.py   # 180 PDFs + 20 .eml, manifest, OCR reference, isolation probe
+python accountingbench/tools/generate_corpus.py   # 180 PDFs + 20 .eml (named), manifest, OCR reference, isolation probe
 python accountingbench/tools/build_dataset.py     # questions, simple export, anomaly register
 python accountingbench/tools/validate.py --review
 ```

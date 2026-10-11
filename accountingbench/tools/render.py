@@ -1282,7 +1282,7 @@ def render_email(path, frm, to, d: dt.datetime, subject, body, cc="", attachment
 
 
 def render_text_doc(path, title, issuer, sections, d: dt.date, ref="", subtitle="", land=False, color="#0D2C54",
-                    footer="", breaks=()):
+                    footer="", breaks=(), size=10, leading=15, force=()):
     """Generic long-form document: sections = [(heading, paragraphs or ('table', cols, rows))]."""
     accent = HexColor(color)
 
@@ -1308,7 +1308,8 @@ def render_text_doc(path, title, issuer, sections, d: dt.date, ref="", subtitle=
         doc.new_page()
         return doc.H - 20 * mm
     for heading, body in sections:
-        if y < 40 * mm or (heading and breaks and heading.startswith(tuple(breaks)) and y < doc.H * 0.45):
+        if y < 40 * mm or (heading and breaks and heading.startswith(tuple(breaks)) and y < doc.H * 0.45) or (
+                heading and force and heading.startswith(tuple(force)) and y < doc.H - 50 * mm):
             y = brk()
         if heading:
             doc.text(left, y, heading, "Sans-B", 11, accent)
@@ -1319,7 +1320,7 @@ def render_text_doc(path, title, issuer, sections, d: dt.date, ref="", subtitle=
                 _, cols, rows = item
                 y = doc.table(left, y, cols, rows, head_fill=accent, size=8.4, row_h=15, bottom=25 * mm, on_break=brk) - 10
             else:
-                y = doc.para(left, y, item, right - left, "Sans", 10, leading=15, bottom=22 * mm, on_break=brk) - 7
+                y = doc.para(left, y, item, right - left, "Sans", size, leading=leading, bottom=22 * mm, on_break=brk) - 7
         y -= 6
     doc.save()
 

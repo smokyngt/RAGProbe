@@ -4,7 +4,7 @@
 #   3. python benchmark.py run --dataset accountingbench/datasets/accountingbench_v1.jsonl --config configs/accountingbench.yaml
 #
 # The pipeline must return, for each retrieved chunk, its source document and page: {"chunk_id", "text",
-# "document_id": "acc_doc_042" (or "acc_doc_042.pdf"), "page": 1}; an .eml e-mail is page 1. 20 documents are image-only scans: a pipeline
+# "document_id": "BRM_Releve_2026-09" (or "BRM_Releve_2026-09.pdf", the file name), "page": 1}; an .eml e-mail is page 1. 20 documents are image-only scans: a pipeline
 # without OCR cannot retrieve them, and the report will show it as retrieval failures.
 pipeline:
   name: "prosperify"
