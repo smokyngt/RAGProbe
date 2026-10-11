@@ -38,13 +38,15 @@ accountingbench/
 ├── datasets/
 │   ├── accountingbench_v1.jsonl             ← the benchmark (full annotation, FinanceBench schema)
 │   ├── accountingbench_v1_simple.jsonl/.csv ← id / question / answer / documents / pages, for an external runner
-│   ├── accountingbench_v1_review.json       blind re-answer review per question
+│   ├── accountingbench_v1_review.json       blind re-answer review per question (20/20 verified)
 │   └── anomaly_register.json                18 planted anomalies + 3 decoys, their documents and the questions testing them
+├── annotation/               blind answers (2 independent agents) and adjudication of every reported ambiguity
 ├── tools/
 │   ├── world.py              the fictional company, suppliers, orders, deliveries, invoices, payments (single source of truth)
 │   ├── render.py             PDF layouts (invoices x4 styles, PO, delivery note, bank statement, ledger, journal, e-mail…)
 │   ├── generate_corpus.py    world -> corpus (deterministic: same code, same PDFs)
 │   ├── build_dataset.py      world + corpus -> questions; expected answers are computed, never typed
+│   ├── build_review.py       blind answers + adjudication -> review file
 │   └── validate.py           FinanceBench validation rules applied to AccountingBench
 └── PROMPT_creation_benchmark_comptable.md   the design brief this benchmark implements
 ```
@@ -165,8 +167,13 @@ words): run both to measure how much the briefing helps.
   page (for scans, in the OCR reference text); every calculation re-evaluated, with every input found as printed in its evidence;
   every key fact present in the reference answer. `pytest` also checks IBAN validity, weekday bank dates, invoice arithmetic,
   manifest hashes and the absence of giveaway words in the questions.
-- **Blind re-answer.** Two independent agents answered the 20 questions from the PDFs only (rendering the scans to images),
-  without the reference answers. The results are in `datasets/accountingbench_v1_review.json`.
+- **Blind re-answer.** Two independent agents answered the 20 questions from the PDFs only (rendering the 20 scans to images),
+  without the reference answers (`annotation/blind/`). Result: **every key fact of every question found (recall 1.00 on 20/20)**.
+  They reported 3 real ambiguities, all fixed in the questions: "same amount" in acc_q_004 (now: the label cites a document of
+  the same payee), invoice lines absent from the delivery note in acc_q_013 (now excluded), and the due date of credit notes in
+  acc_q_019 (now exempt). They also found 2 missing mentions on the QMR invoice (quantity, net amount) that the reference had
+  omitted, which are now corrected. Every note is adjudicated in `annotation/adjudication.json`; review per question in
+  `datasets/accountingbench_v1_review.json` (20/20 verified, `human_reviewed: false`).
 - **Not yet done:** review by a practising accountant. Start with acc_q_013, acc_q_017 and acc_q_008 (the longest answers).
 
 ## Regenerating
@@ -187,5 +194,5 @@ apart.
 - Synthetic: one company, one month-end close, documents generated from templates. The variety comes from 4 invoice layouts,
   2 languages, 5 number and date formats and 20 scans, not from real-world mess (handwriting, multi-invoice PDFs, photos).
 - Reference answers are long prose tables: score them with key facts and expected rows, not EM/F1.
-- Determinism has limits. Where a rule could be read two ways, the blind review found it (see the review file) and the question
-  was tightened.
+- Determinism has limits: two reviewers are a small sample. A practising accountant should still read acc_q_013, acc_q_017
+  and acc_q_008 first.

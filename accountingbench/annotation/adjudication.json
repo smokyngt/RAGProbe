@@ -1,0 +1,62 @@
+{
+  "acc_q_001": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer note is an observation (ledger balance includes the duplicate), not an ambiguity; answer identical."
+  },
+  "acc_q_002": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer correctly excluded invoices partly paid by a single debit, as the question asks; answer identical."
+  },
+  "acc_q_004": {
+    "verdict": "question_fixed",
+    "notes": "Blind reviewer 2 noted that 'same amount' read strictly would also leave partial and short payments unmatched. Rule rewritten: matched = label or execution notice cites a document of the same payee, whatever the amount. Reference unchanged (2 debits, EUR 5,730.00), matching the blind answer."
+  },
+  "acc_q_005": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer linked quotation and pro-forma to the PO by content; same documents and same single liability (INV-2026-552, EUR 6,200.00) as the reference."
+  },
+  "acc_q_008": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer used the gross invoice total as amount due and the deposit as a payment, exactly as the question defines; all 8 rows and totals match."
+  },
+  "acc_q_010": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer used simple date differences (91 and 80 days), as the reference; no ambiguity."
+  },
+  "acc_q_011": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer correctly ignored the sister-company invoice INV-2026-1190 (decoy); answer identical."
+  },
+  "acc_q_012": {
+    "verdict": "reference_confirmed",
+    "notes": "Simple calendar differences (15 and 8 days), as the reference; no ambiguity."
+  },
+  "acc_q_013": {
+    "verdict": "question_fixed",
+    "notes": "Reviewer asked whether invoice lines absent from the delivery note (installation labour on RE-2026-0733) fail check (3). Question now excludes them explicitly; the reviewer had already passed the line, so the reference (5 failing lines, 1 missing document, 21 passing) is unchanged and matches."
+  },
+  "acc_q_014": {
+    "verdict": "reference_confirmed",
+    "notes": "Observation confirming the scope; answer identical."
+  },
+  "acc_q_015": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer counted 21 individual transfers (not 12 batches), as the question asks; same 3 non-MATCH rows."
+  },
+  "acc_q_016": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer classed the Liguria payment in category A (it settles an invoice); consistent with the definition. All six totals match."
+  },
+  "acc_q_017": {
+    "verdict": "reference_confirmed",
+    "notes": "Same 17 rows. Missing LMP-26-1297 PDF fits no listed type (correctly omitted); payees absent from the master file are UNMATCHED BANK DEBIT, as in the reference."
+  },
+  "acc_q_018": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer excluded the Provence over-invoicing and the NavTech prepaid period, as the reference does (both already booked)."
+  },
+  "acc_q_019": {
+    "verdict": "question_fixed",
+    "notes": "Blind reviewer found two more missing mentions on QMR 0912 (quantity, net amount): reference corrected. Credit notes exempted from the due-date mention after the reviewer's question on SG-CN-2026/0112."
+  }
+}

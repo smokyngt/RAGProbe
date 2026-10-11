@@ -250,7 +250,7 @@
       "id": "A11",
       "type": "non-compliant invoice",
       "party": "Quick Marine Repairs",
-      "description": "no supplier address, VAT number, customer address, VAT breakdown, due date",
+      "description": "no supplier address, VAT number, customer address, quantity, net amount, VAT rate and amount, due date",
       "amount_at_stake": "1680.00",
       "documents": [
         {

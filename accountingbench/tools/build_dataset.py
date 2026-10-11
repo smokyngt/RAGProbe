@@ -565,7 +565,7 @@ def main() -> int:
                "in the file and apply these checks: (1) the document is in the file; (2) for suppliers marked \"BC requis = "
                "Oui\" in the supplier master file, a purchase order dated on or before the invoice exists; (3) for goods and "
                "on-board works ordered by PO (software licences excluded), a delivery note or service report exists and no "
-               "invoiced quantity exceeds the quantity delivered (delivery and freight lines excluded); (4) where the "
+               "invoiced quantity exceeds the quantity delivered (invoice lines that do not appear on the delivery note, such as delivery, freight or installation labour, are excluded); (4) where the "
                "invoice shows a VAT amount, it equals net amount x VAT rate to the cent; (5) the invoice number does not "
                "already appear on an earlier line of the journal. Report every line failing a check (piece, supplier, "
                "invoice number, failed check, amount at stake), every line whose document you could not find, and the "
@@ -812,13 +812,13 @@ def main() -> int:
                "and address, invoice number, invoice date, description and quantity, net amount, VAT rate and VAT amount (or "
                "a reverse-charge or exemption mention), total amount, due date or payment terms. List each invoice failing a "
                "check with the amounts shown, the correct amounts and the difference, or the missing mentions. Invoices "
-               "whose document is not in the file are out of scope.",
+               "whose document is not in the file are out of scope; credit notes need no due date.",
       natural="Are there VAT errors or non-compliant supplier invoices in September 2026?",
       answer=f"Two invoices fail. (1) Sud Marine Électricité SARL SME-26-0457: net EUR 9,320.00, VAT shown EUR 1,846.00 "
              f"instead of EUR 1,864.00 (9,320.00 x 20%), difference EUR 18.00; total shown EUR 11,166.00 instead of "
              f"EUR 11,184.00. (2) Quick Marine Repairs invoice No 0912: missing supplier address, supplier VAT number, "
-             f"customer address, VAT rate and VAT amount (only a total of EUR 1,680.00 is shown) and due date or payment "
-             f"terms. All other invoices in the file pass both checks.",
+             f"customer address, quantity, net amount, VAT rate and VAT amount (only a total of EUR 1,680.00 is shown) and "
+             f"due date or payment terms. All other invoices in the file pass both checks.",
       key_facts=[kf("VAT error invoice", "SME-26-0457"), kf("VAT shown", D("1846.00")), kf("VAT correct", D("1864.00")),
                  kf("VAT difference", D("18.00")), kf("correct total", D("11184.00")),
                  kf("non-compliant invoice", "0912"), kf("missing supplier VAT number", "supplier VAT number")],
@@ -914,7 +914,7 @@ def anomaly_register(w, po_num) -> list[dict]:
         ("A09", "quantity invoiced > delivered", "PRH", "40 hoses invoiced, 36 delivered", "274.00",
          ["inv:F26-02214", "dn:BL-PH-26-1187", "mail:prh"]),
         ("A10", "VAT calculation error", "SME", "VAT 1,846.00 shown instead of 1,864.00", "18.00", ["inv:SME-26-0457"]),
-        ("A11", "non-compliant invoice", "QMR", "no supplier address, VAT number, customer address, VAT breakdown, due date",
+        ("A11", "non-compliant invoice", "QMR", "no supplier address, VAT number, customer address, quantity, net amount, VAT rate and amount, due date",
          "1680.00", ["inv:QMR 0912"]),
         ("A12", "beneficiary IBAN changed by look-alike e-mail, no call-back", "LME", "paid to LT IBAN", "5480.00",
          ["mail:lme_bank", "mail:lme_reply", "master"]),
