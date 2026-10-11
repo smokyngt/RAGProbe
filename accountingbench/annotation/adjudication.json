@@ -17,11 +17,15 @@
   },
   "acc_q_007": {
     "verdict": "reference_confirmed",
-    "notes": "Re-checked blind on the multi-page / .eml corpus (answers_3_multipage_eml.jsonl): all key facts found. No ambiguity."
+    "notes": "Re-checked blind on the 200-document corpus with long multi-page documents (answers_4_long_documents.jsonl): all key facts found, no ambiguity."
   },
   "acc_q_008": {
     "verdict": "reference_confirmed",
     "notes": "Reviewer used the gross invoice total as amount due and the deposit as a payment, exactly as the question defines; all 8 rows and totals match."
+  },
+  "acc_q_009": {
+    "verdict": "reference_confirmed",
+    "notes": "Re-checked blind on the 200-document corpus with long multi-page documents (answers_4_long_documents.jsonl): all key facts found, no ambiguity."
   },
   "acc_q_010": {
     "verdict": "reference_confirmed",
@@ -49,7 +53,7 @@
   },
   "acc_q_016": {
     "verdict": "reference_confirmed",
-    "notes": "Re-checked blind on the multi-page / .eml corpus (answers_3_multipage_eml.jsonl): all key facts found. Liguria payment classed in category A (it settles an invoice), as defined."
+    "notes": "Re-checked blind on the 200-document corpus with long multi-page documents (answers_4_long_documents.jsonl): all key facts found, no ambiguity."
   },
   "acc_q_017": {
     "verdict": "reference_confirmed",
