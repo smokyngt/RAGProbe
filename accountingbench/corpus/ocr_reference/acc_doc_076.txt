@@ -1,0 +1,56 @@
+                   Mediterra Marine Supplies S.A.M.
+   MMS
+                   Ship chandlery & engine-room consumables
+                                                                                                                      INVOICE
+
+
+Mediterra Marine Supplies S.A.M.                                                      Invoice No.             INV-2026-0418
+4 Rue du Gabian                                                                       Invoice date            30/09/2026
+98000 Monaco, Monaco                                                                  Due date                30/10/2026
+Tel. +377 92 05 61 40                                                                 Customer No.            AZM-0041
+billing@mediterra-marine.example                                                      Your PO                 PO-2026-0344
+VAT ID FR 23 000 487 115
+                                                                                      Delivery note           MMS-DN-26-0925
+                                                                                      Vessel                  M/Y Aurelia
+                                                                                      Service period          September 2026
+
+ BILL TO
+ Azur Marine Services S.A.M.
+ 7 Quai Antoine Ier
+ 98000 Monaco
+ Principality of Monaco
+ VAT ID FR 64 000 512 748
+
+  #    Item               Description                                                    Qty       Unit      Unit price     VAT            Amount
+  1    LO-1540-208        Lube oil SAE 15W-40, 208 L drum                                     8   drum          742.00     20 %            5,936.00
+  2    FF-5320            Fuel filter element FF-5320                                     36       pc            38.50     20 %            1,386.00
+  3    HO-46-208          Hydraulic oil ISO VG 46, 208 L drum                                 3   drum          698.00     20 %            2,094.00
+  4    IMP-17937          Impeller kit for raw-water pump                                     8    kit          186.00     20 %            1,488.00
+  5    CC-20              Coolant concentrate, 20 L                                       12       can           64.50     20 %              774.00
+  6    OAP-200            Oil absorbent pads (bale of 200)                                13       bale          58.00     20 %              754.00
+  7    GL-N100            Nitrile gloves (box of 100)                                         4    box           12.00     20 %               48.00
+  8    SRV-DEL            Delivery and handling                                               1    lot          320.00     20 %              320.00
+                                                                                       Net total                                     12,800.00
+                                                                                       VAT 20 %                                       2,560.00
+                                                                                       TOTAL EUR                                     15,360.00
+
+
+
+ Payment details
+ IBAN         MC57 1146 9000 1000 0345 6789 052                           Payment reference          INV-2026-0418
+ BIC          MEDBMCM1XXX                                                 Payment terms              30 days net from invoice date
+ Crédit Monégasque du Port
+
+
+
+
+                                                                                                  AZUR MARINE SERVICES
+                                                                                                   RECEIVED 02/10/2026
+                                                                                                   ACCOUNTS PAYABLE
+
+
+
+
+Mediterra Marine Supplies S.A.M. · RCI 02 S 03981 · VAT ID FR 23 000 487 115
+                                                                                                                                      Page 1 of 1
+

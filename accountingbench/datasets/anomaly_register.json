@@ -1,0 +1,476 @@
+{
+  "note": "Ground truth - never ingest.",
+  "anomalies": [
+    {
+      "id": "A01",
+      "type": "duplicate booking",
+      "party": "Côte d'Azur Ship Chandlers SAS",
+      "description": "FA-2026-0917 booked twice (AC-2609-007, AC-2609-022) after a DUPLICATA copy",
+      "amount_at_stake": "2862.00",
+      "documents": [
+        {
+          "key": "inv:FA-2026-0917",
+          "document_id": "acc_doc_007"
+        },
+        {
+          "key": "inv:FA-2026-0917:duplicata",
+          "document_id": "acc_doc_171"
+        },
+        {
+          "key": "journal:9",
+          "document_id": "acc_doc_188"
+        },
+        {
+          "key": "mail:cas_dup",
+          "document_id": "acc_doc_047"
+        }
+      ],
+      "tested_by": [
+        "acc_q_001",
+        "acc_q_006",
+        "acc_q_013",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A02",
+      "type": "short payment after credit note",
+      "party": "SeaGlass Coatings S.r.l.",
+      "description": "7,840.00 due, 7,830.00 paid: 10.00 open",
+      "amount_at_stake": "10.00",
+      "documents": [
+        {
+          "key": "inv:SG-2026/0877",
+          "document_id": "acc_doc_143"
+        },
+        {
+          "key": "inv:SG-CN-2026/0112",
+          "document_id": "acc_doc_105"
+        },
+        {
+          "key": "bank:2026-09",
+          "document_id": "acc_doc_110"
+        },
+        {
+          "key": "ledger:9",
+          "document_id": "acc_doc_073"
+        }
+      ],
+      "tested_by": [
+        "acc_q_008",
+        "acc_q_009",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A03",
+      "type": "partial payment",
+      "party": "Marina Fuel Services S.A.M.",
+      "description": "INV-2026-1182 26,400.00, paid 13,200.00, no schedule",
+      "amount_at_stake": "13200.00",
+      "documents": [
+        {
+          "key": "inv:INV-2026-1182",
+          "document_id": "acc_doc_102"
+        },
+        {
+          "key": "bank:2026-09",
+          "document_id": "acc_doc_110"
+        },
+        {
+          "key": "mail:marina",
+          "document_id": "acc_doc_129"
+        }
+      ],
+      "tested_by": [
+        "acc_q_008",
+        "acc_q_011",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A04",
+      "type": "payment before invoice and delivery, not justified",
+      "party": "Harbor Parts B.V.",
+      "description": "paid 04/09, DN 11/09, invoice 12/09",
+      "amount_at_stake": "4870.00",
+      "documents": [
+        {
+          "key": "bank:2026-09",
+          "document_id": "acc_doc_110"
+        },
+        {
+          "key": "inv:HP-26-1450",
+          "document_id": "acc_doc_186"
+        },
+        {
+          "key": "dn:HP-DN-26-0931",
+          "document_id": "acc_doc_005"
+        },
+        {
+          "key": "po:PO-2026-0335",
+          "document_id": "acc_doc_080"
+        }
+      ],
+      "tested_by": [
+        "acc_q_012",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A05",
+      "type": "invoice without PO and without delivery evidence",
+      "party": "Northstar Yacht Services SARL",
+      "description": "emergency work authorised verbally",
+      "amount_at_stake": "3540.00",
+      "documents": [
+        {
+          "key": "inv:NYS-2026-114",
+          "document_id": "acc_doc_193"
+        },
+        {
+          "key": "mail:captain",
+          "document_id": "acc_doc_181"
+        }
+      ],
+      "tested_by": [
+        "acc_q_013",
+        "acc_q_014",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A06",
+      "type": "invoice without PO",
+      "party": "Quick Marine Repairs",
+      "description": "emergency dive, service report exists",
+      "amount_at_stake": "1680.00",
+      "documents": [
+        {
+          "key": "inv:QMR 0912",
+          "document_id": "acc_doc_095"
+        },
+        {
+          "key": "dn:QMR-SR-0911",
+          "document_id": "acc_doc_040"
+        }
+      ],
+      "tested_by": [
+        "acc_q_013",
+        "acc_q_014",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A07",
+      "type": "PO approved below required level",
+      "party": "NavTech Systems GmbH",
+      "description": "24,500.00 net approved by Finance Director (CEO required)",
+      "amount_at_stake": "24500.00",
+      "documents": [
+        {
+          "key": "po:PO-2026-0339",
+          "document_id": "acc_doc_096"
+        },
+        {
+          "key": "policy:procurement",
+          "document_id": "acc_doc_060"
+        }
+      ],
+      "tested_by": [
+        "acc_q_003",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A08",
+      "type": "PO approved below required level",
+      "party": "EcoMarine Waste Services SAS",
+      "description": "5,640.00 net approved by Operations Manager (FD required)",
+      "amount_at_stake": "5640.00",
+      "documents": [
+        {
+          "key": "po:PO-2026-0340",
+          "document_id": "acc_doc_177"
+        },
+        {
+          "key": "policy:procurement",
+          "document_id": "acc_doc_060"
+        }
+      ],
+      "tested_by": [
+        "acc_q_003",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A09",
+      "type": "quantity invoiced > delivered",
+      "party": "Provence Hydraulique SARL",
+      "description": "40 hoses invoiced, 36 delivered",
+      "amount_at_stake": "274.00",
+      "documents": [
+        {
+          "key": "inv:F26-02214",
+          "document_id": "acc_doc_183"
+        },
+        {
+          "key": "dn:BL-PH-26-1187",
+          "document_id": "acc_doc_083"
+        },
+        {
+          "key": "mail:prh",
+          "document_id": "acc_doc_200"
+        }
+      ],
+      "tested_by": [
+        "acc_q_013",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A10",
+      "type": "VAT calculation error",
+      "party": "Sud Marine Électricité SARL",
+      "description": "VAT 1,846.00 shown instead of 1,864.00",
+      "amount_at_stake": "18.00",
+      "documents": [
+        {
+          "key": "inv:SME-26-0457",
+          "document_id": "acc_doc_053"
+        }
+      ],
+      "tested_by": [
+        "acc_q_013",
+        "acc_q_017",
+        "acc_q_019"
+      ]
+    },
+    {
+      "id": "A11",
+      "type": "non-compliant invoice",
+      "party": "Quick Marine Repairs",
+      "description": "no supplier address, VAT number, customer address, VAT breakdown, due date",
+      "amount_at_stake": "1680.00",
+      "documents": [
+        {
+          "key": "inv:QMR 0912",
+          "document_id": "acc_doc_095"
+        }
+      ],
+      "tested_by": [
+        "acc_q_017",
+        "acc_q_019"
+      ]
+    },
+    {
+      "id": "A12",
+      "type": "beneficiary IBAN changed by look-alike e-mail, no call-back",
+      "party": "Liguria Marine Electronics S.r.l.",
+      "description": "paid to LT IBAN",
+      "amount_at_stake": "5480.00",
+      "documents": [
+        {
+          "key": "mail:lme_bank",
+          "document_id": "acc_doc_142"
+        },
+        {
+          "key": "mail:lme_reply",
+          "document_id": "acc_doc_086"
+        },
+        {
+          "key": "master",
+          "document_id": "acc_doc_084"
+        }
+      ],
+      "tested_by": [
+        "acc_q_015",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A13",
+      "type": "unmatched bank debit",
+      "party": "DUBOIS",
+      "description": "VIR SEPA EMIS MISC REF 0925-77",
+      "amount_at_stake": "3750.00",
+      "documents": [
+        {
+          "key": "bank:2026-09",
+          "document_id": "acc_doc_110"
+        }
+      ],
+      "tested_by": [
+        "acc_q_004",
+        "acc_q_015",
+        "acc_q_016",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A14",
+      "type": "unmatched bank debit",
+      "party": "BLUEWATER",
+      "description": "payee not in master file",
+      "amount_at_stake": "1980.00",
+      "documents": [
+        {
+          "key": "bank:2026-09",
+          "document_id": "acc_doc_110"
+        }
+      ],
+      "tested_by": [
+        "acc_q_004",
+        "acc_q_015",
+        "acc_q_016",
+        "acc_q_017"
+      ]
+    },
+    {
+      "id": "A15",
+      "type": "cut-off: invoice received after closing",
+      "party": "Mediterra Marine Supplies S.A.M.",
+      "description": "INV-2026-0418 dated 30/09, received 02/10",
+      "amount_at_stake": "12800.00",
+      "documents": [
+        {
+          "key": "inv:INV-2026-0418",
+          "document_id": "acc_doc_076"
+        },
+        {
+          "key": "stmt:MED",
+          "document_id": "acc_doc_199"
+        },
+        {
+          "key": "mail:med_0418",
+          "document_id": "acc_doc_146"
+        },
+        {
+          "key": "dn:MMS-DN-26-0925",
+          "document_id": "acc_doc_115"
+        }
+      ],
+      "tested_by": [
+        "acc_q_007",
+        "acc_q_017",
+        "acc_q_018"
+      ]
+    },
+    {
+      "id": "A16",
+      "type": "cut-off: invoice received after closing",
+      "party": "Monaco Rigging & Sails S.A.R.L.",
+      "description": "works 24/09, invoice 29/09 received 06/10",
+      "amount_at_stake": "7350.00",
+      "documents": [
+        {
+          "key": "inv:MRS-2026-0298",
+          "document_id": "acc_doc_067"
+        },
+        {
+          "key": "dn:MRS-SR-26-0924",
+          "document_id": "acc_doc_058"
+        },
+        {
+          "key": "mail:mrs_0298",
+          "document_id": "acc_doc_205"
+        }
+      ],
+      "tested_by": [
+        "acc_q_017",
+        "acc_q_018"
+      ]
+    },
+    {
+      "id": "A17",
+      "type": "cut-off: goods received not invoiced",
+      "party": "Var Pneumatique SAS",
+      "description": "DN 28/09, no invoice; PO price",
+      "amount_at_stake": "3920.00",
+      "documents": [
+        {
+          "key": "dn:VP-BL-26-0544",
+          "document_id": "acc_doc_207"
+        },
+        {
+          "key": "po:PO-2026-0343",
+          "document_id": "acc_doc_133"
+        },
+        {
+          "key": "mail:vpn",
+          "document_id": "acc_doc_044"
+        }
+      ],
+      "tested_by": [
+        "acc_q_017",
+        "acc_q_018"
+      ]
+    },
+    {
+      "id": "A18",
+      "type": "journal line without document in the file",
+      "party": "Le Marché du Port SARL",
+      "description": "LMP-26-1297 booked (AC-2609-027), PDF missing",
+      "amount_at_stake": "1884.60",
+      "documents": [
+        {
+          "key": "journal:9",
+          "document_id": "acc_doc_188"
+        }
+      ],
+      "tested_by": [
+        "acc_q_013"
+      ]
+    },
+    {
+      "id": "D01",
+      "type": "decoy: contractual deposit (not an exception)",
+      "party": "Riviera Electronics SAS",
+      "description": "5,112.00 paid on 02/09 before invoice 17/09; PO provides for a 30% deposit",
+      "amount_at_stake": "0.00",
+      "documents": [
+        {
+          "key": "bank:2026-09",
+          "document_id": "acc_doc_110"
+        },
+        {
+          "key": "po:PO-2026-0332",
+          "document_id": "acc_doc_179"
+        },
+        {
+          "key": "inv:RE-2026-0733",
+          "document_id": "acc_doc_038"
+        }
+      ],
+      "tested_by": []
+    },
+    {
+      "id": "D02",
+      "type": "decoy: recurring identical amounts (not duplicates)",
+      "party": "Monaco Berth Management S.A.M.",
+      "description": "berth fees of identical amounts every month, different numbers and dates",
+      "amount_at_stake": "0.00",
+      "documents": [
+        {
+          "key": "journal:9",
+          "document_id": "acc_doc_188"
+        }
+      ],
+      "tested_by": []
+    },
+    {
+      "id": "D03",
+      "type": "decoy: invoice addressed to the sister company",
+      "party": "Côte d'Azur Ship Chandlers SAS",
+      "description": "FA-2026-0931 to Azur Marine Charter SARL, correctly not booked",
+      "amount_at_stake": "0.00",
+      "documents": [
+        {
+          "key": "inv:FA-2026-0931",
+          "document_id": "acc_doc_135"
+        }
+      ],
+      "tested_by": []
+    }
+  ]
+}

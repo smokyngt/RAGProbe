@@ -1,0 +1,32 @@
+# AccountingBench V1 against a real pipeline (e.g. the Prosperify API).
+#   1. ingest accountingbench/corpus/documents/ (207 PDFs) in ONE store; ingest accountingbench/isolation_probe/ in ANOTHER store
+#   2. export PIPELINE_URL=https://.../query  PIPELINE_TOKEN=...   (+ ANTHROPIC_API_KEY for the judge)
+#   3. python benchmark.py run --dataset accountingbench/datasets/accountingbench_v1.jsonl --config configs/accountingbench.yaml
+#
+# The pipeline must return, for each retrieved chunk, its source document and page: {"chunk_id", "text",
+# "document_id": "acc_doc_042" (or "acc_doc_042.pdf"), "page": 1}. 20 documents are image-only scans: a pipeline
+# without OCR cannot retrieve them, and the report will show it as retrieval failures.
+pipeline:
+  name: "prosperify"
+  version: "v1"
+  endpoint: "${PIPELINE_URL}"
+  timeout: 300            # review-type questions (acc_q_013, acc_q_017) read many documents
+  max_retries: 1
+  headers:
+    Authorization: "Bearer ${PIPELINE_TOKEN}"
+
+dataset:
+  name: "accountingbench"
+  version: "v1"
+
+benchmark:
+  top_k: [5, 10, 20]      # most questions need 2-10 documents
+  retrieval_metrics: [recall, mrr, ndcg]
+
+# Reference answers are tables written as prose: Exact Match / Token F1 are only indicative. Score with the key facts
+# (deterministic: every figure, document number and status the answer must contain) and the judge.
+# acc_q_020 is unanswerable in this store (store isolation probe): it is scored on abstention.
+judge:
+  enabled: true
+  provider: "anthropic"
+  model: "claude-opus-5-5"

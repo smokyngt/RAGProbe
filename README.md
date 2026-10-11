@@ -1,13 +1,14 @@
-# ragbench + FinanceBench
+# ragbench + FinanceBench + AccountingBench
 
 **Measure a document-QA / RAG pipeline objectively, and find out _why_ it fails.**
 
-This repository contains two independent pieces:
+This repository contains three independent pieces:
 
 | | What it is | Where |
 |---|---|---|
 | **ragbench** | A benchmark runner that calls any RAG pipeline over HTTP, scores retrieval and answers, keeps a full trace per question and tells retrieval failures apart from generation failures. | `ragbench/`, `benchmark.py` |
 | **FinanceBench V1.1** | An English financial QA benchmark: 120 independently checked questions over a frozen corpus of 17 public financial PDFs (1,995 pages), with evidence pointing to the original document and page, a short natural phrasing and key facts for deterministic scoring. | `finance_benchmark/` |
+| **AccountingBench V1** | An accounts-payable benchmark in the same JSON format: 20 deterministic close-control questions (duplicates, bank matching, cut-off, approvals, IBAN changes, exception register, store isolation) over 207 fictional professional documents (invoices, POs, delivery notes, bank statements, ledgers, e-mails, 20 real scans), generated from a single world model so that every expected answer is computed. | `accountingbench/` |
 
 The runner contains no RAG pipeline, and the dataset was built without using the pipeline it will evaluate.
 
@@ -194,6 +195,20 @@ Dataset card, document table, protocol and limits: **[finance_benchmark/README.m
 
 ---
 
+## AccountingBench V1 at a glance
+
+- **Corpus:** Azur Marine Services S.A.M. (Monaco), September 2026 close. 207 PDFs (210 pages): 69 supplier invoices, 27 purchase
+  orders, 26 delivery notes and service reports, 4 bank statements, 12 payment execution notices, journals, AP ledger, aged
+  payables, supplier master file, 20 e-mails, contracts, policies and unrelated documents; 127 in English, 80 in French; 20 image-only scans.
+- **Questions:** the 20 controls of the first accounting pilot (B1–B5, T1–T15), each rewritten as a briefing with a stated rule
+  and a fixed output format; 18 planted anomalies and 3 decoys (`datasets/anomaly_register.json`).
+- **Run it:** ingest `accountingbench/corpus/documents/` only, then
+  `python benchmark.py run --dataset accountingbench/datasets/accountingbench_v1.jsonl --config configs/accountingbench.yaml`.
+
+Dataset card, the mapping from the old questions to the new ones, and the store-isolation protocol: **[accountingbench/README.md](accountingbench/README.md)**.
+
+---
+
 ## Repository layout
 
 ```
@@ -206,11 +221,12 @@ ragbench/
   pipelines/                  base.py (PipelineAdapter), http.py (HTTPPipelineAdapter)
   evaluation/                 retrieval.py, qa.py, judge.py, diagnosis.py
   reporting/                  aggregator.py, report.py, analyze.py
-configs/                      pipeline.yaml (mock demo), financebench.yaml (real pipeline + judge)
+configs/                      pipeline.yaml (mock demo), financebench.yaml / accountingbench.yaml (real pipeline + judge)
 datasets/                     sample.jsonl + sample_corpus.jsonl (synthetic toy set for the mock pipeline)
 examples/mock_pipeline.py     toy BM25 pipeline over HTTP (does not import ragbench)
 finance_benchmark/            FinanceBench: corpus/, datasets/ (incl. simple export), annotation/ (audit trail), tools/, guide
-tests/                        63 tests (metrics, judge, HTTP adapter, runner, evidence matching, CLI end-to-end, dataset tools)
+accountingbench/              AccountingBench: corpus/ (207 PDFs), isolation_probe/, datasets/, tools/ (generator + validator)
+tests/                        70 tests (metrics, judge, HTTP adapter, runner, evidence matching, CLI end-to-end, dataset tools)
 ```
 
 ## Known limits
