@@ -8,7 +8,7 @@ This repository contains three independent pieces:
 |---|---|---|
 | **ragbench** | A benchmark runner that calls any RAG pipeline over HTTP, scores retrieval and answers, keeps a full trace per question and tells retrieval failures apart from generation failures. | `ragbench/`, `benchmark.py` |
 | **FinanceBench V1.1** | An English financial QA benchmark: 120 independently checked questions over a frozen corpus of 17 public financial PDFs (1,995 pages), with evidence pointing to the original document and page, a short natural phrasing and key facts for deterministic scoring. | `finance_benchmark/` |
-| **AccountingBench V1** | An accounts-payable benchmark in the same JSON format: 20 deterministic close-control questions (duplicates, bank matching, cut-off, approvals, IBAN changes, exception register, store isolation) over 207 fictional professional documents (187 single- and multi-page PDFs incl. 20 real scans, and 20 `.eml` e-mails), generated from a single world model so that every expected answer is computed. | `accountingbench/` |
+| **AccountingBench V1** | An accounts-payable benchmark in the same JSON format: 20 deterministic close-control questions (duplicates, bank matching, cut-off, approvals, IBAN changes, exception register, store isolation) over 200 fictional professional documents (180 PDFs, half single-page and half multi-page up to 10 pages, incl. 20 real scans; and 20 `.eml` e-mails), generated from a single world model so that every expected answer is computed. | `accountingbench/` |
 
 The runner contains no RAG pipeline, and the dataset was built without using the pipeline it will evaluate.
 
@@ -197,7 +197,7 @@ Dataset card, document table, protocol and limits: **[finance_benchmark/README.m
 
 ## AccountingBench V1 at a glance
 
-- **Corpus:** Azur Marine Services S.A.M. (Monaco), September 2026 close. 207 documents (187 PDFs, 264 pages, 53 of them multi-page; 20 `.eml` e-mails): 69 supplier invoices, 27 purchase
+- **Corpus:** Azur Marine Services S.A.M. (Monaco), September 2026 close. 200 documents (180 PDFs, 329 pages, 90 of them multi-page up to 10 pages; 20 `.eml` e-mails): 69 supplier invoices, 27 purchase
   orders, 26 delivery notes and service reports, 4 bank statements, 12 payment execution notices, journals, AP ledger, aged
   payables, supplier master file, 20 e-mails, contracts, policies and unrelated documents; 127 in English, 80 in French; 20 image-only scans.
 - **Questions:** the 20 controls of the first accounting pilot (B1–B5, T1–T15), each rewritten as a briefing with a stated rule
@@ -225,7 +225,7 @@ configs/                      pipeline.yaml (mock demo), financebench.yaml / acc
 datasets/                     sample.jsonl + sample_corpus.jsonl (synthetic toy set for the mock pipeline)
 examples/mock_pipeline.py     toy BM25 pipeline over HTTP (does not import ragbench)
 finance_benchmark/            FinanceBench: corpus/, datasets/ (incl. simple export), annotation/ (audit trail), tools/, guide
-accountingbench/              AccountingBench: corpus/ (187 PDFs + 20 .eml), isolation_probe/, datasets/, tools/ (generator + validator)
+accountingbench/              AccountingBench: corpus/ (180 PDFs + 20 .eml), isolation_probe/, datasets/, tools/ (generator + validator)
 tests/                        70 tests (metrics, judge, HTTP adapter, runner, evidence matching, CLI end-to-end, dataset tools)
 ```
 

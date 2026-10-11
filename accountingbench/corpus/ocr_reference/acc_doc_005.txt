@@ -1,30 +1,27 @@
-                   Harbor Parts B.V.                                                       DELIVERY NOTE
-   HP              Waalhaven Oostzijde 112 · 3087 BM Rotterdam
-                   Tel. +31 10 428 7710 · invoices@harborparts.example
+                   Marina Fuel Services S.A.M.                                             DELIVERY NOTE
+  MFS              Darse Sud, Port Hercule · 98000 Monaco
+                   Tel. +377 93 30 22 18 · accounts@marinafuel.example
 
 
-Azur Marine Services S.A.M.                                              No.               HP-DN-26-0931
-Delivery: Quai Antoine Ier                                               Date              11-09-2026
-98000 Monaco                                                             Customer PO       PO-2026-0335
-                                                                         Vessel            M/Y Selene
+Azur Marine Services S.A.M.                                              No.               MFS-BDN-26-0911
+Delivery: Quai Antoine Ier                                               Date              11/09/2026
+98000 Monaco                                                             Customer PO       PO-2026-0337
+                                                                         Vessel            M/Y Aurelia
 
 
 
-Description                                                                      Ordered      Delivered    Unit
-Shaft seal kit, 63 mm, dripless                                                        2             2     kit
-Cutless bearing 63 mm x 83 mm x 254 mm                                                 2             2     pc
-Raw-water pump overhaul kit                                                            3             3     kit
-Zinc anode set (shaft and rudder)                                                      6             6     set
+Description                                                                      Ordered      Delivered   Unit
+Marine gasoil (MGO) DMA, ISO 8217, delivered by truck, BDN MFS-BDN-26-0911         11000         11000       L
 
 
 
  Received by (name, signature)
 
- Bosun A. Kowalski
+ Chief Eng. R. Lindqvist
  11/09/2026
 
 
 
 
-Harbor Parts B.V. · KvK 57123904
+Marina Fuel Services S.A.M. · RCI 98 S 03390
 

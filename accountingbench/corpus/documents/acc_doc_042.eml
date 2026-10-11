@@ -1,0 +1,37 @@
+Message-ID: <75b80c0bcc774c8654337611@harborparts.example>
+Date: Wed, 02 Sep 2026 07:58:00 +0200
+From: Harbor Parts Order Desk <invoices@harborparts.example>
+To: t.rinaldi@azurmarine.example
+Subject: Order acknowledgement =?utf-8?b?4oCT?= your PO PO-2026-0335
+X-Mailer: Microsoft Outlook 16.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============3538033395817404162=="
+
+--===============3538033395817404162==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Mr Rinaldi,
+
+Thank you for your purchase order PO-2026-0335 dated 01/09/2026. We confirm a=
+vailability of all items. Estimated dispatch: 08/09/2026, delivery DAP Monaco.
+
+Payment terms: 14 days net from invoice date.
+
+Kind regards,
+Order desk =E2=80=93 Harbor Parts B.V.
+
+--===============3538033395817404162==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body style=3D"font-family:Calibri,Arial,sans-serif;font-size:11pt"><p>=
+Dear Mr Rinaldi,</p><p>Thank you for your purchase order PO-2026-0335 dated 0=
+1/09/2026. We confirm availability of all items. Estimated dispatch: 08/09/20=
+26, delivery DAP Monaco.</p><p>Payment terms: 14 days net from invoice date.<=
+/p><p>Kind regards,<br>Order desk =E2=80=93 Harbor Parts B.V.</p></body></htm=
+l>
+
+--===============3538033395817404162==--

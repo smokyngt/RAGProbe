@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from PIL import Image, ImageFilter  # noqa: E402
 
+import longdocs as LD  # noqa: E402
 import render as R  # noqa: E402
 from common import D, ROOT, date, fdate, fmt, prev_business_day as R_prev  # noqa: E402
 from world import (BANK, EMAILS, ENTITIES, LME_NEW_BIC, LME_NEW_IBAN, PEOPLE, SUPPLIERS, Invoice, L,  # noqa: E402
@@ -34,7 +35,36 @@ PROBE = ROOT / "isolation_probe"
 # signed delivery notes / service reports that reach accounts payable as scans
 SCANNED_DN_SUPPLIERS = {"CAS", "PRH", "SME", "ECO", "MRS", "SEA", "MFS"}
 # suppliers that print their general terms of sale overleaf (2-page invoices)
-TERMS_SUPPLIERS = {"MED", "MFS", "OSE", "NTS", "NYS", "CAS", "PRH", "RVE", "SME", "ECO", "VPN"}
+TERMS_SUPPLIERS = {"MED", "MFS", "OSE", "NTS", "NYS", "CAS", "PRH", "RVE", "SME", "ECO", "VPN", "SEA", "LME", "HAR", "MRS", "CRW"}
+# unrelated one-page documents removed to keep the corpus at 200 files
+DROPPED_NOISE = {"travel", "stcw", "expo", "port_notice", "drill", "assets", "fees", "expenses", "rotation", "charter"}
+
+
+# chapters that start on a new page, as in the real documents
+BREAKS = {
+    "annual_accounts": ("Bilan actif", "Bilan passif", "Compte de résultat", "Tableau des immobilisations", "Note 1", "Note 4",
+                        "Note 6", "Rapport de gestion"),
+    "internal_audit": ("2. Scope", "3. Summary", "4. F1", "4. F3", "4. F5", "4. F7", "5. Rating", "Annex 1", "Annex 2", "Annex 3"),
+    "survey": ("Hull", "Inspection – Main deck", "Inspection – Guest", "Inspection – Engine", "Recommendations"),
+    "insurance": ("Policy wording", "Schedule of equipment", "Claims history"),
+    "lease": ("Article 1", "Annexe"),
+    "mgmt_aug": ("Income statement", "Balance sheet", "Budget"),
+    "audit": ("Calendrier", "Honoraires"),
+    "pricelist": ("Lubricants", "Safety"),
+    "loan": ("Échéancier",),
+}
+POLICY_BREAKS = ("3. Approval", "6. Payments", "Annex A", "Annex C", "Annex D", "Annex E", "Annex F", "Annex G", "Annex I")
+
+
+def invoice_annex(i):
+    """Annex pages printed by some suppliers: call detail (telecom), monthly service report (IT)."""
+    if i.sup == "RTL":
+        return LD.telecom_detail(i.date.month)
+    if i.sup == "KIT" and i.date.month >= 7:
+        return LD.it_activity(i.date.month)
+    if i.sup == "LIB":
+        return LD.premium_schedule(i.number)
+    return None
 
 
 @dataclass
@@ -70,7 +100,8 @@ def build_specs():
             continue
         kind = "credit_note" if i.kind == "credit_note" else "supplier_invoice"
         add(f"inv:{i.number}", kind, f"{'Credit note' if kind == 'credit_note' else 'Invoice'} {i.number}", i.s.name,
-            E[i.customer]["name"], i.date, i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w, terms_page=i.sup in TERMS_SUPPLIERS), scanned=i.scanned)
+            E[i.customer]["name"], i.date, i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w, terms_page=i.sup in TERMS_SUPPLIERS, annex=invoice_annex(i)),
+            scanned=i.scanned)
     dup = next(i for i in w.invoices if i.number == "FA-2026-0917")
     dup_copy = Invoice(**{**dup.__dict__, "copy_mark": "DUPLICATA", "booked": [], "scanned": True,
                           "notes": dup.notes + ["Duplicata adressé le 21/09/2026 à la demande du client."]})
@@ -113,13 +144,18 @@ def build_specs():
     # ---------------- quotes and pro-formas (no accounting entry)
     ose_lines = w.pos["ose_aug"].lines
     add("quote:OSE-Q-2026-118", "quote", "Quotation OSE-Q-2026-118", SUPPLIERS["OSE"].name, E["AMS"]["name"], date(12, 8), "en",
-        lambda p: R.render_quote(p, "quote", "OSE-Q-2026-118", date(12, 8), SUPPLIERS["OSE"], ose_lines, E))
+        lambda p: R.render_quote(p, "quote", "OSE-Q-2026-118", date(12, 8), SUPPLIERS["OSE"], ose_lines, E, spec=[
+            ("Technical specification", ["Liferaft: 12-person SOLAS A-pack, throw-over, container GRP, hydrostatic release "
+             "included, service exchange against the unit on board (serial to be confirmed).", "EPIRB: battery and HRU "
+             "replacement for 406 MHz units, programming check and registration update.", "Lifejackets: SOLAS/MED 150N "
+             "with light and whistle, adult size.", "Extinguishers: 6 kg foam, MED wheel-marked, with bracket."]),
+            ("Delivery", "Within 2 weeks of the purchase order, DAP Monaco, Quai Antoine Ier; delivery note signed on board.")]))
     add("pf:OSE-PF-2026-044", "proforma", "Pro-forma invoice OSE-PF-2026-044", SUPPLIERS["OSE"].name, E["AMS"]["name"],
         date(20, 8), "en", lambda p: R.render_quote(p, "proforma", "OSE-PF-2026-044", date(20, 8), SUPPLIERS["OSE"], ose_lines, E))
     add("quote:DEV-RE-2026-0457", "quote", "Quotation DEV-RE-2026-0457", SUPPLIERS["RVE"].name, E["AMS"]["name"], date(18, 8),
         "fr", lambda p: R.render_quote(p, "quote", "DEV-RE-2026-0457", date(18, 8), SUPPLIERS["RVE"], w.pos["rve_aug"].lines, E,
                                        note="Conditions : acompte de 30 % du montant TTC à la commande, solde à 30 jours "
-                                            "date de facture."))
+                                            "date de facture.", terms=False))
     competitor = Supplier(**{**SUPPLIERS["RVE"].__dict__, "code": "CSS", "name": "Côte Sécurité Systèmes SAS",
                              "street": "5 Avenue Saint-Roch", "city": "06300 Nice", "vat_id": "FR 58 834 220 117",
                              "reg": "RCS Nice 834 220 117", "color": "#455A64", "logo": "shield",
@@ -129,9 +165,15 @@ def build_specs():
                                  [L("Système de vidéosurveillance IP – kit 8 caméras", 1, "kit", "7450.00", sku="VS-8"),
                                   L("Enregistreur NVR 16 voies 8 To", 1, "u", "2390.00", sku="NVR-16"),
                                   L("Installation (forfait)", 1, "forfait", "4100.00", sku="INST")], E,
-                                 note="Offre non retenue."))
+                                 note="Offre non retenue.", terms=False))
     add("quote:NTS-Q-2026-0219", "quote", "Quotation NTS-Q-2026-0219", SUPPLIERS["NTS"].name, E["AMS"]["name"], date(2, 9), "en",
-        lambda p: R.render_quote(p, "quote", "NTS-Q-2026-0219", date(2, 9), SUPPLIERS["NTS"], w.pos["nts_sep"].lines, E))
+        lambda p: R.render_quote(p, "quote", "NTS-Q-2026-0219", date(2, 9), SUPPLIERS["NTS"], w.pos["nts_sep"].lines, E, spec=[
+            ("Scope of maintenance", ["Software updates and security patches for the ECDIS workstations of M/Y Aurelia, "
+             "M/Y Selene and S/Y Blue Horizon.", "24/7 remote support, annual on-board health check, type-approval "
+             "documentation for flag and class."]),
+            ("Chart data", "Global coverage of official electronic navigational charts, weekly updates, licences "
+             "transferable between the three vessels."),
+            ("Service period", "01/10/2026 to 30/09/2027. Invoicing at the start of the period, payment 30 days net.")]))
 
     # ---------------- supplier statements of account
     def history(prefix, first_no, start, amounts_seed, lang, extra=()):
@@ -226,13 +268,13 @@ def build_specs():
     accounts = []
     for code, s in sorted(SUPPLIERS.items(), key=lambda kv: kv[1].account):
         ent = ledger_entries(w, code)
-        opening = sum((c - d for (dd, _, _, d, c) in ent if dd < date(1, 9)), D(0))
-        sept = [e for e in ent if date(1, 9) <= e[0] <= date(30, 9)]
+        opening = sum((c - d for (dd, _, _, d, c) in ent if dd < date(1, 7)), D(0))
+        sept = [e for e in ent if date(1, 7) <= e[0] <= date(30, 9)]
         if not sept and opening == 0:
             continue
         accounts.append((s.account, s.name, opening, sept, opening + sum((c - d for (_, _, _, d, c) in sept), D(0))))
-    add("ledger:9", "ap_ledger", "Accounts payable ledger (401) September 2026", E["AMS"]["name"], "internal", date(1, 10),
-        "fr", lambda p: R.render_ledger(p, accounts, "Du 01/09/2026 au 30/09/2026", E["AMS"], dt.datetime(2026, 10, 1, 8, 47)))
+    add("ledger:9", "ap_ledger", "Accounts payable ledger (401) July-September 2026", E["AMS"]["name"], "internal", date(1, 10),
+        "fr", lambda p: R.render_ledger(p, accounts, "Du 01/07/2026 au 30/09/2026", E["AMS"], dt.datetime(2026, 10, 1, 8, 47)))
     at = date(30, 9)
     aged_rows = []
     for i, amt, k in sorted(open_items(w, at), key=lambda t: (t[0].s.account, t[0].date, t[2])):
@@ -426,8 +468,8 @@ def build_specs():
                   ["Bank details", "Supplier master file", "Finance Director"]])]),
                ("Annex B – Document retention", [("table", [("Document", 80 * R.mm, "l"), ("Retention", 40 * R.mm, "l")],
                  [["Purchase orders, invoices, credit notes", "10 years"], ["Delivery notes, service reports", "10 years"],
-                  ["Bank statements and payment notices", "10 years"], ["Supplier correspondence", "5 years"]])])],
-              date(15, 1), ref="PRC-FIN-04 v3", subtitle="Approved by the Board on 15/01/2026"))
+                  ["Bank statements and payment notices", "10 years"], ["Supplier correspondence", "5 years"]])])]
+              + LD.POLICY_MORE, date(15, 1), ref="PRC-FIN-04 v3", breaks=POLICY_BREAKS, subtitle="Approved by the Board on 15/01/2026"))
     add("contract:berth", "contract", "Berth rental agreement M/Y Aurelia", SUPPLIERS["MBM"].name, E["AMS"]["name"], date(18, 12, 2025),
         "en", lambda p: R.render_text_doc(p, "Annual berth rental agreement – Berth B-14, Quai Antoine Ier",
               SUPPLIERS["MBM"].name, [
@@ -452,7 +494,8 @@ def build_specs():
                    "unremedied for 30 days. Fees paid for the current month are not refunded."),
                   ("9. Law", "Monegasque law; courts of the Principality of Monaco."),
                   ("Signatures", "For the Operator: Harbour Master. For the Client: Philippe Andrieu, Chief Executive "
-                   "Officer, Azur Marine Services S.A.M., on 18/12/2025.")], date(18, 12, 2025), ref="MBM-AG-2026-014"))
+                   "Officer, Azur Marine Services S.A.M., on 18/12/2025.")] + LD.BERTH_MORE, date(18, 12, 2025),
+              ref="MBM-AG-2026-014"))
     add("contract:kairos", "contract", "Managed services agreement MSA-2022-07 (extract)", SUPPLIERS["KIT"].name, E["AMS"]["name"],
         date(15, 1, 2022), "en", lambda p: R.render_text_doc(p, "Managed IT services agreement MSA-2022-07 – extract",
               SUPPLIERS["KIT"].name, [
@@ -488,7 +531,7 @@ def build_specs():
                   ("Clause 16 – Liability", "Kairos' aggregate liability per contract year is capped at the fees paid "
                    "during the previous twelve months, except in case of gross negligence or wilful misconduct."),
                   ("Signatures", "For Kairos IT Services SAS: the Managing Director. For the Customer: Claire Martin, "
-                   "Finance Director, on 15/01/2022.")],
+                   "Finance Director, on 15/01/2022.")] + LD.KAIROS_MORE,
               date(15, 1, 2022), ref="MSA-2022-07"))
     add("contract:eco", "contract", "Waste collection framework contract CT-2024-118", SUPPLIERS["ECO"].name, E["AMS"]["name"],
         date(2, 12, 2024), "fr", lambda p: R.render_text_doc(p, "Contrat cadre de collecte des déchets d'exploitation CT-2024-118",
@@ -505,7 +548,8 @@ def build_specs():
                    "exceptionnelles sont facturées à l'issue de l'intervention, sur la base du bon de commande."),
                   ("Résiliation", "Résiliation possible par lettre recommandée avec un préavis de trois mois."),
                   ("Signatures", "Pour EcoMarine Waste Services SAS : le Directeur général. Pour Azur Marine Services "
-                   "S.A.M. : Thomas Rinaldi, Operations Manager, le 02/12/2024.")], date(2, 12, 2024), ref="CT-2024-118",
+                   "S.A.M. : Thomas Rinaldi, Operations Manager, le 02/12/2024.")] + LD.ECO_MORE, date(2, 12, 2024),
+              ref="CT-2024-118",
               color="#2E7D32"))
     add("onboarding:VPN", "supplier_onboarding", "Supplier onboarding form Var Pneumatique", E["AMS"]["name"], "internal",
         date(12, 9), "en", lambda p: R.render_text_doc(p, "Supplier onboarding form – Var Pneumatique SAS",
@@ -574,7 +618,8 @@ def build_specs():
             ("Programme", "Conference on crew wellbeing (24/09), superyacht finance breakfast (25/09).")]),
         ("mgmt_q2", "management_report", "Management report Q2 2026", "Azur Marine Services S.A.M.", date(20, 7), "en", [
             ("Highlights", "Revenue from management fees for the quarter: EUR 912,000.00; recharges to owners: EUR 341,000.00."),
-            ("Costs", "Personnel costs EUR 392,000.00; office costs EUR 61,000.00."),
+            ("Costs", "Personnel costs including social charges EUR 720,000.00; office, IT, insurance and professional fees "
+             "EUR 61,000.00."),
             ("Outlook", "Q3 will be impacted by the yard preparation of M/Y Aurelia and the ECDIS renewal.")]),
         ("payroll", "payroll_summary", "Payroll summary September 2026", "Azur Marine Services S.A.M.", date(28, 9), "fr", [
             ("Synthèse", ("table", [("Rubrique", 90 * R.mm, "l"), ("Montant EUR", 40 * R.mm, "r")],
@@ -687,8 +732,10 @@ def build_specs():
                     "recommendations above. Surveyor: J.-M. Castel, Méditerranée Marine Surveyors.")],
         "mgmt_q2": [("Income statement Q2 2026 (EUR thousand)", ("table", [("Line", 70 * R.mm, "l"), ("Q2 2026", 30 * R.mm, "r"),
                      ("Q2 2025", 30 * R.mm, "r")],
-                     [["Management fees", "912", "874"], ["Recharges to owners", "341", "318"], ["Personnel costs", "(392)", "(371)"],
-                      ["Office and IT costs", "(61)", "(58)"], ["Operating result", "800", "763"]])),
+                     [["Management fees", "912", "874"], ["Recharges to owners", "341", "318"], ["Recharged costs", "(341)", "(318)"],
+                      ["Personnel costs incl. social charges", "(720)", "(689)"], ["Office, IT, insurance, fees", "(61)", "(58)"],
+                      ["Travel and other external costs", "(57)", "(54)"], ["Depreciation", "(9)", "(9)"],
+                      ["Operating result", "65", "64"]])),
                     ("Key risks", "Concentration on three owners; dependence on key crew; IT security incidents (phishing).")],
         "audit": [("Responsabilités", "La direction est responsable de l'établissement des comptes et du contrôle interne. "
                    "L'auditeur exprime une opinion sur les comptes annuels."),
@@ -697,10 +744,27 @@ def build_specs():
                    "séparation des tâches, approbation des commandes, modification des coordonnées bancaires, rapprochements "
                    "bancaires et procédures de clôture.")],
     }
+    extra["lease"] = LD.LEASE_MORE + extra.get("lease", [])
+    extra["lease"] += LD.lease_inventory()
+    for k, more in {"insurance": LD.insurance_more() + LD.insurance_claims(), "board": LD.BOARD_MORE[:1], "it_policy": LD.IT_MORE,
+                    "survey": LD.survey_more() + LD.survey_zones(), "pricelist": LD.pricelist_more(), "mgmt_q2": LD.mgmt_q2_more(),
+                    "vat_aug": LD.vat_more(), "audit": LD.AUDIT_MORE,
+                    "loan": LD.loan_schedule()}.items():
+        extra[k] = extra.get(k, []) + more
+    noise = [n for n in noise if n[0] not in DROPPED_NOISE]
+    noise += [("internal_audit", "audit_report", "Internal audit report – purchase-to-pay cycle 2025",
+               "Riviera Internal Audit Services", date(28, 11, 2025), "en", LD.internal_audit_2025() + LD.audit_samples()),
+              ("annual_accounts", "financial_statements", "Comptes annuels 2025 – Azur Marine Services S.A.M.",
+               "Azur Marine Services S.A.M.", date(24, 3), "fr", LD.annual_accounts_2025()),
+              ("mgmt_aug", "management_report", "Monthly management accounts – August 2026", "Azur Marine Services S.A.M.",
+               date(15, 9), "en", LD.mgmt_accounts_aug())]
     for key, t, title, issuer, d, lang, sections in noise:
-        sections = sections + extra.get(key, [])
+        if key == "loan":
+            sections = sections[:1]  # the computed schedule replaces the 3-row extract
+        sections = sections + ([] if key == "board" else extra.get(key, []))  # board minutes: one page
         add(f"noise:{key}", t, title, issuer, "internal" if issuer == "Azur Marine Services S.A.M." else E["AMS"]["name"], d, lang,
-            lambda p, title=title, issuer=issuer, sections=sections, d=d: R.render_text_doc(p, title, issuer, sections, d))
+            lambda p, title=title, issuer=issuer, sections=sections, d=d, key=key: R.render_text_doc(
+                p, title, issuer, sections, d, breaks=BREAKS.get(key, ())))
 
     # sales invoices issued by Azur Marine Services (sales cycle, not purchases)
     clients = {

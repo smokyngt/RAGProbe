@@ -390,7 +390,31 @@ def _terms_page(doc, s, title, number):
     doc.text(left, 13.5 * mm, f"{s.name} · {s.reg}", "Sans", 6.8, GREY)
 
 
-def render_invoice(path: Path, inv, entities, w, cust_no="AZM-0041", seed=0, terms_page=False):
+def draw_sections(doc, sections, header, accent, size=9, leading=13):
+    """Draw [(heading, text | [text | ('table', cols, rows)])] on new pages with `header()` -> top y."""
+    left, right = 18 * mm, doc.W - 18 * mm
+
+    def brk():
+        doc.new_page()
+        return header()
+    y = brk()
+    for heading, body in sections:
+        if y < 45 * mm:
+            y = brk()
+        if heading:
+            doc.text(left, y, heading, "Sans-B", size + 1.5, accent)
+            y -= size + 7
+        for item in (body if isinstance(body, list) else [body]):
+            if isinstance(item, tuple) and item[0] == "table":
+                y = doc.table(left, y, item[1], item[2], head_fill=accent, size=size - 1, row_h=size + 5, bottom=25 * mm,
+                              on_break=brk) - 8
+            else:
+                y = doc.para(left, y, item, right - left, "Sans", size, leading=leading, bottom=22 * mm, on_break=brk) - 5
+        y -= 6
+    return y
+
+
+def render_invoice(path: Path, inv, entities, w, cust_no="AZM-0041", seed=0, terms_page=False, annex=None):
     s = inv.s
     lang = s.lang
     T = LBL[lang]
@@ -604,6 +628,13 @@ def render_invoice(path: Path, inv, entities, w, cust_no="AZM-0041", seed=0, ter
         doc.c.restoreState()
     if inv.stamp:
         doc.stamp(right - 62 * mm, 40 * mm, ["AZUR MARINE SERVICES", inv.stamp, "ACCOUNTS PAYABLE"], color=RED)
+    if annex:
+        def head():
+            doc.text(18 * mm, doc.H - 18 * mm, s.name, "Sans-B", 11, HexColor(s.color))
+            doc.text(doc.W - 18 * mm, doc.H - 18 * mm, f"Annex to invoice {inv.number}", "Sans", 8, GREY, "r")
+            doc.hline(18 * mm, doc.W - 18 * mm, doc.H - 20.5 * mm, HexColor(s.color), 0.8)
+            return doc.H - 30 * mm
+        draw_sections(doc, annex, head, HexColor(s.color))
     if terms_page:
         _terms_page(doc, s, title.title() if lang == "en" else title.capitalize(), inv.number)
     doc.save()
@@ -769,7 +800,7 @@ def render_dn(path: Path, dn, sup, entities, w):
     doc.save()
 
 
-def render_quote(path: Path, kind: str, number: str, d: dt.date, sup, lines, entities, valid_days=30, note=""):
+def render_quote(path: Path, kind: str, number: str, d: dt.date, sup, lines, entities, valid_days=30, note="", spec=None, terms=True):
     """Supplier quote or pro-forma (no accounting entry)."""
     e = entities["AMS"]
     title = {"quote": "QUOTATION", "proforma": "PRO-FORMA INVOICE"}[kind]
@@ -805,6 +836,15 @@ def render_quote(path: Path, kind: str, number: str, d: dt.date, sup, lines, ent
     y = doc.para(left, y, txt + note, right - left, "Sans", 8.5, color=GREY)
     doc.hline(left, right, 17 * mm, RULE)
     doc.text(left, 13.5 * mm, f"{sup.name} · {sup.reg} · VAT ID {sup.vat_id}", "Sans", 6.8, GREY)
+    if spec:
+        def head():
+            doc.text(18 * mm, doc.H - 18 * mm, sup.name, "Sans-B", 11, accent)
+            doc.text(doc.W - 18 * mm, doc.H - 18 * mm, f"{title.title()} {number}", "Sans", 8, GREY, "r")
+            doc.hline(18 * mm, doc.W - 18 * mm, doc.H - 20.5 * mm, accent, 0.8)
+            return doc.H - 30 * mm
+        draw_sections(doc, spec, head, accent)
+    if kind == "quote" and terms:
+        _terms_page(doc, sup, "Quotation" if sup.lang == "en" else "Devis", number)
     doc.save()
 
 
@@ -923,12 +963,44 @@ def render_bank_statement(path: Path, lines, opening, d1, d2, number, bank, hold
     doc.rect(left, y - 30, right - left, 15, fill=burgundy)
     doc.text(left + 18 * mm + 3, y - 25, f"NOUVEAU SOLDE CRÉDITEUR AU {fdate(d2)}", "Sans-B", 8.5, white)
     doc.text(right - 3, y - 25, fmt(balance, "fr"), "Sans-B", 8.5, white, "r")
+    # annex 1: end-of-day balances; annex 2: fees of the month; annex 3: information
+    daily, run = [], opening
+    for d in sorted({b.date for b in lines}):
+        ops = [b for b in lines if b.date == d]
+        run += sum((b.credit - b.debit for b in ops), D(0))
+        daily.append([fdate(d), str(len(ops)), fmt(sum((b.debit for b in ops), D(0)), "fr"),
+                      fmt(sum((b.credit for b in ops), D(0)), "fr"), fmt(run, "fr")])
+    fees = [[fdate(b.date), b.label, fmt(b.debit, "fr")] for b in lines if b.category == "fees"]
+    sections = [("SOLDES EN FIN DE JOURNÉE", [T_(("Date", 30 * mm, "l"), ("Opérations", 25 * mm, "r"), ("Débits", 35 * mm, "r"),
+                                                  ("Crédits", 35 * mm, "r"), ("Solde", 40 * mm, "r"), rows=daily)]),
+                ("RÉCAPITULATIF DES FRAIS ET COMMISSIONS DU MOIS", [T_(("Date", 30 * mm, "l"), ("Libellé", 110 * mm, "l"),
+                                                                        ("Montant", 30 * mm, "r"), rows=fees or [["", "Aucun frais", ""]])]),
+                ("INFORMATIONS", ["Garantie des dépôts : vos dépôts sont protégés par le Fonds de garantie des dépôts dans la "
+                                  "limite de 100 000 € par déposant. Un formulaire d'information des déposants est disponible "
+                                  "dans votre espace client.", "Médiation : en cas de litige non résolu avec votre agence, vous "
+                                  "pouvez saisir le médiateur bancaire à l'adresse figurant sur notre site.",
+                                  "Virements SEPA : la banque exécute les virements sur la base de l'IBAN fourni par le donneur "
+                                  "d'ordre. Elle ne vérifie pas la concordance entre le nom du bénéficiaire et l'IBAN.",
+                                  "Conditions tarifaires : tenue de compte 45,00 € par mois, abonnement banque en ligne Pro "
+                                  "18,00 € par mois, virement SEPA 0,50 € l'unité (facturé mensuellement)."])]
+
+    def annex_head():
+        doc.text(left, doc.H - 15 * mm, bank["name"].upper(), "Serif-B", 12, burgundy)
+        doc.text(right, doc.H - 15 * mm, f"Relevé n° {number} – annexes", "Sans", 8.5, GREY, "r")
+        doc.hline(left, right, doc.H - 18 * mm, burgundy, 0.8)
+        return doc.H - 28 * mm
     doc.para(left, y - 46, "Les opérations sont présentées par date d'opération. La date de valeur détermine le calcul des "
              "intérêts. Toute réclamation doit être formulée dans un délai de 30 jours à compter de la réception du "
              "présent relevé. Garantie des dépôts : voir le formulaire d'information des déposants.", right - left,
              "Sans", 6.8, color=GREY)
+    for head, body in sections:
+        draw_sections(doc, [(head, body)], annex_head, burgundy, size=8.5, leading=12)
     doc.save()
     return balance
+
+
+def T_(*cols, rows):
+    return ("table", list(cols), rows)
 
 
 def render_payment_batch(path: Path, batch_id, d, payments, bank, holder):
@@ -1029,6 +1101,18 @@ def render_journal(path, entries, month_label, entity, edited):
              "Sans-B", 8)
     doc.text(left + 2, y - 34, "445662 / 445200 : TVA autoliquidée sur acquisitions et prestations intracommunautaires "
              "(montant net nul).", "Sans", 7, GREY)
+    cent: dict[str, list] = {}
+    for r in rows:
+        c = cent.setdefault(r[2], [r[3], D(0), D(0)])
+        c[1] += D(r[6].replace(" ", "").replace(",", ".")) if r[6] else D(0)
+        c[2] += D(r[7].replace(" ", "").replace(",", ".")) if r[7] else D(0)
+    doc.new_page()
+    y = header()
+    doc.text(left, y, f"CENTRALISATION DU JOURNAL AC PAR COMPTE – {month_label}", "Sans-B", 10, NAVY)
+    crow = [[acc, n, fmt(dd, "fr") if dd else "", fmt(cc, "fr") if cc else ""] for acc, (n, dd, cc) in sorted(cent.items())]
+    crow.append(["", "TOTAL", fmt(td, "fr"), fmt(tc, "fr")])
+    doc.table(left, y - 8, [("Compte", 30 * mm, "l"), ("Intitulé", 120 * mm, "l"), ("Débit", 40 * mm, "r"), ("Crédit", 40 * mm, "r")],
+              crow, head_fill=NAVY, size=7.4, row_h=12, bottom=22 * mm, on_break=brk, bold_rows=(len(crow) - 1,))
     doc.save()
 
 
@@ -1042,7 +1126,7 @@ def render_ledger(path, accounts, period_label, entity, edited):
         return f"{fmt(abs(v), 'fr')} {'C' if v > 0 else ('D' if v < 0 else '')}".strip()
     y = header()
     for acc, name, opening, entries, closing in accounts:
-        need = 14 * (len(entries) + 3)
+        need = 14 * (len(entries) + 3) if len(entries) < 25 else 120
         if y - need < 20 * mm:
             doc.new_page()
             y = header()
@@ -1055,8 +1139,11 @@ def render_ledger(path, accounts, period_label, entity, edited):
             bal += cre - deb
             rows.append([fdate(d), piece, label, fmt(deb, "fr") if deb else "", fmt(cre, "fr") if cre else "", sold(bal)])
         rows.append(["", "", f"Total compte {acc}", "", "", sold(closing)])
-        y = doc.table(left, y, cols, rows, head=False, size=7.4, row_h=11.5, zebra=None, grid=RULE,
-                      bold_rows=(len(rows) - 1,))
+        def brk():
+            doc.new_page()
+            return header()
+        y = doc.table(left, y, cols, rows, head=False, size=7.8, row_h=13.5, zebra=None, grid=RULE,
+                      bold_rows=(len(rows) - 1,), bottom=18 * mm, on_break=brk)
         y -= 8
     doc.save()
 
@@ -1136,7 +1223,7 @@ def render_email(path, frm, to, d: dt.datetime, subject, body, cc="", attachment
 
 
 def render_text_doc(path, title, issuer, sections, d: dt.date, ref="", subtitle="", land=False, color="#0D2C54",
-                    footer=""):
+                    footer="", breaks=()):
     """Generic long-form document: sections = [(heading, paragraphs or ('table', cols, rows))]."""
     accent = HexColor(color)
 
@@ -1162,7 +1249,7 @@ def render_text_doc(path, title, issuer, sections, d: dt.date, ref="", subtitle=
         doc.new_page()
         return doc.H - 20 * mm
     for heading, body in sections:
-        if y < 40 * mm:
+        if y < 40 * mm or (heading and breaks and heading.startswith(tuple(breaks)) and y < doc.H - 60 * mm):
             y = brk()
         if heading:
             doc.text(left, y, heading, "Sans-B", 11, accent)

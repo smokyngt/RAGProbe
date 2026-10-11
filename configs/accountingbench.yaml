@@ -1,5 +1,5 @@
 # AccountingBench V1 against a real pipeline (e.g. the Prosperify API).
-#   1. ingest accountingbench/corpus/documents/ (187 PDFs + 20 .eml e-mails) in ONE store; ingest accountingbench/isolation_probe/ in ANOTHER store
+#   1. ingest accountingbench/corpus/documents/ (180 PDFs + 20 .eml e-mails) in ONE store; ingest accountingbench/isolation_probe/ in ANOTHER store
 #   2. export PIPELINE_URL=https://.../query  PIPELINE_TOKEN=...   (+ ANTHROPIC_API_KEY for the judge)
 #   3. python benchmark.py run --dataset accountingbench/datasets/accountingbench_v1.jsonl --config configs/accountingbench.yaml
 #

@@ -1,29 +1,30 @@
-                  Provence Hydraulique SARL                                               BON DE LIVRAISON
-   PH             ZI Toulon Est, 145 Rue de l'Ancienne Mine · 83130 La Garde
-                  Tel. +33 4 94 08 31 70 · factures@provence-hydraulique.example
+                   Harbor Parts B.V.                                                       DELIVERY NOTE
+   HP              Waalhaven Oostzijde 112 · 3087 BM Rotterdam
+                   Tel. +31 10 428 7710 · invoices@harborparts.example
 
 
-Azur Marine Services S.A.M.                                                    N°                  BL-PH-26-1187
-Delivery: Quai Antoine Ier                                                     Date                10/09/2026
-98000 Monaco                                                                   Commande client     PO-2026-0336
-                                                                               Navire              M/Y Selene
+Azur Marine Services S.A.M.                                              No.               HP-DN-26-0931
+Delivery: Quai Antoine Ier                                               Date              11-09-2026
+98000 Monaco                                                             Customer PO       PO-2026-0335
+                                                                         Vessel            M/Y Selene
 
 
 
-Désignation                                                                        Qté commandée      Qté livrée   U
-Flexible hydraulique HP 1/2 - 2 m, embouts sertis                                            40              36    u
-Raccord droit JIC 1/2                                                                        12              12    u
+Description                                                                      Ordered      Delivered    Unit
+Shaft seal kit, 63 mm, dripless                                                        2             2     kit
+Cutless bearing 63 mm x 83 mm x 254 mm                                                 2             2     pc
+Raw-water pump overhaul kit                                                            3             3     kit
+Zinc anode set (shaft and rudder)                                                      6             6     set
 
-Observations: Reliquat : 4 flexibles FHP-12-2 à livrer semaine 41
 
 
- Réception / visa client
+ Received by (name, signature)
 
  Bosun A. Kowalski
- 10/09/2026
+ 11/09/2026
 
 
 
 
-Provence Hydraulique SARL · RCS Toulon 389 117 254
+Harbor Parts B.V. · KvK 57123904
 
