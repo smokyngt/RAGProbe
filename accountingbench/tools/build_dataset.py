@@ -219,12 +219,14 @@ def main() -> int:
     batch_keys = {dt.date.fromisoformat(v["document_date"]): k for k, v in BY_KEY.items() if k.startswith("batch:")}
     Q(pilot="B4", type="multi_document", style="list", difficulty="medium", topic="bank:unmatched",
       failure_modes=["similar_table_labels", "multi_evidence_combination"], control="Unmatched bank debits",
-      rule="A debit is matched when an invoice, credit note or purchase order in the file supports it with the same payee "
-           "and amount. Payroll, social contributions, VAT and bank charges are out of scope.",
+      rule="A debit is matched when its statement label or the payment execution notice cites the number of an invoice, "
+           "credit note or purchase order of the same payee that is in the file, whatever the amount (partial and short "
+           "payments are matched). Payroll, social contributions, VAT and bank charges are out of scope.",
       question="On the September 2026 bank statement of Azur Marine Services S.A.M., consider every debit except payroll "
                "(SALAIRES), social contributions (COTISATIONS SOCIALES), VAT payments (PAIEMENT TVA) and bank charges "
-               "(FRAIS, ABONNEMENT, COMMISSIONS). A debit is matched when an invoice, credit note or purchase order in the "
-               "file supports it with the same payee and the same amount. List the debits that cannot be matched with their "
+               "(FRAIS, ABONNEMENT, COMMISSIONS). A debit is matched when its statement label or the payment execution "
+               "notice cites the number of an invoice, credit note or purchase order of the same payee that is in the file, "
+               "whatever the amount (partial or short payments count as matched). List the debits that cannot be matched with their "
                "date, statement label and amount, give the beneficiary shown on the bank's payment execution notice, and "
                "give their total. Do not guess what they relate to.",
       natural="Which September 2026 bank debits have no supporting invoice?",
