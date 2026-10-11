@@ -173,7 +173,8 @@ words): run both to measure how much the briefing helps.
   They reported 3 real ambiguities, all fixed in the questions: "same amount" in acc_q_004 (now: the label cites a document of
   the same payee), invoice lines absent from the delivery note in acc_q_013 (now excluded), and the due date of credit notes in
   acc_q_019 (now exempt). They also found 2 missing mentions on the QMR invoice (quantity, net amount) that the reference had
-  omitted, which are now corrected. Every note is adjudicated in `annotation/adjudication.json`; review per question in
+  omitted, which are now corrected. After the move to multi-page PDFs and `.eml` e-mails, a third blind agent re-answered the 6 questions most
+  exposed to the new layout (journal, bank statement, supplier statement, e-mails): all key facts found. Every note is adjudicated in `annotation/adjudication.json`; review per question in
   `datasets/accountingbench_v1_review.json` (20/20 verified, `human_reviewed: false`).
 - **Not yet done:** review by a practising accountant. Start with acc_q_013, acc_q_017 and acc_q_008 (the longest answers).
 

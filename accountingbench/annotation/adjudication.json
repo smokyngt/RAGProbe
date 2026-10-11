@@ -1,7 +1,7 @@
 {
   "acc_q_001": {
     "verdict": "reference_confirmed",
-    "notes": "Reviewer note is an observation (ledger balance includes the duplicate), not an ambiguity; answer identical."
+    "notes": "Re-checked blind on the multi-page / .eml corpus (answers_3_multipage_eml.jsonl): all key facts found. No ambiguity."
   },
   "acc_q_002": {
     "verdict": "reference_confirmed",
@@ -15,6 +15,10 @@
     "verdict": "reference_confirmed",
     "notes": "Reviewer linked quotation and pro-forma to the PO by content; same documents and same single liability (INV-2026-552, EUR 6,200.00) as the reference."
   },
+  "acc_q_007": {
+    "verdict": "reference_confirmed",
+    "notes": "Re-checked blind on the multi-page / .eml corpus (answers_3_multipage_eml.jsonl): all key facts found. No ambiguity."
+  },
   "acc_q_008": {
     "verdict": "reference_confirmed",
     "notes": "Reviewer used the gross invoice total as amount due and the deposit as a payment, exactly as the question defines; all 8 rows and totals match."
@@ -25,15 +29,15 @@
   },
   "acc_q_011": {
     "verdict": "reference_confirmed",
-    "notes": "Reviewer correctly ignored the sister-company invoice INV-2026-1190 (decoy); answer identical."
+    "notes": "Re-checked blind on the multi-page / .eml corpus (answers_3_multipage_eml.jsonl): all key facts found. No ambiguity."
   },
   "acc_q_012": {
     "verdict": "reference_confirmed",
     "notes": "Simple calendar differences (15 and 8 days), as the reference; no ambiguity."
   },
   "acc_q_013": {
-    "verdict": "question_fixed",
-    "notes": "Reviewer asked whether invoice lines absent from the delivery note (installation labour on RE-2026-0733) fail check (3). Question now excludes them explicitly; the reviewer had already passed the line, so the reference (5 failing lines, 1 missing document, 21 passing) is unchanged and matches."
+    "verdict": "reference_confirmed",
+    "notes": "Re-checked blind on the multi-page / .eml corpus (answers_3_multipage_eml.jsonl): all key facts found. Reviewer also gave the gross invoice credits (150,928.27) next to the journal figure net of the credit note (150,308.27, the reference); Northstar fails check (2) only, as the reference."
   },
   "acc_q_014": {
     "verdict": "reference_confirmed",
@@ -41,11 +45,11 @@
   },
   "acc_q_015": {
     "verdict": "reference_confirmed",
-    "notes": "Reviewer counted 21 individual transfers (not 12 batches), as the question asks; same 3 non-MATCH rows."
+    "notes": "Re-checked blind on the multi-page / .eml corpus (answers_3_multipage_eml.jsonl): all key facts found. No ambiguity."
   },
   "acc_q_016": {
     "verdict": "reference_confirmed",
-    "notes": "Reviewer classed the Liguria payment in category A (it settles an invoice); consistent with the definition. All six totals match."
+    "notes": "Re-checked blind on the multi-page / .eml corpus (answers_3_multipage_eml.jsonl): all key facts found. Liguria payment classed in category A (it settles an invoice), as defined."
   },
   "acc_q_017": {
     "verdict": "reference_confirmed",
