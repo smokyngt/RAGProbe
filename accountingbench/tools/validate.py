@@ -8,7 +8,7 @@ Same checks as finance_benchmark/tools/validate_dataset.py (schema, flag consist
 verbatim on its page, calculations re-evaluated with every input found as printed, key facts present in the reference
 answer, review entries). Differences: ids are acc_q_NNN, metadata carries the accounting fields (pilot_id, control,
 control_rule, output_format, anomalies_tested, expected_rows), and the page text of a scanned document is its OCR
-reference text (corpus/ocr_reference/), since a scan has no text layer.
+reference text (corpus/ocr_reference/), since a scan has no text layer; an .eml message is one page (headers + body).
 """
 from __future__ import annotations
 
@@ -23,7 +23,8 @@ from pydantic import Field
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT.parent / "finance_benchmark" / "tools"))
 import validate_dataset as fb  # noqa: E402
-from extract_pages import pdf_page_texts  # noqa: E402
+sys.path.insert(0, str(ROOT / "tools"))
+from common import document_pages  # noqa: E402
 
 
 class Metadata(fb.Metadata):
@@ -47,12 +48,7 @@ def page_loader():
 
     def load(doc_id: str) -> list[str]:
         if doc_id not in cache:
-            d = docs[doc_id]
-            if d["scanned"]:
-                pages = (ROOT / "corpus" / "ocr_reference" / f"{doc_id}.txt").read_text("utf-8").split("\f")
-                cache[doc_id] = pages[:-1] if pages and pages[-1] == "" else pages
-            else:
-                cache[doc_id] = pdf_page_texts(ROOT / "corpus" / "documents" / d["filename"])
+            cache[doc_id] = document_pages(docs[doc_id])
         return cache[doc_id]
     return load, {k: v["pages"] for k, v in docs.items()}
 

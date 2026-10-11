@@ -1,0 +1,35 @@
+Message-ID: <93b0343fb037f63b2a604891@kairos-it.example>
+Date: Tue, 15 Sep 2026 16:00:00 +0200
+From: Kairos NOC <noc@kairos-it.example>
+To: all-staff@azurmarine.example
+Subject: Planned maintenance window =?utf-8?b?4oCT?= Saturday 26/09/2026
+X-Mailer: Microsoft Outlook 16.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============1432514095421899457=="
+
+--===============1432514095421899457==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+We will upgrade the firewall firmware and the office Wi-Fi controllers on Sat=
+urday 26/09/2026 between 07:00 and 11:00 CET. Remote access (VPN) will be una=
+vailable during this window. Vessel connectivity is not affected.
+
+Kairos IT Services =E2=80=93 Network Operations Centre
+
+--===============1432514095421899457==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body style=3D"font-family:Calibri,Arial,sans-serif;font-size:11pt"><p>=
+Hello,</p><p>We will upgrade the firewall firmware and the office Wi-Fi contr=
+ollers on Saturday 26/09/2026 between 07:00 and 11:00 CET. Remote access (VPN=
+) will be unavailable during this window. Vessel connectivity is not affected=
+.</p><p>Kairos IT Services =E2=80=93 Network Operations Centre</p></body></ht=
+ml>
+
+--===============1432514095421899457==--

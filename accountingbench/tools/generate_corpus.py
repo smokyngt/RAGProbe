@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from PIL import Image, ImageFilter  # noqa: E402
 
 import render as R  # noqa: E402
-from common import D, ROOT, date, fdate, fmt  # noqa: E402
+from common import D, ROOT, date, fdate, fmt, prev_business_day as R_prev  # noqa: E402
 from world import (BANK, EMAILS, ENTITIES, LME_NEW_BIC, LME_NEW_IBAN, PEOPLE, SUPPLIERS, Invoice, L,  # noqa: E402
                    Supplier, build_world, journal, ledger_entries, open_items)
 
@@ -33,6 +33,8 @@ OCR = CORPUS / "ocr_reference"
 PROBE = ROOT / "isolation_probe"
 # signed delivery notes / service reports that reach accounts payable as scans
 SCANNED_DN_SUPPLIERS = {"CAS", "PRH", "SME", "ECO", "MRS", "SEA", "MFS"}
+# suppliers that print their general terms of sale overleaf (2-page invoices)
+TERMS_SUPPLIERS = {"MED", "MFS", "OSE", "NTS", "NYS", "CAS", "PRH", "RVE", "SME", "ECO", "VPN"}
 
 
 @dataclass
@@ -47,6 +49,7 @@ class Spec:
     draw: object  # callable(path)
     scanned: bool = False
     tags: list = field(default_factory=list)
+    ext: str = "pdf"
 
 
 def ts(d: dt.date, h: int, m: int) -> dt.datetime:
@@ -58,8 +61,8 @@ def build_specs():
     E = ENTITIES
     specs: list[Spec] = []
 
-    def add(key, doc_type, title, issuer, addressee, d, lang, draw, scanned=False):
-        specs.append(Spec(key, doc_type, title, issuer, addressee, d, lang, draw, scanned))
+    def add(key, doc_type, title, issuer, addressee, d, lang, draw, scanned=False, ext="pdf"):
+        specs.append(Spec(key, doc_type, title, issuer, addressee, d, lang, draw, scanned, ext=ext))
 
     # ---------------- invoices and credit notes
     for i in w.invoices:
@@ -67,12 +70,12 @@ def build_specs():
             continue
         kind = "credit_note" if i.kind == "credit_note" else "supplier_invoice"
         add(f"inv:{i.number}", kind, f"{'Credit note' if kind == 'credit_note' else 'Invoice'} {i.number}", i.s.name,
-            E[i.customer]["name"], i.date, i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w), scanned=i.scanned)
+            E[i.customer]["name"], i.date, i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w, terms_page=i.sup in TERMS_SUPPLIERS), scanned=i.scanned)
     dup = next(i for i in w.invoices if i.number == "FA-2026-0917")
     dup_copy = Invoice(**{**dup.__dict__, "copy_mark": "DUPLICATA", "booked": [], "scanned": True,
                           "notes": dup.notes + ["Duplicata adressé le 21/09/2026 à la demande du client."]})
     add("inv:FA-2026-0917:duplicata", "supplier_invoice", "Invoice FA-2026-0917 (duplicate copy)", dup.s.name,
-        E["AMS"]["name"], date(21, 9), "fr", lambda p: R.render_invoice(p, dup_copy, E, w), scanned=True)
+        E["AMS"]["name"], date(21, 9), "fr", lambda p: R.render_invoice(p, dup_copy, E, w, terms_page=True), scanned=True)
 
     # invoices addressed to the sister company and older invoices (same suppliers, out of scope)
     extra = [
@@ -94,7 +97,7 @@ def build_specs():
     ]
     for i in extra:
         add(f"inv:{i.number}", "supplier_invoice", f"Invoice {i.number}", i.s.name, E[i.customer]["name"], i.date,
-            i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w))
+            i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w, terms_page=i.sup in TERMS_SUPPLIERS))
 
     # ---------------- purchase orders and delivery notes / service reports
     for po in w.pos.values():
@@ -131,9 +134,31 @@ def build_specs():
         lambda p: R.render_quote(p, "quote", "NTS-Q-2026-0219", date(2, 9), SUPPLIERS["NTS"], w.pos["nts_sep"].lines, E))
 
     # ---------------- supplier statements of account
+    def history(prefix, first_no, start, amounts_seed, lang, extra=()):
+        """Jan-May 2026 invoices (4 a month) and their payments, all settled: the statement's earlier pages."""
+        rnd = random.Random(amounts_seed)
+        rows, no = list(extra), first_no
+        for m in range(1, 6):  # January-May: all settled before July
+            for day in (4, 11, 18, 25):
+                d = dt.date(2026, m, day)
+                amt = D(rnd.randrange(90000, 980000)) / 100
+                rows.append((d, f"{prefix}{no:04d}", "Facture" if lang == "fr" else "Invoice", amt, D(0)))
+                pd_ = R_prev(d + dt.timedelta(days=30))
+                rows.append((pd_, f"{'VIR' if lang == 'fr' else 'PMT'} {pd_:%d%m%y}",
+                             "Règlement reçu" if lang == "fr" else "Payment received – thank you", D(0), amt))
+                no += rnd.randrange(7, 13)
+        assert no < start, (prefix, no)
+        return sorted(rows, key=lambda r: (r[0], r[3] == 0))
+
     med = SUPPLIERS["MED"]
+    med_hist = history("INV-2026-", 21, 312, 7, "en", [
+        (date(12, 12, 2025), "INV-2025-1987", "Invoice", D("4728.00"), D(0)),
+        (date(9, 1), "PMT 090126", "Payment received – thank you", D(0), D("4728.00"))])
+    cas_hist = history("FA-2026-", 102, 788, 11, "fr", [
+        (date(14, 11, 2025), "FA-2025-1460", "Facture", D("1634.40"), D(0)),
+        (date(12, 12, 2025), "VIR 121225", "Règlement reçu", D(0), D("1634.40"))])
     add("stmt:MED", "supplier_statement", "Statement of account Mediterra Marine Supplies 30/09/2026", med.name, E["AMS"]["name"],
-        date(30, 9), "en", lambda p: R.render_supplier_statement(p, med, E, [
+        date(30, 9), "en", lambda p: R.render_supplier_statement(p, med, E, med_hist + [
             (date(14, 7), "INV-2026-0312", "Invoice", D("4869.60"), D(0)),
             (date(13, 8), "PMT 130826", "Payment received – thank you", D(0), D("4869.60")),
             (date(28, 8), "INV-2026-0371", "Invoice", D("11580.00"), D(0)),
@@ -148,7 +173,7 @@ def build_specs():
             date(30, 9), D("6200.00")))
     cas = SUPPLIERS["CAS"]
     add("stmt:CAS", "supplier_statement", "Relevé de compte Côte d'Azur Ship Chandlers 30/09/2026", cas.name, E["AMS"]["name"],
-        date(30, 9), "fr", lambda p: R.render_supplier_statement(p, cas, E, [
+        date(30, 9), "fr", lambda p: R.render_supplier_statement(p, cas, E, cas_hist + [
             (date(7, 7), "FA-2026-0788", "Facture", D("1944.00"), D(0)),
             (date(6, 8), "VIR 060826", "Règlement reçu", D(0), D("1944.00")),
             (date(6, 8), "FA-2026-0851", "Facture", D("2280.00"), D(0)),
@@ -160,6 +185,20 @@ def build_specs():
     # ---------------- bank statements and payment execution notices
     months = [(7, date(1, 7), date(31, 7), "2026-07"), (8, date(1, 8), date(31, 8), "2026-08"),
               (9, date(1, 9), date(30, 9), "2026-09"), (10, date(1, 10), date(9, 10), "2026-10")]
+    for b in w.bank:
+        x = b.payment
+        if x and x.method == "DD":
+            b.detail = f"PRÉLÈVEMENT SEPA CORE – CRÉANCIER {x.payee_name.upper()} – RUM AMS-{x.payee}-2024-01"
+        elif x:
+            b.detail = f"RÉF. DONNEUR D'ORDRE : {x.ref} – BÉNÉFICIAIRE : {x.payee_name.upper()}"
+        elif b.category == "customer":
+            b.detail = "DONNEUR D'ORDRE : " + b.label.split("RECU ")[1].split(" MGMT")[0].split(" RECHARGE")[0]
+        elif b.category == "payroll":
+            b.detail = f"VIREMENT GROUPÉ – LOT SAL-2026-{b.date:%m} – 42 OPÉRATIONS"
+        elif b.category == "social":
+            b.detail = "PRÉLÈVEMENT SEPA B2B – CAISSES SOCIALES – EMPLOYEUR N° 00418-27"
+        elif b.category == "tax":
+            b.detail = "TÉLÉRÈGLEMENT – SERVICE DES IMPÔTS – RÉF. TVA FR 64 000 512 748"
     bal = w.opening_bank
     for m, d1, d2, num in months:
         lines = [b for b in w.bank if d1 <= b.date <= d2]
@@ -208,9 +247,9 @@ def build_specs():
         lambda p: R.render_master(p, sorted(SUPPLIERS.values(), key=lambda s: s.account), E["AMS"], dt.datetime(2026, 9, 1, 7, 55)))
 
     # ---------------- e-mails
-    def mail(key, d, frm, to, subject, body, cc="", att=(), sender="", lang="en"):
+    def mail(key, d, frm, to, subject, body, cc="", att=(), sender="", lang="en", reply_to="", in_reply_to=""):
         add(f"mail:{key}", "email", subject, frm, to, d.date(), lang,
-            lambda p: R.render_email(p, frm, to, d, subject, body, cc, att, sender))
+            lambda p: R.write_eml(p, frm, to, d, subject, body, cc, sender, lang, reply_to, in_reply_to), ext="eml")
 
     po = {k: v.number for k, v in w.pos.items()}
     mail("marina", ts(date(28, 9), 9, 14), EMAILS["accounting"], EMAILS["operations"], "Marina Fuel – September invoice",
@@ -227,7 +266,7 @@ def build_specs():
          f"IBAN: {LME_NEW_IBAN}\nBIC: {LME_NEW_BIC}\n\nOur previous account will be closed on 15/09/2026. Please update your "
          "records before paying invoice LME-26-0611 and confirm by return e-mail.\n\nBest regards,\nGiulia Ferraro\n"
          "Ufficio Amministrazione – Liguria Marine Electronics S.r.l.", att=["Bank_confirmation_letter.pdf"],
-         sender="Amministrazione LME")
+         sender="Amministrazione LME", reply_to="giulia.ferraro.lme@mail-box.example")
     mail("lme_reply", ts(date(15, 9), 9, 40), EMAILS["ap"], "amministrazione@lme-sanremo-it.example",
          "RE: Updated bank details – Liguria Marine Electronics",
          "Dear Giulia,\n\nNoted, thank you. The new bank details have been entered in our payment system and will be used "
@@ -326,6 +365,20 @@ def build_specs():
               [("1. Purpose and scope", "This policy defines how goods and services are ordered, received, invoiced and "
                 "paid by Azur Marine Services S.A.M. It applies to all purchases made for the office and for the vessels "
                 "under management, whatever the amount. It does not apply to payroll, social contributions and taxes."),
+               ("1.1 Definitions", ["Purchase order (PO): the written commitment issued by the company to a supplier, "
+                "numbered PO-YYYY-NNNN and approved according to section 3. Delivery note: the supplier's document "
+                "accompanying goods, signed on board on receipt. Service report: the document recording works performed "
+                "on board, signed by the Master or the Chief Engineer. Supplier master file: the reference list of "
+                "suppliers, their VAT numbers, bank details, payment terms and PO requirement, maintained by Finance.",
+                "Net amount: amount excluding VAT. Deposit: a payment made before delivery or invoicing under an express "
+                "clause of a signed PO or contract."]),
+               ("1.2 Roles and responsibilities", ["Requesters (Masters, Chief Engineers, Operations) express the need "
+                "and check receipt. The Operations Manager raises purchase orders and approves within his limit. The "
+                "Finance Director approves within her limit, validates every payment run and owns the supplier master "
+                "file. The Chief Executive Officer approves commitments above the Finance Director's limit.",
+                "Accounts Payable books invoices only after the controls of section 5 and prepares payment runs; it may "
+                "not modify supplier bank details without the confirmation described in section 6. Segregation of duties "
+                "is mandatory: the person who enters a payment cannot approve it."]),
                ("2. Purchase orders", ["A purchase order (PO) approved in accordance with section 3 must be issued before "
                 "any commitment towards a supplier flagged \"PO required = Yes\" in the supplier master file. Recurring "
                 "services under a framework contract (berths, telecommunications, insurance, IT managed services, cleaning, "
@@ -351,7 +404,30 @@ def build_specs():
                 "number recorded in the supplier master file, by a person other than the requester, before the next payment."]),
                ("7. Period-end cut-off", "Invoices received after the closing date that relate to goods or services "
                 "delivered during the period are accrued. Goods or services received without an invoice are accrued at "
-                "the PO price.")], date(15, 1), ref="PRC-FIN-04 v3", subtitle="Approved by the Board on 15/01/2026"))
+                "the PO price."),
+               ("8. Supplier master data", ["New suppliers are created only after the onboarding checks (registration "
+                "extract, VAT number checked on VIES, bank identity statement on the supplier's letterhead, call-back). "
+                "The master file records for each supplier whether a PO is required.", "Inactive suppliers are blocked "
+                "after 24 months without transactions."]),
+               ("9. Emergency purchases", "Emergency purchases made on the Master's verbal authorisation (section 2) "
+                "must be documented by an e-mail from the Master on the same day and regularised by a PO within 2 "
+                "working days. The supplier's invoice is not paid before regularisation."),
+               ("10. Records", "Purchase orders, delivery notes, service reports, invoices and payment evidence are "
+                "kept for 10 years in the document management system, one document per file, with their e-mails."),
+               ("11. Breaches", "Any breach of this policy is reported to the Finance Director, who informs the CEO and, "
+                "for amounts above EUR 20,000.00, the Board."),
+               ("Annex A – Invoice checklist", [("table", [("Check", 70 * R.mm, "l"), ("Source", 60 * R.mm, "l"),
+                                                           ("Owner", 40 * R.mm, "l")],
+                 [["PO exists and is approved", "PO / supplier master file", "Accounts Payable"],
+                  ["Goods or services received", "Delivery note / service report", "Accounts Payable"],
+                  ["Quantities and prices", "PO and delivery note", "Accounts Payable"],
+                  ["VAT arithmetic and mentions", "Invoice", "Accounts Payable"],
+                  ["Not already booked", "Purchase journal", "Accounts Payable"],
+                  ["Bank details", "Supplier master file", "Finance Director"]])]),
+               ("Annex B – Document retention", [("table", [("Document", 80 * R.mm, "l"), ("Retention", 40 * R.mm, "l")],
+                 [["Purchase orders, invoices, credit notes", "10 years"], ["Delivery notes, service reports", "10 years"],
+                  ["Bank statements and payment notices", "10 years"], ["Supplier correspondence", "5 years"]])])],
+              date(15, 1), ref="PRC-FIN-04 v3", subtitle="Approved by the Board on 15/01/2026"))
     add("contract:berth", "contract", "Berth rental agreement M/Y Aurelia", SUPPLIERS["MBM"].name, E["AMS"]["name"], date(18, 12, 2025),
         "en", lambda p: R.render_text_doc(p, "Annual berth rental agreement – Berth B-14, Quai Antoine Ier",
               SUPPLIERS["MBM"].name, [
@@ -364,16 +440,55 @@ def build_specs():
                    "SEPA direct debit on the tenth day. Electricity and water are invoiced separately on meter readings."),
                   ("4. Obligations", ["The Client shall comply with the port regulations and keep valid hull & machinery "
                    "and P&I insurance.", "The Operator may relocate the vessel temporarily for events (Grand Prix, Yacht "
-                   "Show) with 15 days' notice."])], date(18, 12, 2025), ref="MBM-AG-2026-014"))
+                   "Show) with 15 days' notice."]),
+                  ("5. Utilities", "Electricity is invoiced monthly at EUR 0.31 per kWh and water at EUR 6.80 per m3 on "
+                   "meter readings, on a separate invoice."),
+                  ("6. Services included", ["Mooring assistance on arrival and departure, 24/7 marina security, waste "
+                   "reception (household waste only), Wi-Fi in the marina area.", "Oily waste, bilge water and hazardous "
+                   "waste are excluded and must be handled by an approved contractor."]),
+                  ("7. Liability and insurance", "The Operator is liable only for damage caused by its own negligence. The "
+                   "Client indemnifies the Operator against claims arising from the vessel and its crew."),
+                  ("8. Termination", "Either party may terminate for material breach after a formal notice remaining "
+                   "unremedied for 30 days. Fees paid for the current month are not refunded."),
+                  ("9. Law", "Monegasque law; courts of the Principality of Monaco."),
+                  ("Signatures", "For the Operator: Harbour Master. For the Client: Philippe Andrieu, Chief Executive "
+                   "Officer, Azur Marine Services S.A.M., on 18/12/2025.")], date(18, 12, 2025), ref="MBM-AG-2026-014"))
     add("contract:kairos", "contract", "Managed services agreement MSA-2022-07 (extract)", SUPPLIERS["KIT"].name, E["AMS"]["name"],
         date(15, 1, 2022), "en", lambda p: R.render_text_doc(p, "Managed IT services agreement MSA-2022-07 – extract",
               SUPPLIERS["KIT"].name, [
+                  ("Parties", "Kairos IT Services SAS, registered in Grasse under number 823 447 109 (\"Kairos\"), and "
+                   "Azur Marine Services S.A.M., registered in Monaco under number RCI 09 S 05127 (\"the Customer\")."),
+                  ("Clause 1 – Purpose", "Kairos provides managed IT services for the Customer's office at 7 Quai Antoine "
+                   "Ier and for the vessels under the Customer's management, as described in the schedules. The schedules "
+                   "form an integral part of the agreement; in case of conflict, the body of the agreement prevails."),
+                  ("Clause 3 – Customer obligations", "The Customer appoints a single point of contact, gives Kairos "
+                   "remote access to the systems in scope and informs Kairos of any change to its infrastructure. The "
+                   "Customer remains responsible for the content of its data and for its licences."),
                   ("Schedule A – Services", "Service desk 08:00-19:00 on business days, monitoring 24/7, backup of office "
                    "servers, vessel connectivity support (3 vessels), Microsoft 365 administration."),
                   ("Schedule B – Projects included in the fixed fee", "Annual firewall upgrade; migration of on-premises "
                    "servers to the hosted platform (2026); onboarding of up to 10 new users per year."),
                   ("Schedule C – Fees", "Fixed monthly fee EUR 2,450.00 excluding VAT, payable by direct debit on the tenth "
-                   "day of the month. Additional work only on written order at EUR 100.00 per hour.")],
+                   "day of the month. Additional work only on written order at EUR 100.00 per hour."),
+                  ("Schedule D – Service levels", [("table", [("Priority", 30 * R.mm, "l"), ("Definition", 80 * R.mm, "l"),
+                                                              ("Response", 30 * R.mm, "l"), ("Resolution", 30 * R.mm, "l")],
+                    [["P1", "Office or vessel without connectivity", "30 min", "4 h"],
+                     ["P2", "Service degraded for several users", "2 h", "1 business day"],
+                     ["P3", "Single user or request", "1 business day", "3 business days"]]),
+                    "Service credits: 5% of the monthly fee per P1 incident resolved late, capped at 20% per month."]),
+                  ("Clause 7 – Change requests", "Any work outside schedules A and B requires a written change request "
+                   "signed by the customer's Finance Director before work starts. Work performed without a signed change "
+                   "request is not chargeable."),
+                  ("Clause 9 – Invoicing", "Kairos invoices the fixed fee on the first day of each month. Disputed "
+                   "invoices are notified in writing within 30 days; the undisputed part remains payable."),
+                  ("Clause 12 – Term", "Initial term of 36 months from 01/02/2022, renewed tacitly for 12-month periods "
+                   "unless terminated with 3 months' notice."),
+                  ("Clause 14 – Data protection", "Kairos acts as processor within the meaning of Regulation (EU) 2016/679 "
+                   "and of Monegasque Law No. 1.565. Personal data are hosted in the European Union only."),
+                  ("Clause 16 – Liability", "Kairos' aggregate liability per contract year is capped at the fees paid "
+                   "during the previous twelve months, except in case of gross negligence or wilful misconduct."),
+                  ("Signatures", "For Kairos IT Services SAS: the Managing Director. For the Customer: Claire Martin, "
+                   "Finance Director, on 15/01/2022.")],
               date(15, 1, 2022), ref="MSA-2022-07"))
     add("contract:eco", "contract", "Waste collection framework contract CT-2024-118", SUPPLIERS["ECO"].name, E["AMS"]["name"],
         date(2, 12, 2024), "fr", lambda p: R.render_text_doc(p, "Contrat cadre de collecte des déchets d'exploitation CT-2024-118",
@@ -382,7 +497,16 @@ def build_specs():
                    "Marine Services S.A.M. au port de Monaco."),
                   ("Prix", "Forfait mensuel de 640,00 € HT. Les prestations exceptionnelles (pompage, nettoyage de caisses) "
                    "font l'objet d'un devis et d'un bon de commande spécifiques."),
-                  ("Durée", "Du 01/01/2025 au 31/12/2027.")], date(2, 12, 2024), ref="CT-2024-118", color="#2E7D32"))
+                  ("Durée", "Du 01/01/2025 au 31/12/2027."),
+                  ("Obligations du prestataire", ["Le prestataire remet à chaque collecte un bordereau de suivi des déchets "
+                   "(BSD) signé, mentionnant la nature et la quantité des déchets.", "Il justifie de son agrément pour la "
+                   "collecte des huiles usagées et de son assurance responsabilité civile environnementale."]),
+                  ("Facturation", "Le forfait mensuel est facturé le 20 de chaque mois, payable à 30 jours. Les prestations "
+                   "exceptionnelles sont facturées à l'issue de l'intervention, sur la base du bon de commande."),
+                  ("Résiliation", "Résiliation possible par lettre recommandée avec un préavis de trois mois."),
+                  ("Signatures", "Pour EcoMarine Waste Services SAS : le Directeur général. Pour Azur Marine Services "
+                   "S.A.M. : Thomas Rinaldi, Operations Manager, le 02/12/2024.")], date(2, 12, 2024), ref="CT-2024-118",
+              color="#2E7D32"))
     add("onboarding:VPN", "supplier_onboarding", "Supplier onboarding form Var Pneumatique", E["AMS"]["name"], "internal",
         date(12, 9), "en", lambda p: R.render_text_doc(p, "Supplier onboarding form – Var Pneumatique SAS",
               "Azur Marine Services S.A.M. – Accounts Payable", [
@@ -509,7 +633,72 @@ def build_specs():
                                  [["IM-0041", "Agencement bureaux", "142 600,00", "98 210,00"], ["IM-0058", "Serveurs et réseau", "38 400,00", "12 800,00"],
                                   ["IM-0062", "Véhicule de service", "31 900,00", "15 950,00"]]))]),
     ]
+    extra = {
+        "lease": [("Indexation", "Le loyer est révisé automatiquement chaque 1er avril en fonction de la variation de "
+                   "l'indice des loyers des activités tertiaires (ILAT) publié au cours du quatrième trimestre précédent. La "
+                   "révision ne peut entraîner une baisse du loyer en deçà du loyer initial."),
+                  ("Charges et impôts", ["Le preneur rembourse au bailleur, au prorata des surfaces louées, les charges "
+                   "communes de l'immeuble : entretien des parties communes, ascenseurs, gardiennage, chauffage collectif, "
+                   "taxe d'enlèvement des ordures ménagères.", "Un décompte annuel des charges est adressé au preneur avant "
+                   "le 30 juin de chaque année ; le solde est réglé dans les 30 jours de sa réception."]),
+                  ("Entretien et réparations", "Le preneur entretient les locaux en bon état de réparations locatives. "
+                   "Les grosses réparations au sens de l'article 606 du Code civil restent à la charge du bailleur."),
+                  ("Destination", "Les locaux sont destinés exclusivement à usage de bureaux pour l'activité de gestion de "
+                   "navires de plaisance du preneur."),
+                  ("Travaux", ["Le preneur ne peut effectuer aucun travail affectant le gros œuvre sans l'accord écrit du "
+                   "bailleur.", "Les travaux d'aménagement réalisés en 2023 (cloisons, câblage, climatisation) restent "
+                   "acquis au bailleur en fin de bail sans indemnité."]),
+                  ("Assurances", "Le preneur assure les locaux contre l'incendie, le dégât des eaux et sa responsabilité "
+                   "civile, et justifie de ses polices à première demande."),
+                  ("Cession et sous-location", "Toute cession ou sous-location est interdite sans l'accord exprès du "
+                   "bailleur, sauf au profit d'une société du groupe Azur Yachting."),
+                  ("Clause résolutoire", "À défaut de paiement d'un seul terme de loyer à son échéance, et un mois après "
+                   "commandement resté infructueux, le bail sera résilié de plein droit."),
+                  ("Fait à Monaco", "Le 30 mars 2023, en deux exemplaires originaux.")],
+        "insurance": [("Insured perils", ["Perils of the seas, fire, explosion, theft by persons from outside the vessel, "
+                       "jettison, piracy, contact with aircraft or land conveyance, earthquake and lightning.",
+                       "Accidents in loading, discharging or shifting stores, bursting of boilers, latent defects in the "
+                       "machinery or hull, negligence of Master, officers or crew, provided such loss has not resulted from "
+                       "want of due diligence by the assured or managers."]),
+                      ("Machinery damage deductible", "An additional deductible of EUR 25,000.00 applies to each claim for "
+                       "machinery damage caused by negligence of the crew or latent defect."),
+                      ("Main exclusions", ["War, strikes and terrorism (covered under separate war risks cover).",
+                       "Wear and tear, gradual deterioration, marine growth.", "Unseaworthiness known to the assured."]),
+                      ("Claims procedure", "Any incident likely to give rise to a claim must be notified to the broker "
+                       "within 72 hours, with the Master's report and photographs."),
+                      ("Security", "100% Riviera Marine Mutual (lead) and following markets.")],
+        "board": [("4bis. Management mandates", ["The CEO reports on the negotiation of a management mandate for a 45 m "
+                   "motor yacht based in Antibes, through the sister company Azur Marine Charter SARL. Expected fee: "
+                   "EUR 26,000.00 per month excluding VAT from January 2027.", "The Board authorises the CEO to sign the "
+                   "mandate within these parameters."]),
+                  ("4ter. Insurance renewal", "The Finance Director presents the renewal terms proposed by Lighthouse "
+                   "Insurance Brokers for 2027: premium increase of 4.5% on hull & machinery; P&I unchanged. The Board "
+                   "asks for a competing quotation before 31/10/2026."),
+                  ("5. Treasury", "Cash position at 31/05/2026: EUR 438,200.00; no drawing on the overdraft facility."),
+                  ("6. Internal control", "Finance presents the results of the 2025 audit: no significant deficiency; one "
+                   "recommendation on the documentation of emergency purchases on board."),
+                  ("7. Dates", "Next meetings: 22/09/2026 and 15/12/2026.")],
+        "survey": [("Machinery details", ("table", [("Item", 60 * R.mm, "l"), ("Condition", 40 * R.mm, "l"), ("Action", 60 * R.mm, "l")],
+                    [["Port main engine", "Good", "Routine service at 12,000 h"], ["Starboard main engine", "Good", "Routine service at 12,000 h"],
+                     ["Generator 1", "Fair", "Replace exhaust elbow"], ["Generator 2", "Good", "None"],
+                     ["Bilge pumps", "Fair", "Main pump close to end of life"], ["Steering gear", "Good", "None"]])),
+                   ("Electrical", "24 V and 230 V systems in good order; shore power connection to be inspected."),
+                   ("Conclusion", "The vessel is in good condition and suitable for its intended use, subject to the "
+                    "recommendations above. Surveyor: J.-M. Castel, Méditerranée Marine Surveyors.")],
+        "mgmt_q2": [("Income statement Q2 2026 (EUR thousand)", ("table", [("Line", 70 * R.mm, "l"), ("Q2 2026", 30 * R.mm, "r"),
+                     ("Q2 2025", 30 * R.mm, "r")],
+                     [["Management fees", "912", "874"], ["Recharges to owners", "341", "318"], ["Personnel costs", "(392)", "(371)"],
+                      ["Office and IT costs", "(61)", "(58)"], ["Operating result", "800", "763"]])),
+                    ("Key risks", "Concentration on three owners; dependence on key crew; IT security incidents (phishing).")],
+        "audit": [("Responsabilités", "La direction est responsable de l'établissement des comptes et du contrôle interne. "
+                   "L'auditeur exprime une opinion sur les comptes annuels."),
+                  ("Équipe", "Associé signataire, un manager et deux auditeurs ; interlocuteur principal : Claire Martin."),
+                  ("Contrôle interne", "Les travaux intérimaires porteront notamment sur le cycle achats-fournisseurs : "
+                   "séparation des tâches, approbation des commandes, modification des coordonnées bancaires, rapprochements "
+                   "bancaires et procédures de clôture.")],
+    }
     for key, t, title, issuer, d, lang, sections in noise:
+        sections = sections + extra.get(key, [])
         add(f"noise:{key}", t, title, issuer, "internal" if issuer == "Azur Marine Services S.A.M." else E["AMS"]["name"], d, lang,
             lambda p, title=title, issuer=issuer, sections=sections, d=d: R.render_text_doc(p, title, issuer, sections, d))
 
@@ -575,7 +764,7 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as td:
         for n, s in enumerate(specs, 1):
             doc_id = f"acc_doc_{n:03d}"
-            out = DOCS / f"{doc_id}.pdf"
+            out = DOCS / f"{doc_id}.{s.ext}"
             if s.scanned:
                 native = Path(td) / f"{doc_id}.pdf"
                 s.draw(native)
@@ -584,7 +773,7 @@ def main() -> int:
                 pages = page_count(native)
             else:
                 s.draw(out)
-                pages = page_count(out)
+                pages = page_count(out) if s.ext == "pdf" else 1
             data = out.read_bytes()
             manifest.append(dict(document_id=doc_id, filename=out.name, key=s.key, document_type=s.doc_type, title=s.title,
                                  issuer=s.issuer, addressee=s.addressee, document_date=s.doc_date.isoformat(),

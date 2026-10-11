@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from common import iban_valid
+from common import eml_text, iban_valid
 from ragbench.dataset import load_dataset
 from ragbench.evaluation.qa import fact_present
 from world import SUPPLIERS, build_world, ledger_balance, open_items, september_journal
@@ -55,7 +55,11 @@ def test_world_planted_anomalies(world):
 
 def test_corpus_manifest_matches_files():
     m = json.loads((ROOT / "corpus" / "manifest.json").read_text("utf-8"))
-    assert m["n_documents"] == len(m["documents"]) == len(list((ROOT / "corpus" / "documents").glob("*.pdf")))
+    assert m["n_documents"] == len(m["documents"]) == len(list((ROOT / "corpus" / "documents").iterdir()))
+    kinds = {d["filename"].rsplit(".", 1)[1] for d in m["documents"]}
+    assert kinds == {"pdf", "eml"}
+    assert all(d["filename"].endswith(".eml") == (d["document_type"] == "email") for d in m["documents"])
+    assert any(d["pages"] >= 3 for d in m["documents"]) and any(d["pages"] == 1 for d in m["documents"])
     for d in m["documents"]:
         data = (ROOT / "corpus" / "documents" / d["filename"]).read_bytes()
         assert hashlib.sha256(data).hexdigest() == d["sha256"], d["filename"]
@@ -86,3 +90,11 @@ def test_dataset_does_not_leak_answers_into_questions(rows):
 def test_validator_passes():
     out = subprocess.run([sys.executable, str(ROOT / "tools" / "validate.py")], capture_output=True, text=True)
     assert out.returncode == 0, out.stdout[-2000:] + out.stderr[-2000:]
+
+
+def test_eml_messages_are_parseable():
+    m = json.loads((ROOT / "corpus" / "manifest.json").read_text("utf-8"))
+    for d in m["documents"]:
+        if d["filename"].endswith(".eml"):
+            text = eml_text(ROOT / "corpus" / "documents" / d["filename"])
+            assert text.startswith("From: ") and "Subject: " in text and len(text) > 200, d["filename"]

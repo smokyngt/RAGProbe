@@ -144,7 +144,8 @@ class Doc:
 
     # composite elements
     def table(self, x, y, cols, rows, head_fill=NAVY, head_color=white, f="Sans", fb="Sans-B", size=8, row_h=13,
-              zebra=LIGHT, grid=None, head=True, bold_rows=(), bottom=40, on_break=None, head_size=None):
+              zebra=LIGHT, grid=None, head=True, bold_rows=(), bottom=40, on_break=None, head_size=None,
+              muted_rows=()):
         """cols = [(title, width, align)], rows = [[str, ...]]; returns y below the table. Paginates via on_break."""
         total_w = sum(w for _, w, _ in cols)
 
@@ -161,7 +162,8 @@ class Doc:
 
         y = draw_head(y)
         for n, row in enumerate(rows):
-            if y - row_h < bottom and on_break:
+            need = row_h * (2 if (n + 1) in muted_rows else 1)  # keep an operation with its detail line
+            if y - need < bottom and on_break:
                 y = draw_head(on_break())
             if zebra is not None and n % 2 == 1:
                 self.rect(x, y - row_h + 3, total_w, row_h, fill=zebra)
@@ -169,9 +171,11 @@ class Doc:
                 self.hline(x, x + total_w, y - row_h + 3, grid, 0.4)
             cx = x
             font = fb if n in bold_rows else f
+            muted = n in muted_rows
             for (title, w, al), val in zip(cols, row):
                 tx = cx + 3 if al == "l" else (cx + w - 3 if al == "r" else cx + w / 2)
-                self.text(tx, y - row_h + 7, val, font, size, black, al, maxw=w - 5)
+                self.text(tx + (8 if muted and al == "l" else 0), y - row_h + 7, val, font, size - (0.8 if muted else 0),
+                          GREY if muted else black, al, maxw=w - 5)
                 cx += w
             y -= row_h
         return y
@@ -306,7 +310,87 @@ def pct(rate: Decimal, num: str) -> str:
 
 # ---------------------------------------------------------------- purchase documents
 
-def render_invoice(path: Path, inv, entities, w, cust_no="AZM-0041", seed=0):
+def terms_of_sale(s) -> list[tuple[str, str]]:
+    """Supplier's general terms of sale, printed overleaf (page 2) by suppliers who do so."""
+    city = s.city.split(" ", 1)[-1].split(" (")[0]
+    if s.lang == "fr":
+        return [
+            ("1. Champ d'application", f"Les présentes conditions générales de vente s'appliquent à toutes les ventes de {s.name}. "
+             "Toute commande implique l'acceptation sans réserve des présentes conditions, qui prévalent sur les conditions "
+             "d'achat du client sauf accord écrit."),
+            ("2. Commandes", "Les commandes ne sont définitives qu'après confirmation écrite. Toute modification ou annulation "
+             "doit être acceptée par écrit ; les marchandises spécifiques ne sont ni reprises ni échangées."),
+            ("3. Prix", "Les prix s'entendent hors taxes, départ entrepôt, au tarif en vigueur au jour de la commande. Les frais "
+             "de livraison sont facturés en sus lorsqu'ils figurent sur le devis."),
+            ("4. Livraison", "Les délais de livraison sont indicatifs. Les livraisons partielles sont autorisées et donnent lieu "
+             "à un bon de livraison distinct ; le reliquat est livré dès disponibilité. Les réserves doivent être portées sur "
+             "le bon de livraison et confirmées par écrit sous 48 heures."),
+            ("5. Facturation", "La facture est établie à la livraison ou à l'achèvement des travaux. Un acompte peut être exigé "
+             "à la commande lorsque le devis le prévoit ; il est déduit de la facture finale."),
+            ("6. Paiement", f"Sauf stipulation contraire, les factures sont payables à {s.terms} jours date de facture, par "
+             "virement sur le compte indiqué sur la facture. Aucun changement de coordonnées bancaires n'est notifié par "
+             "simple courriel : toute modification est confirmée par courrier signé."),
+            ("7. Retard de paiement", "Tout retard entraîne de plein droit des pénalités au taux de trois fois le taux "
+             "d'intérêt légal et une indemnité forfaitaire pour frais de recouvrement de 40 € (art. L441-10 et D441-5 du Code "
+             "de commerce)."),
+            ("8. Réserve de propriété", "Les marchandises restent la propriété du vendeur jusqu'au paiement intégral du prix. "
+             "Les risques sont transférés à l'acheteur dès la livraison."),
+            ("9. Garantie", "Les produits sont garantis contre tout vice de fabrication pendant 12 mois à compter de la livraison. "
+             "La garantie est exclue en cas de mauvaise utilisation, d'usure normale ou d'intervention d'un tiers."),
+            ("10. Responsabilité", "La responsabilité du vendeur est limitée au montant de la commande. Le vendeur ne saurait "
+             "être tenu responsable des dommages indirects, notamment des pertes d'exploitation ou d'affrètement."),
+            ("11. Données personnelles", "Les données collectées sont traitées pour la gestion des commandes et de la "
+             "facturation, conformément au règlement (UE) 2016/679."),
+            ("12. Juridiction", f"Les présentes conditions sont soumises au droit français. Tout litige relève de la compétence "
+             f"exclusive du tribunal de commerce du siège du vendeur ({city})."),
+        ]
+    return [
+        ("1. Scope", f"These general terms of sale apply to all supplies of goods and services by {s.name}. They prevail over "
+         "the purchaser's terms unless otherwise agreed in writing."),
+        ("2. Orders", "Orders are binding only once confirmed in writing by the seller. Cancellation of special-order items is "
+         "not accepted."),
+        ("3. Prices", "Prices are net of VAT and in euros. For intra-EU supplies to VAT-registered customers, VAT is accounted "
+         "for by the customer under the reverse-charge mechanism where applicable."),
+        ("4. Delivery", "Delivery dates are estimates. Partial deliveries are permitted and are documented by a separate "
+         "delivery note; back-ordered items follow as soon as available. Shortages or visible damage must be noted on the "
+         "delivery note or CMR and confirmed in writing within 48 hours."),
+        ("5. Invoicing", "Invoices are issued on dispatch of the goods or completion of the services. A deposit may be required "
+         "on order where the quotation so provides; it is deducted from the final invoice."),
+        ("6. Payment", f"Unless otherwise agreed, invoices are payable {s.terms} days net from invoice date by bank transfer to "
+         "the account stated on the invoice. Our bank details are never changed by e-mail alone; any change is confirmed by a "
+         "signed letter."),
+        ("7. Late payment", "Overdue amounts bear interest at the statutory rate applicable to commercial transactions plus a "
+         "fixed recovery fee of EUR 40.00 per invoice (Directive 2011/7/EU)."),
+        ("8. Retention of title", "Goods remain the property of the seller until full payment. Risk passes to the purchaser on "
+         "delivery."),
+        ("9. Warranty", "Goods are warranted against manufacturing defects for 12 months from delivery. The warranty excludes "
+         "wear and tear, improper installation and use outside the manufacturer's specifications."),
+        ("10. Liability", "The seller's liability is limited to the value of the goods concerned. The seller is not liable for "
+         "indirect loss, including loss of charter or loss of use of a vessel."),
+        ("11. Force majeure", "Neither party is liable for delays caused by events beyond its reasonable control."),
+        ("12. Law and jurisdiction", f"These terms are governed by the law of the seller's registered office. The courts of "
+         f"{city} have exclusive jurisdiction."),
+    ]
+
+
+def _terms_page(doc, s, title, number):
+    W, H = doc.W, doc.H
+    left, right = 18 * mm, W - 18 * mm
+    fr = s.lang == "fr"
+    doc.new_page()
+    doc.text(left, H - 18 * mm, s.name, "Sans-B", 11, HexColor(s.color))
+    doc.text(right, H - 18 * mm, f"{title} {number}", "Sans", 8, GREY, "r")
+    doc.hline(left, right, H - 20.5 * mm, HexColor(s.color), 0.8)
+    doc.text(left, H - 29 * mm, "CONDITIONS GÉNÉRALES DE VENTE" if fr else "GENERAL TERMS OF SALE", "Sans-B", 12)
+    y = H - 38 * mm
+    for head, body in terms_of_sale(s):
+        doc.text(left, y, head, "Sans-B", 8.2)
+        y = doc.para(left, y - 10, body, right - left, "Sans", 7.6, leading=10) - 5
+    doc.hline(left, right, 17 * mm, RULE)
+    doc.text(left, 13.5 * mm, f"{s.name} · {s.reg}", "Sans", 6.8, GREY)
+
+
+def render_invoice(path: Path, inv, entities, w, cust_no="AZM-0041", seed=0, terms_page=False):
     s = inv.s
     lang = s.lang
     T = LBL[lang]
@@ -520,6 +604,8 @@ def render_invoice(path: Path, inv, entities, w, cust_no="AZM-0041", seed=0):
         doc.c.restoreState()
     if inv.stamp:
         doc.stamp(right - 62 * mm, 40 * mm, ["AZUR MARINE SERVICES", inv.stamp, "ACCOUNTS PAYABLE"], color=RED)
+    if terms_page:
+        _terms_page(doc, s, title.title() if lang == "en" else title.capitalize(), inv.number)
     doc.save()
 
 
@@ -582,12 +668,49 @@ def render_po(path: Path, po, sup, entities, w):
     doc.text(left + 105 * mm, y - 20, "Signature", "Sans", 8, GREY)
     doc.signature(left + 105 * mm, y - 52, seed=po.number + po.approver)
     y -= 84
+    gpc = po.net > 5000
     doc.para(left, y, "This purchase order is governed by the General Purchasing Conditions of Azur Marine Services "
-             "S.A.M. (version 2025-01), available on request. Partial deliveries must be notified in writing. The "
-             "supplier shall invoice only the quantities actually delivered.", right - left, "Sans", 7, color=GREY)
+             "S.A.M. (version 2025-01)" + (", printed overleaf. " if gpc else ", available on request. ") +
+             "Partial deliveries must be notified in writing. The supplier shall invoice only the quantities actually "
+             "delivered.", right - left, "Sans", 7, color=GREY)
     doc.hline(left, right, 17 * mm, RULE)
     doc.text(left, 13.5 * mm, f"{e['name']} · {e['capital']} · {e['reg']} · {e['phone']}", "Sans", 6.8, GREY)
+    if gpc:
+        doc.new_page()
+        doc.rect(0, H - 6 * mm, W, 6 * mm, fill=NAVY)
+        doc.text(left, H - 16 * mm, "GENERAL PURCHASING CONDITIONS – version 2025-01", "Sans-B", 12, NAVY)
+        doc.text(right, H - 16 * mm, po.number, "Sans", 8, GREY, "r")
+        y = H - 26 * mm
+        for head, body in GPC:
+            doc.text(left, y, head, "Sans-B", 8.2, NAVY)
+            y = doc.para(left, y - 10, body, right - left, "Sans", 7.6, leading=10) - 5
+        doc.hline(left, right, 17 * mm, RULE)
+        doc.text(left, 13.5 * mm, f"{e['name']} · {e['capital']} · {e['reg']} · {e['phone']}", "Sans", 6.8, GREY)
     doc.save()
+
+
+GPC = [
+    ("1. Acceptance", "Any delivery or performance under this purchase order implies acceptance of these conditions, which "
+     "prevail over the supplier's general terms of sale."),
+    ("2. Price", "Prices stated on the purchase order are firm and include packaging. No additional charge is accepted "
+     "without a written amendment to the purchase order."),
+    ("3. Delivery and acceptance", "Goods are delivered to the address stated on the purchase order, with a delivery note "
+     "quoting the purchase order number. Quantities are checked on board; the signed delivery note records the quantities "
+     "actually received. Partial deliveries must be announced and each delivery documented separately."),
+    ("4. Services", "Services and works on board are evidenced by a service report signed by the Master or the Chief "
+     "Engineer stating the date of completion."),
+    ("5. Invoicing", "One invoice per purchase order, quoting its number, addressed to accounts.payable@azurmarine.example. "
+     "Only quantities actually delivered may be invoiced. Invoices must carry all mentions required by applicable VAT law."),
+    ("6. Payment", "Payment is made by bank transfer at the term stated on the purchase order. No deposit or prepayment is "
+     "due unless expressly stated on the purchase order. Payments are only made to the bank account recorded in our "
+     "supplier master file; changes must be confirmed by a signed letter and are verified by telephone."),
+    ("7. Warranty", "The supplier warrants that goods are new, fit for marine use and compliant with the applicable class, "
+     "flag and SOLAS requirements. Defective goods are replaced at the supplier's cost."),
+    ("8. Confidentiality", "Information on the vessels, their owners and itineraries is strictly confidential."),
+    ("9. Sanctions and compliance", "The supplier complies with applicable anti-corruption and sanctions regulations."),
+    ("10. Law", "These conditions are governed by Monegasque law; the courts of the Principality of Monaco have exclusive "
+     "jurisdiction."),
+]
 
 
 def render_dn(path: Path, dn, sup, entities, w):
@@ -688,7 +811,12 @@ def render_quote(path: Path, kind: str, number: str, d: dt.date, sup, lines, ent
 def render_supplier_statement(path: Path, sup, entities, rows, d: dt.date, balance, note=""):
     """rows = [(date, ref, description, debit, credit)] from the supplier's books (customer account)."""
     e = entities["AMS"]
-    doc = Doc(path, f"Statement of account {sup.name} {fdate(d)}", sup.name)
+
+    def page_label(c, p, total):
+        c.setFont("Sans", 7)
+        c.setFillColor(GREY)
+        c.drawRightString(A4[0] - 18 * mm, 10 * mm, f"Page {p}/{total}")
+    doc = Doc(path, f"Statement of account {sup.name} {fdate(d)}", sup.name, page_label=page_label)
     W, H = doc.W, doc.H
     left, right = 18 * mm, W - 18 * mm
     accent = HexColor(sup.color)
@@ -703,8 +831,11 @@ def render_supplier_statement(path: Path, sup, entities, rows, d: dt.date, balan
     y = H - 70 * mm
     rr = [[fdate(a, sup.dstyle), b, c, fmt(dd, sup.num) if dd else "", fmt(cc, sup.num) if cc else ""] for a, b, c, dd, cc in rows]
     y = doc.table(left, y, [("Date", 22 * mm, "l"), ("Reference", 34 * mm, "l"), ("Description", 70 * mm, "l"),
-                            ("Debit", 24 * mm, "r"), ("Credit", 24 * mm, "r")], rr, head_fill=accent, size=8, row_h=14)
+                            ("Debit", 24 * mm, "r"), ("Credit", 24 * mm, "r")], rr, head_fill=accent, size=8, row_h=14,
+                  bottom=28 * mm, on_break=lambda: _stmt_break(doc, sup, d))
     y -= 12
+    if y < 40 * mm:
+        y = _stmt_break(doc, sup, d) - 10
     doc.rect(right - 80 * mm, y - 6, 80 * mm, 17, fill=accent)
     doc.text(right - 77 * mm, y, ("Solde dû au " if fr else "Balance due at ") + fdate(d, sup.dstyle), "Sans-B", 9, white)
     doc.text(right - 3, y, f"EUR {fmt(balance, sup.num)}", "Sans-B", 9, white, "r")
@@ -714,6 +845,16 @@ def render_supplier_statement(path: Path, sup, entities, rows, d: dt.date, balan
     doc.hline(left, right, 17 * mm, RULE)
     doc.text(left, 13.5 * mm, f"{sup.name} · {sup.reg} · IBAN {sup.iban} · BIC {sup.bic}", "Sans", 6.8, GREY)
     doc.save()
+
+
+def _stmt_break(doc, sup, d):
+    doc.hline(18 * mm, doc.W - 18 * mm, 17 * mm, RULE)
+    doc.text(18 * mm, 13.5 * mm, f"{sup.name} · {sup.reg} · IBAN {sup.iban} · BIC {sup.bic}", "Sans", 6.8, GREY)
+    doc.new_page()
+    doc.text(18 * mm, doc.H - 18 * mm, sup.name, "Sans-B", 11, HexColor(sup.color))
+    doc.text(doc.W - 18 * mm, doc.H - 18 * mm, ("Relevé de compte au " if sup.lang == "fr" else "Statement of account at ")
+             + fdate(d, sup.dstyle) + (" (suite)" if sup.lang == "fr" else " (continued)"), "Sans", 8, GREY, "r")
+    return doc.H - 28 * mm
 
 
 # ---------------------------------------------------------------- bank
@@ -750,9 +891,13 @@ def render_bank_statement(path: Path, lines, opening, d1, d2, number, bank, hold
     balance = opening
     tot_d, tot_c = D(0), D(0)
     rows = [[fdate(d1), "SOLDE CRÉDITEUR AU " + fdate(d1 - dt.timedelta(days=1)), "", "", fmt(opening, "fr")]]
+    muted = set()
     for b in lines:
         rows.append([fdate(b.date), b.label, fdate(b.vdate), fmt(b.debit, "fr") if b.debit else "",
                      fmt(b.credit, "fr") if b.credit else ""])
+        if b.detail:
+            muted.add(len(rows))
+            rows.append(["", b.detail, "", "", ""])
         balance += b.credit - b.debit
         tot_d += b.debit
         tot_c += b.credit
@@ -766,8 +911,8 @@ def render_bank_statement(path: Path, lines, opening, d1, d2, number, bank, hold
         return header()
 
     y = header()
-    y = doc.table(left, y, cols, rows, head_fill=burgundy, size=7.6, row_h=12.2, bottom=30 * mm, on_break=brk,
-                  bold_rows=(0,))
+    y = doc.table(left, y, cols, rows, head_fill=burgundy, size=7.8, row_h=12.6, bottom=30 * mm, on_break=brk,
+                  bold_rows=(0,), zebra=None, muted_rows=muted)
     y -= 6
     if y < 45 * mm:
         y = brk()
@@ -842,38 +987,48 @@ def _report_doc(path, title, subtitle, entity, edited: dt.datetime, creator="Com
 
 
 def render_journal(path, entries, month_label, entity, edited):
-    doc, left, right, header = _report_doc(path, "JOURNAL DES ACHATS (AC)", f"Période : {month_label} · tri par date de "
-                                           "saisie", entity, edited)
-    cols = [("Pièce", 22 * mm, "l"), ("Date", 18 * mm, "l"), ("Compte", 18 * mm, "l"), ("Fournisseur", 52 * mm, "l"),
-            ("N° facture", 30 * mm, "l"), ("Libellé", 54 * mm, "l"), ("Charge", 15 * mm, "l"), ("HT", 22 * mm, "r"),
-            ("TVA", 19 * mm, "r"), ("TTC", 23 * mm, "r")]
-    rows, th, tv, tt = [], D(0), D(0), D(0)
+    """Purchase journal in double entry: expense (debit), VAT (debit; reverse charge both sides), supplier 401 (credit)."""
+    doc, left, right, header = _report_doc(path, "JOURNAL DES ACHATS (AC)", f"Période : {month_label} · écritures "
+                                           "en partie double, tri par date de saisie", entity, edited)
+    cols = [("Pièce", 22 * mm, "l"), ("Date", 18 * mm, "l"), ("Compte", 18 * mm, "l"), ("Intitulé du compte", 46 * mm, "l"),
+            ("N° facture", 30 * mm, "l"), ("Libellé", 84 * mm, "l"), ("Débit", 27 * mm, "r"), ("Crédit", 27 * mm, "r")]
+    names = {"445660": "TVA déductible sur ABS", "445662": "TVA déductible autoliquidée", "445200": "TVA due autoliquidée"}
+    rows, bold, td, tc, t401 = [], [], D(0), D(0), D(0)
     for piece, d, i in entries:
-        sgn = i.sign
-        net, vat, tot = i.net * sgn, i.vat * sgn, i.total * sgn
-        if i.s.regime in ("RC",):
-            vat_s = "autoliq."
-        else:
-            vat_s = fmt(vat, "fr")
-        label = ("Avoir " if i.kind == "credit_note" else "Fact. ") + i.lines[0].desc
-        rows.append([piece, fdate(d), i.s.account, i.s.name, i.number, label, i.s.expense, fmt(net, "fr"), vat_s,
-                     fmt(tot, "fr")])
-        th, tv, tt = th + net, tv + (vat if i.s.regime != "RC" else 0), tt + tot
+        cn = i.kind == "credit_note"
+        lab = f"{'Avoir' if cn else 'Fact.'} {i.s.name} – {i.lines[0].desc}"
+        legs = [(i.s.expense, f"Achats {i.s.activity.lower()}", i.net, "D")]
+        if i.s.regime in ("VAT20", "MIXED"):
+            legs.append(("445660", names["445660"], i.vat, "D"))
+        elif i.s.regime == "RC":
+            rc = (i.net * D("0.20")).quantize(D("0.01"))
+            legs += [("445662", names["445662"], rc, "D"), ("445200", names["445200"], rc, "C")]
+        legs.append((i.s.account, i.s.name, i.total, "C"))
+        for acc, accname, amt, side in legs:
+            if cn:
+                side = "C" if side == "D" else "D"
+            deb, cre = (amt, D(0)) if side == "D" else (D(0), amt)
+            td, tc = td + deb, tc + cre
+            if acc == i.s.account:
+                t401 += cre - deb
+            rows.append([piece, fdate(d), acc, accname, i.number, lab, fmt(deb, "fr") if deb else "",
+                         fmt(cre, "fr") if cre else ""])
 
     def brk():
         doc.new_page()
         return header()
-    y = doc.table(left, header(), cols, rows, head_fill=NAVY, size=7.2, row_h=12.5, bottom=22 * mm, on_break=brk)
+    y = doc.table(left, header(), cols, rows, head_fill=NAVY, size=7.0, row_h=11.8, bottom=22 * mm, on_break=brk)
     y -= 4
-    if y < 30 * mm:
+    if y < 34 * mm:
         y = brk()
     doc.hline(left, right, y + 2, black, 0.6)
-    doc.text(left + 2, y - 8, f"TOTAL JOURNAL AC – {month_label} ({len(entries)} écritures)", "Sans-B", 8)
-    doc.text(right - 42 * mm - 3, y - 8, fmt(th, "fr"), "Sans-B", 8, align="r")
-    doc.text(right - 23 * mm - 3, y - 8, fmt(tv, "fr"), "Sans-B", 8, align="r")
-    doc.text(right - 3, y - 8, fmt(tt, "fr"), "Sans-B", 8, align="r")
-    doc.text(left + 2, y - 22, "autoliq. = TVA autoliquidée (acquisitions intracommunautaires et prestations UE), "
-             "comptabilisée en 445200 / 445660 pour un montant net nul.", "Sans", 7, GREY)
+    doc.text(left + 2, y - 8, f"TOTAL JOURNAL AC – {month_label}", "Sans-B", 8)
+    doc.text(right - 27 * mm - 3, y - 8, fmt(td, "fr"), "Sans-B", 8, align="r")
+    doc.text(right - 3, y - 8, fmt(tc, "fr"), "Sans-B", 8, align="r")
+    doc.text(left + 2, y - 21, f"TOTAL TTC CRÉDITÉ AUX COMPTES FOURNISSEURS (401) – {len(entries)} pièces : {fmt(t401, 'fr')}",
+             "Sans-B", 8)
+    doc.text(left + 2, y - 34, "445662 / 445200 : TVA autoliquidée sur acquisitions et prestations intracommunautaires "
+             "(montant net nul).", "Sans", 7, GREY)
     doc.save()
 
 
@@ -1010,15 +1165,15 @@ def render_text_doc(path, title, issuer, sections, d: dt.date, ref="", subtitle=
         if y < 40 * mm:
             y = brk()
         if heading:
-            doc.text(left, y, heading, "Sans-B", 10.5, accent)
-            y -= 15
+            doc.text(left, y, heading, "Sans-B", 11, accent)
+            y -= 17
         items = body if isinstance(body, list) else [body]
         for item in items:
             if isinstance(item, tuple) and item[0] == "table":
                 _, cols, rows = item
-                y = doc.table(left, y, cols, rows, head_fill=accent, size=7.8, row_h=13, bottom=25 * mm, on_break=brk) - 8
+                y = doc.table(left, y, cols, rows, head_fill=accent, size=8.4, row_h=15, bottom=25 * mm, on_break=brk) - 10
             else:
-                y = doc.para(left, y, item, right - left, "Sans", 9.2, leading=13, bottom=22 * mm, on_break=brk) - 5
+                y = doc.para(left, y, item, right - left, "Sans", 10, leading=15, bottom=22 * mm, on_break=brk) - 7
         y -= 6
     doc.save()
 
@@ -1058,3 +1213,39 @@ def render_sales_invoice(path, number, d, client, lines, entity):
     doc.text(left, 13.5 * mm, f"{entity['name']} · {entity['capital']} · {entity['reg']} · VAT ID {entity['vat']}",
              "Sans", 6.8, GREY)
     doc.save()
+
+
+# ---------------------------------------------------------------- e-mail (.eml, RFC 5322)
+
+def write_eml(path: Path, frm, to, d: dt.datetime, subject, body, cc="", sender_name="", lang="en", reply_to="",
+              in_reply_to="", mailer="Microsoft Outlook 16.0"):
+    """A real .eml message: headers, text/plain and text/html alternatives, deterministic Message-ID, no attachment
+    (attachments are filed as separate documents of the corpus, as a document management system does)."""
+    import email.policy
+    import hashlib
+    import html
+    from email.message import EmailMessage
+    from email.utils import format_datetime, formataddr
+
+    tz = dt.timezone(dt.timedelta(hours=2 if d < dt.datetime(2026, 10, 25) else 1))
+    domain = frm.split("@")[1]
+    mid = hashlib.sha1(f"{frm}{d.isoformat()}{subject}".encode()).hexdigest()[:24]
+    m = EmailMessage()
+    m["Message-ID"] = f"<{mid}@{domain}>"
+    m["Date"] = format_datetime(d.replace(tzinfo=tz))
+    m["From"] = formataddr((sender_name, frm)) if sender_name else frm
+    m["To"] = to
+    if cc:
+        m["Cc"] = cc
+    if reply_to:
+        m["Reply-To"] = reply_to
+    if in_reply_to:
+        m["In-Reply-To"] = in_reply_to
+    m["Subject"] = subject
+    m["Content-Language"] = "fr-FR" if lang == "fr" else "en-GB"
+    m["X-Mailer"] = mailer
+    m.set_content(body, charset="utf-8")
+    paras = "".join(f"<p>{html.escape(p).replace(chr(10), '<br>')}</p>" for p in body.split("\n\n"))
+    m.add_alternative(f"<html><body style=\"font-family:Calibri,Arial,sans-serif;font-size:11pt\">{paras}</body></html>",
+                      subtype="html", charset="utf-8")
+    path.write_bytes(m.as_bytes(policy=email.policy.SMTP))

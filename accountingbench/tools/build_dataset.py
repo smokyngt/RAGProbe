@@ -22,7 +22,7 @@ from decimal import Decimal
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from common import D, ROOT, accept_amount, date, fdate, fmt  # noqa: E402
+from common import D, ROOT, accept_amount, date, document_pages, fdate, fmt  # noqa: E402
 from world import (LME_NEW_IBAN, OUTSIDE_PAYEES, RANK, SUPPLIERS, build_world, journal,  # noqa: E402
                    ledger_balance, open_items, required_approver, september_journal)
 
@@ -34,14 +34,7 @@ SEP_END = date(30, 9)
 
 def pages_of(doc_id: str) -> list[str]:
     if doc_id not in _PAGES:
-        d = next(x for x in MANIFEST["documents"] if x["document_id"] == doc_id)
-        if d["scanned"]:
-            text = (ROOT / "corpus" / "ocr_reference" / f"{doc_id}.txt").read_text("utf-8")
-        else:
-            text = subprocess.run(["pdftotext", "-layout", str(ROOT / "corpus" / "documents" / d["filename"]), "-"],
-                                  capture_output=True, text=True, check=True).stdout
-        pages = text.split("\f")
-        _PAGES[doc_id] = pages[:-1] if pages and pages[-1] == "" else pages
+        _PAGES[doc_id] = document_pages(next(x for x in MANIFEST["documents"] if x["document_id"] == doc_id))
     return _PAGES[doc_id]
 
 
@@ -471,7 +464,8 @@ def main() -> int:
       key_facts=[kf("invoice total", m1182.total), kf("payment", pm.amount), kf("payment date", date(22, 9)),
                  kf("balance due", m1182.total - pm.amount), kf("no document", "NO DOCUMENT FOUND", ["no document"])],
       evidence=ev("inv:INV-2026-1182", ("TOTAL EUR", "26,400.00")) + ev("bank:2026-09", "INV 1182")
-      + ev(f"po:{po_num['mfs_sep']}", "Single delivery by road tanker") + ev("dn:MFS-BDN-26-0911", ("Vessel", "Aurelia")),
+      + ev(f"po:{po_num['mfs_sep']}", "Single delivery by road tanker") + ev("dn:MFS-BDN-26-0911", ("Vessel", "Aurelia"))
+      + ev("mail:marina", "split between two vessels"),
       calculation={"inputs": {"invoice": float(m1182.total), "payment": float(pm.amount)}, "operation": "invoice - payment",
                    "result": float(m1182.total - pm.amount),
                    "input_sources": {"invoice": src("26,400.00", 0), "payment": src("13 200,00", 1)}},
@@ -560,38 +554,39 @@ def main() -> int:
       control="Complete review of the September purchase journal",
       rule="Checks (1) document found, (2) PO for PO-required suppliers, (3) DN/service report and quantities, (4) VAT "
            "arithmetic, (5) not booked earlier in the journal.",
-      question="Review every line of the September 2026 purchase journal (AC) of Azur Marine Services S.A.M. First state how "
-               "many lines the journal contains and its total including VAT. Then, for each line, find the invoice document "
+      question="Review every entry of the September 2026 purchase journal (AC) of Azur Marine Services S.A.M. First state how "
+               "many entries (pièces) the journal contains and the total credited to supplier accounts (amount including "
+               "VAT). Then, for each entry, find the invoice document "
                "in the file and apply these checks: (1) the document is in the file; (2) for suppliers marked \"BC requis = "
                "Oui\" in the supplier master file, a purchase order dated on or before the invoice exists; (3) for goods and "
                "on-board works ordered by PO (software licences excluded), a delivery note or service report exists and no "
                "invoiced quantity exceeds the quantity delivered (invoice lines that do not appear on the delivery note, such as delivery, freight or installation labour, are excluded); (4) where the "
                "invoice shows a VAT amount, it equals net amount x VAT rate to the cent; (5) the invoice number does not "
-               "already appear on an earlier line of the journal. Report every line failing a check (piece, supplier, "
-               "invoice number, failed check, amount at stake), every line whose document you could not find, and the "
-               "number of lines that pass all checks. If you cannot complete the review, say exactly which lines were not "
-               "reviewed.",
+               "already appear on an earlier entry of the journal. Report every entry failing a check (piece, supplier, "
+               "invoice number, failed check, amount at stake), every entry whose document you could not find, and the "
+               "number of entries that pass all checks. If you cannot complete the review, say exactly which entries were "
+               "not reviewed.",
       natural="Can you do a complete control review of the September 2026 purchase journal?",
-      answer=f"The September 2026 purchase journal has 27 lines, total EUR {e(jtot)} incl. VAT (the SeaGlass credit note "
-             f"counted negative). Lines failing a check: AC-2609-010 Northstar Yacht Services NYS-2026-114 – (2) no purchase "
+      answer=f"The September 2026 purchase journal has 27 entries (pièces); total credited to supplier accounts "
+             f"EUR {e(jtot)} incl. VAT (net of the SeaGlass credit note). Entries failing a check: AC-2609-010 Northstar Yacht Services NYS-2026-114 – (2) no purchase "
              f"order, EUR 3,540.00; AC-2609-011 Provence Hydraulique F26-02214 – "
              f"(3) 40 hoses invoiced vs 36 delivered (delivery note BL-PH-26-1187), EUR {e(qty_stake)} net "
              f"(EUR {e(qty_stake * D('1.2'))} incl. VAT); AC-2609-016 Quick Marine Repairs QMR 0912 – (2) no purchase "
              f"order, EUR 1,680.00; AC-2609-017 Sud Marine Électricité SME-26-0457 – (4) VAT shown EUR 1,846.00 instead "
              f"of EUR 1,864.00, EUR 18.00; AC-2609-022 Côte d'Azur Ship Chandlers FA-2026-0917 – (5) already booked as "
              f"AC-2609-007, EUR 2,862.00. Document not found: AC-2609-027 Le Marché du Port LMP-26-1297 "
-             f"(EUR 1,884.60). The other 21 lines pass all checks. All 27 lines were reviewed.",
-      key_facts=[kf("journal lines", "27"), kf("journal total", jtot), kf("no PO Northstar", "NYS-2026-114"),
+             f"(EUR 1,884.60). The other 21 entries pass all checks. All 27 entries were reviewed.",
+      key_facts=[kf("journal entries", "27"), kf("journal total", jtot), kf("no PO Northstar", "NYS-2026-114"),
                  kf("quantity issue", "F26-02214"), kf("quantity at stake", qty_stake), kf("VAT error", "SME-26-0457"),
-                 kf("duplicate", "AC-2609-022"), kf("document not found", "LMP-26-1297"), kf("lines passing", "21"),
+                 kf("duplicate", "AC-2609-022"), kf("document not found", "LMP-26-1297"), kf("entries passing", "21"),
                  kf("no PO QMR", "QMR 0912")],
-      evidence=ev("journal:9", "TOTAL JOURNAL AC", ("AC-2609-010", "NYS-2026-114"), ("AC-2609-027", "LMP-26-1297"))
+      evidence=ev("journal:9", "TOTAL TTC CRÉDITÉ", ("AC-2609-010", "NYS-2026-114"), ("AC-2609-027", "LMP-26-1297"))
       + ev("dn:BL-PH-26-1187", ("FHP-12-2", "Reliquat"), ("Flexible hydraulique", "40"))
       + ev("inv:SME-26-0457", ("TVA 20 %", "1 846,00"), ("Total HT", "9 320,00"))
       + ev("master", ("401NYS", "Oui"), ("401QMR", "Oui")),
       calculation=None,
-      output_format="journal line count and total; table of failing lines (piece | supplier | invoice | check | amount); "
-                    "documents not found; number of lines passing; coverage statement",
+      output_format="journal entry count and total; table of failing entries (piece | supplier | invoice | check | "
+                    "amount); documents not found; number of entries passing; coverage statement",
       anomalies=["A01", "A05", "A06", "A09", "A10", "A18"])
 
     # ============================================================== T9 invoices without PO
@@ -619,6 +614,7 @@ def main() -> int:
                  kf("Northstar paid date", pn.date), kf("QMR paid date", pq.date)],
       evidence=ev("master", ("401NYS", "Oui"), ("401QMR", "Oui")) + ev("inv:NYS-2026-114", ("Facture n°", "NYS-2026-114"))
       + ev("inv:QMR 0912", "INVOICE No 0912") + ev("dn:QMR-SR-0911", ("No.", "QMR-SR-0911"))
+      + ev("mail:captain", "no purchase order was raised")
       + ev("bank:2026-09", "NYS-2026-114", "QMR 0912"),
       calculation=None,
       output_format="table: supplier | invoice | date | amount | DN/service report (YES no. / NO) | paid (date, amount)",
@@ -792,7 +788,8 @@ def main() -> int:
                  kf("Var Pneumatique PO price", vpn.net), kf("Var Pneumatique delivery note", "VP-BL-26-0544")],
       evidence=ev("inv:INV-2026-0418", "RECEIVED 02/10/2026", ("Net total", "12,800.00"))
       + ev("inv:MRS-2026-0298", "RECEIVED 06 OCT 2026", ("Net total", "7,350.00"))
-      + ev("dn:VP-BL-26-0544", ("Date", "28/09/2026")) + ev(f"po:{vpn.number}", ("TOTAL NET AMOUNT", "3,920.00")),
+      + ev("dn:VP-BL-26-0544", ("Date", "28/09/2026")) + ev(f"po:{vpn.number}", ("TOTAL NET AMOUNT", "3,920.00"))
+      + ev("mail:med_0418", "Apologies for sending it late"),
       calculation={"inputs": {"mediterra": float(m418.net), "rigging": float(mrs.net), "var_pneumatique": float(vpn.net)},
                    "operation": "mediterra + rigging + var_pneumatique", "result": float(accr),
                    "input_sources": {"mediterra": src("12,800.00", 0), "rigging": src("7,350.00", 1),
@@ -850,6 +847,14 @@ def main() -> int:
     order = ["B1", "B2", "B3", "B4", "B5"] + [f"T{n}" for n in range(1, 16)]
     QUESTIONS.sort(key=lambda q: order.index(q["pilot"]))
     out_rows = []
+    for q in QUESTIONS:
+        c = q.get("calculation")
+        for name, srcd in (c or {}).get("input_sources", {}).items():
+            hits = [k for k, x in enumerate(q["evidence"]) if " ".join(srcd["raw"].split()) in " ".join(x["text"].split())]
+            if not hits:
+                raise SystemExit(f"{q['pilot']}: raw value {srcd['raw']!r} of {name} is in no evidence item")
+            if srcd["evidence_index"] not in hits:
+                srcd["evidence_index"] = hits[0]
     for n, q in enumerate(QUESTIONS, 1):
         multi = len({x["document_id"] for x in q["evidence"]}) > 1
         meta = {"type": q["type"], "difficulty": q["difficulty"], "requires_calculation": q.get("calculation") is not None,
@@ -859,6 +864,12 @@ def main() -> int:
                 "anomalies_tested": q["anomalies"]}
         if q.get("expected_rows"):
             meta["expected_rows"] = q["expected_rows"]
+        fm = list(meta["failure_modes"])
+        if any(len({x["page"] for x in q["evidence"] if x["document_id"] == d}) > 1 for d in {x["document_id"] for x in q["evidence"]}):
+            fm.append("split_across_pages")
+        if any(x["page"] >= 3 for x in q["evidence"]):
+            fm.append("deep_in_report")
+        meta["failure_modes"] = list(dict.fromkeys(fm))
         if q["type"] == "multi_document" and not multi:
             meta["type"] = "multi_evidence" if len(q["evidence"]) > 1 else "table"
         out_rows.append({"id": f"acc_q_{n:03d}", "question": q["question"], "question_natural": q["natural"],

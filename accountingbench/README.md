@@ -1,7 +1,7 @@
 # AccountingBench V1 — dataset card
 
 An accounts-payable benchmark for document assistants (Prosperify): **20 deterministic questions** over a **corpus of
-207 fictional but professional-grade documents** (210 pages, 20 of them image-only scans) from one company's September
+207 fictional but professional-grade documents** (187 PDFs, 264 pages: 154 single-page and 53 multi-page; 20 image-only scans; 20 e-mails as `.eml` files) from one company's September
 2026 close. It uses the **same JSON format as FinanceBench** (`finance_benchmark/`), so it can be run with the `ragbench` runner at
 the root of this repository or with any external runner.
 
@@ -20,7 +20,8 @@ The pilot's documents could not support a reliable test:
 | Invoices without VAT number, address, IBAN, PO, quantities or unit prices; one without VAT or due date | Invoices with the mandatory EU invoice mentions (art. 226 directive 2006/112/EC), 4 supplier layouts, line items, VAT summary, bank details, legal footer. The only non-compliant invoice (Quick Marine Repairs) is non-compliant on purpose and listed in the anomaly register |
 | A "scanned copy" that was a clean digital PDF | 20 real image-only scans (rotated, noisy, no text layer): OCR is actually tested |
 | Corrupted characters in a bank reference (`■■■FUEL 1182■■■`) | No accidental defects; every anomaly is planted on purpose and recorded |
-| File titles giving the answer away (`Email MarinaFuel Discrepancy`, `Sept_Final`) | Neutral file names (`acc_doc_001.pdf` … `acc_doc_207.pdf`) in a shuffled order |
+| File titles giving the answer away (`Email MarinaFuel Discrepancy`, `Sept_Final`) | Neutral file names (`acc_doc_001` … `acc_doc_207`) in a shuffled order |
+| Every document one page long; e-mails printed as PDFs | Documents as long as their real counterparts: multi-page bank statement (one detail line per operation), double-entry purchase journal (3 pages), AP ledger (4 pages), procurement policy (3 pages), supplier statements with history since January, invoices with the supplier's terms of sale overleaf, POs above EUR 5,000 with purchasing conditions overleaf; delivery notes, payment notices and small invoices stay single-page. E-mails are real `.eml` messages (headers, plain text + HTML), one message per file |
 | Open questions ("do a full review", "is the rest expected later or split?") with no single answer | One verifiable answer per question; any judgement is settled by a rule stated in the question |
 | Totals that could not be traced (`Total paid EUR 40,880`) | Every total is reconcilable line by line and checked against the statement total |
 | Store isolation "tested" through an accounting answer | A technical probe: a document ingested only in another store (see T15) |
@@ -30,7 +31,7 @@ The pilot's documents could not support a reliable test:
 ```
 accountingbench/
 ├── corpus/
-│   ├── documents/acc_doc_001.pdf … acc_doc_207.pdf   ← the ONLY folder to ingest
+│   ├── documents/acc_doc_001 … acc_doc_207 (.pdf, .eml)   ← the ONLY folder to ingest
 │   ├── manifest.json         per document: type, issuer, addressee, date, language, pages, scanned, SHA-256, internal key
 │   ├── FROZEN.json           manifest hash
 │   └── ocr_reference/        reference text of the 20 scans (used only to check evidence quotes; never ingest)
@@ -44,7 +45,7 @@ accountingbench/
 ├── tools/
 │   ├── world.py              the fictional company, suppliers, orders, deliveries, invoices, payments (single source of truth)
 │   ├── render.py             PDF layouts (invoices x4 styles, PO, delivery note, bank statement, ledger, journal, e-mail…)
-│   ├── generate_corpus.py    world -> corpus (deterministic: same code, same PDFs)
+│   ├── generate_corpus.py    world -> corpus (deterministic: same code, same files)
 │   ├── build_dataset.py      world + corpus -> questions; expected answers are computed, never typed
 │   ├── build_review.py       blind answers + adjudication -> review file
 │   └── validate.py           FinanceBench validation rules applied to AccountingBench
@@ -67,7 +68,7 @@ check digits and e-mail domains use the reserved `.example` TLD.
 | supplier invoices (incl. sister company, 2025) | 69 | | payment execution notices (beneficiary IBANs) | 12 |
 | purchase orders (with approver and signature) | 27 | | sales invoices (sales cycle, out of scope) | 7 |
 | delivery notes / service reports | 20 / 6 | | contracts (berth, IT, waste, lease, management) | 5 |
-| e-mails (supplier, internal, phishing, noise) | 20 | | bank statements Jul / Aug / Sep / 1–9 Oct | 4 |
+| e-mails, `.eml` (supplier, internal, phishing, noise) | 20 | | bank statements Jul / Aug / Sep / 1–9 Oct | 4 |
 | quotes / pro-forma / credit note | 4 / 1 / 1 | | purchase journals Jul–Sep, AP ledger, aged payables, master file | 3 / 1 / 1 / 1 |
 | supplier statements of account | 3 | | policies, minutes, reports, schedules, certificates, other | 22 |
 
@@ -138,7 +139,7 @@ words): run both to measure how much the briefing helps.
 
 ## Running it
 
-1. **Ingest** `corpus/documents/` (207 PDFs) into one store, for example `azur-marine-2026-09`. Ingest
+1. **Ingest** `corpus/documents/` (187 PDFs + 20 `.eml`) into one store, for example `azur-marine-2026-09`. Ingest
    `isolation_probe/probe_doc_001.pdf` into **another** store.
 2. **Query** the Azur store with each `question` (and, separately, with `question_natural`). Keep the first answer and the
    sources displayed (document, page).
@@ -167,7 +168,7 @@ words): run both to measure how much the briefing helps.
   page (for scans, in the OCR reference text); every calculation re-evaluated, with every input found as printed in its evidence;
   every key fact present in the reference answer. `pytest` also checks IBAN validity, weekday bank dates, invoice arithmetic,
   manifest hashes and the absence of giveaway words in the questions.
-- **Blind re-answer.** Two independent agents answered the 20 questions from the PDFs only (rendering the 20 scans to images),
+- **Blind re-answer.** Two independent agents answered the 20 questions from the documents only (rendering the 20 scans to images),
   without the reference answers (`annotation/blind/`). Result: **every key fact of every question found (recall 1.00 on 20/20)**.
   They reported 3 real ambiguities, all fixed in the questions: "same amount" in acc_q_004 (now: the label cites a document of
   the same payee), invoice lines absent from the delivery note in acc_q_013 (now excluded), and the due date of credit notes in
@@ -180,7 +181,7 @@ words): run both to measure how much the briefing helps.
 
 ```bash
 pip install reportlab pillow          # + poppler-utils (pdftotext, pdftoppm)
-python accountingbench/tools/generate_corpus.py   # 207 PDFs, manifest, OCR reference, isolation probe
+python accountingbench/tools/generate_corpus.py   # 187 PDFs + 20 .eml, manifest, OCR reference, isolation probe
 python accountingbench/tools/build_dataset.py     # questions, simple export, anomaly register
 python accountingbench/tools/validate.py --review
 ```
