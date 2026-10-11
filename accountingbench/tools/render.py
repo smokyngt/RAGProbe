@@ -19,6 +19,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
 from common import D, fdate, fmt
+import fill as FILL
 
 _FONTS = {
     "Sans": "liberation/LiberationSans-Regular.ttf", "Sans-B": "liberation/LiberationSans-Bold.ttf",
@@ -390,6 +391,43 @@ def _terms_page(doc, s, title, number):
     doc.text(left, 13.5 * mm, f"{s.name} · {s.reg}", "Sans", 6.8, GREY)
 
 
+def kv_table(pairs):
+    return ("table", [("", 45 * mm, "l"), ("", 129 * mm, "l")], [[a, b] for a, b in pairs])
+
+
+def draw_blocks(doc, y, blocks, accent, left, right, bottom=26 * mm):
+    """Draw blocks [(title, kv-pairs | table | [paragraphs])] while they fit; returns (y, blocks left over)."""
+    for n, (title, body) in enumerate(blocks):
+        if isinstance(body, tuple) and body[0] == "table":
+            need = 26 + 12 * (len(body[2]) + 1)
+        elif body and isinstance(body[0], tuple):
+            need = 26 + 11 * ((len(body) + 1) // 2)
+        else:
+            need = 26 + 24 * len(body)
+        if y - need < bottom:
+            return y, blocks[n:]
+        doc.text(left, y, title, "Sans-B", 8.6, accent)
+        doc.hline(left, right, y - 3, accent, 0.5)
+        y -= 14
+        if isinstance(body, tuple) and body[0] == "table":
+            y = doc.table(left, y, body[1], body[2], head_fill=accent, size=7.3, row_h=12, zebra=LIGHT) - 8
+        elif body and isinstance(body[0], tuple):
+            half = (len(body) + 1) // 2
+            doc.kv(left, y, body[:half], label_w=30 * mm, size=7.8)
+            yy = doc.kv(left + (right - left) / 2, y, body[half:], label_w=30 * mm, size=7.8)
+            y = min(yy, y - 11.5 * half) - 4
+        else:
+            for t in body:
+                y = doc.para(left, y, t, right - left, "Sans", 7.8, leading=10.5) - 2
+            y -= 4
+    return y, []
+
+
+def as_sections(blocks):
+    return [(t, kv_table(b) if b and isinstance(b, list) and isinstance(b[0], tuple) and b[0][0] != "table" else b)
+            for t, b in blocks]
+
+
 def draw_sections(doc, sections, header, accent, size=9, leading=13):
     """Draw [(heading, text | [text | ('table', cols, rows)])] on new pages with `header()` -> top y."""
     left, right = 18 * mm, doc.W - 18 * mm
@@ -611,7 +649,11 @@ def render_invoice(path: Path, inv, entities, w, cust_no="AZM-0041", seed=0, ter
         y = doc.para(left, y, "This credit note will be offset against the original invoice." if lang == "en" else
                      "Cet avoir vient en déduction de la facture d'origine.", right - left, f, 8, color=GREY) - 6
     if lang == "fr":
-        y = doc.para(left, y, FR_LEGAL, right - left, f, 7, color=GREY)
+        y = doc.para(left, y, FR_LEGAL, right - left, f, 7, color=GREY) - 6
+    leftover = []
+    if not is_cn:
+        y, leftover = draw_blocks(doc, y - 4, FILL.invoice_page1_blocks(inv, w), head_fill, left, right)
+    annex = as_sections(leftover) + (annex or [])
 
     # footer
     doc.hline(left, right, 17 * mm, RULE)
@@ -700,6 +742,8 @@ def render_po(path: Path, po, sup, entities, w):
     doc.signature(left + 105 * mm, y - 52, seed=po.number + po.approver)
     y -= 84
     gpc = po.net > 5000
+    y, _left = draw_blocks(doc, y, FILL.po_allocation(po, sup), NAVY, left, right, bottom=34 * mm)
+    y -= 2
     doc.para(left, y, "This purchase order is governed by the General Purchasing Conditions of Azur Marine Services "
              "S.A.M. (version 2025-01)" + (", printed overleaf. " if gpc else ", available on request. ") +
              "Partial deliveries must be notified in writing. The supplier shall invoice only the quantities actually "
@@ -712,11 +756,18 @@ def render_po(path: Path, po, sup, entities, w):
         doc.text(left, H - 16 * mm, "GENERAL PURCHASING CONDITIONS – version 2025-01", "Sans-B", 12, NAVY)
         doc.text(right, H - 16 * mm, po.number, "Sans", 8, GREY, "r")
         y = H - 26 * mm
-        for head, body in GPC:
+        for head, body in GPC + FILL.GPC_MORE:
             doc.text(left, y, head, "Sans-B", 8.2, NAVY)
             y = doc.para(left, y - 10, body, right - left, "Sans", 7.6, leading=10) - 5
         doc.hline(left, right, 17 * mm, RULE)
         doc.text(left, 13.5 * mm, f"{e['name']} · {e['capital']} · {e['reg']} · {e['phone']}", "Sans", 6.8, GREY)
+
+        def req_head():
+            doc.rect(0, doc.H - 6 * mm, W, 6 * mm, fill=NAVY)
+            doc.text(left, doc.H - 16 * mm, "SUPPLIER REQUIREMENTS", "Sans-B", 12, NAVY)
+            doc.text(right, doc.H - 16 * mm, po.number, "Sans", 8, GREY, "r")
+            return doc.H - 26 * mm
+        draw_sections(doc, FILL.SUPPLIER_REQUIREMENTS, req_head, NAVY)
     doc.save()
 
 
@@ -795,6 +846,7 @@ def render_dn(path: Path, dn, sup, entities, w):
     doc.text(left + 6, y - 28, dn.signed_by, "Sans-B", 9)
     doc.text(left + 6, y - 40, fdate(dn.date), "Sans", 9)
     doc.signature(left + 95 * mm, y - 50, seed=dn.number)
+    draw_blocks(doc, y - 86, FILL.dn_blocks(dn, sup), HexColor(sup.color) if sup.color != "#000000" else GREY, left, right)
     doc.hline(left, right, 17 * mm, RULE)
     doc.text(left, 13.5 * mm, f"{sup.name} · {sup.reg}" if sup.reg else sup.name, "Sans", 6.8, GREY)
     doc.save()
@@ -1027,6 +1079,12 @@ def render_payment_batch(path: Path, batch_id, d, payments, bank, holder):
     doc.text(right - 50 * mm, y, f"Total du lot ({len(payments)} virement{'s' if len(payments) > 1 else ''})", "Sans-B", 8.5)
     doc.text(right - 3, y, fmt(tot, "fr"), "Sans-B", 8.5, align="r")
     y -= 24
+    y = doc.table(left, y, [("#", 8 * mm, "c"), ("Identifiant de bout en bout", 62 * mm, "l"), ("Frais", 18 * mm, "c"),
+                            ("Motif", 18 * mm, "c"), ("Horodatage", 40 * mm, "l"), ("Statut", 24 * mm, "c")],
+                  FILL.batch_details(payments), head_fill=burgundy, size=7.2, row_h=12) - 12
+    y = doc.kv(left, y, [("Canal", "BRM Online Business – signature électronique"), ("Certificat signataire", "C. MARTIN – CERT-BRM-20931"),
+                         ("Fichier", f"pain.001.001.09 – {batch_id}.xml"), ("Cut-off banque", "15:30 (J)"),
+                         ("Débit en compte", f"{fdate(d)} – valeur {fdate(d)}")], label_w=40 * mm, size=8) - 8
     doc.para(left, y, "Les coordonnées bancaires des bénéficiaires sont celles saisies dans l'ordre. La banque n'effectue "
              "aucun contrôle de concordance entre le nom du bénéficiaire et l'IBAN pour les virements hors zone de "
              "vérification. Document généré automatiquement – ne pas répondre.", right - left, "Sans", 7, color=GREY)
@@ -1249,7 +1307,7 @@ def render_text_doc(path, title, issuer, sections, d: dt.date, ref="", subtitle=
         doc.new_page()
         return doc.H - 20 * mm
     for heading, body in sections:
-        if y < 40 * mm or (heading and breaks and heading.startswith(tuple(breaks)) and y < doc.H - 60 * mm):
+        if y < 40 * mm or (heading and breaks and heading.startswith(tuple(breaks)) and y < doc.H * 0.45):
             y = brk()
         if heading:
             doc.text(left, y, heading, "Sans-B", 11, accent)
