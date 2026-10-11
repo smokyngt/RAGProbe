@@ -22,7 +22,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from PIL import Image, ImageFilter  # noqa: E402
 
-import fill as FILL  # noqa: E402
 import longdocs as LD  # noqa: E402
 import render as R  # noqa: E402
 from common import D, ROOT, date, fdate, fmt, prev_business_day as R_prev  # noqa: E402
@@ -57,14 +56,8 @@ BREAKS = {
 POLICY_BREAKS = ("3. Approval", "6. Payments", "Annex A", "Annex C", "Annex D", "Annex E", "Annex F", "Annex G", "Annex I")
 
 
-def invoice_annex(i, w=None):
-    """Annex pages printed by suppliers: packing list, timesheet, bunker detail, licences, call detail, IT report."""
-    base = _base_annex(i)
-    detail = FILL.invoice_annex_for(i, w) if w is not None and i.sup in TERMS_SUPPLIERS else None
-    return (detail or []) + (base or []) or None
-
-
-def _base_annex(i):
+def invoice_annex(i):
+    """Annex pages printed by some suppliers: call detail (telecom), monthly service report (IT)."""
     if i.sup == "RTL":
         return LD.telecom_detail(i.date.month)
     if i.sup == "KIT" and i.date.month >= 7:
@@ -107,7 +100,7 @@ def build_specs():
             continue
         kind = "credit_note" if i.kind == "credit_note" else "supplier_invoice"
         add(f"inv:{i.number}", kind, f"{'Credit note' if kind == 'credit_note' else 'Invoice'} {i.number}", i.s.name,
-            E[i.customer]["name"], i.date, i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w, terms_page=i.sup in TERMS_SUPPLIERS, annex=invoice_annex(i, w)),
+            E[i.customer]["name"], i.date, i.s.lang, lambda p, i=i: R.render_invoice(p, i, E, w, terms_page=i.sup in TERMS_SUPPLIERS, annex=invoice_annex(i)),
             scanned=i.scanned)
     dup = next(i for i in w.invoices if i.number == "FA-2026-0917")
     dup_copy = Invoice(**{**dup.__dict__, "copy_mark": "DUPLICATA", "booked": [], "scanned": True,

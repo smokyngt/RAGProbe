@@ -1,21 +1,21 @@
-                  Côte d'Azur Ship Chandlers SAS                                                      BON DE LIVRAISON
+                  Côte d'Azur Ship Chandlers SAS                                        BON DE LIVRAISON
   CDA
                   Quai Cassini 9 · 06300 Nice
                   Tel. +33 4 93 55 21 90 · compta@ca-shipchandlers.example
 
 
-Azur Marine Services S.A.M.                                                            N°                         BL-26-0902
-Delivery: Quai Antoine Ier                                                             Date                       02/09/2026
-98000 Monaco                                                                           Commande client            PO-2026-0334
-                                                                                       Navire                     M/Y Aurelia
+Azur Marine Services S.A.M.                                                  N°                    BL-26-0902
+Delivery: Quai Antoine Ier                                                   Date                  02/09/2026
+98000 Monaco                                                                 Commande client       PO-2026-0334
+                                                                             Navire                M/Y Aurelia
 
 
 
-Désignation                                                                                Qté commandée             Qté livrée   U
-Cordage polyester 14 mm (bobine 100 m)                                                                        2              2    u
-Défenses cylindriques F6                                                                                      6              6    u
-Produit nettoyant pont teck 5 L                                                                          10                 10    u
-Gants de manutention (lot de 12)                                                                              5              5    lot
+Désignation                                                                      Qté commandée        Qté livrée   U
+Cordage polyester 14 mm (bobine 100 m)                                                         2              2    u
+Défenses cylindriques F6                                                                       6              6    u
+Produit nettoyant pont teck 5 L                                                            10                10    u
+Gants de manutention (lot de 12)                                                               5              5    lot
 
 
 
@@ -23,24 +23,6 @@ Gants de manutention (lot de 12)                                                
 
  Bosun A. Kowalski
  02/09/2026
-
-
-
-
-Colisage
-
-   #     Type                              Dimensions                                                Poids
-   1     Caisse                            106x80x66 cm                                             19.3 kg
-   2     Fût                               77x73x37 cm                                              27.7 kg
-   3     Fût                               111x83x20 cm                                         120.4 kg
-   4     Carton                            67x44x29 cm                                              74.8 kg
-
-Transport
-Transporteur               Own vehicle                                Arrivée à quai           12:05
-Véhicule                   IT-946-TR                                  Contrôle                 Quantités comptées à bord
-Conditions
-Les réserves doivent être portées sur le présent document et confirmées par écrit sous 48 heures.
-Marchandises voyageant aux risques du destinataire après signature.
 
 
 

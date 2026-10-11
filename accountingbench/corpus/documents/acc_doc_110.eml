@@ -1,0 +1,39 @@
+Message-ID: <834fe2d7ca25c4024b4ed992@azurmarine.example>
+Date: Fri, 03 Jul 2026 11:18:00 +0200
+From: Claire Martin <c.martin@azurmarine.example>
+To: billing@kairos-it.example
+Subject: Invoice KIT-2026-0602 =?utf-8?b?4oCT?= disputed
+X-Mailer: Microsoft Outlook 16.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============6910872828421565607=="
+
+--===============6910872828421565607==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Kairos team,
+
+We do not accept invoice KIT-2026-0602 dated 01/06/2026 (11 additional engine=
+ering hours, EUR 1,320.00 incl. VAT). These hours were not ordered and the se=
+rver migration is included in the fixed-fee scope of our managed services agr=
+eement (MSA-2022-07, schedule B). Please issue a credit note.
+
+Best regards,
+Claire Martin
+Finance Director =E2=80=93 Azur Marine Services S.A.M.
+
+--===============6910872828421565607==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body style=3D"font-family:Calibri,Arial,sans-serif;font-size:11pt"><p>=
+Dear Kairos team,</p><p>We do not accept invoice KIT-2026-0602 dated 01/06/20=
+26 (11 additional engineering hours, EUR 1,320.00 incl. VAT). These hours wer=
+e not ordered and the server migration is included in the fixed-fee scope of =
+our managed services agreement (MSA-2022-07, schedule B). Please issue a cred=
+it note.</p><p>Best regards,<br>Claire Martin<br>Finance Director =E2=80=93 A=
+zur Marine Services S.A.M.</p></body></html>
+
+--===============6910872828421565607==--
