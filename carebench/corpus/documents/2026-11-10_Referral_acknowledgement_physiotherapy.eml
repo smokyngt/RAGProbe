@@ -5,9 +5,9 @@ To: ward3a@ch-saint-aubin.example
 Subject: Physiotherapy referral received
 MIME-Version: 1.0
 Content-Type: multipart/alternative;
- boundary="===============4230134855069007067=="
+ boundary="===============0374765713912780627=="
 
---===============4230134855069007067==
+--===============0374765713912780627==
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -16,7 +16,7 @@ working days.
 
 Physiotherapy department
 
---===============4230134855069007067==
+--===============0374765713912780627==
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
@@ -25,4 +25,4 @@ MIME-Version: 1.0
 apy referral has been received and will be triaged within two working days.</=
 p><p>Physiotherapy department</p></body></html>
 
---===============4230134855069007067==--
+--===============0374765713912780627==--
