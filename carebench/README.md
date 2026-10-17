@@ -1,6 +1,6 @@
 # CareBench V1 — dataset card
 
-A clinical-document benchmark for document assistants: **21 questions, each with 0 to 3 follow-up questions (62 rows)**, over a
+A clinical-document benchmark for document assistants: **34 questions, 33 of them with 1 to 3 follow-up questions (101 rows)**, over a
 **corpus of 114 fictional hospital documents** (106 PDFs totalling 311 pages, 8 `.eml` e-mails; 2 image-only scans; 81 in English,
 33 in French) from one hospital, the *Centre Hospitalier Saint-Aubin*, in November 2026. It uses the **same JSON format as
 FinanceBench and AccountingBench**, so any runner that reads those can read this one.
@@ -15,17 +15,17 @@ right patient's document, find the right rule, apply it, and stop when the docum
 
 | domain | questions (main) |
 |---|---|
-| laboratory flags and trends | 1 |
-| renal dose adjustment (CKD-EPI eGFR → enoxaparin), warfarin nomogram, paediatric weight dosing, insulin sliding scale | 2, 6, 10, 18 |
-| medication safety: reconciliation, allergy vs administered drug, interactions, formulary and approvals | 3, 4, 5, 19 |
+| laboratory flags, trends and relative changes | 1, 25 |
+| renal dose adjustment (CKD-EPI eGFR → enoxaparin, metformin, gentamicin), warfarin nomogram, paediatric weight dosing, insulin sliding scale | 2, 6, 10, 18, 22, 23, 24, 32 |
+| medication safety: reconciliation, allergy vs administered drug, interactions, formulary and approvals | 3, 4, 5, 19, 28, 34 |
 | preventive care: adult immunisation schedule | 7 |
 | imaging: nodule growth against a guideline threshold | 8 |
 | surgery: antibiotic prophylaxis dose by weight and timing; consent vs operation (side, timing) | 9, 12 |
 | patient identification: similar names, misfiled report | 11 |
-| antimicrobial stewardship: IV days against a policy limit, with a missed-dose decoy | 13 |
-| care transition: results pending at discharge, follow-up bookings against requested timeframes | 14, 15 |
-| infection control: MRSA isolation by screen result and origin | 16 |
-| vital signs: NEWS2 score computed from raw observations | 17 |
+| antimicrobial stewardship: IV days against a policy limit, with a missed-dose decoy; UTI regimens | 13, 29 |
+| care transition: results pending at discharge, follow-up bookings against requested timeframes, counts over a 60-row bookings export, booking deadlines | 14, 15, 27, 33 |
+| infection control: MRSA isolation by screen result and origin, counts on a ward list, C. difficile precautions | 16, 26, 30 |
+| vital signs: NEWS2 score computed from raw observations or from stated values | 17, 31 |
 | abstention and false premise: analyte never reported; insulin never prescribed | 20 |
 | store-isolation probe: a patient who exists only in another store | 21 |
 
@@ -36,7 +36,7 @@ French, two scans and an e-mail as sources, and absence of a document as the ans
 
 ## Follow-up questions
 
-Real use is a conversation, so 20 of the 21 questions are followed by 1 to 3 follow-ups (41 in total). A follow-up row has two
+Real use is a conversation, so 33 of the 34 questions are followed by 1 to 3 follow-ups (67 in total). A follow-up row has two
 phrasings of the same question:
 
 | field | content |
@@ -51,7 +51,7 @@ Metadata of a conversation:
 | `conversation_id` | id of the main question |
 | `turn` | 1 for the main question, 2, 3, 4 for its follow-ups |
 | `follow_up_of` | the main question id (null on a main question); `follow_up_ids` lists the follow-ups |
-| `follow_up_type` | `drill_down` 9 · `next_step` 10 · `hypothetical_variation` 6 · `scope_change` 6 · `calculation` 4 · `compare_over_time` 2 · `explain_why` 2 · `aggregate` 1 · `false_premise` 1 |
+| `follow_up_type` | `drill_down` 15 · `hypothetical_variation` 13 · `next_step` 12 · `scope_change` 12 · `calculation` 5 · `aggregate` 4 · `compare_over_time` 3 · `explain_why` 2 · `false_premise` 1 |
 | `depends_on_previous_answer` | false when the follow-up could be answered without the earlier turn (e.g. the false-premise follow-up) |
 
 Follow-ups are not paraphrases: they change the date, the value (*what if the INR had been 4.3?*), the scope (*and the small
@@ -74,10 +74,11 @@ carebench/
 │   ├── carebench_v1.jsonl                 ← the benchmark (full annotation, FinanceBench schema + conversation fields)
 │   ├── carebench_v1_simple.jsonl/.csv     ← id / conversation / turn / question(s) / answer / documents / pages
 │   ├── carebench_v1_conversations.jsonl   ← one line per conversation
-│   └── carebench_v1_review.json           blind re-answer review per row (62/62 verified, not human-reviewed)
-├── annotation/               blind answers (3 independent agents) and adjudication of every reported ambiguity or miss
+│   └── carebench_v1_review.json           blind re-answer review per row (101/101 verified, not human-reviewed)
+├── annotation/               blind answers (5 independent agents, 5 batches) and adjudication of every reported ambiguity or miss
 └── tools/
     ├── scenario.py           the fictional hospital: patients, rules, and every computation (single source of truth)
+    ├── more_questions.py     questions 22-34 (reuse the corpus: hypothetical cases, counts, lookups)
     ├── pdfkit.py             PDF layout (header band repeated on each page, non-wrapping tables, "Page x of y")
     ├── corpus.py             scenario → corpus (deterministic: same code, same files)
     ├── build_dataset.py      scenario + corpus → questions; expected answers are computed, evidence quotes are located in the pages
@@ -117,7 +118,7 @@ Each line of `datasets/carebench_v1.jsonl` has the FinanceBench top-level keys: 
 | `safety_relevant` | true when a wrong answer would mislead a medication or patient-safety decision |
 | `conversation_id`, `turn`, `follow_up_of`, `follow_up_type`, `follow_up_ids`, `depends_on_previous_answer` | see above |
 
-IDs: `care_q_001` … `care_q_021`; follow-ups `care_q_001_f1`, `care_q_001_f2`, … Unanswerable rows (care_q_020, care_q_021) have
+IDs: `care_q_001` … `care_q_034`; follow-ups `care_q_001_f1`, `care_q_001_f2`, … Unanswerable rows (care_q_020, care_q_021, care_q_033_f1) have
 no evidence and no key facts and are scored on abstention.
 
 ## Running it
@@ -144,12 +145,13 @@ no evidence and no key facts and are scored on abstention.
   scans, in the OCR reference text); every calculation re-evaluated with every input found as printed in its evidence; every key fact present
   in the reference answer; conversation rules (a follow-up points to an existing main question, turns are consecutive, a self-contained and
   a conversational phrasing). `pytest` also checks manifest hashes, the scenario computations and the absence of giveaway words.
-- **Blind re-answer.** Three independent agents answered all 62 rows from the documents only (scans read as images), without the reference
-  answers (`annotation/blind/`). Result: key-fact recall 1.00 on 51 rows at the first pass; on 11 rows a miss or a remark was adjudicated
-  against the documents (`annotation/adjudication.json`): 5 were fixed (a policy table lacked an explicit "moderate CAP" row; a question
-  now states that no risk factor is documented; two key facts were not requested by their question; one date was matched only with the year),
-  6 confirmed the reference. After the fixes, `datasets/carebench_v1_review.json` shows 62/62 verified.
-- **Not yet done:** review by a practising clinician or pharmacist (`human_reviewed: false`). Start with care_q_002, care_q_007, care_q_015 and care_q_017.
+- **Blind re-answer.** Five independent agents, in two rounds (questions 1-21, then 22-34), answered all 101 rows from the documents only (scans read as
+  images), without the reference answers (`annotation/blind/`). Result: every figure, date and name matched on 79 rows at the first pass; on 22 rows
+  a miss or a remark was adjudicated against the documents (`annotation/adjudication.json`): 9 times the question, a key fact or a document was
+  fixed (for example a policy table lacked an explicit "moderate CAP" row, the renal protocol's scope excluded acute kidney injury while a patient had
+  one, NEWS2's single-parameter rule needed to be stated as taking precedence, "isolated" needed defining, two key facts were not requested by their
+  question), 13 times the reference was confirmed. After the fixes, `datasets/carebench_v1_review.json` shows 101/101 verified.
+- **Not yet done:** review by a practising clinician or pharmacist (`human_reviewed: false`). Start with care_q_002, care_q_007, care_q_015, care_q_017 and care_q_023.
 
 ## Regenerating
 

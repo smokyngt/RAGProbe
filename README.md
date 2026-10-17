@@ -9,7 +9,7 @@ This repository contains four independent pieces:
 | **ragbench** | A benchmark runner that calls any RAG pipeline over HTTP, scores retrieval and answers, keeps a full trace per question and tells retrieval failures apart from generation failures. | `ragbench/`, `benchmark.py` |
 | **FinanceBench V1.1** | An English financial QA benchmark: 120 independently checked questions over a frozen corpus of 17 public financial PDFs (1,995 pages), with evidence pointing to the original document and page, a short natural phrasing and key facts for deterministic scoring. | `finance_benchmark/` |
 | **AccountingBench V1** | An accounts-payable benchmark in the same JSON format: 20 deterministic close-control questions (duplicates, bank matching, cut-off, approvals, IBAN changes, exception register, store isolation) over 200 fictional professional documents (180 PDFs, two thirds multi-page up to 92 pages, incl. 20 real scans and 13 contracts; and 20 `.eml` e-mails; realistic file names), generated from a single world model so that every expected answer is computed. | `accountingbench/` |
-| **CareBench V1** | A health benchmark in the same JSON format, with follow-up questions: 21 clinical-document questions (lab flags, renal and paediatric dosing, warfarin, allergies, interactions, consent, NEWS2, MRSA isolation, pending results…) and 41 follow-ups (drill-down, what-if, next step, scope change, false premise) over 114 fictional hospital documents (106 PDFs incl. 2 scans, 8 `.eml`; English and French), expected answers computed from one scenario model. | `carebench/` |
+| **CareBench V1** | A health benchmark in the same JSON format, with follow-up questions: 34 clinical-document questions (lab flags, renal and paediatric dosing, warfarin, allergies, interactions, consent, NEWS2, MRSA isolation, pending results, table counts…) and 67 follow-ups (drill-down, what-if, next step, scope change, false premise) over 114 fictional hospital documents (106 PDFs incl. 2 scans, 8 `.eml`; English and French), expected answers computed from one scenario model. | `carebench/` |
 
 The runner contains no RAG pipeline, and the dataset was built without using the pipeline it will evaluate.
 
@@ -215,10 +215,10 @@ Dataset card, the mapping from the old questions to the new ones, and the store-
 - **Corpus:** Centre Hospitalier Saint-Aubin (fictional), November 2026. 114 documents (106 PDFs, 311 pages; 8 `.eml`; 2 image-only scans): 27 protocols and policies,
   22 admission notes, 21 laboratory reports, 17 discharge summaries, drug charts, imaging, anaesthetic and operation notes, a consent form, screening and booking lists;
   81 in English, 33 in French; 14 filler patients and 14 unrelated hospital documents as noise.
-- **Questions:** 21 main questions across 13 domains, each applying a hospital rule with a computation or a comparison (eGFR from creatinine, NEWS2 from raw observations,
-  weight-based doses, date windows, interaction pairs, identifier checks), plus 2 abstention rows. **41 follow-up rows** in 20 conversations: each has a self-contained
+- **Questions:** 34 main questions across 13 domains, each applying a hospital rule with a computation or a comparison (eGFR from creatinine, NEWS2 from raw observations,
+  weight-based doses, date windows, interaction pairs, identifier checks), plus 2 abstention rows. **67 follow-up rows** in 33 conversations: each has a self-contained
   `question` and a conversational `question_natural`, a `follow_up_type` and a `turn`; `datasets/carebench_v1_conversations.jsonl` groups them per conversation.
-- **Validation:** automatic checks (verbatim evidence, recomputed calculations, key facts) and a blind re-answer by 3 agents: 62/62 verified after adjudication. Not clinician-reviewed.
+- **Validation:** automatic checks (verbatim evidence, recomputed calculations, key facts) and a blind re-answer by 5 agents: 101/101 verified after adjudication. Not clinician-reviewed.
 - **Run it:** ingest `carebench/corpus/documents/` only, then `python benchmark.py run --dataset carebench/datasets/carebench_v1.jsonl --config <your config>`
   (follow-ups run as independent questions with the current runner).
 

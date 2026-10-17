@@ -27,7 +27,7 @@ def build_more(B):
         "Using protocol PHA-REN-02, calculate Marc Delaunay's (MRN 4471823) eGFR from the serum creatinine of each of his two laboratory reports (05/11/2026 and 12/11/2026), rounded to the nearest whole number, and say how it changed.",
         "What's Mr Delaunay's kidney function on his two latest blood tests, and is it getting worse?",
         f"05/11/2026: creatinine 121 µmol/L gives an eGFR of {e05} mL/min/1.73 m2. 12/11/2026: creatinine 128 µmol/L gives {e12}. The eGFR fell by 3 mL/min/1.73 m2 (from 55 to 52); he is a 71-year-old man (kappa 0.9, alpha -0.302).",
-        [kf("eGFR 05/11", "55"), kf("eGFR 12/11", "52"), kf("direction", "fell", "decreased", "lower", "worse")],
+        [kf("eGFR 05/11", "55"), kf("eGFR 12/11", "52"), kf("direction", "fell", "fall", "decreased", "decline", "drop", "lower", "worse")],
         [ev(L05, "Age 71 years … Creatinine 121 µmol/L"), ev(L12, "Age 71 years … Creatinine 128 µmol/L"), ev(REN, "Male kappa = 0.9, alpha = -0.302"),
          ev(REN, "eGFR = 142 x min(Scr/kappa, 1)^alpha x max(Scr/kappa, 1)^-1.200 x 0.9938^Age x 1.012 [if female]")],
         type="calculation", difficulty="hard", style="trend", domain="pharmacy", rule="CKD-EPI 2021 eGFR, male, two dates", safety=True,
@@ -146,7 +146,7 @@ def build_more(B):
         "Positive: 3 (4B-02, 4B-06, 4B-07). Negative: 6 (4B-01, 4B-03, 4B-08, 4B-10, 4B-11, 4B-12). Pending: 3 (4B-04, 4B-05, 4B-09). Total 12.",
         [kf("positive", "3"), kf("negative", "6"), kf("pending", "3"), kf("total", "12")], [ev(W4, wrow(r)) for r in S.WARD4B],
         type="table", difficulty="medium", style="count", domain="infection_control", rule="Group and count rows of a table", fmt="three counts", modes=["decoy_similar_rows"], skills=["counting", "grouping"])
-    follow_up(q, "drill_down", "How many of the pending MRSA screens on Ward 4B at 14/11/2026 are for patients transferred from another hospital, and are those patients isolated?", "Of the pending ones, how many came from another hospital, and are they isolated?",
+    follow_up(q, "drill_down", "How many of the pending MRSA screens on Ward 4B at 14/11/2026 are for patients transferred from another hospital, and are those patients isolated (in a single room)?", "Of the pending ones, how many came from another hospital, and are they isolated?",
         "Two: 4B-04 (Delmas, R.), who is in a bay and therefore not isolated, and 4B-09 (Imbert, A.), who is in a single room. The third pending patient (4B-05) comes from home.",
         [kf("count", "Two", "2"), kf("not isolated", "4B-04"), kf("isolated", "4B-09")], [ev(W4, wrow(r)) for r in S.WARD4B if r[4] == "Pending"],
         type="table", difficulty="medium", style="count", domain="infection_control", rule="Filter rows on two columns", fmt="count | isolation status", modes=["decoy_similar_rows"], skills=["filtering", "counting"])
@@ -321,7 +321,7 @@ def build_more(B):
         "List every pair involving digoxin in pharmacy interaction bulletin PHA-INT-05 with its severity.",
         "Which interactions does the pharmacy bulletin list for digoxin?",
         "Four pairs: digoxin with clarithromycin (Major), digoxin with furosemide (Moderate), digoxin with omeprazole (Minor) and digoxin with spironolactone (Minor).",
-        [kf("count", "Four", "4"), kf("clarithromycin", "clarithromycin"), kf("furosemide", "furosemide"), kf("omeprazole", "omeprazole"), kf("spironolactone", "spironolactone")],
+        [kf("clarithromycin", "clarithromycin"), kf("furosemide", "furosemide"), kf("omeprazole", "omeprazole"), kf("spironolactone", "spironolactone")],
         [ev(BUL, irow("Digoxin", b)) for b in ("Clarithromycin", "Furosemide", "Omeprazole", "Spironolactone")],
         type="table", difficulty="medium", style="list", domain="medication_safety", rule="Filter the bulletin on one drug", fmt="list of pairs with severity", modes=["table_in_protocol", "deep_in_report"], skills=["filtering"], safety=True)
     follow_up(q, "drill_down", "What management does bulletin PHA-INT-05 advise for the Moderate digoxin pair?", "What does it say for the moderate one?",
