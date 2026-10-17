@@ -42,5 +42,49 @@
   "care_q_020_f1": {
     "verdict": "reference_confirmed",
     "notes": "False premise detected by the reviewer, as intended."
+  },
+  "care_q_022": {
+    "verdict": "reference_confirmed",
+    "notes": "Blind answer found eGFR 55 then 52, a fall of 3; the miss was the wording of the direction ('fall', 'decline'); accepted forms extended."
+  },
+  "care_q_023": {
+    "verdict": "question_fixed",
+    "notes": "Reviewer noted that the renal protocol's scope excluded acute kidney injury while Giraud's admission note says 'suspected acute kidney injury'. The exclusion was removed from the protocol scope (children and dialysis only); reference unchanged and equal to the blind answer (eGFR 28, stop metformin, 1,000 mg twice daily)."
+  },
+  "care_q_023_f2": {
+    "verdict": "question_fixed",
+    "notes": "Same scope remark as care_q_023, same fix; eGFR 43 and the 1,000 mg per day cap match the blind answer."
+  },
+  "care_q_024": {
+    "verdict": "reference_confirmed",
+    "notes": "Blind answer identical (72.5-145 mg, 435 mg, 300 mg, within limits). The reviewer's remark on the paracetamol line is outside the question."
+  },
+  "care_q_024_f1": {
+    "verdict": "reference_confirmed",
+    "notes": "Handbook-only calculation, as intended (362.5 mg); the reviewer notes amoxicillin is not prescribed to her, which the question does not claim."
+  },
+  "care_q_026_f2": {
+    "verdict": "question_fixed",
+    "notes": "'Isolated' was read as 'in a single room' by the reviewer; the question now says so."
+  },
+  "care_q_027": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer counted the entries labelled 'Cardiology clinic' only and found the same two bookings (27/11 and 30/11)."
+  },
+  "care_q_031_f1": {
+    "verdict": "question_fixed",
+    "notes": "A score of 3 from one parameter fits both the '1 to 4' row and the single-parameter row. The protocol now states that a score of 3 in a single parameter takes precedence; the blind answer already applied it."
+  },
+  "care_q_032_f2": {
+    "verdict": "reference_confirmed",
+    "notes": "Hypothetical value stated in the question; reviewer reached 4 weeks and 08/12/2026, with the 2-week alternative if not stable, as in the reference."
+  },
+  "care_q_033_f1": {
+    "verdict": "reference_confirmed",
+    "notes": "Both reviewers who saw it concluded that the export has no booking-creation date, as intended."
+  },
+  "care_q_034": {
+    "verdict": "question_fixed",
+    "notes": "Blind answer lists exactly the four digoxin pairs with the right severities; the question does not ask for a count, so the 'count' key fact was removed."
   }
 }

@@ -41,6 +41,8 @@ def test_scenario_computations():
     assert S.gp_deadline(d(2026, 11, 13)) == d(2026, 11, 17)  # Friday + 2 working days
     assert [r[0] for r in S.ward4b_needing_isolation_in_bay()] == ["4B-02", "4B-04", "4B-07"]
     assert S.paed_limits()["ml"] == 9.0 and len(S.guerin_given()) == 6
+    assert round(S.ckd_epi_2021(214, 69, False)) == 28 and round(S.ckd_epi_2021(128, 71, False)) == 52
+    assert S.news2(26, 90, False, 85, 135, False, 34.8) == 18
     assert [S.scale_units(g) for _, g, _ in S.RENARD] == [4, 2, 4, 0] and S.scale_units(12.0) == 4
 
 
@@ -61,7 +63,7 @@ def test_corpus_manifest_matches_files():
 def test_dataset_shape(rows):
     mains = [r for r in rows if r["metadata"]["follow_up_of"] is None]
     fups = [r for r in rows if r["metadata"]["follow_up_of"]]
-    assert [r["id"] for r in mains] == [f"care_q_{n:03d}" for n in range(1, 22)] and len(fups) == 41
+    assert [r["id"] for r in mains] == [f"care_q_{n:03d}" for n in range(1, 35)] and len(fups) == 67
     assert set(rows[0]) == {"id", "question", "question_natural", "reference_answer", "key_facts", "evidence", "metadata", "calculation"}
     for r in rows:
         for k in r["key_facts"]:

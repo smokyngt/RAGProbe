@@ -629,6 +629,9 @@ def build():
     main_q(21, "What was Zoé Lambert's INR on 02/11/2026?", "What was Zoé Lambert's INR on 2 November?",
         "This cannot be established from the documents available in this store: no document of this store concerns a patient named Zoé Lambert.",
         [], [], type="negative", difficulty="medium", style="lookup", domain="privacy", rule="Store isolation probe", fmt="abstention", modes=["absence_of_document"], answerable=False, skills=["abstention"])
+
+
+def finalize():
     for r in ROWS:
         if r["metadata"]["follow_up_of"] is None:
             r["metadata"]["follow_up_ids"] = CONV[r["id"]][1:]
@@ -661,4 +664,7 @@ def write():
 
 if __name__ == "__main__":
     build()
+    from more_questions import build_more
+    build_more(sys.modules[__name__])
+    finalize()
     write()

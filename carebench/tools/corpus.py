@@ -250,8 +250,8 @@ def hospital_documents():
     protocol("PHA-REN-02_Renal_Dose_Adjustment_Protocol_v4.pdf", "PHA-REN-02", "Renal Dose Adjustment Protocol", "4",
              "Chief Pharmacist", D(2026, 3, 2), [
         ("Purpose and scope", [PP("This protocol sets out how renal function is estimated and how the doses of renally cleared medicines are adjusted "
-                                  "for adult inpatients. It applies to prescribers, ward pharmacists and nurses. Children, dialysis patients and "
-                                  "patients with acute kidney injury follow separate guidance.")]),
+                                  "for adult inpatients. It applies to prescribers, ward pharmacists and nurses. Children and "
+                                  "dialysis patients follow separate guidance.")]),
         ("Estimating renal function", [
             PP("Renal function is expressed as the estimated glomerular filtration rate (eGFR) calculated with the CKD-EPI 2021 equation: "
                "<b>eGFR = 142 x min(Scr/kappa, 1)^alpha x max(Scr/kappa, 1)^-1.200 x 0.9938^Age x 1.012 [if female]</b>, "
@@ -336,7 +336,7 @@ def hospital_documents():
                 ("3 in a single parameter", "urgent ward-based response", "as directed"),
                 ("5 or 6", "urgent response: urgent review by a clinician within 30 minutes", "at least hourly"),
                 ("7 or more", "emergency response: immediate assessment by the critical care outreach team", "continuous monitoring")], [40, 85, 45])]),
-        ("Recording", [PP("The aggregate score is calculated at every set of observations from the chart values using the table above. The time of the escalation call and the name "
+        ("Recording", [PP("A score of 3 in any single parameter takes precedence over the aggregate band and triggers at least an urgent ward-based response. The aggregate score is calculated at every set of observations from the chart values using the table above. The time of the escalation call and the name "
                           "of the clinician who answered are recorded in the notes.")]),
     ], extra_pages=2)
     # --- interaction bulletin (landscape)
@@ -599,7 +599,7 @@ def scenario_patient_docs():
     admission_note(g, D(2026, 11, 12), "Heart failure with acute kidney injury.", "Known heart failure with reduced ejection fraction, ischaemic heart disease and chronic kidney disease stage 3.",
                    [("Bisoprolol", "5 mg", "once daily"), ("Furosemide", "80 mg", "once daily")], "No known drug allergies.", ["Daily weights", "Renal function daily"])
     admission_note(h, D(2026, 11, 13), "Diarrhoea and dehydration with suspected acute kidney injury.", "Type 2 diabetes treated with metformin and a sulfonylurea; recent course of antibiotics for a chest infection.",
-                   [("Metformin", "1 g", "twice daily"), ("Gliclazide", "80 mg", "twice daily")], "No known drug allergies.", ["Intravenous fluids", "Stop metformin", "Repeat U&E in 24 hours"])
+                   [("Metformin", "1,000 mg", "twice daily"), ("Gliclazide", "80 mg", "twice daily")], "No known drug allergies.", ["Intravenous fluids", "Stop metformin", "Repeat U&E in 24 hours"])
     lab_pdf(g, D(2026, 11, 15), S.normal_panel(g, K=4.7, Urea=11.2, Creat=148, Alb=36), "Dr C. Vasseur", g.ward, "15/11/2026 07:00",
             keys=["Na", "K", "Cl", "Urea", "Creat", "CRP", "Alb", "Hb", "WBC", "Plt"])
     # the 16/11 report filed under Girard's name belongs to Giraud
@@ -695,7 +695,7 @@ DX = ["urinary tract infection", "cellulitis of the lower leg", "COPD exacerbati
       "gastroenteritis", "deep vein thrombosis", "heart failure", "pneumonia"]
 
 
-def appointments_export():
+def booking_rows():
     rng = random.Random(77)
     rows = []
     clin = ["Cardiology clinic", "Diabetes clinic", "Respiratory clinic", "Orthopaedic fracture clinic", "Dermatology", "ENT clinic", "Rheumatology", "Cardiac rehabilitation assessment", "Echocardiography"]
@@ -708,6 +708,11 @@ def appointments_export():
     for name, d in S.MARTEL_BOOKED.items():
         rows.append((f"{m.last.upper()} {m.first}", m.mrn, name, fd(d), "10:20" if "Cardiology" in name else "14:00"))
     rows.sort(key=lambda r: (r[0]))
+    return rows
+
+
+def appointments_export():
+    rows = booking_rows()
     b = [H1("Outpatient clinic bookings - export of 19/11/2026"), SM("All bookings from 20/11/2026 onwards, sorted by patient name."),
          TB(["Patient", "MRN", "Clinic / examination", "Date", "Time"], [list(r) for r in rows], [55, 28, 70, 28, 20])]
     emit("Clinic_Bookings_Export_2026-11-19.pdf", "booking_export", "Clinic bookings export", "en", b, D(2026, 11, 19), role="evidence")
