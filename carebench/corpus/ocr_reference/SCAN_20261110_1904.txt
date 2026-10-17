@@ -1,0 +1,27 @@
+Centre Hospitalier Saint-Aubin                                                                     SCAN_20261110_1904
+
+
+
+
+Insulin sliding scale chart
+     Patient                              RENARD Paul
+     Date of birth / sex                  04/04/1961 / M
+     Age                                  65 years
+     MRN                                  4481950
+     Date                                 10/11/2026
+     Insulin                              aspart subcutaneous per protocol PHA-INS-02
+     Diagnosis                            type 2 diabetes, cellulitis
+
+                    Time                      Glucose (mmol/L)          Units given     Initials
+                    07:30                     12.4                      4               AR
+                    12:00                     8.1                       2               AR
+                    17:30                     15.6                      6               MD
+                    21:30                     6.2                       0               MD
+
+No doctor's override is written on the chart.
+
+
+
+
+Fictional document generated for benchmarking - not medical advice                                           Page 1 of 1
+

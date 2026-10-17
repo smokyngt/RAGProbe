@@ -1,0 +1,32 @@
+Message-ID: <1fcff01590e4d048cb23fa03@ch-saint-aubin.example>
+Date: Wed, 18 Nov 2026 16:45:00 +0100
+From: servicedesk@ch-saint-aubin.example
+To: all-staff@ch-saint-aubin.example
+Subject: Planned maintenance of the electronic record, Saturday 21 November
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============0734294738396264554=="
+
+--===============0734294738396264554==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear colleagues,
+
+The electronic patient record will be in read-only mode on Saturday 21 Novemb=
+er from 06:00 to 09:00 for planned maintenance. The downtime procedure applie=
+s.
+
+IT Service Desk
+
+--===============0734294738396264554==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body style=3D"font-family:Calibri,Arial,sans-serif"><p>Dear colleagues=
+,</p><p>The electronic patient record will be in read-only mode on Saturday 2=
+1 November from 06:00 to 09:00 for planned maintenance. The downtime procedur=
+e applies.</p><p>IT Service Desk</p></body></html>
+
+--===============0734294738396264554==--

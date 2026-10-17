@@ -1,0 +1,28 @@
+Centre Hospitalier Saint-Aubin                                                                               SCAN_20261118_0802
+
+
+
+
+Formulaire de consentement à un acte chirurgical
+     Patient                              ROBERT Michel
+     Date de naissance / sexe             08/08/1960 / M
+     Âge                                  66 ans
+     MRN                                  4488023
+     Date                                 18/11/2026
+
+     Intervention proposée                Arthroscopie du genou DROIT
+     Chirurgien                           Dr Anselme Vidal
+     Anesthésie                           générale
+
+J'ai reçu une information claire sur l'intervention, ses risques et les alternatives. J'ai pu poser mes questions. J'accepte
+l'intervention proposée.
+
+
+     Signature du patient                 Michel Robert - signé le 18/11/2026 à 07:45
+     Signature du chirurgien              Dr A. Vidal - signé le 18/11/2026 à 07:50
+
+
+
+
+Fictional document generated for benchmarking - not medical advice                                                        Page 1 of 1
+

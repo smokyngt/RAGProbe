@@ -1,0 +1,46 @@
+{
+  "care_q_004_f2": {
+    "verdict": "question_fixed",
+    "notes": "Blind reviewer noted the policy table had no explicit 'moderate CAP' row. Rows are now labelled 'Moderate CAP, no allergy' and 'Moderate CAP, severe penicillin allergy'; reference unchanged and matches the blind answer."
+  },
+  "care_q_006_f2": {
+    "verdict": "reference_confirmed",
+    "notes": "Blind answer correct (2.4 and 2.6, target 2.0-3.0); the miss was a formatting variant ('2.0-3.0'); accepted forms extended."
+  },
+  "care_q_007": {
+    "verdict": "reference_confirmed",
+    "notes": "Blind answer identical on all statuses and dates. The reviewer's remark (hospital record only) is already stated in the record and the reference."
+  },
+  "care_q_008_f2": {
+    "verdict": "question_fixed",
+    "notes": "Reviewer assumed no risk factor because none is documented; the question now says so. Reference unchanged."
+  },
+  "care_q_010": {
+    "verdict": "reference_confirmed",
+    "notes": "Blind answer identical (217.5 mg, 870 mg, 2,000 mg/day). The reviewer noted the handbook's 1 g single-dose cap; the reference now states that it does not bind at 14.5 kg."
+  },
+  "care_q_011_f2": {
+    "verdict": "question_fixed",
+    "notes": "Blind answer correct for what is asked (no valid report on 16/11; creatinine 148 on 15/11). The potassium key fact was not requested by the question and was removed."
+  },
+  "care_q_013": {
+    "verdict": "reference_confirmed",
+    "notes": "Blind answer lists 07, 08 and 09/11 as excess doses and 6 doses given: identical to the reference; the miss was the date written without the year; accepted form '07/11' added."
+  },
+  "care_q_016": {
+    "verdict": "question_fixed",
+    "notes": "Blind answer lists exactly beds 4B-02, 4B-04 and 4B-07 with the right reasons and exclusions; the question does not ask for a count, so the 'number' key fact was removed."
+  },
+  "care_q_016_f2": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer's reading (5 full days from 15/11, then 48 h) gives 21/11/2026, the reference."
+  },
+  "care_q_019": {
+    "verdict": "reference_confirmed",
+    "notes": "Reviewer found the same three drugs and the same single approval; the reference already states that no specialty initiation is documented for the two restricted drugs."
+  },
+  "care_q_020_f1": {
+    "verdict": "reference_confirmed",
+    "notes": "False premise detected by the reviewer, as intended."
+  }
+}
