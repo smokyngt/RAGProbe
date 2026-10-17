@@ -1,0 +1,1635 @@
+{
+  "method": "Blind re-answer by independent agents from the documents only (scans read as images), key facts matched automatically, every miss or reported ambiguity adjudicated against the documents.",
+  "human_reviewed": false,
+  "reviews": {
+    "care_q_001": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Delaunay_Marc_2026-11-12.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_001_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Delaunay_Marc_2026-11-12.pdf",
+        "LAB_Delaunay_Marc_2026-11-05.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_001_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Delaunay_Marc_2026-11-12.pdf",
+        "LAB_Delaunay_Marc_2026-11-05.pdf"
+      ],
+      "notes": "blind answer contains every key fact",
+      "independent_recompute": {
+        "result": 60.416666666666664,
+        "matches": true,
+        "basis": "blind answer figures / adjudication against the documents"
+      }
+    },
+    "care_q_002": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Ferrand_Odile_2026-11-16.pdf",
+        "PRESC_Ferrand_Odile_2026-11-16.pdf",
+        "PHA-REN-02_Renal_Dose_Adjustment_Protocol_v4.pdf"
+      ],
+      "notes": "blind answer contains every key fact",
+      "independent_recompute": {
+        "result": 25.410017984863117,
+        "matches": true,
+        "basis": "blind answer figures / adjudication against the documents"
+      }
+    },
+    "care_q_002_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Ferrand_Odile_2026-11-17.pdf",
+        "PRESC_Ferrand_Odile_2026-11-16.pdf",
+        "PHA-REN-02_Renal_Dose_Adjustment_Protocol_v4.pdf"
+      ],
+      "notes": "blind answer contains every key fact",
+      "independent_recompute": {
+        "result": 46.90546783561355,
+        "matches": true,
+        "basis": "blind answer figures / adjudication against the documents"
+      }
+    },
+    "care_q_002_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Ferrand_Odile_2026-11-16.pdf",
+        "PRESC_Ferrand_Odile_2026-11-16.pdf",
+        "PHA-REN-02_Renal_Dose_Adjustment_Protocol_v4.pdf",
+        "LAB_Ferrand_Odile_2026-11-17.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_003": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "ADM_Marchand_Helene_2026-10-30.pdf",
+        "CRH_Marchand_Helene_2026-11-09.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_003_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "CRH_Marchand_Helene_2026-11-09.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_003_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "CRH_Marchand_Helene_2026-11-09.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_004": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "ADM_Lefebvre_Yves_2026-11-10.pdf",
+        "MAR_Lefebvre_Yves_2026-11-10.pdf",
+        "2026-11-11_Pharmacist_intervention_Lefebvre_MRN-4483391.eml",
+        "PHA-ANT-01_Antibiotic_Prescribing_Policy_v7.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_004_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "ADM_Lefebvre_Yves_2026-11-10.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_004_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "Policy rows are 'no allergy', 'severe penicillin allergy', 'severe CAP'; moderate CAP is inferred from the non-severe rows.",
+      "blind_documents": [
+        "PHA-ANT-01_Antibiotic_Prescribing_Policy_v7.pdf",
+        "MAR_Lefebvre_Yves_2026-11-10.pdf",
+        "ADM_Lefebvre_Yves_2026-11-10.pdf"
+      ],
+      "notes": "Blind reviewer noted the policy table had no explicit 'moderate CAP' row. Rows are now labelled 'Moderate CAP, no allergy' and 'Moderate CAP, severe penicillin allergy'; reference unchanged and matches the blind answer.",
+      "adjudication": "question_fixed"
+    },
+    "care_q_004_f3": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "2026-11-11_Pharmacist_intervention_Lefebvre_MRN-4483391.eml",
+        "MAR_Lefebvre_Yves_2026-11-10.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_005": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "MAR_Coste_Raymond_2026-11-15.pdf",
+        "PHA-INT-05_Drug_Interaction_Bulletin_Q4-2026.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_005_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "MAR_Coste_Raymond_2026-11-15.pdf",
+        "PHA-INT-05_Drug_Interaction_Bulletin_Q4-2026.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_005_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "MAR_Coste_Raymond_2026-11-15.pdf",
+        "PHA-INT-05_Drug_Interaction_Bulletin_Q4-2026.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_006": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "INR_Perrin_Josiane_2026-11-10.pdf",
+        "PHA-ANC-03_Warfarin_Dosing_Nomogram_v3.pdf"
+      ],
+      "notes": "blind answer contains every key fact",
+      "independent_recompute": {
+        "result": 25.2,
+        "matches": true,
+        "basis": "blind answer figures / adjudication against the documents"
+      }
+    },
+    "care_q_006_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "INR_Perrin_Josiane_2026-11-10.pdf",
+        "PHA-ANC-03_Warfarin_Dosing_Nomogram_v3.pdf"
+      ],
+      "notes": "blind answer contains every key fact",
+      "independent_recompute": {
+        "result": 23.8,
+        "matches": true,
+        "basis": "blind answer figures / adjudication against the documents"
+      }
+    },
+    "care_q_006_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "INR_Perrin_Josiane_2026-11-10.pdf"
+      ],
+      "notes": "Blind answer correct (2.4 and 2.6, target 2.0-3.0); the miss was a formatting variant ('2.0-3.0'); accepted forms extended.",
+      "adjudication": "reference_confirmed"
+    },
+    "care_q_007": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "Hospital record only; city vaccinations not recorded unless paper booklet presented. Zoster 'due date' taken as end of the 6-month window (05/11/2026).",
+      "blind_documents": [
+        "VAC_Blanc_Gerard_2026-11-20.pdf",
+        "IMM-SCH-01_Calendrier_vaccinal_adulte_v2.pdf"
+      ],
+      "notes": "Blind answer identical on all statuses and dates. The reviewer's remark (hospital record only) is already stated in the record and the reference.",
+      "adjudication": "reference_confirmed"
+    },
+    "care_q_007_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "VAC_Blanc_Gerard_2026-11-20.pdf",
+        "IMM-SCH-01_Calendrier_vaccinal_adulte_v2.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_007_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "VAC_Blanc_Gerard_2026-11-20.pdf",
+        "IMM-SCH-01_Calendrier_vaccinal_adulte_v2.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_008": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "CT_Chest_Roussel_Simone_2026-03-14.pdf",
+        "CT_Chest_Roussel_Simone_2026-11-12.pdf",
+        "RAD-FUP-02_Pulmonary_Nodule_Follow-up_Guideline_v2.pdf"
+      ],
+      "notes": "blind answer contains every key fact",
+      "independent_recompute": {
+        "result": 33.33333333333333,
+        "matches": true,
+        "basis": "blind answer figures / adjudication against the documents"
+      }
+    },
+    "care_q_008_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "CT_Chest_Roussel_Simone_2026-03-14.pdf",
+        "CT_Chest_Roussel_Simone_2026-11-12.pdf",
+        "RAD-FUP-02_Pulmonary_Nodule_Follow-up_Guideline_v2.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_008_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "Guideline condition 'no risk factor' - no risk factors documented for patient, assumed none.",
+      "blind_documents": [
+        "CT_Chest_Roussel_Simone_2026-03-14.pdf",
+        "CT_Chest_Roussel_Simone_2026-11-12.pdf",
+        "RAD-FUP-02_Pulmonary_Nodule_Follow-up_Guideline_v2.pdf"
+      ],
+      "notes": "Reviewer assumed no risk factor because none is documented; the question now says so. Reference unchanged.",
+      "adjudication": "question_fixed"
+    },
+    "care_q_009": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "ANAES_Tessier_Bernard_2026-11-17.pdf",
+        "OPNOTE_Tessier_Bernard_2026-11-17.pdf",
+        "PHA-ANT-01_Antibiotic_Prescribing_Policy_v7.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_009_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "ANAES_Tessier_Bernard_2026-11-17.pdf",
+        "OPNOTE_Tessier_Bernard_2026-11-17.pdf",
+        "PHA-ANT-01_Antibiotic_Prescribing_Policy_v7.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_009_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "ANAES_Tessier_Bernard_2026-11-17.pdf",
+        "OPNOTE_Tessier_Bernard_2026-11-17.pdf",
+        "PHA-ANT-01_Antibiotic_Prescribing_Policy_v7.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_010": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "Handbook table lists 'Maximum single dose 1 g' as well as 15 mg/kg per dose; weight-based 217.5 mg used as the applicable maximum.",
+      "blind_documents": [
+        "PRESC_Moreau_Lea_2026-11-16.pdf",
+        "ADM_Moreau_Lea_2026-11-16.pdf",
+        "PAE-DOS-01_Paediatric_Dosing_Handbook_2026.pdf"
+      ],
+      "notes": "Blind answer identical (217.5 mg, 870 mg, 2,000 mg/day). The reviewer noted the handbook's 1 g single-dose cap; the reference now states that it does not bind at 14.5 kg.",
+      "independent_recompute": {
+        "result": 217.5,
+        "matches": true,
+        "basis": "blind answer figures / adjudication against the documents"
+      },
+      "adjudication": "reference_confirmed"
+    },
+    "care_q_010_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "PRESC_Moreau_Lea_2026-11-16.pdf",
+        "ADM_Moreau_Lea_2026-11-16.pdf",
+        "PAE-DOS-01_Paediatric_Dosing_Handbook_2026.pdf"
+      ],
+      "notes": "blind answer contains every key fact",
+      "independent_recompute": {
+        "result": 9.0625,
+        "matches": true,
+        "basis": "blind answer figures / adjudication against the documents"
+      }
+    },
+    "care_q_010_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": true,
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "PRESC_Moreau_Lea_2026-11-16.pdf",
+        "ADM_Moreau_Lea_2026-11-16.pdf",
+        "PAE-DOS-01_Paediatric_Dosing_Handbook_2026.pdf"
+      ],
+      "notes": "blind answer contains every key fact",
+      "independent_recompute": {
+        "result": 2.2988505747126435,
+        "matches": true,
+        "basis": "blind answer figures / adjudication against the documents"
+      }
+    },
+    "care_q_011": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Girard_Henri_2026-11-16.pdf",
+        "ADM_Girard_Henri_2026-11-12.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_011_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Girard_Henri_2026-11-16.pdf",
+        "ADM_Girard_Henri_2026-11-12.pdf",
+        "ADM_Giraud_Henri_2026-11-13.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_011_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Girard_Henri_2026-11-16.pdf",
+        "ADM_Girard_Henri_2026-11-12.pdf",
+        "LAB_Girard_Henri_2026-11-15.pdf"
+      ],
+      "notes": "Blind answer correct for what is asked (no valid report on 16/11; creatinine 148 on 15/11). The potassium key fact was not requested by the question and was removed.",
+      "adjudication": "question_fixed"
+    },
+    "care_q_012": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "SCAN_20261118_0802.pdf",
+        "CRO_Robert_Michel_2026-11-18.pdf",
+        "LEG-CON-01_Consent_to_Treatment_Policy_v4.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_012_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "SCAN_20261118_0802.pdf",
+        "CRO_Robert_Michel_2026-11-18.pdf",
+        "LEG-CON-01_Consent_to_Treatment_Policy_v4.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_012_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "SCAN_20261118_0802.pdf",
+        "CRO_Robert_Michel_2026-11-18.pdf",
+        "LEG-CON-01_Consent_to_Treatment_Policy_v4.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_013": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "MAR_Guerin_Anne-Sophie_2026-11-03.pdf",
+        "PHA-ANT-01_Antibiotic_Prescribing_Policy_v7.pdf",
+        "ADM_Guerin_Anne-Sophie_2026-11-03.pdf"
+      ],
+      "notes": "Blind answer lists 07, 08 and 09/11 as excess doses and 6 doses given: identical to the reference; the miss was the date written without the year; accepted form '07/11' added.",
+      "adjudication": "reference_confirmed"
+    },
+    "care_q_013_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "MAR_Guerin_Anne-Sophie_2026-11-03.pdf",
+        "PHA-ANT-01_Antibiotic_Prescribing_Policy_v7.pdf",
+        "ADM_Guerin_Anne-Sophie_2026-11-03.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_013_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "MAR_Guerin_Anne-Sophie_2026-11-03.pdf",
+        "PHA-ANT-01_Antibiotic_Prescribing_Policy_v7.pdf",
+        "ADM_Guerin_Anne-Sophie_2026-11-03.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_014": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "CRH_Benali_Nadia_2026-11-12.pdf",
+        "LAB_Benali_Nadia_2026-11-13.pdf",
+        "MICRO_Benali_Nadia_2026-11-17.pdf",
+        "ADM-DIS-04_Discharge_and_Transfer_of_Care_Policy_v3.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_014_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "CRH_Benali_Nadia_2026-11-12.pdf",
+        "LAB_Benali_Nadia_2026-11-13.pdf",
+        "MICRO_Benali_Nadia_2026-11-17.pdf",
+        "ADM-DIS-04_Discharge_and_Transfer_of_Care_Policy_v3.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_014_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "CRH_Benali_Nadia_2026-11-12.pdf",
+        "LAB_Benali_Nadia_2026-11-13.pdf",
+        "MICRO_Benali_Nadia_2026-11-17.pdf",
+        "ADM-DIS-04_Discharge_and_Transfer_of_Care_Policy_v3.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_015": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "CRH_Martel_Jacques_2026-11-06.pdf",
+        "Clinic_Bookings_Export_2026-11-19.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_015_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "CRH_Martel_Jacques_2026-11-06.pdf",
+        "Clinic_Bookings_Export_2026-11-19.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_015_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "ADM-DIS-04_Discharge_and_Transfer_of_Care_Policy_v3.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_016": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "IPC_MRSA_screening_Ward4B_2026-11-14.pdf",
+        "IPC-MAN-01_Manuel_de_prevention_des_infections_v6.pdf"
+      ],
+      "notes": "Blind answer lists exactly beds 4B-02, 4B-04 and 4B-07 with the right reasons and exclusions; the question does not ask for a count, so the 'number' key fact was removed.",
+      "adjudication": "question_fixed"
+    },
+    "care_q_016_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "IPC-MAN-01_Manuel_de_prevention_des_infections_v6.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_016_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "Interpretation: assumes decolonisation ends at end of day 19/11 (5 full days from 15/11); 48 h later = 21/11. If the last dose were counted earlier on 19/11 the date would still be 21/11 at the earliest.",
+      "blind_documents": [
+        "IPC-MAN-01_Manuel_de_prevention_des_infections_v6.pdf",
+        "IPC_MRSA_screening_Ward4B_2026-11-14.pdf"
+      ],
+      "notes": "Reviewer's reading (5 full days from 15/11, then 48 h) gives 21/11/2026, the reference.",
+      "adjudication": "reference_confirmed"
+    },
+    "care_q_017": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "OBS_Fabre_Louis_2026-11-15.pdf",
+        "NUR-OBS-01_NEWS2_Observation_and_Escalation_Protocol_v5.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_017_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "OBS_Fabre_Louis_2026-11-15.pdf",
+        "NUR-OBS-01_NEWS2_Observation_and_Escalation_Protocol_v5.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_017_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "OBS_Fabre_Louis_2026-11-15.pdf",
+        "NUR-OBS-01_NEWS2_Observation_and_Escalation_Protocol_v5.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_018": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "SCAN_20261110_1904.pdf",
+        "PHA-INS-02_Inpatient_Insulin_Sliding_Scale_v3.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_018_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "SCAN_20261110_1904.pdf",
+        "PHA-INS-02_Inpatient_Insulin_Sliding_Scale_v3.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_018_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "PHA-INS-02_Inpatient_Insulin_Sliding_Scale_v3.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_019": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "Restricted (R) drugs need no D&T approval per se, only initiation by the named specialty; the chart does not show who initiated sacubitril/valsartan or linaclotide (prescriber Dr Vasseur).",
+      "blind_documents": [
+        "MAR_Caron_Sylvie_2026-11-18.pdf",
+        "PHA-FOR-00_Hospital_Formulary_2026-2027.pdf",
+        "2026-11-16_DT_approval_tolvaptan_MRN-4486603.eml"
+      ],
+      "notes": "Reviewer found the same three drugs and the same single approval; the reference already states that no specialty initiation is documented for the two restricted drugs.",
+      "adjudication": "reference_confirmed"
+    },
+    "care_q_019_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "2026-11-16_DT_approval_tolvaptan_MRN-4486603.eml"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_019_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "PHA-FOR-00_Hospital_Formulary_2026-2027.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_020": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Ferrand_Odile_2026-11-16.pdf",
+        "LAB_Ferrand_Odile_2026-11-17.pdf",
+        "ADM_Ferrand_Odile_2026-11-14.pdf",
+        "PRESC_Ferrand_Odile_2026-11-16.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_020_f1": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "Question presupposes insulin was started; documents contradict this.",
+      "blind_documents": [
+        "PRESC_Ferrand_Odile_2026-11-16.pdf",
+        "ADM_Ferrand_Odile_2026-11-14.pdf",
+        "LAB_Ferrand_Odile_2026-11-16.pdf"
+      ],
+      "notes": "False premise detected by the reviewer, as intended.",
+      "adjudication": "reference_confirmed"
+    },
+    "care_q_020_f2": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "LAB_Ferrand_Odile_2026-11-16.pdf",
+        "LAB_Ferrand_Odile_2026-11-17.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    },
+    "care_q_021": {
+      "status": "verified",
+      "method": "llm_blind_reverify",
+      "human_reviewed": false,
+      "checks": {
+        "answer_correctness": true,
+        "numerical_correctness": true,
+        "currency": true,
+        "units": true,
+        "reporting_period": true,
+        "entity": true,
+        "evidence_location": true,
+        "calculation": "n/a",
+        "ambiguity": true,
+        "completeness": true
+      },
+      "blind_key_fact_recall": 1.0,
+      "blind_missing_facts": [],
+      "blind_ambiguities": "",
+      "blind_documents": [
+        "INR_Perrin_Josiane_2026-11-10.pdf"
+      ],
+      "notes": "blind answer contains every key fact"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+Message-ID: <10883256683d3b6c8648d9a7@ch-saint-aubin.example>
+Date: Mon, 09 Nov 2026 14:30:00 +0100
+From: pharmacy.stores@ch-saint-aubin.example
+To: wards@ch-saint-aubin.example
+Subject: Stock notice: temporary shortage of 500 mL sodium chloride bags
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============1358313464136232217=="
+
+--===============1358313464136232217==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear ward teams,
+
+A supplier delay affects 500 mL sodium chloride 0.9% bags. 1 litre bags remai=
+n available and are being allocated to the wards. Please do not stockpile.
+
+Pharmacy stores
+
+--===============1358313464136232217==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body style=3D"font-family:Calibri,Arial,sans-serif"><p>Dear ward teams=
+,</p><p>A supplier delay affects 500 mL sodium chloride 0.9% bags. 1 litre ba=
+gs remain available and are being allocated to the wards. Please do not stock=
+pile.</p><p>Pharmacy stores</p></body></html>
+
+--===============1358313464136232217==--

@@ -1,0 +1,28 @@
+Message-ID: <d81d963d393f29762579db66@ch-saint-aubin.example>
+Date: Tue, 10 Nov 2026 10:20:00 +0100
+From: physio.referrals@ch-saint-aubin.example
+To: ward3a@ch-saint-aubin.example
+Subject: Physiotherapy referral received
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============4230134855069007067=="
+
+--===============4230134855069007067==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Your physiotherapy referral has been received and will be triaged within two =
+working days.
+
+Physiotherapy department
+
+--===============4230134855069007067==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body style=3D"font-family:Calibri,Arial,sans-serif"><p>Your physiother=
+apy referral has been received and will be triaged within two working days.</=
+p><p>Physiotherapy department</p></body></html>
+
+--===============4230134855069007067==--
